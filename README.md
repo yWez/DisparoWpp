@@ -22,6 +22,18 @@ O guia de ativação da integração automática está em **[docs/CONFIGURAR_AUT
 
 **Status (11/11/2026):** a primeira sincronização completa foi executada com sucesso; a planilha e a página foram conferidas com 8 campanhas distintas, 902 envios e 107 falhas. O GitHub Actions foi habilitado para executar a cada 15 minutos (execuções podem sofrer atraso pela plataforma). A descoberta dos dois canais Meta é automática e os Secrets já foram cadastrados pelo administrador. Para pausar as execuções agendadas, defina a variável de repositório `UMCLIQUE_SYNC_ENABLED` como `false`.
 
+## Inteligência comercial v2
+
+A mesma página e as mesmas integrações foram evoluídas, sem recriar o projeto.
+
+- **Filtros globais:** período, campanha, canal Meta, status presente e origem declarada.
+- **KPIs auditáveis:** enviados, entregues, lidos, respostas e falhas, taxas com denominadores claros. Pessoas únicas e resposta por contatos únicos mostram `Não disponível` até integração de identidades.
+- **Análises:** séries diárias, comparativo por canal, ranking de campanhas, erros agrupados por código real, segmentos por origem e estrutura do funil.
+- **Exportações:** CSV com dados agregados e filtros aplicados. Relatórios nominais/telefones nunca são publicados no GitHub Pages.
+- **Integração preservada:** a consulta a UmClique, atualização no Google Sheets, GitHub Actions e GitHub Pages seguem operando. O enriquecimento `/errors` e `/public-channels` é opcional e tolera indisponibilidade temporária.
+
+**Detalhes de métricas, privacidade, limitações e testes:** [docs/INTELIGENCIA_COMERCIAL_V2.md](docs/INTELIGENCIA_COMERCIAL_V2.md).
+
 ## Atualização dos dados
 
 A fonte oficial é a API da UmClique. O workflow `.github/workflows/sync-umclique.yml` consulta campanhas dos dois canais Meta e atualiza a aba **Disparos WhatsApp** da planilha e `data/disparos.json`, ambos por ID de campanha (sem somar eventos repetidos). A página lê o JSON e exibe a última sincronização.
