@@ -124,7 +124,7 @@ def discover_channel_ids(session, created_from):
         for item in batches:
             if not isinstance(item, dict):
                 continue
-            match = re.fullmatch(r"Disparo\\s*([1-7])\\s*-\\s*Wes",
+            match = re.fullmatch(r"Disparo\s*([1-7])\s*-\s*Wes",
                                  str(item.get("name", "")).strip(), re.I)
             if not match or not item.get("id"):
                 continue
