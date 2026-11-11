@@ -100,32 +100,43 @@ def api_session(api_key):
     return session
 
 
-def list_broadcasts(session, channel_id, created_from):
-    """Respect the official limit/offset pagination and filter by channel."""
-    if not channel_id:
-        raise ValueError("UMCLIQUE_CHANNEL_ID é obrigatório para não publicar outras operações.")
-    collected, offset, seen_offsets = [], 0, set()
-    for _ in range(100):
-        if offset in seen_offsets:
-            raise RuntimeError("Paginação UmClique retornou offset repetido.")
-        seen_offsets.add(offset)
-        result = get_json(session, "/public-broadcasts",
-                          channel_id=channel_id, provider="meta", created_from=created_from,
-                          sort="created_at", order="asc", limit=100, offset=offset)
-        batch = result.get("broadcasts")
-        if not isinstance(batch, list):
-            raise ValueError("Campo broadcasts ausente/inválido na API.")
-        collected.extend(batch)
-        nxt = result.get("next_offset")
-        if nxt in (None, "", False):
-            return collected
-        try:
-            offset = int(nxt)
-        except (TypeError, ValueError):
-            raise ValueError("next_offset não é numérico; rever contrato da API.") from None
-        if offset < 0:
-            raise ValueError("next_offset inválido.")
-    raise RuntimeError("Limite de páginas excedido; ampliar paginação com cautela.")
+def list_broadcasts(session, channel_ids, created_from):
+    """Fetch one or more approved Meta channels, deduplicating by broadcast ID."""
+    if isinstance(channel_ids, str):
+        channel_ids = [x.strip() for x in channel_ids.split(",") if x.strip()]
+    channel_ids = list(dict.fromkeys(channel_ids or []))
+    if not channel_ids:
+        raise ValueError("UMCLIQUE_CHANNEL_IDS precisa conter ao menos um canal autorizado.")
+    if len(channel_ids) > 10:
+        raise ValueError("Número de canais maior que o esperado; confira a configuração.")
+    collected = {}
+    for channel_id in channel_ids:
+        offset, seen_offsets = 0, set()
+        for _ in range(100):
+            if offset in seen_offsets:
+                raise RuntimeError("Paginação UmClique retornou offset repetido.")
+            seen_offsets.add(offset)
+            result = get_json(session, "/public-broadcasts",
+                              channel_id=channel_id, provider="meta", created_from=created_from,
+                              sort="created_at", order="asc", limit=100, offset=offset)
+            batch = result.get("broadcasts")
+            if not isinstance(batch, list):
+                raise ValueError("Campo broadcasts ausente/inválido na API.")
+            for item in batch:
+                if isinstance(item, dict) and item.get("id"):
+                    collected[str(item["id"])] = item
+            nxt = result.get("next_offset")
+            if nxt in (None, "", False):
+                break
+            try:
+                offset = int(nxt)
+            except (TypeError, ValueError):
+                raise ValueError("next_offset não é numérico; rever contrato da API.") from None
+            if offset < 0:
+                raise ValueError("next_offset inválido.")
+        else:
+            raise RuntimeError("Limite de páginas excedido; ampliar paginação com cautela.")
+    return list(collected.values())
 
 
 def try_metrics(session, campaign_id):
@@ -352,14 +363,14 @@ def save_public_json(existing, records, changed, now):
 def run():
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     api_key = required_env("UMCLIQUE_API_KEY")
-    channel_id = required_env("UMCLIQUE_CHANNEL_ID")
+    channel_ids = required_env("UMCLIQUE_CHANNEL_IDS")
     sheet_id = required_env("GOOGLE_SHEET_ID")
     google_creds = required_env("GOOGLE_SERVICE_ACCOUNT_JSON")
     created_from = os.getenv("UMCLIQUE_CREATED_FROM", "2026-11-09T00:00:00-03:00")
     now = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
     existing = json.loads(DATA_PATH.read_text(encoding="utf-8"))
     api = api_session(api_key)
-    broadcasts = list_broadcasts(api, channel_id, created_from)
+    broadcasts = list_broadcasts(api, channel_ids, created_from)
     LOG.info("Transmissões encontradas na API: %d", len(broadcasts))
     current_by_id = {str(x.get("campaignId") or x.get("id")): x for x in existing["campaigns"]}
     normalized = []
