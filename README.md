@@ -16,21 +16,22 @@ A página `index.html` carrega o arquivo `data/disparos.json` e calcula automati
 
 As contagens foram extraídas do print da plataforma e conferidas com a aba `Disparos WhatsApp` do Google Sheets. **Status "Concluída" não comprova entrega, leitura ou resposta.** "Sem falha registrada" não deve ser apresentado como "entregues". Os rótulos de tempo relativos no print não estabelecem horários exatos por dia.
 
-## Integração UmClique (em preparação)
+## Integração UmClique (ativa por agendamento)
 
 O guia de ativação da integração automática está em **[docs/CONFIGURAR_AUTOMACAO.md](docs/CONFIGURAR_AUTOMACAO.md)**.
 
-**Status:** os endpoints oficiais foram identificados e o sincronizador via GitHub Actions foi implementado. A automação permanece **inativa** até configurar a chave UmClique, os IDs dos canais, a conta de serviço do Google e o token GitHub de publicação.
+**Status (11/11/2026):** a primeira sincronização completa foi executada com sucesso; a planilha e a página foram conferidas com 8 campanhas distintas, 902 envios e 107 falhas. O GitHub Actions foi habilitado para executar a cada 15 minutos (execuções podem sofrer atraso pela plataforma). A descoberta dos dois canais Meta é automática e os Secrets já foram cadastrados pelo administrador. Para pausar as execuções agendadas, defina a variável de repositório `UMCLIQUE_SYNC_ENABLED` como `false`.
 
-## Atualização de dados
+## Atualização dos dados
 
-1. Registrar os novos disparos na planilha operacional, com ID da campanha, período, contatos, envios, falhas e status.
-2. Conferir a plataforma e separar `0` de "não apurado".
-3. Atualizar `data/disparos.json` no repositório, adicionando campanhas novas ou ajustando as existentes com evidência.
-4. Fazer commit no ramo `main`. O site estático passa a usar os dados mais recentes assim que o deploy ocorrer.
-5. Não alterar o histórico sem registrar correção e a fonte. Nunca inserir dados pessoais.
+A fonte oficial é a API da UmClique. O workflow `.github/workflows/sync-umclique.yml` consulta campanhas dos dois canais Meta e atualiza a aba **Disparos WhatsApp** da planilha e `data/disparos.json`, ambos por ID de campanha (sem somar eventos repetidos). A página lê o JSON e exibe a última sincronização.
 
-**Importante:** até ativar o workflow e as credenciais, a atualização continua manual. Quando o workflow estiver ativo, ele atualizará o Sheets e o JSON do site consultando a API da UmClique a cada aproximadamente 15 minutos. Alterações manuais feitas apenas na planilha não sincronizam automaticamente para o GitHub.
+- **Rotina automática:** a cada 15 minutos, sujeita à fila e disponibilidade do GitHub.
+- **Teste manual:** [Actions → Sincronizar disparos UmClique](https://github.com/yWez/DisparoWpp/actions/workflows/sync-umclique.yml).
+- **Pausa de emergência:** em Settings → Secrets and variables → Actions → Variables, criar/editar `UMCLIQUE_SYNC_ENABLED` para `false`.
+- **Dados históricos:** Disparos 1–7 reconciliados; Disparo 4 duplicado foi corrigido e o nome agora é normalizado. Disparo 8 entrou pela API.
+- **Atenção:** alterações manuais somente no Google Sheets **não** retornam automaticamente para a UmClique ou para o JSON; o sincronizador parte da UmClique.
+- **Privacidade:** nada de contatos individuais, telefones, tokens ou conteúdos de mensagens no repositório.
 
 ## Publicação da página
 
