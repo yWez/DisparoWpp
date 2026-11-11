@@ -1,4 +1,4 @@
-> **Atualização 11/11/2026 — canais múltiplos:** a primeira consulta autenticada identificou sete disparos "Disparo X - Wes" distribuídos em dois canais Meta. O workflow **Descobrir canal UmClique** foi atualizado para verificar os sete nomes distintos e, se todos forem identificados sem ambiguidade, cadastrar automaticamente a variável `UMCLIQUE_CHANNEL_IDS` com os dois canais. Execute novamente esse workflow após essa atualização; não é necessário copiar os IDs para esta conversa.
+> **Atualização 11/11/2026 — correção do erro HTTP 403:** os sete disparos foram reconhecidos em dois canais Meta. O GitHub bloqueou a tentativa de gravar uma variável automaticamente. Corrigimos o fluxo: agora o sincronizador **descobre os canais diretamente pela API** e não precisa criar variáveis. O workflow **Descobrir canal UmClique** também foi atualizado para apenas validar a descoberta, sem modificar configurações do GitHub.
 
 # Automação UmClique → Google Sheets → DisparoWpp
 
@@ -38,7 +38,7 @@ GitHub Actions, a cada 15 minutos
 
 **Regras:** campanhas são identificadas por ID oficial, os totais são absolutos (nunca incrementos de eventos), e a rotina não duplica campanhas ao reprocessar. Campanhas históricas sem correspondência confiável são colocadas em revisão, não copiadas duas vezes. Telefones, mensagens, contatos e credenciais nunca devem chegar ao repositório público. Dados não apurados não são zero.
 
-## Ativação — 4 configurações e um teste
+## Ativação — 3 credenciais, validação do canal e um teste
 
 ### 1. Chave da API UmClique
 
@@ -46,13 +46,17 @@ Acessar a UmClique com permissão de administrador, abrir **Configurações → 
 
 No repositório, acessar [Settings → Secrets and variables → Actions](https://github.com/yWez/DisparoWpp/settings/secrets/actions) e cadastrar o Secret chamado **UMCLIQUE_API_KEY** com a chave privada.
 
-### 2. ID do canal correto
+### 2. Descoberta dos canais (automática)
 
-A listagem da UmClique traz o campo **channels[].channel_id**. Identificar o canal da LP Crypto que realizou as campanhas via Meta API Oficial, não outro número/empresa.
+O sistema identifica os dois canais Meta usados nos sete disparos históricos ("Disparo 1 - Wes" até "Disparo 7 - Wes"), conferindo nomes, datas, total de contatos e unicidade dos IDs.
 
-Em **GitHub → Settings → Secrets and variables → Actions → Variables**, criar **UMCLIQUE_CHANNEL_IDSS** com os IDs exatos separados por vírgula. Ele é obrigatório para evitar coleta acidental de outras operações.
+Não é preciso cadastrar um identificador manualmente. Para testar a descoberta:
 
-Se precisar descobrir o ID, peça ao suporte da UmClique o **channel_id do canal Meta usado nos disparos** ou consulte a listagem de transmissões autenticada. Não envie a chave ao ChatGPT.
+1. Abra [Actions → Descobrir canal UmClique](https://github.com/yWez/DisparoWpp/actions/workflows/descobrir-canal.yml).
+2. Clique em Run workflow, mantendo a branch main.
+3. Verifique no Summary o número de canais identificados, sem exibição de chaves.
+
+Se a descoberta se tornar impossível (por exemplo, se a UmClique excluir campanhas históricas), a variável opcional **UMCLIQUE_CHANNEL_IDS** poderá ser usada para indicar os canais autorizados, separados por vírgula. Não precisa ser criada agora.
 
 ### 3. Acesso ao Google Sheets
 
@@ -100,7 +104,7 @@ Depois disso, o GitHub executará o fluxo a cada ~15 minutos sem precisar abrir 
 - ✅ Script de integração e testes versionados.
 - ✅ Workflow agendado versionado e desativado por variável de segurança.
 - ✅ Planilha com colunas de API; dashboard pronto para novos indicadores.
-- ⏳ As três credenciais e o ID do canal **ainda não foram configurados**.
-- ⏳ Nenhuma chamada autenticada de produção foi executada nesta conversa.
+- ⏳ Chave UmClique já armazenada no GitHub pelo usuário; ainda faltam acesso Google Sheets e token GitHub de publicação. Os canais são descobertos automaticamente.
+- ✅ A primeira consulta autenticada de canais foi realizada pela rotina de descoberta. ⏳ A sincronização completa com Sheets e Pages ainda não foi ativada.
 
 **Nunca envie senhas, tokens ou o JSON da conta de serviço nesta conversa.**
