@@ -82,12 +82,12 @@ jobs:
                   channel_id=next(iter(matched_ids))
                   report.extend(["",f"**Valor sugerido de UMCLIQUE_CHANNEL_ID:** `{channel_id}`"])
               else:
-                  report.append("","⚠️ Foram encontrados múltiplos canais. Confirme qual pertence à LP Crypto antes de escolher.")
+                  report.extend(["","⚠️ Foram encontrados múltiplos canais. Confirme qual pertence à LP Crypto antes de escolher."])
           elif ids:
               report.extend(["### Canais Meta encontrados no período", "", "| Channel ID | Transmissões |", "|---|---:|"])
               for channel_id,count in ids.most_common():
                   report.append(f"| `{channel_id}` | {count} |")
-              report.append("","⚠️ Não localizei campanhas com o padrão 'Disparo X - Wes'; confirme visualmente o canal da LP Crypto.")
+              report.extend(["","⚠️ Não localizei campanhas com o padrão 'Disparo X - Wes'; confirme visualmente o canal da LP Crypto."])
           else:
               report.append("Nenhuma transmissão Meta encontrada desde 09/11/2026. Verifique a chave, o período e o provedor da conta.")
           report.append("")
