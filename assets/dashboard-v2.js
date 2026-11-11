@@ -81,7 +81,7 @@ function render(){
  ].map(x=>kpi(...x)));
  $("v2Alert").textContent=rows.length+" campanha(s) selecionada(s). Contatos e respondentes podem aparecer em mais de uma campanha. A taxa de resposta por mensagens (proxy) é "+M.pct(s.proxyResponseRate)+"; não equivale à taxa de pessoas únicas.";
  const sync=state.meta.lastSyncedAt?new Date(state.meta.lastSyncedAt):null;
- $("updateLabel").textContent=sync&&!isNaN(sync)?("Última sincronização: "+sync.toLocaleString("pt-BR",{timeZone:"America/Fortaleza",dateStyle:"short",timeStyle:"short"})):"Sincronização não disponível";
+ $("updateLabel").textContent=sync&&!isNaN(sync)?("Dados atualizados em "+sync.toLocaleString("pt-BR",{timeZone:"America/Fortaleza",dateStyle:"short",timeStyle:"short"})):"Sincronização não disponível";
  $("footerSource").textContent="UmClique API • agregados por campanha • horário America/Fortaleza";
  $("periodBadge").textContent=rows.length+" campanhas";
  $("v2LoadStatus").textContent="Fonte: UmClique API • data inicial de cada campanha • dados filtrados";
@@ -141,8 +141,9 @@ function daily(rows){
  (key,v)=>key.endsWith("Rate")?M.pct(v):M.number(v),state.sortDaily,-1,key=>{state.sortDaily=key;daily(all())});
 }
 function channels(rows){
- const series=M.channels(rows,state.channels).map(c=>{const s=c.summary;return {id:c.id,name:c.name+" · "+c.id.slice(0,8),connection:c.connection||"Não disponível",campaigns:s.campaigns,sent:s.metrics.sent.value,delivered:s.metrics.delivered.value,read:s.metrics.read.value,replied:s.metrics.replied.value,failures:s.metrics.failures.value,deliveryRate:s.deliveryRate,readRate:s.readRate,responseRate:s.responseRate,failureRate:s.failureRate};});
- drawTable($("v2ChannelsTable"),[["name","Número/API"],["connection","Conexão"],["campaigns","Disparos"],["sent","Enviadas"],["delivered","Entregues"],["read","Lidas"],["replied","Respostas"],["failures","Falhas"],["deliveryRate","Tx. entrega"],["readRate","Tx. leitura"],["responseRate","Tx. resposta"],["failureRate","Tx. falha"]],series,
+ const series=M.channels(rows,state.channels).map(c=>{const s=c.summary;return {id:c.id,name:c.name+" · "+c.id.slice(0,8),connection:c.connection||"Não disponível",campaigns:s.campaigns,sent:s.metrics.sent.value,delivered:s.metrics.delivered.value,read:s.metrics.read.value,replied:s.metrics.replied.value,failures:s.metrics.failures.value,deliveryRate:s.deliveryRate,readRate:s.readRate,responseRate:s.responseRate,failureRate:s.failureRate,
+ quality:M.thresholds({sent:s.metrics.sent.value,delivered:s.metrics.delivered.value,failures:s.metrics.failures.value},{minSent:state.minSent,maxFailureRate:state.maxFail/100,minDeliveryRate:state.minDelivery/100})};});
+ drawTable($("v2ChannelsTable"),[["name","Número/API"],["connection","Conexão"],["campaigns","Disparos"],["sent","Enviadas"],["delivered","Entregues"],["read","Lidas"],["replied","Respostas"],["failures","Falhas"],["deliveryRate","Tx. entrega"],["readRate","Tx. leitura"],["responseRate","Tx. resposta"],["failureRate","Tx. falha"],["quality","Diagnóstico"]],series,
  (key,v)=>key.endsWith("Rate")?M.pct(v):typeof v==="number"?M.number(v):v??"Não disponível",state.sortChannel,-1,key=>{state.sortChannel=key;channels(all())});
 }
 function rank(){
@@ -159,7 +160,7 @@ function rank(){
 function errors(rows){
  const groups=M.errorRows(rows),host=$("v2ErrorsTable");
  if(!rows.some(c=>c.errorDiagnostics&&Array.isArray(c.errorDiagnostics.groups))){host.replaceChildren(E("p","v2-empty","Aguardando a primeira consulta /errors. A quantidade de falhas não permite inferir a causa."));return;}
- drawTable(host,[["name","Campanha"],["day","Data"],["code","Código API"],["type","Tipo"],["title","Descrição real"],["count","Casos"],["recoverability","Recuperação"],["suggestion","Ação sugerida"]],groups,
+ drawTable(host,[["name","Campanha"],["day","Data"],["code","Código API"],["type","Tipo"],["title","Motivo"],["description","Descrição técnica"],["count","Casos"],["recoverability","Recuperação"],["suggestion","Ação sugerida"]],groups,
  (k,v)=>typeof v==="number"?M.number(v):v??"Não disponível","count",-1,null);
  host.append(E("p","v2-muted","Os grupos podem não explicar todas as falhas. Telefones e nomes ficam em ambiente restrito."));
 }
