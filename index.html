@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a31">
+  <meta name="description" content="Painel de disparos WhatsApp da LP Crypto — visão de envios, falhas e qualidade por campanha.">
+  <title>Disparos WhatsApp | LP Crypto</title>
+  <style>
+    :root {
+      --navy:#111b32;--navy2:#1a2846;--purple:#7455db;--purple2:#9a81ff;--paper:#f6f7fb;--white:#fff;
+      --ink:#18223a;--muted:#707c94;--line:#e5e9f2;--green:#159769;--mint:#e3faef;--red:#e2596b;
+      --redbg:#fff0f2;--shadow:0 20px 58px rgba(24,36,77,.065);
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);font:15px/1.55 Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
+    button,input,select{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer}
+    .topbar{background:var(--navy);color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}
+    .top-inner{max-width:1220px;margin:auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px}.brandmark{display:grid;place-items:center;background:linear-gradient(135deg,#a888fa,#6746d2);color:#fff;font-weight:850;letter-spacing:-.08em;width:42px;height:42px;border-radius:13px;font-size:18px}
+    .brandtitle{font-size:14px;font-weight:800;line-height:1.3}.brandsub{display:block;letter-spacing:.15em;color:#a9b2c9;text-transform:uppercase;font-size:9px;font-weight:800;margin-top:4px}
+    .topnav{display:flex;gap:24px;align-items:center}.topnav a{color:#c5cbdd;font-size:13px;font-weight:650}.topnav a:hover{color:#fff}
+    .taglight{font-weight:750;font-size:11px;color:#bff8d7;padding:8px 12px;border:1px solid #3b6b68;border-radius:999px;background:rgba(29,163,119,.13)}
+    .container{max-width:1220px;padding:0 28px;margin:auto}
+    .hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:53px 0 92px}
+    .hero:before{content:"";position:absolute;top:-220px;right:-120px;width:760px;height:680px;background:radial-gradient(ellipse,rgba(127,90,227,.28),transparent 68%);pointer-events:none}
+    .hero-inner{position:relative;display:flex;align-items:end;justify-content:space-between;gap:30px}.eyebrow{display:flex;align-items:center;gap:9px;color:#b9a9ff;letter-spacing:.18em;font-size:11px;font-weight:800;text-transform:uppercase;margin-bottom:14px}
+    .eyebrow:before{content:"";width:23px;height:2px;background:#b19bff}h1{margin:0;max-width:720px;font-size:clamp(33px,4.5vw,54px);line-height:1.13;letter-spacing:-.055em;font-weight:850}
+    .hero p{color:#b9c2d7;max-width:660px;margin:18px 0 0;font-size:15px}.hero b{color:#fff}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end}.primary,.ghost{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:12px;padding:12px 16px;font-weight:750;font-size:13px;border:1px solid transparent;white-space:nowrap}
+    .primary{background:#a788ff;color:#160f32}.primary:hover{background:#baa5fc}.ghost{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:#fff}.ghost:hover{background:rgba(255,255,255,.13)}
+    .overview{margin-top:-50px;position:relative;z-index:2}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+    .kpi{border:1px solid var(--line);background:var(--white);border-radius:19px;padding:23px;box-shadow:var(--shadow);min-height:158px}
+    .kpi-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.kpi-label{font-size:11px;letter-spacing:.08em;font-weight:820;text-transform:uppercase;color:#67738a}
+    .kpi-symbol{width:32px;height:32px;border-radius:10px;background:#f3efff;color:#785cda;display:grid;place-items:center;font-size:17px;font-weight:800}
+    .kpi h2{font-size:clamp(31px,3vw,42px);font-weight:850;letter-spacing:-.05em;line-height:1;margin:16px 0 9px}.kpi p{margin:0;font-size:12px;color:#79859c}.kpi .warn{color:var(--red)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:43px 0 17px}
+    .section-head h2{font-size:23px;letter-spacing:-.045em;line-height:1.2;margin:0}.section-head p{color:var(--muted);font-size:13px;margin:6px 0 0}
+    .muted{color:var(--muted)}.small{font-size:12px}.pill{display:inline-flex;align-items:center;gap:7px;background:#edecfb;color:#6747bb;border-radius:30px;padding:7px 12px;font-size:11px;font-weight:750;white-space:nowrap}
+    .pill .dot,.status .dot{width:7px;height:7px;background:currentColor;border-radius:50%}
+    .columns{display:grid;grid-template-columns:1.42fr .9fr;gap:17px}.panel{background:#fff;border:1px solid var(--line);border-radius:19px;box-shadow:var(--shadow);padding:26px;min-width:0}
+    .panel h3{margin:0;font-size:16px;letter-spacing:-.02em}.panel-sub{font-size:12px;color:var(--muted);margin-top:3px}
+    .bar-list{display:flex;flex-direction:column;gap:17px;margin-top:27px}
+    .bar-row{display:grid;grid-template-columns:91px minmax(0,1fr) 58px;align-items:center;gap:13px}
+    .bar-name{font-size:12px;font-weight:750}.bar-track{height:20px;background:#f0f1f7;border-radius:7px;overflow:hidden;display:flex}
+    .bar-good{background:#9174eb;height:100%}.bar-bad{background:#ed7282;height:100%}
+    .bar-value{text-align:right;font-size:12px;font-weight:800;font-variant-numeric:tabular-nums}
+    .legend{display:flex;gap:20px;margin-top:24px;flex-wrap:wrap;color:#727f95;font-size:11px}.legend span{display:inline-flex;align-items:center;gap:8px}.legend i{display:block;width:10px;height:10px;border-radius:3px}
+    .rate-top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin:26px 0 22px}
+    .rate-num{font-size:51px;font-weight:850;letter-spacing:-.06em;line-height:1;color:var(--navy)}.rate-caption{font-size:12px;color:var(--muted);max-width:180px}
+    .ring{width:125px;height:125px;border-radius:50%;background:conic-gradient(#ed7282 0% 11.04%,#8d74e6 11.04% 100%);display:grid;place-items:center;flex-shrink:0}
+    .ring-hole{display:flex;align-items:center;flex-direction:column;justify-content:center;background:#fff;border-radius:50%;width:89px;height:89px;font-size:11px;color:#748199;font-weight:700}
+    .ring-hole strong{font-size:24px;color:var(--navy);letter-spacing:-.04em;line-height:1.1}
+    .insight{padding:15px 17px;border-radius:13px;background:#f5f2ff;color:#4c3d88;font-size:13px;border:1px solid #ebe4ff;margin-top:16px}
+    .insight strong{display:block;margin-bottom:2px}.insight p{margin:0}
+    .panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .ratebars{margin-top:21px}.ratebar{display:grid;grid-template-columns:86px minmax(0,1fr) 55px;align-items:center;gap:11px;margin-bottom:11px;font-size:11px}
+    .ratebar span:first-child{font-weight:700}.ratebar .mini{height:9px;background:#f1f2f7;border-radius:999px;overflow:hidden}.ratebar .mini div{height:100%;border-radius:999px;background:#ed7282}.ratebar strong{text-align:right;font-variant-numeric:tabular-nums}
+    .table-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+    .table-tools{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:20px 22px;flex-wrap:wrap}
+    .search{border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:13px;background:#f9fafc;width:min(100%,300px);outline:none}.search:focus{border-color:#8f77e9;background:#fff}
+    select{border:1px solid var(--line);border-radius:11px;padding:11px 34px 11px 13px;color:var(--ink);background:#fff;font-size:12px}
+    .btn-small{border-radius:11px;background:#f0ecfc;border:1px solid #e8e1fb;color:#6848c8;padding:10px 13px;font-size:12px;font-weight:760}
+    .btn-small:hover{background:#e4dbfa}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:830px}th{text-align:left;background:#fafbfe;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8993a7;font-weight:800;padding:15px 21px;white-space:nowrap}
+    td{padding:17px 21px;border-bottom:1px solid #f0f2f7;font-size:13px;vertical-align:middle}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#fcfbff}td strong{font-weight:790}
+    .status{display:inline-flex;align-items:center;gap:6px;border-radius:99px;background:var(--mint);color:#21815d;padding:6px 10px;font-size:11px;font-weight:800}.table-bad{color:var(--red);font-weight:800}
+    .progress{display:flex;align-items:center;gap:9px;min-width:100px}.progress-track{background:#f1eaf2;border-radius:99px;overflow:hidden;height:7px;flex:1}.progress-bar{height:100%;background:#ec7d8d}
+    .note-box{padding:20px 22px;background:#fff;border:1px solid var(--line);border-radius:16px;margin-top:19px}
+    .note-box h3{margin:0 0 8px;font-size:14px}.note-box ul{margin:0;padding-left:20px;color:#6f7d96;font-size:12px}.note-box li+li{margin-top:5px}
+    footer{margin:48px auto 30px;padding-top:21px;border-top:1px solid #e5e8f0;display:flex;justify-content:space-between;gap:16px;color:#7e89a0;font-size:12px}
+    .footer-link{color:#7256d2;font-weight:760}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .loading{padding:32px;text-align:center;color:#7a879c;font-size:14px}
+    .error{padding:18px;background:#fff1f1;color:#a2303c;border-radius:12px;border:1px solid #f0c7cd}
+    @media(max-width:980px){.hero-inner{align-items:start;flex-direction:column}.hero-actions{justify-content:start}.columns{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.topnav{display:none}}
+    @media(max-width:590px){.container{padding:0 17px}.top-inner{padding:14px 17px}.hero{padding:40px 0 87px}.hero p{font-size:13px}.kpis{gap:10px}.kpi{padding:17px;min-height:139px}.kpi h2{font-size:34px}.kpi-label{font-size:10px}.panel{padding:18px}.section-head{align-items:start;flex-direction:column}.rate-top{align-items:start}.ring{width:100px;height:100px}.ring-hole{height:72px;width:72px}.ring-hole strong{font-size:19px}.rate-num{font-size:42px}.bar-row{grid-template-columns:77px minmax(0,1fr) 44px;gap:8px}.bar-name{font-size:11px}.table-tools{align-items:stretch}.search{width:100%}footer{flex-direction:column}.hero-actions .primary,.hero-actions .ghost{width:100%}}
+    @media print{body{background:#fff}.topbar,.hero-actions,.table-tools,footer{display:none}.hero{padding:20px 0 70px}.kpi,.panel,.table-card{box-shadow:none}.columns{grid-template-columns:1fr 1fr}section{break-inside:avoid}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="top-inner">
+      <div class="brand" aria-label="LP Crypto"><div class="brandmark">LP</div><div class="brandtitle">LP Crypto <span class="brandsub">Inteligência comercial</span></div></div>
+      <nav class="topnav" aria-label="Navegação principal"><a href="#visao-geral">Visão geral</a><a href="#analise">Análise</a><a href="#campanhas">Campanhas</a></nav>
+      <span class="taglight">● Relatório de WhatsApp</span>
+    </div>
+  </header>
+
+  <section class="hero" id="visao-geral">
+    <div class="container hero-inner">
+      <div><div class="eyebrow">Central de disparos</div>
+        <h1>Visibilidade para quem<br>faz acontecer.</h1>
+        <p>Acompanhe o desempenho das campanhas de WhatsApp da <b>LP Crypto</b>, identifique falhas e compartilhe os números com a Ana e todo o time.</p>
+      </div>
+      <div class="hero-actions">
+        <a id="sheetLink" class="primary" href="https://docs.google.com/spreadsheets/d/1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k/edit" target="_blank" rel="noopener noreferrer">↗ Abrir planilha-fonte</a>
+        <button id="copyButton" class="ghost" type="button">⧉ Copiar resumo</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="overview">
+      <div class="kpis" aria-label="Indicadores principais">
+        <article class="kpi"><div class="kpi-top"><span class="kpi-label">Envios registrados</span><span class="kpi-symbol">↗</span></div><h2 id="kpiSent">—</h2><p>Soma dos volumes das campanhas</p></article>
+        <article class="kpi"><div class="kpi-top"><span class="kpi-label">Falhas registradas</span><span class="kpi-symbol">!</span></div><h2 class="warn" id="kpiFail">—</h2><p id="kpiFailRate">Taxa de falha em apuração</p></article>
+        <article class="kpi"><div class="kpi-top"><span class="kpi-label">Sem falha registrada</span><span class="kpi-symbol">✓</span></div><h2 id="kpiNoFail">—</h2><p>Não equivale a mensagem entregue</p></article>
+        <article class="kpi"><div class="kpi-top"><span class="kpi-label">Campanhas concluídas</span><span class="kpi-symbol">◉</span></div><h2 id="kpiCampaigns">—</h2><p>Comparativo dos disparos cadastrados</p></article>
+      </div>
+    </div>
+
+    <div class="section-head" id="analise">
+      <div><h2>Visão de desempenho</h2><p>Comparação dos volumes e da taxa de falhas por campanha.</p></div>
+      <span class="pill"><span class="dot"></span><span id="periodBadge">Período carregando</span></span>
+    </div>
+    <div class="columns">
+      <section class="panel" aria-label="Volume por campanha">
+        <h3>Volume por campanha</h3>
+        <div class="panel-sub">Envios sem falha registrada e falhas, na mesma escala.</div>
+        <div class="bar-list" id="volumeBars"><div class="loading">Carregando dados…</div></div>
+        <div class="legend"><span><i style="background:#9174eb"></i> Sem falha registrada</span><span><i style="background:#ed7282"></i> Falhas registradas</span></div>
+      </section>
+      <section class="panel" aria-label="Qualidade dos disparos">
+        <h3>Qualidade dos disparos</h3>
+        <div class="panel-sub">Atenção aos registros com maior incidência de falhas.</div>
+        <div class="rate-top">
+          <div><div class="rate-num" id="rateNumber">—</div><div class="rate-caption">Percentual de falhas sobre os envios registrados</div></div>
+          <div class="ring" id="ring"><div class="ring-hole"><strong id="ringPercent">—</strong><span>falhas</span></div></div>
+        </div>
+        <div class="ratebars" id="rateBars"></div>
+        <div class="insight"><strong id="insightTitle">Análise em carregamento</strong><p id="insightText">Verificando desempenho das campanhas.</p></div>
+      </section>
+    </div>
+
+    <div class="section-head" id="campanhas">
+      <div><h2>Histórico de campanhas</h2><p>Detalhamento e conferência dos disparos registrados.</p></div>
+      <span class="small muted" id="updateLabel">Atualização: —</span>
+    </div>
+    <section class="table-card" aria-label="Histórico de disparos">
+      <div class="table-tools">
+        <label for="search" class="sr-only">Buscar campanhas</label>
+        <input id="search" class="search" type="search" placeholder="Buscar campanha..." autocomplete="off">
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <label for="sort" class="sr-only">Ordenar campanhas</label>
+          <select id="sort" aria-label="Ordenação">
+            <option value="order">Ordem dos disparos</option><option value="rate">Maior taxa de falha</option><option value="fail">Mais falhas</option><option value="sent">Mais envios</option>
+          </select>
+          <button class="btn-small" id="exportCsv" type="button">↓ Exportar CSV</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Campanha</th><th>Status</th><th>Contatos</th><th>Enviados</th><th>Falhas</th><th>Sem falha</th><th>Taxa de falha</th><th>Horário no print</th></tr></thead>
+          <tbody id="campaignRows"><tr><td colspan="8" class="loading">Carregando campanhas…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="note-box" aria-label="Notas de interpretação">
+      <h3>Como interpretar estes números</h3>
+      <ul id="caveats">
+        <li>“Campanha concluída” não significa necessariamente mensagem entregue.</li>
+        <li>“Sem falha registrada” não significa necessariamente entregue ou lida.</li>
+        <li>O total de contatos é somatório de campanhas e pode incluir repetição de pessoas.</li>
+      </ul>
+    </aside>
+    <footer>
+      <span>LP Crypto • Disparos WhatsApp • Acesso rápido do time comercial</span>
+      <span><a class="footer-link" href="https://github.com/yWez/DisparoWpp" target="_blank" rel="noopener noreferrer">Repositório GitHub ↗</a> &nbsp; • &nbsp; <span id="footerSource">Dados agregados; atualização manual</span></span>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+      var campaigns = [];
+      var meta = {};
+      var br = new Intl.NumberFormat("pt-BR");
+      var pc = function (x) { return (Number(x || 0) * 100).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2}) + "%"; };
+      var $ = function (id) { return document.getElementById(id); };
+      var el = function (tag, cls, value) {
+        var node = document.createElement(tag);
+        if (cls) node.className = cls;
+        if (value !== undefined) node.textContent = value;
+        return node;
+      };
+      function totals() {
+        return campaigns.reduce(function (a, c) {
+          a.sent += c.sent;
+          a.failures += c.failures;
+          a.contacts += c.contacts;
+          a.finished += c.status.toLowerCase().indexOf("conclu") >= 0 ? 1 : 0;
+          return a;
+        },{sent:0,failures:0,contacts:0,finished:0});
+      }
+      function drawKPIs() {
+        var t=totals(),rate=t.sent?t.failures/t.sent:0;
+        $("kpiSent").textContent=br.format(t.sent);
+        $("kpiFail").textContent=br.format(t.failures);
+        $("kpiFailRate").textContent=pc(rate)+" dos envios";
+        $("kpiNoFail").textContent=br.format(t.sent-t.failures);
+        $("kpiCampaigns").textContent=t.finished+"/"+campaigns.length;
+        $("rateNumber").textContent=pc(rate);
+        $("ringPercent").textContent=pc(rate);
+        $("ring").style.background="conic-gradient(#ed7282 0% "+(rate*100)+"%, #8d74e6 "+(rate*100)+"% 100%)";
+        $("periodBadge").textContent=meta.periodLabel||"Período não definido";
+        $("updateLabel").textContent="Base conferida em "+(meta.snapshotDate?meta.snapshotDate.split("-").reverse().join("/"):"data não informada")+" • atualização manual";
+        $("footerSource").textContent="Origem: planilha + print • atualização manual";
+        if(meta.spreadsheetUrl) $("sheetLink").href=meta.spreadsheetUrl;
+        var worst=campaigns.slice().sort(function(a,b){return (b.failures/b.sent)-(a.failures/a.sent);})[0];
+        if(worst){
+          $("insightTitle").textContent="Maior taxa: "+worst.name;
+          $("insightText").textContent=pc(worst.failures/worst.sent)+" de falhas ("+worst.failures+" de "+worst.sent+" envios). Investigar as causas na plataforma antes de novo envio.";
+        }
+        var notes=$("caveats"); notes.replaceChildren();
+        (meta.caveats||[]).forEach(function(note){notes.appendChild(el("li","",note));});
+      }
+      function drawVolume() {
+        var wrap=$("volumeBars");wrap.replaceChildren();
+        var max=Math.max.apply(null,campaigns.map(function(c){return c.sent;}))||1;
+        campaigns.forEach(function(c){
+          var row=el("div","bar-row");
+          row.appendChild(el("span","bar-name",c.name.replace(" - Wes","")));
+          var track=el("div","bar-track");
+          var width=100*c.sent/max;
+          var good=el("div","bar-good"),bad=el("div","bar-bad");
+          good.style.width=(width*((c.sent-c.failures)/c.sent))+"%";
+          bad.style.width=(width*c.failures/c.sent)+"%";
+          good.setAttribute("aria-label",(c.sent-c.failures)+" sem falha registrada");
+          bad.setAttribute("aria-label",c.failures+" falhas");
+          track.appendChild(good);track.appendChild(bad);row.appendChild(track);
+          row.appendChild(el("span","bar-value",br.format(c.sent)));
+          wrap.appendChild(row);
+        });
+        var rates=$("rateBars");rates.replaceChildren();
+        campaigns.slice().sort(function(a,b){return (b.failures/b.sent)-(a.failures/a.sent);}).forEach(function(c){
+          var row=el("div","ratebar");
+          row.appendChild(el("span","",c.name.replace(" - Wes","")));
+          var mini=el("div","mini"),bar=el("div");
+          bar.style.width=Math.min(100,100*c.failures/c.sent/0.20)+"%";
+          mini.appendChild(bar);row.appendChild(mini);
+          row.appendChild(el("strong","",pc(c.failures/c.sent)));
+          rates.appendChild(row);
+        });
+      }
+      function drawTable() {
+        var filter=$("search").value.toLocaleLowerCase("pt-BR"),order=$("sort").value;
+        var a=campaigns.filter(function(c){return (c.name+" "+c.status+" "+c.timeLabel).toLocaleLowerCase("pt-BR").indexOf(filter)>=0;});
+        if(order==="rate")a.sort(function(x,y){return y.failures/y.sent-x.failures/x.sent;});
+        if(order==="fail")a.sort(function(x,y){return y.failures-x.failures;});
+        if(order==="sent")a.sort(function(x,y){return y.sent-x.sent;});
+        var tbody=$("campaignRows");tbody.replaceChildren();
+        if(!a.length){var empty=el("td","loading","Nenhuma campanha encontrada.");empty.colSpan=8;var er=el("tr");er.appendChild(empty);tbody.appendChild(er);return;}
+        a.forEach(function(c){
+          var tr=el("tr"),stat=el("span","status"),dot=el("span","dot");
+          stat.appendChild(dot);stat.appendChild(document.createTextNode(c.status));
+          var tdc=el("td");tdc.appendChild(el("strong","",c.name));tr.appendChild(tdc);
+          var tdstatus=el("td");tdstatus.appendChild(stat);tr.appendChild(tdstatus);
+          tr.appendChild(el("td","",br.format(c.contacts)));
+          tr.appendChild(el("td","",br.format(c.sent)));
+          tr.appendChild(el("td","table-bad",br.format(c.failures)));
+          tr.appendChild(el("td","",br.format(c.sent-c.failures)));
+          var pcell=el("td"),pr=el("div","progress"),ptr=el("div","progress-track"),pbar=el("div","progress-bar");
+          pbar.style.width=Math.min(100,100*c.failures/c.sent/0.20)+"%";
+          ptr.appendChild(pbar);pr.appendChild(ptr);pr.appendChild(el("strong","",pc(c.failures/c.sent)));pcell.appendChild(pr);tr.appendChild(pcell);
+          tr.appendChild(el("td","muted small",c.timeLabel));
+          tbody.appendChild(tr);
+        });
+      }
+      function safeCsv(x) {return '"'+String(x==null?"":x).replace(/"/g,'""')+'"';}
+      function exportCsv() {
+        var header=["Campanha","Contatos","Enviados","Falhas","Sem falha registrada","Taxa falha (%)","Status","Tempo no print"];
+        var lines=[header].concat(campaigns.map(function(c){return[c.name,c.contacts,c.sent,c.failures,c.sent-c.failures,(100*c.failures/c.sent).toFixed(2),c.status,c.timeLabel];}));
+        var csv="\uFEFF"+lines.map(function(row){return row.map(safeCsv).join(";");}).join("\r\n");
+        var file=new Blob([csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(file),link=document.createElement("a");
+        link.href=url;link.download="lpcrypto_disparos_2026-11-09_10.csv";document.body.appendChild(link);link.click();link.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);
+      }
+      function copySummary() {
+        var t=totals();
+        var msg="LP CRYPTO | DISPAROS WHATSAPP\nPeríodo: "+(meta.periodLabel||"Não definido")+"\n"+
+          "Campanhas concluídas: "+t.finished+"/"+campaigns.length+"\n"+
+          "Envios registrados: "+t.sent+"\nFalhas: "+t.failures+" ("+pc(t.sent?t.failures/t.sent:0)+")\n"+
+          "Sem falha registrada: "+(t.sent-t.failures)+"\n"+
+          "Observação: sem falha não comprova entrega; contatos podem se repetir entre campanhas.";
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(msg).then(function(){
+            var b=$("copyButton");b.textContent="✓ Resumo copiado";setTimeout(function(){b.textContent="⧉ Copiar resumo";},2500);
+          }).catch(function(){window.prompt("Copie o resumo:",msg);});
+        }else{window.prompt("Copie o resumo:",msg);}
+      }
+      function load(){
+        fetch("./data/disparos.json",{cache:"no-store"})
+          .then(function(r){if(!r.ok)throw Error("HTTP "+r.status);return r.json();})
+          .then(function(data){
+            if(!data || !Array.isArray(data.campaigns))throw Error("Arquivo de dados inválido");
+            meta=data.meta||{};
+            campaigns=data.campaigns.map(function(x){
+              return Object.assign({},x,{sent:Number(x.sent)||0,contacts:Number(x.contacts)||0,failures:Number(x.failures)||0});
+            }).filter(function(x){return x.sent>0&&x.failures>=0&&x.failures<=x.sent;});
+            drawKPIs();drawVolume();drawTable();
+          })
+          .catch(function(err){
+            $("volumeBars").replaceChildren(el("div","error","Não foi possível carregar os dados: "+err.message+". Verifique o arquivo data/disparos.json no repositório."));
+            $("campaignRows").innerHTML='<tr><td colspan="8" class="loading">Dados indisponíveis.</td></tr>';
+            $("insightTitle").textContent="Dados indisponíveis";
+            $("insightText").textContent="Confira a publicação da página e o arquivo JSON.";
+          });
+      }
+      $("search").addEventListener("input",drawTable);
+      $("sort").addEventListener("change",drawTable);
+      $("exportCsv").addEventListener("click",exportCsv);
+      $("copyButton").addEventListener("click",copySummary);
+      load();
+    }());
+  </script>
+</body>
+</html>
