@@ -114,6 +114,43 @@ class TestUmCliqueSync(unittest.TestCase):
         with self.assertRaises(ValueError):
             sync.list_broadcasts(None, "", "2026-11-09T00:00:00-03:00")
 
+    def test_discover_two_channels_for_seven_historical_campaigns(self):
+        expected = [51, 50, 51, 150, 150, 150, 150]
+        data = []
+        for i, contacts in enumerate(expected, start=1):
+            item = dict(self.item)
+            item.update({
+                "id": f"b-{i}",
+                "name": f"Disparo {i} - Wes",
+                "total_contacts": contacts,
+                "created_at": "2026-11-10T15:00:00Z",
+                "channels": [{
+                    "channel_id": "channel-A" if i <= 3 else "channel-B",
+                    "provider": "meta"
+                }]
+            })
+            data.append(item)
+        original = sync.get_json
+        try:
+            sync.get_json = lambda session, path, **kwargs: {
+                "broadcasts": data, "next_offset": None
+            }
+            channels = sync.discover_channel_ids(None, "2026-11-09T00:00:00-03:00")
+        finally:
+            sync.get_json = original
+        self.assertEqual(channels, ["channel-A", "channel-B"])
+
+    def test_discover_fails_closed_on_missing_history(self):
+        original = sync.get_json
+        try:
+            sync.get_json = lambda session, path, **kwargs: {
+                "broadcasts": [self.item], "next_offset": None
+            }
+            with self.assertRaisesRegex(RuntimeError, "sete disparos"):
+                sync.discover_channel_ids(None, "2026-11-09T00:00:00-03:00")
+        finally:
+            sync.get_json = original
+
     def test_counts_invalid(self):
         self.assertIsNone(sync.as_count(None))
         with self.assertRaises(ValueError):
