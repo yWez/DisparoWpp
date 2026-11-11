@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "description": "Mapeamento explícito por ID oficial de campanha. Não representa a primeira origem da pessoa e não substitui CRM.",
+  "allowedValues": [
+    "PDF Instagram",
+    "Reativação da base",
+    "Lista Prioritária",
+    "Orgânico",
+    "Mídia paga",
+    "Outras campanhas"
+  ],
+  "campaignOrigins": {}
+}
