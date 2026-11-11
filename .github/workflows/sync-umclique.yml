@@ -64,5 +64,19 @@ jobs:
           git add data/disparos.json
           git commit -m "data: sincronizar campanhas da UmClique"
           git remote set-url origin "https://x-access-token:${GH_PAGES_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git push origin HEAD:main
+          # Commits humanos/deploys podem avançar main enquanto a API é consultada.
+          # Rebase seguro de alterações SÓ em data/disparos.json; nunca usar --force.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              echo "Dados publicados sem sobrescrever commits concorrentes."
+              git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}.git"
+              exit 0
+            fi
+            echo "Main avançou durante a publicação. Reconciliando (tentativa ${attempt})."
+            sleep 2
+          done
           git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          echo "::error::Não foi possível publicar após três tentativas."
+          exit 1
