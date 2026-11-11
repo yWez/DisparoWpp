@@ -272,8 +272,8 @@ def sheet_values(record, rownum, original=None):
         record.get("period") or original[0], record.get("name") or original[1],
         record.get("timeLabel") or original[2],
         read_number(record.get("contacts")), read_number(record.get("sent")),
-        read_number(record.get("failures")), f"=E{rownum}-F{rownum}",
-        f"=IFERROR(F{rownum}/E{rownum};0)", record.get("status") or "",
+        read_number(record.get("failures")), f'=IF(OR(E{rownum}="";F{rownum}="");"";E{rownum}-F{rownum})',
+        f'=IF(OR(E{rownum}="";E{rownum}=0;F{rownum}="");"";F{rownum}/E{rownum})', record.get("status") or "",
         "Meta API Oficial", record.get("template") or original[10],
         original[11] or "Fonte UmClique API • métricas por campanha",
         record.get("campaignId") or "", record.get("startedAt") or "",
@@ -291,7 +291,7 @@ def sync_sheet(session, sheet_id, modified, all_records):
     url = f"https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}/values:batchUpdate"
     values = sheets_get(session, sheet_id)
     ids, names, blanks = find_sheet_rows(values)
-    occupied = set(ids.values())
+    occupied = set()  # track rows claimed in THIS batch, not all preexisting rows
     updates = []
     for record in modified:
         cid = record.get("campaignId")
