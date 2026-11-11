@@ -2,6 +2,12 @@ name: Sincronizar disparos UmClique
 
 on:
   workflow_dispatch:
+  # Permite teste operacional pelo conector: somente um arquivo marcador.
+  # A atualização de data/disparos.json NÃO dispara este workflow.
+  push:
+    branches: [main]
+    paths:
+      - "ops/manual-sync-trigger.txt"
   schedule:
     - cron: "*/15 * * * *"
 
