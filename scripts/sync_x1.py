@@ -117,7 +117,7 @@ def run():
         campaigns = json.loads(CAMPAIGNS.read_text(encoding="utf-8")).get("campaigns", [])
         now = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
         data = build_summary(cols, campaigns, now)
-    except (requests.RequestException, ValueError, KeyError, TypeError) as exc:
+    except Exception as exc:  # optional X1 integration must not break UmClique sync
         LOG.warning("Não foi possível ler Captação com a conta de serviço (%s); verifique compartilhamento da planilha de origem.", type(exc).__name__)
         return False
     previous = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
