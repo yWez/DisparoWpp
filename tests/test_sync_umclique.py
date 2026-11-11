@@ -162,6 +162,38 @@ class TestUmCliqueSync(unittest.TestCase):
         finally:
             sync.get_json = original
 
+
+    def test_d4_name_spacing_reconciles_manual_history(self):
+        legacy = [{
+            "id":"D4",
+            "name":"Disparo 4 - Wes",
+            "contacts":150,
+            "sent":150,
+            "failures":16
+        }]
+        api = dict(self.item,
+            id="broadcast-d4",
+            name="Disparo 4- Wes",
+            total_contacts=150,
+            sent_count=150,
+            failed_count=16,
+            created_at="2026-11-10T15:00:00Z",
+            started_at="2026-11-10T15:05:00Z"
+        )
+        records, changed, warnings = sync.merge_records(
+            legacy, [sync.public_record(api)], self.now
+        )
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0]["campaignId"], "broadcast-d4")
+        self.assertEqual(records[0]["legacyId"], "D4")
+        self.assertFalse(warnings)
+        self.assertEqual(sync.canonical_name("Disparo 4- Wes"),
+                         sync.canonical_name("Disparo 4 - Wes"))
+        rows = [["Período","Campanha"]] + [[""] for _ in range(30)]
+        rows[4] = ["10/11/2026","Disparo 4 - Wes"]
+        _, by_name, _ = sync.find_sheet_rows(rows)
+        self.assertEqual(by_name[sync.canonical_name("Disparo 4- Wes")], [8])
+
     def test_counts_invalid(self):
         self.assertIsNone(sync.as_count(None))
         with self.assertRaises(ValueError):
