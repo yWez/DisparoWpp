@@ -18,9 +18,9 @@ As contagens foram extraídas do print da plataforma e conferidas com a aba `Dis
 
 ## Integração UmClique (em preparação)
 
-O plano de sincronização automática está documentado em **[docs/INTEGRACAO_UMCLIQUE.md](docs/INTEGRACAO_UMCLIQUE.md)**.
+O guia de ativação da integração automática está em **[docs/CONFIGURAR_AUTOMACAO.md](docs/CONFIGURAR_AUTOMACAO.md)**.
 
-**Status:** estrutura de dados da planilha preparada; integração UmClique → planilha → GitHub ainda **não ativada**, pois faltam endpoint de relatórios por campanha, esquema real dos eventos/webhooks e credenciais autorizadas.
+**Status:** os endpoints oficiais foram identificados e o sincronizador via GitHub Actions foi implementado. A automação permanece **inativa** até configurar a chave UmClique, o ID do canal, a conta de serviço do Google e o token GitHub de publicação.
 
 ## Atualização de dados
 
@@ -30,7 +30,7 @@ O plano de sincronização automática está documentado em **[docs/INTEGRACAO_U
 4. Fazer commit no ramo `main`. O site estático passa a usar os dados mais recentes assim que o deploy ocorrer.
 5. Não alterar o histórico sem registrar correção e a fonte. Nunca inserir dados pessoais.
 
-**Importante:** a atualização automática da planilha para GitHub **não está configurada**. Alterações na planilha não aparecem no site até que este JSON seja atualizado. Podemos criar uma integração autenticada posteriormente, sem abrir o acesso à planilha.
+**Importante:** até ativar o workflow e as credenciais, a atualização continua manual. Quando o workflow estiver ativo, ele atualizará o Sheets e o JSON do site consultando a API da UmClique a cada aproximadamente 15 minutos. Alterações manuais feitas apenas na planilha não sincronizam automaticamente para o GitHub.
 
 ## Publicação da página
 
