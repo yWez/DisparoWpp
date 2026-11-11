@@ -160,8 +160,10 @@ function rank(){
 function errors(rows){
  const groups=M.errorRows(rows),host=$("v2ErrorsTable");
  if(!rows.some(c=>c.errorDiagnostics&&Array.isArray(c.errorDiagnostics.groups))){host.replaceChildren(E("p","v2-empty","Aguardando a primeira consulta /errors. A quantidade de falhas não permite inferir a causa."));return;}
- drawTable(host,[["name","Campanha"],["day","Data"],["code","Código API"],["type","Tipo"],["title","Motivo"],["description","Descrição técnica"],["count","Casos"],["recoverability","Recuperação"],["suggestion","Ação sugerida"]],groups,
+ drawTable(host,[["name","Campanha"],["day","Data"],["code","Código API"],["type","Tipo"],["title","Motivo"],["description","Descrição técnica"],["count","Casos"],["reconciliation","Conciliação"],["recoverability","Recuperação"],["suggestion","Ação sugerida"]],groups,
  (k,v)=>typeof v==="number"?M.number(v):v??"Não disponível","count",-1,null);
+ const mismatch=rows.filter(c=>c.errorDiagnostics?.summary?.failedTotal!=null&&c.failures!=null&&c.errorDiagnostics.summary.failedTotal!==c.failures);
+ if(mismatch.length)host.append(E("div","v2-error","Atenção: relatório de causas diverge do total de mensagens com falha em "+mismatch.length+" campanha(s). Grupos podem incluir tentativas ou contagens distintas; não somar como contatos únicos."));
  host.append(E("p","v2-muted","Os grupos podem não explicar todas as falhas. Telefones e nomes ficam em ambiente restrito."));
 }
 function origins(rows){
@@ -193,7 +195,7 @@ function download(type){
  M.daily(rows).map(x=>[x.day,x.campaigns,x.sent,x.delivered,x.read,x.replied,x.failures,rate(x.deliveryRate),rate(x.readRate),rate(x.failureRate)]));
  if(type==="canais")out=pack(["Canal ID","Nome","Conexão","Campanhas","Enviadas","Entregues","Lidas","Respostas","Falhas","Tx. entrega","Tx. leitura","Tx. falha"],
  M.channels(rows,state.channels).map(x=>{const s=x.summary;return[x.id,x.name,x.connection||"Não disponível",s.campaigns,...["sent","delivered","read","replied","failures"].map(k=>count(s.metrics[k].value)),rate(s.deliveryRate),rate(s.readRate),rate(s.failureRate)];}));
- if(type==="erros")out=pack(["ID campanha","Campanha","Data","Código","Tipo","Motivo","Descrição","Casos","Tratamento","Ação"],M.errorRows(rows).map(x=>[x.campaignId,x.name,x.day,x.code,x.type,x.title,x.description,x.count,x.recoverability,x.suggestion]));
+ if(type==="erros")out=pack(["ID campanha","Campanha","Data","Código","Tipo","Motivo","Descrição","Casos","Conciliação","Tratamento","Ação"],M.errorRows(rows).map(x=>[x.campaignId,x.name,x.day,x.code,x.type,x.title,x.description,x.count,x.reconciliation,x.recoverability,x.suggestion]));
  if(type==="respostas")out=pack(["ID campanha","Campanha","Data","Respostas agregadas","Nota"],rows.map(x=>[x.campaignId,x.name,M.campaignDay(x),count(x.replied),"Sem dados nominais no site público"]));
  if(type==="funil")out=pack(["Etapa","Contagem","Taxa"],funnelRows(s).map(x=>[x[0],count(x[1]),"Não disponível entre populações não vinculadas"]));
  const blob=new Blob([M.csv(out)],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=E("a");a.href=url;a.download="LP_Crypto_"+type+"_"+M.today()+".csv";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);
