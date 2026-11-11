@@ -1,0 +1,97 @@
+name: Descobrir canal UmClique
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  descobrir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Consultar IDs de canais da API Oficial
+        shell: bash
+        env:
+          UMCLIQUE_API_KEY: ${{ secrets.UMCLIQUE_API_KEY }}
+        run: |
+          if [ -z "$UMCLIQUE_API_KEY" ]; then
+            echo "::error::Secret UMCLIQUE_API_KEY não configurado."
+            exit 1
+          fi
+          python - <<'PY'
+          import os, json, re, urllib.request, urllib.parse, urllib.error
+          from collections import Counter
+
+          base="https://api.umcliquedigital.com/functions/v1/public-broadcasts"
+          key=os.environ["UMCLIQUE_API_KEY"]
+          headers={"X-API-Key":key, "Accept":"application/json"}
+          offset=0
+          ids=Counter()
+          matched_ids=Counter()
+          seen=set()
+          for page in range(40):
+              if offset in seen:
+                  raise RuntimeError("Paginação repetida")
+              seen.add(offset)
+              query=urllib.parse.urlencode({
+                  "provider":"meta",
+                  "created_from":"2026-11-09T00:00:00-03:00",
+                  "limit":100,"offset":offset
+              })
+              req=urllib.request.Request(base+"?"+query,headers=headers,method="GET")
+              try:
+                  with urllib.request.urlopen(req,timeout=25) as response:
+                      data=json.load(response)
+              except urllib.error.HTTPError as err:
+                  raise RuntimeError(f"Consulta UmClique falhou (HTTP {err.code}). Confira permissão da chave.") from None
+              broadcasts=data.get("broadcasts",[])
+              if not isinstance(broadcasts,list):
+                  raise RuntimeError("Resposta não trouxe lista 'broadcasts'.")
+              for item in broadcasts:
+                  name=str(item.get("name") or "")
+                  for ch in item.get("channels") or []:
+                      if ch.get("provider")!="meta": continue
+                      cid=ch.get("channel_id")
+                      if not cid: continue
+                      ids[str(cid)]+=1
+                      if re.search(r"^Disparo\s*[1-7]\s*-\s*Wes$",name,re.I):
+                          matched_ids[str(cid)]+=1
+              nxt=data.get("next_offset")
+              if nxt is None or nxt=="" or nxt is False: break
+              offset=int(nxt)
+          else:
+              raise RuntimeError("Muitas páginas: aumente a paginação para consultar tudo.")
+          report=[
+            "## Resultado da identificação do canal",
+            "",
+            "A chave foi utilizada somente como cabeçalho HTTPS; não é exibida aqui.",
+            ""
+          ]
+          if matched_ids:
+              report.extend([
+                "### Canais ligados a campanhas 'Disparo X - Wes'",
+                "",
+                "| Channel ID | Campanhas correspondentes |",
+                "|---|---:|"
+              ])
+              for channel_id, count in matched_ids.most_common():
+                  report.append(f"| `{channel_id}` | {count} |")
+              if len(matched_ids)==1:
+                  channel_id=next(iter(matched_ids))
+                  report.extend(["",f"**Valor sugerido de UMCLIQUE_CHANNEL_ID:** `{channel_id}`"])
+              else:
+                  report.append("","⚠️ Foram encontrados múltiplos canais. Confirme qual pertence à LP Crypto antes de escolher.")
+          elif ids:
+              report.extend(["### Canais Meta encontrados no período", "", "| Channel ID | Transmissões |", "|---|---:|"])
+              for channel_id,count in ids.most_common():
+                  report.append(f"| `{channel_id}` | {count} |")
+              report.append("","⚠️ Não localizei campanhas com o padrão 'Disparo X - Wes'; confirme visualmente o canal da LP Crypto.")
+          else:
+              report.append("Nenhuma transmissão Meta encontrada desde 09/11/2026. Verifique a chave, o período e o provedor da conta.")
+          report.append("")
+          os.makedirs(os.path.dirname(os.environ["GITHUB_STEP_SUMMARY"]),exist_ok=True)
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf8") as f: f.write("\n".join(report)+"\n")
+          print(f"Consulta encerrada. Canais Meta encontrados: {len(ids)}; canais correspondentes aos disparos Wes: {len(matched_ids)}. Consulte a aba Summary para os IDs.")
+          PY
