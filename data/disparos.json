@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "project": "LP Crypto",
+    "title": "Disparos WhatsApp",
+    "periodLabel": "09 e 10 de novembro de 2026",
+    "periodStart": "2026-11-09",
+    "periodEnd": "2026-11-10",
+    "snapshotDate": "2026-11-11",
+    "dataStatus": "Conferido com o print e a planilha; divisão diária não confirmada.",
+    "source": "Captura de tela de campanhas Meta API e aba 'Disparos WhatsApp' da central operacional.",
+    "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k/edit",
+    "caveats": [
+      "Concluída indica status da campanha, não comprova entrega, leitura ou resposta.",
+      "Sem falha registrada não é o mesmo que mensagem entregue.",
+      "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
+      "Os horários no print são relativos e não permitem atribuir com segurança cada campanha a um dia."
+    ]
+  },
+  "campaigns": [
+    {
+      "id": "D1",
+      "name": "Disparo 1 - Wes",
+      "contacts": 51,
+      "sent": 51,
+      "failures": 3,
+      "status": "Concluída",
+      "channel": "Meta API Oficial",
+      "template": "convite_evento...",
+      "timeLabel": "há 2 dias",
+      "period": "09–10/11",
+      "note": "Dia inferível como segunda; confirmar timestamp."
+    },
+    {
+      "id": "D2",
+      "name": "Disparo 2 - Wes",
+      "contacts": 50,
+      "sent": 50,
+      "failures": 3,
+      "status": "Concluída",
+      "channel": "Meta API Oficial",
+      "template": "convite_evento...",
+      "timeLabel": "há 1 dia",
+      "period": "09–10/11",
+      "note": "Data individual não confirmada."
+    },
+    {
+      "id": "D3",
+      "name": "Disparo 3 - Wes",
+      "contacts": 51,
+      "sent": 51,
+      "failures": 9,
+      "status": "Concluída",
+      "channel": "Meta API Oficial",
+      "template": "convite_evento...",
+      "timeLabel": "há 1 dia",
+      "period": "09–10/11",
+      "note": "Data individual não confirmada."
+    },
+    {
+      "id": "D4",
+      "name": "Disparo 4 - Wes",
+      "contacts": 150,
+      "sent": 150,
+      "failures": 16,
+      "status": "Concluída",
+      "channel": "Meta API Oficial",
+      "template": "convite_evento...",
+      "timeLabel": "há cerca de 24 horas",
+      "period": "09–10/11",
+      "note": "Data individual depende de timestamp."
+    },
+    {
+      "id": "D5",
+      "name": "Disparo 5 - Wes",
+      "contacts": 150,
+      "sent": 150,
+      "failures": 12,
+      "status": "Concluída",
+      "channel": "Meta API Oficial",
+      "template": "convite_evento...",
+      "timeLabel": "há cerca de 21 horas",
+      "period": "09–10/11",
+      "note": "Provavelmente terça; confirmar timestamp."
+    },
+    {
+      "id": "D6",
+      "name": "Disparo 6 - Wes",
+      "contacts": 150,
+      "sent": 150,
+      "failures": 22,
+      "status": "Concluída",
+      "channel": "Meta API Oficial",
+      "template": "convite_evento...",
+      "timeLabel": "há cerca de 19 horas",
+      "period": "09–10/11",
+      "note": "Provavelmente terça; confirmar timestamp."
+    },
+    {
+      "id": "D7",
+      "name": "Disparo 7 - Wes",
+      "contacts": 150,
+      "sent": 150,
+      "failures": 18,
+      "status": "Concluída",
+      "channel": "Meta API Oficial",
+      "template": "convite_evento...",
+      "timeLabel": "há cerca de 16 horas",
+      "period": "09–10/11",
+      "note": "Provavelmente terça; confirmar timestamp."
+    }
+  ]
+}
