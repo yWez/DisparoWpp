@@ -209,6 +209,12 @@
         $("kpiFailRate").textContent=pc(rate)+" dos envios";
         $("kpiNoFail").textContent=br.format(t.sent-t.failures);
         $("kpiCampaigns").textContent=t.finished+"/"+campaigns.length;
+        ["delivered","read","replied","conversions"].forEach(function(key){
+          var known=campaigns.filter(function(c){return c[key] !== null && c[key] !== undefined && c[key] !== "";});
+          var name=key.charAt(0).toUpperCase()+key.slice(1);
+          $("kpi"+name).textContent=known.length?br.format(known.reduce(function(a,c){return a+Number(c[key]);},0)):"—";
+          $("kpi"+name+"Coverage").textContent=known.length===0?"Ainda não apurado":(known.length===campaigns.length?"Todas as campanhas":"Parcial: "+known.length+"/"+campaigns.length+" campanhas");
+        });
         $("rateNumber").textContent=pc(rate);
         $("ringPercent").textContent=pc(rate);
         $("ring").style.background="conic-gradient(#ed7282 0% "+(rate*100)+"%, #8d74e6 "+(rate*100)+"% 100%)";
@@ -269,6 +275,9 @@
           tr.appendChild(el("td","",br.format(c.sent)));
           tr.appendChild(el("td","table-bad",br.format(c.failures)));
           tr.appendChild(el("td","",br.format(c.sent-c.failures)));
+          ["delivered","read","replied"].forEach(function(key){
+            tr.appendChild(el("td","",c[key]===null||c[key]===undefined?"—":br.format(Number(c[key]))));
+          });
           var pcell=el("td"),pr=el("div","progress"),ptr=el("div","progress-track"),pbar=el("div","progress-bar");
           pbar.style.width=Math.min(100,100*c.failures/c.sent/0.20)+"%";
           ptr.appendChild(pbar);pr.appendChild(ptr);pr.appendChild(el("strong","",pc(c.failures/c.sent)));pcell.appendChild(pr);tr.appendChild(pcell);
