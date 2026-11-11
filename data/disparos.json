@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-11T21:49:27.617777Z",
+    "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -45,7 +45,7 @@
       "completedAt": "2026-11-09T18:22:54.106000Z",
       "source": "umclique_api",
       "legacyId": "D1",
-      "lastSyncedAt": "2026-11-11T21:49:27.617777Z",
+      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -57,9 +57,9 @@
             "description": "This message was not delivered to maintain healthy ecosystem engagement.",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 2,
-            "type": "Outros/não classificados",
+            "type": "Política/engajamento",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
             "explained": false
           },
           {
@@ -68,9 +68,9 @@
             "description": "Message undeliverable",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 1,
-            "type": "Outros/não classificados",
+            "type": "Entrega não concluída",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
             "explained": false
           }
         ],
@@ -81,7 +81,9 @@
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
-        }
+        },
+        "groupCount": 3,
+        "matchesBroadcastFailures": true
       },
       "channelName": "Suporte LP",
       "channelStatus": "connected",
@@ -113,7 +115,7 @@
       "completedAt": "2026-11-09T21:09:22.835000Z",
       "source": "umclique_api",
       "legacyId": "D2",
-      "lastSyncedAt": "2026-11-11T21:49:27.617777Z",
+      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -125,9 +127,9 @@
             "description": "Message undeliverable",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 2,
-            "type": "Outros/não classificados",
+            "type": "Entrega não concluída",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
             "explained": false
           },
           {
@@ -136,9 +138,9 @@
             "description": "This message was not delivered to maintain healthy ecosystem engagement.",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 2,
-            "type": "Outros/não classificados",
+            "type": "Política/engajamento",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
             "explained": false
           },
           {
@@ -147,9 +149,9 @@
             "description": "User's number is part of an experiment",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 2,
-            "type": "Outros/não classificados",
+            "type": "Experimento da Meta",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
             "explained": false
           }
         ],
@@ -160,7 +162,9 @@
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
-        }
+        },
+        "groupCount": 6,
+        "matchesBroadcastFailures": false
       },
       "channelName": "Suporte LP",
       "channelStatus": "connected",
@@ -192,7 +196,7 @@
       "completedAt": "2026-11-09T23:19:20.460000Z",
       "source": "umclique_api",
       "legacyId": "D3",
-      "lastSyncedAt": "2026-11-11T21:49:27.617777Z",
+      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -204,9 +208,9 @@
             "description": "Message undeliverable",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 3,
-            "type": "Outros/não classificados",
+            "type": "Entrega não concluída",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
             "explained": false
           },
           {
@@ -215,9 +219,9 @@
             "description": "This message was not delivered to maintain healthy ecosystem engagement.",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 3,
-            "type": "Outros/não classificados",
+            "type": "Política/engajamento",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
             "explained": false
           },
           {
@@ -226,9 +230,9 @@
             "description": "User's number is part of an experiment",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 3,
-            "type": "Outros/não classificados",
+            "type": "Experimento da Meta",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
             "explained": false
           }
         ],
@@ -239,7 +243,9 @@
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
-        }
+        },
+        "groupCount": 9,
+        "matchesBroadcastFailures": true
       },
       "channelName": "Suporte LP",
       "channelStatus": "connected",
@@ -270,7 +276,7 @@
       "startedAt": "2026-11-10T14:44:03.841000Z",
       "completedAt": "2026-11-10T14:45:19.700000Z",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-11T21:49:27.617777Z",
+      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
       "legacyId": "D4",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
@@ -283,9 +289,9 @@
             "description": "This message was not delivered to maintain healthy ecosystem engagement.",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 8,
-            "type": "Outros/não classificados",
+            "type": "Política/engajamento",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
             "explained": false
           },
           {
@@ -294,9 +300,9 @@
             "description": "Message undeliverable",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 6,
-            "type": "Outros/não classificados",
+            "type": "Entrega não concluída",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
             "explained": false
           },
           {
@@ -305,9 +311,9 @@
             "description": "User's number is part of an experiment",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 3,
-            "type": "Outros/não classificados",
+            "type": "Experimento da Meta",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
             "explained": false
           },
           {
@@ -316,9 +322,9 @@
             "description": "O contato bloqueou este número ou marcou as mensagens como indesejadas.",
             "action": "Retire o contato da lista para não prejudicar a qualidade do canal.",
             "count": 1,
-            "type": "Bloqueio",
-            "recoverability": "Revisão manual",
-            "suggestion": "Não reenviar automaticamente",
+            "type": "Limite/ritmo",
+            "recoverability": "Potencialmente temporário",
+            "suggestion": "Verificar limites, volume e janela antes de novo disparo",
             "explained": true
           }
         ],
@@ -329,7 +335,9 @@
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
-        }
+        },
+        "groupCount": 18,
+        "matchesBroadcastFailures": false
       },
       "channelName": "Suporte LP",
       "channelStatus": "connected",
@@ -361,7 +369,7 @@
       "completedAt": "2026-11-10T18:00:36.238000Z",
       "source": "umclique_api",
       "legacyId": "D5",
-      "lastSyncedAt": "2026-11-11T21:49:27.617777Z",
+      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -373,9 +381,9 @@
             "description": "This message was not delivered to maintain healthy ecosystem engagement.",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 8,
-            "type": "Outros/não classificados",
+            "type": "Política/engajamento",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
             "explained": false
           },
           {
@@ -384,9 +392,9 @@
             "description": "User's number is part of an experiment",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 4,
-            "type": "Outros/não classificados",
+            "type": "Experimento da Meta",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
             "explained": false
           },
           {
@@ -395,9 +403,9 @@
             "description": "Message undeliverable",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 1,
-            "type": "Outros/não classificados",
+            "type": "Entrega não concluída",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
             "explained": false
           }
         ],
@@ -408,7 +416,9 @@
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
-        }
+        },
+        "groupCount": 13,
+        "matchesBroadcastFailures": false
       },
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
@@ -440,7 +450,7 @@
       "completedAt": "2026-11-10T19:40:43.851000Z",
       "source": "umclique_api",
       "legacyId": "D6",
-      "lastSyncedAt": "2026-11-11T21:49:27.617777Z",
+      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -452,9 +462,9 @@
             "description": "This message was not delivered to maintain healthy ecosystem engagement.",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 17,
-            "type": "Outros/não classificados",
+            "type": "Política/engajamento",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
             "explained": false
           },
           {
@@ -463,9 +473,9 @@
             "description": "Message undeliverable",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 3,
-            "type": "Outros/não classificados",
+            "type": "Entrega não concluída",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
             "explained": false
           },
           {
@@ -474,9 +484,9 @@
             "description": "User's number is part of an experiment",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 2,
-            "type": "Outros/não classificados",
+            "type": "Experimento da Meta",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
             "explained": false
           }
         ],
@@ -487,7 +497,9 @@
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
-        }
+        },
+        "groupCount": 22,
+        "matchesBroadcastFailures": true
       },
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
@@ -513,13 +525,13 @@
       "read": 73,
       "replied": 3,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T22:28:10.328040Z",
       "startedAt": "2026-11-10T22:28:14.053000Z",
       "completedAt": "2026-11-10T22:29:30.029000Z",
       "source": "umclique_api",
       "legacyId": "D7",
-      "lastSyncedAt": "2026-11-11T21:49:27.617777Z",
+      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -531,9 +543,9 @@
             "description": "This message was not delivered to maintain healthy ecosystem engagement.",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 8,
-            "type": "Outros/não classificados",
+            "type": "Política/engajamento",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
             "explained": false
           },
           {
@@ -542,9 +554,9 @@
             "description": "Message undeliverable",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 7,
-            "type": "Outros/não classificados",
+            "type": "Entrega não concluída",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
             "explained": false
           },
           {
@@ -553,9 +565,9 @@
             "description": "User's number is part of an experiment",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 3,
-            "type": "Outros/não classificados",
+            "type": "Experimento da Meta",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
             "explained": false
           }
         ],
@@ -566,7 +578,9 @@
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
-        }
+        },
+        "groupCount": 18,
+        "matchesBroadcastFailures": true
       },
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
@@ -589,14 +603,14 @@
       "read": 76,
       "replied": 2,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-11T17:55:02.993051Z",
       "startedAt": "2026-11-11T17:55:07.356000Z",
       "completedAt": "2026-11-11T17:56:20.428000Z",
       "period": "11/11/2026",
       "timeLabel": "11/11/2026 14:55",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-11T21:49:27.617777Z",
+      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -608,9 +622,9 @@
             "description": "This message was not delivered to maintain healthy ecosystem engagement.",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 13,
-            "type": "Outros/não classificados",
+            "type": "Política/engajamento",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
             "explained": false
           },
           {
@@ -619,9 +633,9 @@
             "description": "Message undeliverable",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 10,
-            "type": "Outros/não classificados",
+            "type": "Entrega não concluída",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
             "explained": false
           },
           {
@@ -630,9 +644,9 @@
             "description": "User's number is part of an experiment",
             "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
             "count": 1,
-            "type": "Outros/não classificados",
+            "type": "Experimento da Meta",
             "recoverability": "Revisão manual",
-            "suggestion": "Consultar documentação oficial",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
             "explained": false
           }
         ],
@@ -643,7 +657,9 @@
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
-        }
+        },
+        "groupCount": 24,
+        "matchesBroadcastFailures": true
       },
       "channelName": "Suporte LP",
       "channelStatus": "connected",
