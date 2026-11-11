@@ -204,7 +204,9 @@ def merge_records(current, incoming, now):
             ]
             created = local_date(new.get("createdAt") or new.get("startedAt"))
             historical = bool(created and "2026-11-09" <= created.date().isoformat() <= LEGACY_END)
-            if matching_legacy and historical and len(matching_legacy) == 1:
+            if matching_legacy and historical and len(matching_legacy) == 1 and (
+                records[matching_legacy[0]].get("contacts") in (None, new.get("contacts"))
+            ):
                 match_index = matching_legacy[0]
             elif matching_legacy:
                 warnings.append("Campanha com nome semelhante ao histórico não conciliada: " + new["name"])
