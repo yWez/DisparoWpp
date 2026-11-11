@@ -100,13 +100,72 @@ def api_session(api_key):
     return session
 
 
+def discover_channel_ids(session, created_from):
+    """Find authorized Meta channels from the seven historical LP Crypto campaigns.
+
+    Fail closed: ambiguous/missing historical matches must not import arbitrary accounts.
+    No channel IDs are printed or published.
+    """
+    import re
+    expected_contacts = {1: 51, 2: 50, 3: 51, 4: 150, 5: 150, 6: 150, 7: 150}
+    matched = {}
+    offset = 0
+    seen_offsets = set()
+    for _ in range(100):
+        if offset in seen_offsets:
+            raise RuntimeError("Paginação repetida ao descobrir canais")
+        seen_offsets.add(offset)
+        body = get_json(session, "/public-broadcasts",
+                        provider="meta", created_from=created_from,
+                        sort="created_at", order="asc", limit=100, offset=offset)
+        batches = body.get("broadcasts")
+        if not isinstance(batches, list):
+            raise ValueError("API não retornou lista de transmissões")
+        for item in batches:
+            if not isinstance(item, dict):
+                continue
+            match = re.fullmatch(r"Disparo\\s*([1-7])\\s*-\\s*Wes",
+                                 str(item.get("name", "")).strip(), re.I)
+            if not match or not item.get("id"):
+                continue
+            number = int(match.group(1))
+            if as_count(item.get("total_contacts")) != expected_contacts[number]:
+                continue
+            created = local_date(item.get("created_at") or item.get("started_at"))
+            if not created or created.date().isoformat() not in ("2026-11-09", "2026-11-10"):
+                continue
+            meta_channels = {str(ch.get("channel_id"))
+                             for ch in item.get("channels") or []
+                             if ch.get("provider") == "meta" and ch.get("channel_id")}
+            if not meta_channels:
+                continue
+            key = str(item["id"])
+            matched.setdefault(number, {})[key] = meta_channels
+        nxt = body.get("next_offset")
+        if nxt in (None, "", False):
+            break
+        offset = int(nxt)
+    else:
+        raise RuntimeError("Número máximo de páginas na descoberta de canais")
+    if set(matched) != set(expected_contacts) or any(len(x) != 1 for x in matched.values()):
+        raise RuntimeError(
+            "Não foi possível identificar unicamente os sete disparos históricos. "
+            "Configure UMCLIQUE_CHANNEL_IDS com os canais autorizados."
+        )
+    channels = sorted(set().union(*(next(iter(group.values())) for group in matched.values())))
+    if not 1 <= len(channels) <= 3:
+        raise RuntimeError("Quantidade inesperada de canais Meta; revisar configuração")
+    LOG.info("Canais Meta reconhecidos pelos sete disparos históricos: %d", len(channels))
+    return channels
+
+
 def list_broadcasts(session, channel_ids, created_from):
     """Fetch one or more approved Meta channels, deduplicating by broadcast ID."""
     if isinstance(channel_ids, str):
         channel_ids = [x.strip() for x in channel_ids.split(",") if x.strip()]
     channel_ids = list(dict.fromkeys(channel_ids or []))
     if not channel_ids:
-        raise ValueError("UMCLIQUE_CHANNEL_IDS precisa conter ao menos um canal autorizado.")
+        channel_ids = discover_channel_ids(session, created_from)
     if len(channel_ids) > 10:
         raise ValueError("Número de canais maior que o esperado; confira a configuração.")
     collected = {}
@@ -363,7 +422,7 @@ def save_public_json(existing, records, changed, now):
 def run():
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     api_key = required_env("UMCLIQUE_API_KEY")
-    channel_ids = required_env("UMCLIQUE_CHANNEL_IDS")
+    channel_ids = os.getenv("UMCLIQUE_CHANNEL_IDS", "").strip()
     sheet_id = required_env("GOOGLE_SHEET_ID")
     google_creds = required_env("GOOGLE_SERVICE_ACCOUNT_JSON")
     created_from = os.getenv("UMCLIQUE_CREATED_FROM", "2026-11-09T00:00:00-03:00")
