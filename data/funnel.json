@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "description": "Etapas externas não integradas. Null significa não disponível, nunca zero.",
+  "stages": {
+    "registrations": {
+      "count": null,
+      "verified": false,
+      "source": null
+    },
+    "groupJoins": {
+      "count": null,
+      "verified": false,
+      "source": null
+    },
+    "liveAttendees": {
+      "count": null,
+      "verified": false,
+      "source": null
+    },
+    "purchases": {
+      "count": null,
+      "verified": false,
+      "source": null
+    }
+  },
+  "identityLinkage": {
+    "available": false,
+    "method": null
+  }
+}
