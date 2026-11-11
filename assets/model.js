@@ -116,6 +116,7 @@
       if(!d||!Array.isArray(d.groups))return;
       d.groups.forEach(function(g){out.push(Object.assign({
         campaignId:c.campaignId,name:c.name,day:campaignDay(c),channelId:c.channelId,
+        reconciliation:d.summary?.failedTotal!=null&&c.failures!=null&&d.summary.failedTotal!==c.failures?"Divergente":"Sem divergência detectada",
       },g));});
     });
     return out;
