@@ -33,6 +33,11 @@
     .kpi-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.kpi-label{font-size:11px;letter-spacing:.08em;font-weight:820;text-transform:uppercase;color:#67738a}
     .kpi-symbol{width:32px;height:32px;border-radius:10px;background:#f3efff;color:#785cda;display:grid;place-items:center;font-size:17px;font-weight:800}
     .kpi h2{font-size:clamp(31px,3vw,42px);font-weight:850;letter-spacing:-.05em;line-height:1;margin:16px 0 9px}.kpi p{margin:0;font-size:12px;color:#79859c}.kpi .warn{color:var(--red)}
+.delivery-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:18px}
+.delivery-card{padding:17px 20px;background:var(--white);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}
+.delivery-card .delivery-label{font-size:11px;font-weight:770;text-transform:uppercase;letter-spacing:.07em;color:#68758d}
+.delivery-card strong{font-size:27px;display:block;margin:8px 0 2px;letter-spacing:-.05em;color:var(--ink)}
+.delivery-card small{font-size:11px;color:var(--muted)}
     .section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:43px 0 17px}
     .section-head h2{font-size:23px;letter-spacing:-.045em;line-height:1.2;margin:0}.section-head p{color:var(--muted);font-size:13px;margin:6px 0 0}
     .muted{color:var(--muted)}.small{font-size:12px}.pill{display:inline-flex;align-items:center;gap:7px;background:#edecfb;color:#6747bb;border-radius:30px;padding:7px 12px;font-size:11px;font-weight:750;white-space:nowrap}
@@ -60,7 +65,7 @@
     .search{border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:13px;background:#f9fafc;width:min(100%,300px);outline:none}.search:focus{border-color:#8f77e9;background:#fff}
     select{border:1px solid var(--line);border-radius:11px;padding:11px 34px 11px 13px;color:var(--ink);background:#fff;font-size:12px}
     .btn-small{border-radius:11px;background:#f0ecfc;border:1px solid #e8e1fb;color:#6848c8;padding:10px 13px;font-size:12px;font-weight:760}
-    .btn-small:hover{background:#e4dbfa}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:830px}th{text-align:left;background:#fafbfe;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8993a7;font-weight:800;padding:15px 21px;white-space:nowrap}
+    .btn-small:hover{background:#e4dbfa}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:1190px}th{text-align:left;background:#fafbfe;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8993a7;font-weight:800;padding:15px 21px;white-space:nowrap}
     td{padding:17px 21px;border-bottom:1px solid #f0f2f7;font-size:13px;vertical-align:middle}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#fcfbff}td strong{font-weight:790}
     .status{display:inline-flex;align-items:center;gap:6px;border-radius:99px;background:var(--mint);color:#21815d;padding:6px 10px;font-size:11px;font-weight:800}.table-bad{color:var(--red);font-weight:800}
     .progress{display:flex;align-items:center;gap:9px;min-width:100px}.progress-track{background:#f1eaf2;border-radius:99px;overflow:hidden;height:7px;flex:1}.progress-bar{height:100%;background:#ec7d8d}
@@ -70,8 +75,8 @@
     .footer-link{color:#7256d2;font-weight:760}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     .loading{padding:32px;text-align:center;color:#7a879c;font-size:14px}
     .error{padding:18px;background:#fff1f1;color:#a2303c;border-radius:12px;border:1px solid #f0c7cd}
-    @media(max-width:980px){.hero-inner{align-items:start;flex-direction:column}.hero-actions{justify-content:start}.columns{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.topnav{display:none}}
-    @media(max-width:590px){.container{padding:0 17px}.top-inner{padding:14px 17px}.hero{padding:40px 0 87px}.hero p{font-size:13px}.kpis{gap:10px}.kpi{padding:17px;min-height:139px}.kpi h2{font-size:34px}.kpi-label{font-size:10px}.panel{padding:18px}.section-head{align-items:start;flex-direction:column}.rate-top{align-items:start}.ring{width:100px;height:100px}.ring-hole{height:72px;width:72px}.ring-hole strong{font-size:19px}.rate-num{font-size:42px}.bar-row{grid-template-columns:77px minmax(0,1fr) 44px;gap:8px}.bar-name{font-size:11px}.table-tools{align-items:stretch}.search{width:100%}footer{flex-direction:column}.hero-actions .primary,.hero-actions .ghost{width:100%}}
+    @media(max-width:980px){.delivery-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-inner{align-items:start;flex-direction:column}.hero-actions{justify-content:start}.columns{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.topnav{display:none}}
+    @media(max-width:590px){.delivery-card{padding:14px}.delivery-card strong{font-size:24px}.delivery-kpis{gap:9px}.container{padding:0 17px}.top-inner{padding:14px 17px}.hero{padding:40px 0 87px}.hero p{font-size:13px}.kpis{gap:10px}.kpi{padding:17px;min-height:139px}.kpi h2{font-size:34px}.kpi-label{font-size:10px}.panel{padding:18px}.section-head{align-items:start;flex-direction:column}.rate-top{align-items:start}.ring{width:100px;height:100px}.ring-hole{height:72px;width:72px}.ring-hole strong{font-size:19px}.rate-num{font-size:42px}.bar-row{grid-template-columns:77px minmax(0,1fr) 44px;gap:8px}.bar-name{font-size:11px}.table-tools{align-items:stretch}.search{width:100%}footer{flex-direction:column}.hero-actions .primary,.hero-actions .ghost{width:100%}}
     @media print{body{background:#fff}.topbar,.hero-actions,.table-tools,footer{display:none}.hero{padding:20px 0 70px}.kpi,.panel,.table-card{box-shadow:none}.columns{grid-template-columns:1fr 1fr}section{break-inside:avoid}}
   </style>
 </head>
@@ -107,6 +112,12 @@
       </div>
     </div>
 
+<section class="delivery-kpis" aria-label="Métricas oficiais de entrega e conversão">
+<div class="delivery-card"><span class="delivery-label">Entregues (API)</span><strong id="kpiDelivered">—</strong><small id="kpiDeliveredCoverage">Aguardando métricas</small></div>
+<div class="delivery-card"><span class="delivery-label">Lidas (API)</span><strong id="kpiRead">—</strong><small id="kpiReadCoverage">Aguardando métricas</small></div>
+<div class="delivery-card"><span class="delivery-label">Respostas (API)</span><strong id="kpiReplied">—</strong><small id="kpiRepliedCoverage">Aguardando métricas</small></div>
+<div class="delivery-card"><span class="delivery-label">Conversões (API)</span><strong id="kpiConversions">—</strong><small id="kpiConversionsCoverage">Aguardando métricas</small></div>
+</section>
     <div class="section-head" id="analise">
       <div><h2>Visão de desempenho</h2><p>Comparação dos volumes e da taxa de falhas por campanha.</p></div>
       <span class="pill"><span class="dot"></span><span id="periodBadge">Período carregando</span></span>
@@ -148,8 +159,8 @@
       </div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Campanha</th><th>Status</th><th>Contatos</th><th>Enviados</th><th>Falhas</th><th>Sem falha</th><th>Taxa de falha</th><th>Horário no print</th></tr></thead>
-          <tbody id="campaignRows"><tr><td colspan="8" class="loading">Carregando campanhas…</td></tr></tbody>
+          <thead><tr><th>Campanha</th><th>Status</th><th>Contatos</th><th>Enviados</th><th>Falhas</th><th>Sem falha</th><th>Entregues</th><th>Lidas</th><th>Respostas</th><th>Taxa de falha</th><th>Horário no print</th></tr></thead>
+          <tbody id="campaignRows"><tr><td colspan="11" class="loading">Carregando campanhas…</td></tr></tbody>
         </table>
       </div>
     </section>
@@ -248,7 +259,7 @@
         if(order==="fail")a.sort(function(x,y){return y.failures-x.failures;});
         if(order==="sent")a.sort(function(x,y){return y.sent-x.sent;});
         var tbody=$("campaignRows");tbody.replaceChildren();
-        if(!a.length){var empty=el("td","loading","Nenhuma campanha encontrada.");empty.colSpan=8;var er=el("tr");er.appendChild(empty);tbody.appendChild(er);return;}
+        if(!a.length){var empty=el("td","loading","Nenhuma campanha encontrada.");empty.colSpan=11;var er=el("tr");er.appendChild(empty);tbody.appendChild(er);return;}
         a.forEach(function(c){
           var tr=el("tr"),stat=el("span","status"),dot=el("span","dot");
           stat.appendChild(dot);stat.appendChild(document.createTextNode(c.status));
