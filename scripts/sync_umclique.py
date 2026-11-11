@@ -479,6 +479,16 @@ def run():
             except (requests.RequestException, ValueError, TypeError) as exc:
                 LOG.warning("Diagnóstico indisponível para %s: %s", str(new["campaignId"])[:24], type(exc).__name__)
         new["errorDiagnostics"] = report if report is not None else old.get("errorDiagnostics")
+        if new["errorDiagnostics"] is not None:
+            diagnostic = new["errorDiagnostics"]
+            grouped_total = sum(g.get("count", 0) for g in diagnostic.get("groups", []))
+            diagnostic["groupCount"] = grouped_total
+            official_failed = diagnostic.get("summary", {}).get("failedTotal")
+            diagnostic["matchesBroadcastFailures"] = (
+                official_failed == new.get("failures")
+                if official_failed is not None and new.get("failures") is not None
+                else None
+            )
         if len(new.get("channelIds",[])) > 1:
             new["channelName"] = "Múltiplos canais (não rateado)"
         else:
