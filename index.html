@@ -219,8 +219,16 @@
         $("ringPercent").textContent=pc(rate);
         $("ring").style.background="conic-gradient(#ed7282 0% "+(rate*100)+"%, #8d74e6 "+(rate*100)+"% 100%)";
         $("periodBadge").textContent=meta.periodLabel||"Período não definido";
-        $("updateLabel").textContent="Base conferida em "+(meta.snapshotDate?meta.snapshotDate.split("-").reverse().join("/"):"data não informada")+" • atualização manual";
-        $("footerSource").textContent="Origem: planilha + print • atualização manual";
+        var latestSync=meta.lastSyncedAt?new Date(meta.lastSyncedAt):null;
+        if(latestSync && !Number.isNaN(latestSync.getTime())){
+          $("updateLabel").textContent="Última sincronização: "+new Intl.DateTimeFormat("pt-BR",{
+            dateStyle:"short",timeStyle:"short",timeZone:"America/Fortaleza"
+          }).format(latestSync);
+          $("footerSource").textContent="Origem: UmClique API • atualização programada no GitHub";
+        }else{
+          $("updateLabel").textContent="Base conferida em "+(meta.snapshotDate?meta.snapshotDate.split("-").reverse().join("/"):"data não informada")+" • histórico manual";
+          $("footerSource").textContent="Origem: conferência manual • sincronização pendente";
+        }
         if(meta.spreadsheetUrl) $("sheetLink").href=meta.spreadsheetUrl;
         var worst=campaigns.slice().sort(function(a,b){return (b.failures/b.sent)-(a.failures/a.sent);})[0];
         if(worst){
