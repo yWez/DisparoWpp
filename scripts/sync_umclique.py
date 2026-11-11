@@ -14,6 +14,7 @@ import time
 from zoneinfo import ZoneInfo
 
 import requests
+from enrichment import sanitize_errors, sanitize_channel_list, assign_origins
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -215,7 +216,9 @@ def public_record(item, metrics=None):
     qstatus = metrics.get("queue_by_status") or {}
     bychan = metrics.get("by_channel") or []
     channels = item.get("channels") or []
-    channel = channels[0] if channels else {}
+    channel = channels[0] if len(channels) == 1 else {}
+    channel_ids = sorted({str(ch.get("channel_id")) for ch in channels if ch.get("channel_id")})
+
 
     def channel_sum(key):
         if not bychan or not all(isinstance(x, dict) and x.get(key) is not None for x in bychan):
@@ -239,7 +242,8 @@ def public_record(item, metrics=None):
         "id": str(item["id"]), "campaignId": str(item["id"]),
         "name": str(item["name"])[:140], "status": status_pt(item.get("status")),
         "statusCode": str(item.get("status") or ""), "channel": "Meta API Oficial",
-        "channelId": str(channel.get("channel_id") or ""),
+        "channelId": str(channel.get("channel_id") or "") if len(channel_ids)==1 else "",
+        "channelIds": channel_ids,
         "template": str(channel.get("template_name") or ""),
         "contacts": contacts, "sent": sent, "failures": failed,
         "delivered": delivered, "read": read, "replied": responded,
@@ -409,8 +413,8 @@ def sync_sheet(session, sheet_id, modified, all_records):
     return len(updates)
 
 
-def save_public_json(existing, records, changed, now):
-    if not changed:
+def save_public_json(existing, records, changed, now, channels=None, force=False):
+    if not changed and not force:
         return False
     meta = dict(existing.get("meta") or {})
     meta.update({
@@ -418,9 +422,11 @@ def save_public_json(existing, records, changed, now):
         "lastSyncedAt": now,
         "snapshotDate": now[:10],
         "dataStatus": "Sincronizado da UmClique API; campos ausentes não significam zero.",
-        "source": "UmClique API (estatísticas agregadas) e captura inicial de 09–10/11/2026"
+        "source": "UmClique API (estatísticas agregadas) e captura inicial de 09–10/11/2026",
+        "schemaVersion": 2,
+        "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
     })
-    document = {"meta": meta, "campaigns": records}
+    document = {"meta": meta, "campaigns": records, "channels": channels or []}
     DATA_PATH.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return True
 
@@ -453,14 +459,53 @@ def run():
         )
         metrics = try_metrics(api, item["id"]) if base_changes or item.get("status") == "sending" else {}
         normalized.append(public_record(item, metrics))
+    # Enrichment reads only aggregate error diagnostics and public-safe channel names.
+    # Never request or publish recipient lists, phone numbers, message bodies or logs.
+    allowed_channels = sorted({x for row in normalized for x in row.get("channelIds", [])})
+    channel_public = existing.get("channels", [])
+    try:
+        response = get_json(api, "/public-channels")
+        channel_public = sanitize_channel_list(response, allowed_channels)
+    except (requests.RequestException, ValueError, TypeError) as exc:
+        LOG.warning("Metadados dos canais indisponíveis: %s", type(exc).__name__)
+
+    for new in normalized:
+        old = current_by_id.get(str(new["campaignId"])) or {}
+        report = None
+        if new.get("failures") is not None and new["failures"] > 0:
+            try:
+                cid = requests.utils.quote(str(new["campaignId"]), safe="")
+                report = sanitize_errors(get_json(api, "/public-broadcasts/" + cid + "/errors"))
+            except (requests.RequestException, ValueError, TypeError) as exc:
+                LOG.warning("Diagnóstico indisponível para %s: %s", str(new["campaignId"])[:24], type(exc).__name__)
+        new["errorDiagnostics"] = report if report is not None else old.get("errorDiagnostics")
+        if len(new.get("channelIds",[])) > 1:
+            new["channelName"] = "Múltiplos canais (não rateado)"
+        else:
+            selected = next((v for v in channel_public if v["id"]==new.get("channelId")), None)
+            new["channelName"] = selected["name"] if selected else old.get("channelName") or "Canal sem identificação"
+        new["channelStatus"] = next((v.get("status") for v in channel_public if v["id"]==new.get("channelId")), None) or old.get("channelStatus")
+        # Explicit data lineage: cannot derive unique contacts from aggregated campaigns.
+        new["uniqueReached"] = None
+
     records, changed, warnings = merge_records(existing.get("campaigns", []), normalized, now)
     for warning in warnings:
         LOG.warning("%s", warning)
     if warnings:
         raise RuntimeError("Há campanhas com nome do histórico não conciliado. Reveja os IDs; dados não publicados.")
+    origins_file = ROOT / "data" / "origins.json"
+    origin_map = {}
+    if origins_file.exists():
+        blob = json.loads(origins_file.read_text(encoding="utf-8"))
+        origin_map = blob.get("campaignOrigins") or {}
+        if not isinstance(origin_map, dict):
+            raise ValueError("O mapa de origens precisa ser um objeto")
+    records = assign_origins(records, origin_map)
     google = sheets_session(google_creds)
     synced = sync_sheet(google, sheet_id, changed, records)
-    public_changed = save_public_json(existing, records, changed, now)
+    channels_changed = channel_public != existing.get("channels", [])
+    public_changed = save_public_json(existing, records, changed, now, channel_public,
+                                      force=channels_changed)
     LOG.info("Sheets atualizado: %d | JSON alterado: %s", synced, public_changed)
     if os.getenv("GITHUB_STEP_SUMMARY"):
         pathlib.Path(os.environ["GITHUB_STEP_SUMMARY"]).open("a", encoding="utf-8").write(
