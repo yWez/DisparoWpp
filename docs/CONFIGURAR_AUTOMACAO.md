@@ -1,9 +1,11 @@
+> **Atualização operacional — 11/11/2026:** Integração validada ponta a ponta. A primeira execução consultou 8 campanhas e atualizou Google Sheets e GitHub Pages; foi corrigida a duplicação do Disparo 4. O painel e a planilha foram conferidos com 8 campanhas, 902 envios, 107 falhas, 783 entregas, 431 leituras e 20 respostas. O agendamento a cada 15 minutos foi habilitado no workflow. A variável `UMCLIQUE_SYNC_ENABLED=false` pode ser usada para pausá-lo, se necessário. As execuções agendadas ainda dependem da fila e disponibilidade do GitHub.
+
 > **Atualização 11/11/2026 — correção do erro HTTP 403:** os sete disparos foram reconhecidos em dois canais Meta. O GitHub bloqueou a tentativa de gravar uma variável automaticamente. Corrigimos o fluxo: agora o sincronizador **descobre os canais diretamente pela API** e não precisa criar variáveis. O workflow **Descobrir canal UmClique** também foi atualizado para apenas validar a descoberta, sem modificar configurações do GitHub.
 
 # Automação UmClique → Google Sheets → DisparoWpp
 
 **Revisão:** 11/11/2026  
-**Estado:** código e fluxo preparados, **aguardando configurações privadas** para funcionar.  
+**Estado:** integração autenticada em produção, primeira execução conferida, agendamento habilitado no GitHub Actions.  
 **Implementação:** GitHub Actions a cada 15 minutos, sem n8n.
 
 ## Endpoints oficiais confirmados
@@ -77,7 +79,7 @@ Adicionar esse token em **Actions Secrets** como **GH_PAGES_PUSH_TOKEN**.
 
 Só depois de concluir os itens anteriores:
 
-1. Criar a **Actions Variable UMCLIQUE_SYNC_ENABLED** com o valor exato **true**.
+1. **Ativado em 11/11/2026.** A variável `UMCLIQUE_SYNC_ENABLED` não precisa ser criada. Para suspender a rotina agendada, configure-a com o valor `false`.
 2. Abrir [Actions → Sincronizar disparos UmClique](https://github.com/yWez/DisparoWpp/actions/workflows/sync-umclique.yml).
 3. Clicar em **Run workflow**.
 4. Conferir o resultado do run e o resumo (campanhas consultadas/atualizadas).
@@ -96,15 +98,15 @@ Depois disso, o GitHub executará o fluxo a cada ~15 minutos sem precisar abrir 
 - ID do disparo fica na coluna **M**; entregues/lidos/responderam nas colunas **P–R**.
 - O Google Sheets é editado com conta de serviço, não por chave de API pública.
 - A planilha não deve ser compartilhada publicamente apenas para o painel funcionar.
-- Os primeiros sete IDs ainda precisam ser conciliados; se houver inconsistência, a integração pausa com erro explícito, em vez de produzir total inflado.
+- Os IDs dos Disparos 1–7 foram conciliados com a API; a duplicação inicialmente detectada no Disparo 4 foi removida. O sistema agora normaliza espaços nos nomes e utiliza os IDs oficiais nas rodadas seguintes.
 
 ## Status verificado neste projeto
 
 - ✅ Endpoints e resposta da API documentados.
 - ✅ Script de integração e testes versionados.
-- ✅ Workflow agendado versionado e desativado por variável de segurança.
+- ✅ Workflow agendado versionado e habilitado por padrão; variável `UMCLIQUE_SYNC_ENABLED=false` pausa o agendamento.
 - ✅ Planilha com colunas de API; dashboard pronto para novos indicadores.
-- ⏳ Chave UmClique já armazenada no GitHub pelo usuário; ainda faltam acesso Google Sheets e token GitHub de publicação. Os canais são descobertos automaticamente.
+- ✅ Chave UmClique, acesso Google Sheets e token de publicação cadastrados pelo usuário e validados pela primeira execução.
 - ✅ A primeira consulta autenticada de canais foi realizada pela rotina de descoberta. ⏳ A sincronização completa com Sheets e Pages ainda não foi ativada.
 
 **Nunca envie senhas, tokens ou o JSON da conta de serviço nesta conversa.**
