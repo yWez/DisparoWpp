@@ -501,11 +501,17 @@ def run():
         if not isinstance(origin_map, dict):
             raise ValueError("O mapa de origens precisa ser um objeto")
     records = assign_origins(records, origin_map)
+    # A changed origin mapping affects the public aggregated dashboard even
+    # if the UmClique counters have not changed.
+    prior_origins = {str(v.get("campaignId") or v.get("id")):v.get("campaignOrigin")
+                     for v in existing.get("campaigns", [])}
+    origins_changed = any(v.get("campaignOrigin") != prior_origins.get(str(v.get("campaignId") or v.get("id")))
+                          for v in records)
     google = sheets_session(google_creds)
     synced = sync_sheet(google, sheet_id, changed, records)
     channels_changed = channel_public != existing.get("channels", [])
     public_changed = save_public_json(existing, records, changed, now, channel_public,
-                                      force=channels_changed)
+                                      force=channels_changed or origins_changed)
     LOG.info("Sheets atualizado: %d | JSON alterado: %s", synced, public_changed)
     if os.getenv("GITHUB_STEP_SUMMARY"):
         pathlib.Path(os.environ["GITHUB_STEP_SUMMARY"]).open("a", encoding="utf-8").write(
