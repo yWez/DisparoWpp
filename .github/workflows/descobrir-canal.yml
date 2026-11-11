@@ -32,6 +32,7 @@ jobs:
           offset=0
           ids=Counter()
           matched_ids=Counter()
+          matched_campaigns={}
           seen=set()
           for page in range(40):
               if offset in seen:
@@ -58,8 +59,10 @@ jobs:
                       cid=ch.get("channel_id")
                       if not cid: continue
                       ids[str(cid)]+=1
-                      if re.search(r"^Disparo\s*[1-7]\s*-\s*Wes$",name,re.I):
+                      match=re.search(r"^Disparo\s*([1-7])\s*-\s*Wes$",name,re.I)
+                      if match:
                           matched_ids[str(cid)]+=1
+                          matched_campaigns.setdefault(match.group(1),set()).add(str(item.get("id") or ""))
               nxt=data.get("next_offset")
               if nxt is None or nxt=="" or nxt is False: break
               offset=int(nxt)
@@ -71,18 +74,21 @@ jobs:
             "A chave foi utilizada somente como cabeçalho HTTPS; não é exibida aqui.",
             ""
           ]
-          if len(matched_ids)==1 and sum(matched_ids.values())>=5:
-              channel_id=next(iter(matched_ids))
+          complete=(len(matched_campaigns)==7
+                    and all(len(ids)==1 and "" not in ids for ids in matched_campaigns.values())
+                    and 1<=len(matched_ids)<=3)
+          if complete:
+              channel_ids=",".join(sorted(matched_ids))
               gh_token=os.environ.get("GITHUB_TOKEN")
               repo=os.environ.get("GITHUB_REPOSITORY")
               if not gh_token or not repo:
                   raise RuntimeError("GitHub token/repo não disponível")
-              body=json.dumps({"name":"UMCLIQUE_CHANNEL_ID","value":channel_id}).encode()
+              body=json.dumps({"name":"UMCLIQUE_CHANNEL_IDS","value":channel_ids}).encode()
               common={"Authorization":"Bearer "+gh_token,
                       "Accept":"application/vnd.github+json",
                       "X-GitHub-Api-Version":"2022-11-28",
                       "Content-Type":"application/json"}
-              url="https://api.github.com/repos/"+repo+"/actions/variables/UMCLIQUE_CHANNEL_ID"
+              url="https://api.github.com/repos/"+repo+"/actions/variables/UMCLIQUE_CHANNEL_IDS"
               req=urllib.request.Request(url,headers=common,data=body,method="PATCH")
               try:
                   with urllib.request.urlopen(req,timeout=20) as response: pass
@@ -96,22 +102,22 @@ jobs:
                   except urllib.error.HTTPError as err2:
                       raise RuntimeError(f"Não foi possível criar variável (HTTP {err2.code})") from None
               report.extend([
-                  "✅ Um canal único foi identificado em pelo menos cinco dos disparos Wes.",
+                  f"✅ Identificados 7 disparos distintos, distribuídos em {len(matched_ids)} canal(is) Meta.",
                   "",
-                  "✅ Variável `UMCLIQUE_CHANNEL_ID` configurada automaticamente no repositório.",
+                  "✅ Variável `UMCLIQUE_CHANNEL_IDS` configurada automaticamente com todos os canais dos sete disparos.",
                   "",
                   "Por segurança, o identificador do canal e a chave não são exibidos neste relatório."
               ])
           elif matched_ids:
               report.extend([
-                  "⚠️ A identificação automática não foi conclusiva.",
-                  f"Canais compatíveis: {len(matched_ids)}; transmissões reconhecidas: {sum(matched_ids.values())}.",
-                  "Conferir o ID na UmClique antes de configurar a variável manualmente."
+                  "⚠️ Ainda não foi possível validar os sete disparos distintos; nenhuma variável foi configurada.",
+                  f"Canais compatíveis: {len(matched_ids)}; campanhas distintas identificadas: {len(matched_campaigns)}.",
+                  "Conferir os disparos ausentes na UmClique antes de configurar os canais."
               ])
           else:
               report.append("⚠️ Não foram encontradas cinco campanhas Wes no mesmo canal Meta. Confira o período, a conta e a permissão da chave.")
           report.append("")
           os.makedirs(os.path.dirname(os.environ["GITHUB_STEP_SUMMARY"]),exist_ok=True)
           with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf8") as f: f.write("\n".join(report)+"\n")
-          print(f"Consulta encerrada. Canais Meta encontrados: {len(ids)}; canais correspondentes aos disparos Wes: {len(matched_ids)}. Consulte a aba Summary para os IDs.")
+          print(f"Consulta concluída: {len(matched_campaigns)} campanhas Wes identificadas, distribuídas em {len(matched_ids)} canais Meta. Veja o Summary.")
           PY
