@@ -258,7 +258,7 @@ def stable_business_fields(item):
 def canonical_name(value):
     """Normalize dash spacing/case to reconcile manual and API campaign labels."""
     import re
-    return re.sub(r"\\s+", " ", re.sub(r"\\s*-\\s*", " - ", str(value or "").strip())).casefold()
+    return re.sub(r"\s+", " ", re.sub(r"\s*-\s*", " - ", str(value or "").strip())).casefold()
 
 
 def merge_records(current, incoming, now):
