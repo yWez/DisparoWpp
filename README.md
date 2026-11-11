@@ -16,6 +16,12 @@ A página `index.html` carrega o arquivo `data/disparos.json` e calcula automati
 
 As contagens foram extraídas do print da plataforma e conferidas com a aba `Disparos WhatsApp` do Google Sheets. **Status "Concluída" não comprova entrega, leitura ou resposta.** "Sem falha registrada" não deve ser apresentado como "entregues". Os rótulos de tempo relativos no print não estabelecem horários exatos por dia.
 
+## Integração UmClique (em preparação)
+
+O plano de sincronização automática está documentado em **[docs/INTEGRACAO_UMCLIQUE.md](docs/INTEGRACAO_UMCLIQUE.md)**.
+
+**Status:** estrutura de dados da planilha preparada; integração UmClique → planilha → GitHub ainda **não ativada**, pois faltam endpoint de relatórios por campanha, esquema real dos eventos/webhooks e credenciais autorizadas.
+
 ## Atualização de dados
 
 1. Registrar os novos disparos na planilha operacional, com ID da campanha, período, contatos, envios, falhas e status.
