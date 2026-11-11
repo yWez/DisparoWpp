@@ -110,9 +110,20 @@ class TestUmCliqueSync(unittest.TestCase):
         self.assertEqual(calls, ["ch-one", "ch-two"])
         self.assertEqual([v["id"] for v in result], ["a", "b", "c"])
 
-    def test_multiple_channel_configuration_is_required(self):
-        with self.assertRaises(ValueError):
-            sync.list_broadcasts(None, "", "2026-11-09T00:00:00-03:00")
+    def test_optional_channel_ids_use_safe_discovery(self):
+        original_discover = sync.discover_channel_ids
+        original_get = sync.get_json
+        try:
+            sync.discover_channel_ids = lambda session, created: ["channel-A", "channel-B"]
+            sync.get_json = lambda session, path, **params: {
+                "broadcasts": [{"id": params["channel_id"], "name": "Teste"}],
+                "next_offset": None
+            }
+            records = sync.list_broadcasts(None, "", "2026-11-09T00:00:00-03:00")
+        finally:
+            sync.discover_channel_ids = original_discover
+            sync.get_json = original_get
+        self.assertEqual([x["id"] for x in records], ["channel-A", "channel-B"])
 
     def test_discover_two_channels_for_seven_historical_campaigns(self):
         expected = [51, 50, 51, 150, 150, 150, 150]
