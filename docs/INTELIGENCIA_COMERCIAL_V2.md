@@ -62,3 +62,9 @@ Os dados mostrados no painel vêm da API real. **Exemplos sintéticos existem ex
 3. Criar área de acesso restrito para lista nominal e exportações de recuperação (sem reenvio automático).
 4. Integrar formulário/CRM, entrada no grupo, live e checkout com IDs conciliáveis.
 5. Confirmar limites de envio e estado de conexão para cada canal, caso a API disponibilize dados.
+
+## Divergências reais identificadas na UmClique
+
+Após a primeira consulta autenticada a `/errors`, identificamos casos em que `summary.failed_total` do diagnóstico de causas não coincide com `failed_count` da listagem da transmissão (por exemplo, Disparos 2, 4 e 5). Por isso o dashboard **não soma contagens de grupos como mensagens distintas** nem substitui o KPI de falhas. Agora exibe o estado de conciliação por campanha e alerta quando existe divergência. A diferença pode representar diferenças de escopo ou tentativas; a causa precisa de confirmação com a UmClique, não deve ser presumida.
+
+Os textos oficiais registrados incluem *healthy ecosystem engagement*, *message undeliverable*, *user's number is part of an experiment* e *spam rate limit hit*. O diagnóstico interpreta conservadoramente esses grupos, sem transformar todos em “telefone inválido”.
