@@ -255,6 +255,12 @@ def stable_business_fields(item):
     return {k: v for k, v in item.items() if k not in {"lastSyncedAt", "note", "legacyId", "source"}}
 
 
+def canonical_name(value):
+    """Normalize dash spacing/case to reconcile manual and API campaign labels."""
+    import re
+    return re.sub(r"\\s+", " ", re.sub(r"\\s*-\\s*", " - ", str(value or "").strip())).casefold()
+
+
 def merge_records(current, incoming, now):
     """Idempotent by official ID. Safe legacy reconciliation, no silent duplicates."""
     records = list(current)
@@ -270,7 +276,7 @@ def merge_records(current, incoming, now):
             matching_legacy = [
                 i for i, old in enumerate(records)
                 if not old.get("campaignId") and str(old.get("id", "")).startswith("D")
-                and old.get("name", "").casefold() == new["name"].casefold()
+                and canonical_name(old.get("name")) == canonical_name(new["name"])
             ]
             created = local_date(new.get("createdAt") or new.get("startedAt"))
             historical = bool(created and "2026-11-09" <= created.date().isoformat() <= LEGACY_END)
@@ -332,7 +338,7 @@ def find_sheet_rows(values):
         if len(row) > 12 and row[12]:
             ids[str(row[12])] = rownum
         if len(row) > 1 and row[1]:
-            names.setdefault(str(row[1]).casefold(), []).append(rownum)
+            names.setdefault(canonical_name(row[1]), []).append(rownum)
     return ids, names, blanks
 
 
@@ -371,13 +377,13 @@ def sync_sheet(session, sheet_id, modified, all_records):
             continue
         rownum = ids.get(cid)
         if rownum is None and record.get("legacyId"):
-            legacy_rows = names.get(record["name"].casefold(), [])
+            legacy_rows = names.get(canonical_name(record["name"]), [])
             if len(legacy_rows) == 1:
                 rownum = legacy_rows[0]
         if rownum is None:
             # A matching manual record without a validated legacyId MUST be verified
             # instead of adding the same campaign a second time.
-            ambiguous = [r for r in names.get(record["name"].casefold(), [])
+            ambiguous = [r for r in names.get(canonical_name(record["name"]), [])
                          if r <= 11]
             if ambiguous:
                 raise RuntimeError("Conciliação manual pendente no Sheets para: " + record["name"])
