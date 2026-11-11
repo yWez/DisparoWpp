@@ -3,7 +3,7 @@ name: Sincronizar disparos UmClique
 on:
   workflow_dispatch:
   # Permite teste operacional pelo conector: somente um arquivo marcador.
-  # A atualização de data/disparos.json NÃO dispara este workflow.
+  # Atualizações dos arquivos JSON NÃO disparam este workflow.
   push:
     branches: [main]
     paths:
@@ -56,22 +56,27 @@ jobs:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GOOGLE_SHEET_ID: "1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k"
         run: python scripts/sync_umclique.py
+      - name: Conciliar cadastros X1 da planilha Captação
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          X1_CAPTACAO_SHEET_ID: "1AtxjojmOi3aAFk1gSc1O7Su4pQUSrgsndnNGZkkMU7U"
+        run: python scripts/sync_x1.py
       - name: Publicar mudanças para GitHub Pages
         env:
           GH_PAGES_PUSH_TOKEN: ${{ secrets.GH_PAGES_PUSH_TOKEN }}
         shell: bash
         run: |
-          if git diff --quiet -- data/disparos.json; then
+          if git diff --quiet -- data/disparos.json data/x1-attribution.json; then
             echo "Nenhuma mudança nos indicadores; publicação desnecessária."
             exit 0
           fi
           git config user.name "LP Crypto Automação"
           git config user.email "automation@users.noreply.github.com"
-          git add data/disparos.json
+          git add data/disparos.json data/x1-attribution.json
           git commit -m "data: sincronizar campanhas da UmClique"
           git remote set-url origin "https://x-access-token:${GH_PAGES_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           # Commits humanos/deploys podem avançar main enquanto a API é consultada.
-          # Rebase seguro de alterações SÓ em data/disparos.json; nunca usar --force.
+          # Rebase seguro dos JSONs agregados; nunca usar --force.
           for attempt in 1 2 3; do
             git fetch origin main
             git rebase origin/main
