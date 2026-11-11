@@ -2,7 +2,7 @@
 (function(){
 "use strict";
 const M=window.LPCryptoModel,$=id=>document.getElementById(id),fmt=new Intl.NumberFormat("pt-BR");
-const state={rows:[],channels:[],meta:{},funnel:{},ready:false,filters:{period:"all",campaign:"all",channel:"all",status:"all",origin:"all",from:"",to:""},search:"",rankSort:"day",rankDir:-1,minSent:30,maxFail:15,minDelivery:80,sortDaily:"day",sortChannel:"sent"};
+const state={rows:[],channels:[],meta:{},funnel:{},x1:null,ready:false,filters:{period:"all",campaign:"all",channel:"all",status:"all",origin:"all",from:"",to:""},search:"",rankSort:"day",rankDir:-1,minSent:30,maxFail:15,minDelivery:80,sortDaily:"day",sortChannel:"sent"};
 const E=(tag,cls="",value)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(value!==undefined)n.textContent=String(value);return n};
 const N=x=>M.number(x),P=x=>M.pct(x),kpi=(label,value,hint,tone)=>{let a=E("article","v2-kpi "+(tone||"")),v=E("strong","metric"+(value==="Não disponível"?" na":""),value);a.append(E("span","label",label),v,E("small","",hint));return a};
 const all=()=>M.filter(state.rows,state.filters);
@@ -34,13 +34,17 @@ function init(){
  $("campanhas").before(daily,channels);
  const errors=segment("falhas","Diagnóstico de falhas","Códigos e explicações reais da UmClique, nunca suposições de que todos os telefones são inválidos.");
  errors.insertAdjacentHTML("beforeend",`<div class="v2-panel"><div class="v2-flex"><h3>Grupos de erros por disparo</h3><button class="v2-action" id="v2ErrorCsv">Exportar causas</button></div><div id="v2ErrorsTable" class="v2-table-scroll"></div><div class="v2-blocked" style="margin-top:13px"><strong>Dados pessoais não são públicos.</strong> Os códigos são agregados; contato, telefone e recuperação individual requerem uma área autenticada e permissão específica. Não enviamos reprocessamentos automáticos.</div></div>`);
+ const x1=segment("x1","Conversões X1 — captação","Cadastros confirmados na página LP com utm_source=whatsapp e utm_medium=x1. Entradas no grupo exigem comprovação separada.");
+ x1.insertAdjacentHTML("beforeend",'<div class="v2-kpis" id="v2X1Kpis"></div><div class="v2-panel" style="margin-top:15px"><h3>Rastreamento por disparo</h3><p id="v2X1Status" class="v2-muted"></p><div id="v2X1Table" class="v2-table-scroll"></div></div><div class="v2-panel" style="margin-top:15px"><h3>Evolução dos cadastros X1</h3><div id="v2X1Days" class="v2-table-scroll"></div></div>');
+ const copies=segment("copies","Qual copy performou melhor?","Comparação pelo campo Template (parcial). Enquanto não houver UTMs individuais por disparo, o desempenho da copy usa indicadores da UmClique, não cadastros.");
+ copies.insertAdjacentHTML("beforeend",'<div class="v2-panel"><div id="v2CopiesStatus" class="v2-muted"></div><div id="v2CopiesTable" class="v2-table-scroll"></div></div>');
  const origins=segment("origens","Origem e atribuição","Origem por campanha cadastrada, sem sobrescrever a primeira origem de contatos.");
  origins.insertAdjacentHTML("beforeend",`<div class="v2-panel"><div id="v2OriginsTable" class="v2-table-scroll"></div><div class="v2-blocked" style="margin-top:12px">Origens são associadas por ID no arquivo data/origins.json. Atribuição por pessoa e multitoques dependerá da integração com CRM/captação.</div></div>`);
  const funnel=segment("funil","Funil comercial","Etapas independentes: somente mensurar conversão de indivíduos vinculados por IDs.");
  funnel.insertAdjacentHTML("beforeend",`<div class="v2-panel"><div id="v2FunnelBars"></div><div class="v2-blocked">As quatro primeiras contagens são de campanhas, com possíveis pessoas repetidas. Inscrição, grupo, live e compras permanecem indisponíveis até conciliar suas fontes. Taxas entre etapas não são apresentadas sem populações relacionadas.</div></div>`);
  const exports=segment("exportacoes","Exportações","CSVs em UTF-8 com BOM e delimitador compatível com Excel, sempre com os filtros ativos.");
  exports.insertAdjacentHTML("beforeend",`<div class="v2-panel"><div id="v2Exports" class="v2-exports"></div><p class="v2-muted">Contatos com falhas e respondentes individuais são exportações privadas: não ficam disponíveis no site público.</p></div>`);
- document.querySelector("aside.note-box").before(errors,origins,funnel,exports);
+ document.querySelector("aside.note-box").before(errors,x1,copies,origins,funnel,exports);
  $("campanhas").querySelector("h2").textContent="Ranking de campanhas";
  $("campanhas").querySelector("p").textContent="Todos os indicadores ordenáveis; critérios de desempenho ajustáveis.";
  $("search").placeholder="Buscar na tabela...";
@@ -87,7 +91,7 @@ function render(){
  $("v2LoadStatus").textContent="Fonte: UmClique API • data inicial de cada campanha • dados filtrados";
  $("caveats").replaceChildren(...(state.meta.caveats||[]).map(x=>E("li","",x)));
  if(state.meta.spreadsheetUrl)$("sheetLink").href=state.meta.spreadsheetUrl;
- oldCharts(rows,s);daily(rows);channels(rows);rank();errors(rows);origins(rows);funnel(s);
+ oldCharts(rows,s);daily(rows);channels(rows);rank();errors(rows);renderX1(rows);renderCopies(rows);origins(rows);funnel(s);
 }
 function oldCharts(rows,s){
  const bars=$("volumeBars");bars.replaceChildren();const mx=Math.max(1,...rows.map(x=>x.sent||0));
@@ -147,11 +151,11 @@ function channels(rows){
  (key,v)=>key.endsWith("Rate")?M.pct(v):typeof v==="number"?M.number(v):v??"Não disponível",state.sortChannel,-1,key=>{state.sortChannel=key;channels(all())});
 }
 function rank(){
- const rows=all().filter(c=>!state.search||(c.name+" "+(c.campaignOrigin||"")).toLocaleLowerCase("pt-BR").includes(state.search));
- const data=rows.map(c=>{const s=M.summary([c]);return {id:c.campaignId,name:c.name,day:M.campaignDay(c)||"Não disponível",channel:(state.channels.find(x=>x.id===c.channelId)?.name||c.channelName||"Canal")+" · "+(c.channelId||"").slice(0,8),
+ const rows=all().filter(c=>!state.search||(c.name+" "+(c.template||"")+" "+(c.campaignOrigin||"")).toLocaleLowerCase("pt-BR").includes(state.search));
+ const data=rows.map(c=>{const s=M.summary([c]);return {id:c.campaignId,name:c.name,template:c.template||"Não informada",registrations:registrationFor(c),registrationRate:registrationRateFor(c),day:M.campaignDay(c)||"Não disponível",channel:(state.channels.find(x=>x.id===c.channelId)?.name||c.channelName||"Canal")+" · "+(c.channelId||"").slice(0,8),
  sent:c.sent,delivered:c.delivered,read:c.read,replied:c.replied,failures:c.failures,deliveryRate:s.deliveryRate,readRate:s.readRate,responseRate:s.responseRate,failureRate:s.failureRate,
  quality:M.thresholds(c,{minSent:state.minSent,maxFailureRate:state.maxFail/100,minDeliveryRate:state.minDelivery/100})};});
- const cols=[["name","Campanha"],["day","Data"],["channel","Número/API"],["sent","Enviadas"],["delivered","Entregues"],["read","Lidas"],["replied","Respostas"],["failures","Falhas"],["deliveryRate","Tx. entrega"],["readRate","Tx. leitura"],["responseRate","Tx. resposta"],["failureRate","Tx. falha"],["quality","Classificação"]];
+ const cols=[["name","Campanha"],["template","Template (parcial)"],["registrations","Cadastros X1 atribuídos"],["registrationRate","Tx. cadastro/entrega"],["day","Data"],["channel","Número/API"],["sent","Enviadas"],["delivered","Entregues"],["read","Lidas"],["replied","Respostas"],["failures","Falhas"],["deliveryRate","Tx. entrega"],["readRate","Tx. leitura"],["responseRate","Tx. resposta"],["failureRate","Tx. falha"],["quality","Classificação"]];
  const wrap=document.querySelector(".table-card .table-wrap");wrap.replaceChildren();drawTable(wrap,cols,data,(k,v)=>k.endsWith("Rate")?M.pct(v):typeof v==="number"?M.number(v):v??"Não disponível",state.rankSort,state.rankDir,key=>{state.rankDir=state.rankSort===key?-state.rankDir:-1;state.rankSort=key;rank()});
  if(!$("v2Thresholds")){const box=E("div","v2-thresholds");box.id="v2Thresholds";
  [["minSent","Volume mín.",0,100000],["maxFail","Falha alerta ≥ %",0,100],["minDelivery","Meta entrega ≥ %",0,100]].forEach(([key,label,min,max])=>{const w=E("label","",label),input=E("input");input.type="number";input.value=state[key];input.min=min;input.max=max;input.addEventListener("change",()=>{let n=Number(input.value);if(Number.isFinite(n)&&n>=min&&n<=max){state[key]=n;rank();}else input.value=state[key];});w.append(input);box.append(w);});
@@ -170,6 +174,59 @@ function origins(rows){
  const groups=M.originGroups(rows).map(x=>({name:x.origin,campaigns:x.summary.campaigns,sent:x.summary.metrics.sent.value,delivered:x.summary.metrics.delivered.value,replied:x.summary.metrics.replied.value,failures:x.summary.metrics.failures.value}));
  drawTable($("v2OriginsTable"),[["name","Origem"],["campaigns","Campanhas"],["sent","Enviadas"],["delivered","Entregues"],["replied","Respostas"],["failures","Falhas"]],groups,
  (k,v)=>typeof v==="number"?M.number(v):v??"Não disponível","sent",-1,null);
+}
+
+function registrationFor(c){
+ const entries=state.x1?.byCampaign;
+ if(!Array.isArray(entries))return null;
+ const found=entries.find(x=>x.campaignId===c.campaignId);
+ return found&&Number.isFinite(found.registrations)?found.registrations:null;
+}
+function registrationRateFor(c){
+ const registrations=registrationFor(c);
+ return registrations!==null&&Number.isFinite(c.delivered)&&c.delivered>0?registrations/c.delivered:null;
+}
+function renderX1(rows){
+ const x=state.x1,verified=x&&Number.isFinite(x.registrations);
+ const attributed=verified?((x.byCampaign||[]).reduce((sum,v)=>sum+(v.registrations||0),0)):null;
+ const missing=verified?x.unattributedRegistrations:null;
+ $("v2X1Kpis").replaceChildren(
+  kpi("Cadastros X1 na LP",verified?N(x.registrations):"Não disponível","UTM whatsapp / x1 · todas as campanhas","positive"),
+  kpi("Atribuídos a disparos",attributed===null?"Não disponível":N(attributed),"Somente UTMs exclusivas e verificadas",""),
+  kpi("Sem disparo identificado",missing===null?"Não disponível":N(missing),"UTM genérica x1-base não identifica o disparo","unknown"),
+  kpi("Entradas no grupo",x&&Number.isFinite(x.groupJoins)?N(x.groupJoins):"Não disponível","A página de cadastro não registra entrada no grupo","unknown")
+ );
+ $("v2X1Status").textContent=verified?
+  "Fonte: "+(x.meta?.source||"Captação")+". "+N(x.registrations)+" cadastros únicos na LP, dos quais "+N(missing)+" não podem ser atribuídos a um disparo. A UTM x1-base é compartilhada. Taxa = cadastros rastreados do disparo ÷ entregas confirmadas, quando ambos existirem. O filtro atual altera a lista de disparos, não o total da fonte X1.":
+  "Fonte de Captação X1 indisponível. Não substituímos ausência de dados por zero.";
+ const list=rows.map(c=>({name:c.name,template:c.template||"Não informada",delivered:c.delivered,registrations:registrationFor(c),rate:registrationRateFor(c),
+  state:registrationFor(c)===null?"Não atribuível: UTM compartilhada":"UTM individual identificada"}));
+ drawTable($("v2X1Table"),[["name","Disparo"],["template","Copy / Template"],["delivered","Entregues"],["registrations","Cadastros atribuídos"],["rate","Tx. conversão"],["state","Rastreabilidade"]],list,
+  (k,v)=>k==="rate"?P(v):typeof v==="number"?N(v):v??"Não disponível","name",1,null);
+ const days=verified?(x.daily||[]):[];
+ drawTable($("v2X1Days"),[["day","Data registrada"],["registrations","Cadastros X1"]],days,
+  (k,v)=>typeof v==="number"?N(v):v,"day",1,null);
+}
+function renderCopies(rows){
+ const groups=new Map();
+ rows.forEach(c=>{
+  const name=(c.template||"").trim()||"Não identificada";
+  if(!groups.has(name))groups.set(name,[]);
+  groups.get(name).push(c);
+ });
+ const copies=Array.from(groups,([template,campaigns])=>{
+  const s=M.summary(campaigns),sent=s.metrics.sent.value,delivered=s.metrics.delivered.value,read=s.metrics.read.value,replied=s.metrics.replied.value;
+  return {template,campaigns:campaigns.length,sent,delivered,read,replied,
+   readRate:M.rate(read,delivered),responseProxy:M.rate(replied,delivered),registrations:null};
+ });
+ drawTable($("v2CopiesTable"),[["template","Template (parcial)"],["campaigns","Disparos"],["sent","Enviadas"],["delivered","Entregues"],["read","Lidas"],["replied","Respostas"],["readRate","Tx. leitura"],["responseProxy","Respostas ÷ entregues*"],["registrations","Cadastros atribuídos"]],copies,
+   (k,v)=>["readRate","responseProxy"].includes(k)?P(v):typeof v==="number"?N(v):v??"Não disponível","responseProxy",-1,null);
+ const enough=copies.filter(c=>c.delivered>=30&&c.responseProxy!==null);
+ const best=enough.slice().sort((a,b)=>b.responseProxy-a.responseProxy)[0];
+ $("v2CopiesStatus").textContent=copies.length<2?
+  "Há somente "+copies.length+" template(s) nos disparos selecionados. Ainda não existe comparação válida entre copies diferentes. *Respostas ÷ entregues é um indicador aproximado por mensagem, não taxa por pessoa nem conversão em inscrição.":
+  best?"Melhor copy pelo critério respostas ÷ entregues, com ao menos 30 entregas: "+best.template+" ("+P(best.responseProxy)+"). *É um indicador aproximado, não conversão em inscrição. Compare também leituras, volume e falhas.":
+  "Há copies diferentes, mas ainda não há amostra suficiente para apontar a melhor (mínimo de 30 entregas).";
 }
 function funnelRows(s){
  const external=state.funnel?.stages||{},safe=k=>(external[k]?.verified===true&&typeof external[k]?.count==="number"?external[k].count:null);
@@ -208,9 +265,9 @@ async function get(url,required=true){const r=await fetch(url,{cache:"no-store"}
 async function load(){
  $("v2LoadStatus").textContent="Consultando dados da UmClique…";
  try{
-  const [d,f]=await Promise.all([get("./data/disparos.json"),get("./data/funnel.json",false)]);
+  const [d,f,x]=await Promise.all([get("./data/disparos.json"),get("./data/funnel.json",false),get("./data/x1-attribution.json",false).catch(()=>null)]);
   if(!Array.isArray(d?.campaigns))throw new Error("Arquivo de campanhas inválido");
-  state.rows=M.dedupe(d.campaigns);state.channels=Array.isArray(d.channels)?d.channels:[];state.meta=d.meta||{};state.funnel=f||{};state.ready=true;fillOptions();reset();render();
+  state.rows=M.dedupe(d.campaigns);state.channels=Array.isArray(d.channels)?d.channels:[];state.meta=d.meta||{};state.funnel=f||{};state.x1=x;state.ready=true;fillOptions();reset();render();
  }catch(ex){$("v2Kpis").replaceChildren(E("div","v2-error","Dados indisponíveis: "+String(ex?.message||ex)));$("v2LoadStatus").replaceChildren(E("div","v2-error","Confira o GitHub Actions e tente novamente."));const b=E("button","v2-action","Tentar novamente");b.addEventListener("click",load);$("v2LoadStatus").append(b);}
 }
 init();load();
