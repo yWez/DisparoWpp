@@ -25,8 +25,15 @@ def clean_text(value, max_length=MAX_TEXT):
 
 def category(code, title):
     lower = (code + " " + title).casefold()
-    if code == "131049" or "engajamento" in lower:
-        return "Política/engajamento", "Revisão manual", "Não reenviar automaticamente"
+    if (code == "131049" or "engajamento" in lower
+            or "healthy ecosystem" in lower or "maintain healthy" in lower):
+        return "Política/engajamento", "Revisão manual", "Rever política e qualidade; não reenviar automaticamente"
+    if "experiment" in lower:
+        return "Experimento da Meta", "Revisão manual", "Consultar suporte e condições do experimento; não assumir telefone inválido"
+    if "message undeliverable" in lower:
+        return "Entrega não concluída", "Revisão manual", "Investigar contexto técnico sem presumir número inválido"
+    if "spam rate limit" in lower:
+        return "Limite/ritmo", "Potencialmente temporário", "Verificar limites, volume e janela antes de novo disparo"
     if code == "131026" or "inválid" in lower or "inexistente" in lower:
         return "Número/destinatário", "Verificar destinatário", "Confirmar dados e consentimento"
     if "autentica" in lower or "token" in lower or "conex" in lower or code == "131031":
