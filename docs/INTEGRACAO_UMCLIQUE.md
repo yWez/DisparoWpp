@@ -1,3 +1,5 @@
+> **Atualização (11/11/2026):** A referência oficial foi analisada e a integração via GitHub Actions já está implementada. **Este plano inicial foi substituído pelo guia [CONFIGURAR_AUTOMACAO.md](CONFIGURAR_AUTOMACAO.md).** A documentação inicial abaixo é histórica e contém pendências que já foram resolvidas.
+
 # Plano de integração — UmClique → Google Sheets → DisparoWpp
 
 **Projeto:** LP Crypto · Operação comercial de Black Friday 2026  
