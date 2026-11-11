@@ -32,12 +32,11 @@ jobs:
       - name: Validar credenciais e escopo
         env:
           UMCLIQUE_API_KEY: ${{ secrets.UMCLIQUE_API_KEY }}
-          UMCLIQUE_CHANNEL_IDS: ${{ vars.UMCLIQUE_CHANNEL_IDS }}
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GH_PAGES_PUSH_TOKEN: ${{ secrets.GH_PAGES_PUSH_TOKEN }}
         shell: bash
         run: |
-          for name in UMCLIQUE_API_KEY UMCLIQUE_CHANNEL_IDS GOOGLE_SERVICE_ACCOUNT_JSON GH_PAGES_PUSH_TOKEN; do
+          for name in UMCLIQUE_API_KEY GOOGLE_SERVICE_ACCOUNT_JSON GH_PAGES_PUSH_TOKEN; do
             if [ -z "${!name}" ]; then
               echo "::error::Falta configurar $name em Settings → Secrets and variables → Actions"
               exit 1
