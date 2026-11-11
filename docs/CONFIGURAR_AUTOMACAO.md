@@ -1,3 +1,5 @@
+> **Atualização 11/11/2026 — canais múltiplos:** a primeira consulta autenticada identificou sete disparos "Disparo X - Wes" distribuídos em dois canais Meta. O workflow **Descobrir canal UmClique** foi atualizado para verificar os sete nomes distintos e, se todos forem identificados sem ambiguidade, cadastrar automaticamente a variável `UMCLIQUE_CHANNEL_IDS` com os dois canais. Execute novamente esse workflow após essa atualização; não é necessário copiar os IDs para esta conversa.
+
 # Automação UmClique → Google Sheets → DisparoWpp
 
 **Revisão:** 11/11/2026  
@@ -48,7 +50,7 @@ No repositório, acessar [Settings → Secrets and variables → Actions](https:
 
 A listagem da UmClique traz o campo **channels[].channel_id**. Identificar o canal da LP Crypto que realizou as campanhas via Meta API Oficial, não outro número/empresa.
 
-Em **GitHub → Settings → Secrets and variables → Actions → Variables**, criar **UMCLIQUE_CHANNEL_ID** com o ID exato. Ele é obrigatório para evitar coleta acidental de outras operações.
+Em **GitHub → Settings → Secrets and variables → Actions → Variables**, criar **UMCLIQUE_CHANNEL_IDSS** com os IDs exatos separados por vírgula. Ele é obrigatório para evitar coleta acidental de outras operações.
 
 Se precisar descobrir o ID, peça ao suporte da UmClique o **channel_id do canal Meta usado nos disparos** ou consulte a listagem de transmissões autenticada. Não envie a chave ao ChatGPT.
 
