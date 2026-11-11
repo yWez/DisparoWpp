@@ -3,6 +3,8 @@ import pathlib
 import unittest
 
 HERE = pathlib.Path(__file__).resolve().parent.parent
+import sys
+sys.path.insert(0,str(HERE / "scripts"))
 spec = importlib.util.spec_from_file_location("sync_umclique", HERE / "scripts" / "sync_umclique.py")
 sync = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(sync)
