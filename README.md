@@ -4,7 +4,7 @@ Painel de acompanhamento das campanhas de WhatsApp, criado para acesso rápido d
 
 ## Visualização
 
-- Página (após ativar GitHub Pages): `https://ywez.github.io/DisparoWpp/`
+- **Página pública ativa e verificada em 11/11/2026:** https://ywez.github.io/DisparoWpp/
 - Fonte operacional: [Planilha LP Crypto – Disparos WhatsApp](https://docs.google.com/spreadsheets/d/1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k/edit)
 - Indicadores públicos agregados: `data/disparos.json`
 
@@ -28,9 +28,11 @@ As contagens foram extraídas do print da plataforma e conferidas com a aba `Dis
 
 ## Publicação da página
 
-Em `Settings → Pages`, selecionar `Deploy from a branch`, ramo `main`, pasta `/(root)`, e salvar. Depois confirmar a URL publicada nas configurações. Se a publicação já estiver habilitada, o novo `index.html` entrará no ar pelo fluxo existente.
+✅ O GitHub Pages está ativo no endereço https://ywez.github.io/DisparoWpp/ (abertura e dados verificados em navegador público em 11/11/2026).
 
-A URL acima é o endereço-padrão esperado para esse repositório e **precisa ser validada** após a ativação do GitHub Pages.
+Configuração: `Settings → Pages` → `Deploy from a branch` → `main` → `/(root)`.
+
+O arquivo `index.html` já é publicado no site por essa configuração. Os dados são lidos de `data/disparos.json`; atualizações nesse arquivo exigem novo commit para refletir no site.
 
 ## Estrutura
 
