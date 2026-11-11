@@ -34,6 +34,16 @@ A mesma página e as mesmas integrações foram evoluídas, sem recriar o projet
 
 **Detalhes de métricas, privacidade, limitações e testes:** [docs/INTELIGENCIA_COMERCIAL_V2.md](docs/INTELIGENCIA_COMERCIAL_V2.md).
 
+## Captação X1 e desempenho por copy (11/11/2026)
+
+A nova seção **Conversões X1** utiliza a aba Captação do arquivo LP Crypto Black 2026 com filtro estrito utm_source=whatsapp e utm_medium=x1. Não mistura criativos pagos cujo nome contém X1. O primeiro cruzamento conferido encontrou **42 cadastros únicos**, com **42 telefones distintos**, todos identificados com utm_content=x1-base. Esses cadastros **não provam entrada no grupo**, que continua N/D até receber dados de participação.
+
+**Atribuição histórica por disparo: não disponível.** O valor compartilhado x1-base não identifica qual broadcast levou à inscrição; a página mostra isso claramente, sem ratear os 42 leads entre os 8 disparos. Para atribuição futura, cada campanha deve usar UTM exclusiva, por exemplo utm_content=x1-<8 primeiros caracteres do ID oficial da transmissão>, ou integrar logs privados de destinatários por telefone + horário. Nunca incorporar telefones em UTMs ou URLs.
+
+A nova seção **Performance por copy** agrupa pelo campo Template (parcial) da aba Disparos WhatsApp, computando envios, entregas, leituras, respostas, taxa de leitura e respostas/entregues (proxy). Só indica uma copy vencedora quando houver ao menos 2 modelos distintos e base mínima de 30 entregas. Na primeira análise, os 8 disparos usaram **apenas um template**, convite_evento_base_quente_mkt; portanto ainda não é possível afirmar qual copy é melhor que outra.
+
+**Atualização automática:** scripts/sync_x1.py lê somente colunas A, D e H:K da Captação por uma conta de serviço já prevista no workflow, deduplica em memória e publica exclusivamente contagens em data/x1-attribution.json. O mesmo agendamento GitHub Actions da UmClique tenta atualizar esses agregados a cada 15 minutos e publica o site quando os dados mudarem. Para isso, a conta de serviço cadastrada no Secret GOOGLE_SERVICE_ACCOUNT_JSON precisa ter permissão de leitura na **planilha de Captação**, além da planilha operacional. Se não tiver, a sincronização da UmClique segue normalmente, mas a fotografia inicial de X1 permanece até liberar acesso. Consulte a execução em Actions antes de considerar a atualização da Captação validada.
+
 ## Atualização dos dados
 
 A fonte oficial é a API da UmClique. O workflow `.github/workflows/sync-umclique.yml` consulta campanhas dos dois canais Meta e atualiza a aba **Disparos WhatsApp** da planilha e `data/disparos.json`, ambos por ID de campanha (sem somar eventos repetidos). A página lê o JSON e exibe a última sincronização.
