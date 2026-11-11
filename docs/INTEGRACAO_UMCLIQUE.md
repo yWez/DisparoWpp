@@ -57,7 +57,7 @@ https://ywez.github.io/DisparoWpp/
 2. Adicionar **Webhook Trigger** (POST, produção) se o suporte confirmar o evento; habilitar autenticação e validar a assinatura conforme a especificação verdadeira da UmClique. Se não houver evento, usar **Schedule Trigger**.
 3. **HTTP Request** com credencial segura da UmClique e endpoint oficial de relatório; não copiar token em um nó público.
 4. **Code / Set** para converter a resposta num objeto normalizado (contrato abaixo). Rejeitar `campaign_id` ausente, valores negativos ou falhas superiores a envios. Campos ausentes ficam `null`, não `0`.
-5. **Google Sheets**: buscar `ID UmClique` (coluna M) e atualizar a campanha encontrada; se não existir, anexar nova linha **a partir da linha 13**. As linhas 5–11 vieram do print e ainda não têm IDs oficiais. Conferir conciliação da base histórica antes de anexar importações antigas.
+5. **Google Sheets**: buscar `ID UmClique` (coluna M) e atualizar a campanha encontrada; se não existir, anexar nova linha **nas linhas livres 12–23 e, depois, a partir da linha 25 (nunca na linha 24 de total)**. As linhas 5–11 vieram do print e ainda não têm IDs oficiais. Conferir conciliação da base histórica antes de anexar importações antigas.
 6. **GitHub** (via HTTP Request): ler `data/disparos.json`, obter SHA do blob, construir JSON agregado sem PII, fazer `PUT /repos/yWez/DisparoWpp/contents/data/disparos.json` com `content` em base64 e o SHA atual. **Não sobrescrever o JSON apenas com a campanha do webhook.** Preservar as demais.
 7. Configurar retry/log de erros, aviso à operação, fila sequencial de gravações no GitHub e reconciliação periódica para corrigir eventos perdidos.
 8. Fazer um disparo de teste autorizado e verificar dashboard + planilha. Ativar produção somente após validar ponta a ponta.
@@ -102,7 +102,7 @@ Os campos e valores acima são **exemplo didático**. O mapeamento para o JSON r
 | GitHub · data/disparos.json | campaigns[].sent/failures | Atualização por total absoluto (não incremento) |
 | GitHub Pages | cards, tabela, taxas | Recalculados do JSON quando o visitante carrega a página |
 
-O total da planilha permanece na **linha 12**. As fórmulas das colunas D–H somam as linhas 5–11 e a partir da 13, pulando a linha do próprio total. As sete campanhas iniciais não serão automaticamente relacionadas à UmClique sem seus IDs.
+O total da planilha permanece na **linha 24**. As fórmulas das colunas D–H somam as linhas 5–23 e a partir da 25, pulando a linha 24 de totalização. As sete campanhas iniciais não serão automaticamente relacionadas à UmClique sem seus IDs. O Dashboard 360 referencia o resumo da linha 24.
 
 ### D. Casos que exigem atenção
 
