@@ -1,0 +1,1 @@
+Teste de integração LP Crypto v2: sincronizar campanhas, erros agrupados, canais e planilha. Agendamento regular preservado.
