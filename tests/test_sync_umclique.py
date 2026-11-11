@@ -84,6 +84,36 @@ class TestUmCliqueSync(unittest.TestCase):
         self.assertIn('E5=""',vals[6])
         self.assertIn('F5=""',vals[7])
 
+    def test_multiple_channels_deduplicate_by_campaign_id(self):
+        class FakeSession:
+            pass
+
+        calls = []
+
+        def fake_get(session, path, **params):
+            calls.append(params["channel_id"])
+            if params["channel_id"] == "ch-one":
+                return {"broadcasts": [{"id":"a","name":"Disparo 1 - Wes"},
+                                       {"id":"b","name":"Disparo 2 - Wes"}],
+                        "next_offset":None}
+            return {"broadcasts": [{"id":"b","name":"Disparo 2 - Wes"},
+                                   {"id":"c","name":"Disparo 3 - Wes"}],
+                    "next_offset":None}
+
+        original = sync.get_json
+        try:
+            sync.get_json = fake_get
+            result = sync.list_broadcasts(FakeSession(), "ch-one,ch-two",
+                                          "2026-11-09T00:00:00-03:00")
+        finally:
+            sync.get_json = original
+        self.assertEqual(calls, ["ch-one", "ch-two"])
+        self.assertEqual([v["id"] for v in result], ["a", "b", "c"])
+
+    def test_multiple_channel_configuration_is_required(self):
+        with self.assertRaises(ValueError):
+            sync.list_broadcasts(None, "", "2026-11-09T00:00:00-03:00")
+
     def test_counts_invalid(self):
         self.assertIsNone(sync.as_count(None))
         with self.assertRaises(ValueError):
