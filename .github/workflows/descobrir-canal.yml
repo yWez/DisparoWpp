@@ -5,119 +5,49 @@ on:
 
 permissions:
   contents: read
-  actions: write
 
 jobs:
   descobrir:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Consultar IDs de canais da API Oficial
-        shell: bash
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar biblioteca de consulta
+        run: python -m pip install --disable-pip-version-check requests
+      - name: Validar os canais pelas sete campanhas históricas
         env:
           UMCLIQUE_API_KEY: ${{ secrets.UMCLIQUE_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
         run: |
           if [ -z "$UMCLIQUE_API_KEY" ]; then
             echo "::error::Secret UMCLIQUE_API_KEY não configurado."
             exit 1
           fi
           python - <<'PY'
-          import os, json, re, urllib.request, urllib.parse, urllib.error
-          from collections import Counter
+          import os, sys
+          sys.path.insert(0,"scripts")
+          from sync_umclique import api_session, discover_channel_ids
 
-          base="https://api.umcliquedigital.com/functions/v1/public-broadcasts"
-          key=os.environ["UMCLIQUE_API_KEY"]
-          headers={"X-API-Key":key, "Accept":"application/json"}
-          offset=0
-          ids=Counter()
-          matched_ids=Counter()
-          matched_campaigns={}
-          seen=set()
-          for page in range(40):
-              if offset in seen:
-                  raise RuntimeError("Paginação repetida")
-              seen.add(offset)
-              query=urllib.parse.urlencode({
-                  "provider":"meta",
-                  "created_from":"2026-11-09T00:00:00-03:00",
-                  "limit":100,"offset":offset
-              })
-              req=urllib.request.Request(base+"?"+query,headers=headers,method="GET")
-              try:
-                  with urllib.request.urlopen(req,timeout=25) as response:
-                      data=json.load(response)
-              except urllib.error.HTTPError as err:
-                  raise RuntimeError(f"Consulta UmClique falhou (HTTP {err.code}). Confira permissão da chave.") from None
-              broadcasts=data.get("broadcasts",[])
-              if not isinstance(broadcasts,list):
-                  raise RuntimeError("Resposta não trouxe lista 'broadcasts'.")
-              for item in broadcasts:
-                  name=str(item.get("name") or "")
-                  for ch in item.get("channels") or []:
-                      if ch.get("provider")!="meta": continue
-                      cid=ch.get("channel_id")
-                      if not cid: continue
-                      ids[str(cid)]+=1
-                      match=re.search(r"^Disparo\s*([1-7])\s*-\s*Wes$",name,re.I)
-                      if match:
-                          matched_ids[str(cid)]+=1
-                          matched_campaigns.setdefault(match.group(1),set()).add(str(item.get("id") or ""))
-              nxt=data.get("next_offset")
-              if nxt is None or nxt=="" or nxt is False: break
-              offset=int(nxt)
-          else:
-              raise RuntimeError("Muitas páginas: aumente a paginação para consultar tudo.")
+          api=api_session(os.environ["UMCLIQUE_API_KEY"])
+          channels=discover_channel_ids(api,"2026-11-09T00:00:00-03:00")
           report=[
-            "## Resultado da identificação do canal",
-            "",
-            "A chave foi utilizada somente como cabeçalho HTTPS; não é exibida aqui.",
-            ""
+              "## Resultado da identificação dos canais",
+              "",
+              "✅ A API da UmClique respondeu e os sete disparos históricos foram reconhecidos.",
+              "",
+              f"**Canais Meta identificados:** {len(channels)}",
+              "",
+              "✅ O sincronizador já consegue identificar esses canais automaticamente,",
+              "sem gravar variáveis no GitHub e sem copiar identificadores.",
+              "",
+              "🔒 Nenhuma chave API foi exibida ou publicada.",
+              "",
+              "**Próximo passo:** configurar o acesso à planilha Google e o token de publicação.",
           ]
-          complete=(len(matched_campaigns)==7
-                    and all(len(ids)==1 and "" not in ids for ids in matched_campaigns.values())
-                    and 1<=len(matched_ids)<=3)
-          if complete:
-              channel_ids=",".join(sorted(matched_ids))
-              gh_token=os.environ.get("GITHUB_TOKEN")
-              repo=os.environ.get("GITHUB_REPOSITORY")
-              if not gh_token or not repo:
-                  raise RuntimeError("GitHub token/repo não disponível")
-              body=json.dumps({"name":"UMCLIQUE_CHANNEL_IDS","value":channel_ids}).encode()
-              common={"Authorization":"Bearer "+gh_token,
-                      "Accept":"application/vnd.github+json",
-                      "X-GitHub-Api-Version":"2022-11-28",
-                      "Content-Type":"application/json"}
-              url="https://api.github.com/repos/"+repo+"/actions/variables/UMCLIQUE_CHANNEL_IDS"
-              req=urllib.request.Request(url,headers=common,data=body,method="PATCH")
-              try:
-                  with urllib.request.urlopen(req,timeout=20) as response: pass
-              except urllib.error.HTTPError as err:
-                  if err.code != 404:
-                      raise RuntimeError(f"Não foi possível atualizar variável (HTTP {err.code})") from None
-                  url="https://api.github.com/repos/"+repo+"/actions/variables"
-                  req=urllib.request.Request(url,headers=common,data=body,method="POST")
-                  try:
-                      with urllib.request.urlopen(req,timeout=20) as response: pass
-                  except urllib.error.HTTPError as err2:
-                      raise RuntimeError(f"Não foi possível criar variável (HTTP {err2.code})") from None
-              report.extend([
-                  f"✅ Identificados 7 disparos distintos, distribuídos em {len(matched_ids)} canal(is) Meta.",
-                  "",
-                  "✅ Variável `UMCLIQUE_CHANNEL_IDS` configurada automaticamente com todos os canais dos sete disparos.",
-                  "",
-                  "Por segurança, o identificador do canal e a chave não são exibidos neste relatório."
-              ])
-          elif matched_ids:
-              report.extend([
-                  "⚠️ Ainda não foi possível validar os sete disparos distintos; nenhuma variável foi configurada.",
-                  f"Canais compatíveis: {len(matched_ids)}; campanhas distintas identificadas: {len(matched_campaigns)}.",
-                  "Conferir os disparos ausentes na UmClique antes de configurar os canais."
-              ])
-          else:
-              report.append("⚠️ Não foram encontradas cinco campanhas Wes no mesmo canal Meta. Confira o período, a conta e a permissão da chave.")
-          report.append("")
-          os.makedirs(os.path.dirname(os.environ["GITHUB_STEP_SUMMARY"]),exist_ok=True)
-          with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf8") as f: f.write("\n".join(report)+"\n")
-          print(f"Consulta concluída: {len(matched_campaigns)} campanhas Wes identificadas, distribuídas em {len(matched_ids)} canais Meta. Veja o Summary.")
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf-8") as f:
+              f.write("\n".join(report)+"\n")
+          print("Descoberta de canais concluída com sucesso. Veja o Summary.")
           PY
