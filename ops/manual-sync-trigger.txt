@@ -1,1 +1,1 @@
-Teste de integração LP Crypto v2: sincronizar campanhas, erros agrupados, canais e planilha. Agendamento regular preservado.
+Validar sincronização UmClique + Captação X1 + painel de copies. Execução de conferência em 11/11/2026.
