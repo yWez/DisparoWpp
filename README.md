@@ -20,7 +20,7 @@ As contagens foram extraídas do print da plataforma e conferidas com a aba `Dis
 
 O guia de ativação da integração automática está em **[docs/CONFIGURAR_AUTOMACAO.md](docs/CONFIGURAR_AUTOMACAO.md)**.
 
-**Status:** os endpoints oficiais foram identificados e o sincronizador via GitHub Actions foi implementado. A automação permanece **inativa** até configurar a chave UmClique, o ID do canal, a conta de serviço do Google e o token GitHub de publicação.
+**Status:** os endpoints oficiais foram identificados e o sincronizador via GitHub Actions foi implementado. A automação permanece **inativa** até configurar a chave UmClique, os IDs dos canais, a conta de serviço do Google e o token GitHub de publicação.
 
 ## Atualização de dados
 
