@@ -1,1 +1,1 @@
-Validar integração de produção da UmClique: disparos, X1 e segunda aba de mensageria, com 300 conversas por lote e dados individuais restritos ao Google Sheets. 12/11/2026.
+Validação de produção: publicar agregados de leads identificados pela saudação da campanha Luisa, 11/11/2026. Nenhum contato ou conteúdo individual no GitHub.
