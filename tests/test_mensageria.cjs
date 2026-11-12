@@ -50,4 +50,43 @@ t("stable sort with unreported last",()=>{
  const x=M.sorted([{name:"A",inbound:null},{name:"B",inbound:3}], "inbound",true);
  assert.equal(x[0].name,"B");
 });
-console.log("8 testes JavaScript de mensageria aprovados.");
+const withCampaign={
+ ...sample,
+ campaign:{
+  coverage:{scannedConversations:4,inScopeConversations:10,complete:false},
+  rollups:[
+   {period:"all",owner:"all",channel:"all",identifiedLeads:3,activeLeads:2,
+    inboundFromLeads:14,outboundToLeads:8,markedConversations:4},
+   {period:"all",owner:"A",channel:"all",identifiedLeads:2,activeLeads:2,
+    inboundFromLeads:11,outboundToLeads:6},
+   {period:"all",owner:"B",channel:"all",identifiedLeads:1,activeLeads:0,
+    inboundFromLeads:3,outboundToLeads:2},
+   {period:"today",owner:"all",channel:"all",identifiedLeads:1,activeLeads:1,
+    inboundFromLeads:5,outboundToLeads:1}
+  ],
+  daily:[
+   {day:"2026-11-10",owner:"all",channel:"all",identifiedLeads:2,activeLeads:2,inboundFromLeads:9,outboundToLeads:7},
+   {day:"2026-11-11",owner:"all",channel:"all",identifiedLeads:1,activeLeads:1,inboundFromLeads:5,outboundToLeads:1}
+  ]
+ }
+};
+t("Luisa total follows detected unique-lead rollup",()=>{
+ const got=M.campaignResolve(withCampaign,{period:"all",owner:"all",channel:"all"},"2026-11-11");
+ assert.equal(got.identifiedLeads,3);
+ assert.equal(got.inboundFromLeads,14);
+});
+t("Luisa owner filter uses current assigned lead",()=>{
+ const owners=M.campaignOwners(withCampaign,{period:"all",owner:"all",channel:"all"},"2026-11-11");
+ assert.deepEqual(owners.map(x=>x.identifiedLeads),[2,1]);
+});
+t("Luisa custom sums first-event leads but avoids double count of active people",()=>{
+ const r=M.campaignResolve(withCampaign,{period:"custom",owner:"all",channel:"all",
+   from:"2026-11-10",to:"2026-11-11"},"2026-11-11");
+ assert.equal(r.identifiedLeads,3);
+ assert.equal(r.inboundFromLeads,14);
+ assert.equal(r.activeLeads,null);
+});
+t("Luisa absent snapshot cannot be mistaken for zero",()=>{
+ assert.equal(M.campaignResolve(sample,{period:"all",owner:"all",channel:"all"},"2026-11-11"),null);
+});
+console.log("12 testes JavaScript de mensageria aprovados.");
