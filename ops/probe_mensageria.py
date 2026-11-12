@@ -21,7 +21,8 @@ HEAD = ("id","name","contact","contacts","assigned_to","assigned_user","assignee
         "channel","team","team_id","unread_count","created_at","updated_at",
         "timestamp","sent_at","message_date","is_from_me","from_me","direction",
         "date","sent_by","sender","total","limit","offset","next_offset",
-        "page","pagination","data","items","phone","wa_id","contact_id")
+        "page","pagination","data","items","phone","wa_id","contact_id",
+        "agents","role","is_active","email","assigned_agent_id","last_agent_id","sender_agent_id")
 ALLOW=set(HEAD)
 def summary(obj):
     if isinstance(obj, dict):
@@ -44,10 +45,13 @@ def get(endpoint, params):
         if not resp.ok: return None
         obj=resp.json()
         print("Root "+summary(obj))
+        if isinstance(obj,dict) and isinstance(obj.get("total"),int): print("Total of records: "+str(obj["total"]))
         if isinstance(obj,dict):
-            for key in ("conversations","data","items","contacts","messages"):
+            for key in ("conversations","data","items","contacts","messages","agents"):
                 if isinstance(obj.get(key),list):
                     print("List "+key+" count of first page: "+str(len(obj[key])))
+                    if key=="conversations":
+                        print("Assigned among sampled conversations: "+str(sum(bool(x.get("assigned_agent_id")) for x in obj[key] if isinstance(x,dict))))
                     if obj[key]:
                         record=obj[key][0]
                         print("First row "+summary(record))
@@ -72,7 +76,7 @@ def get(endpoint, params):
     except (requests.RequestException,ValueError) as exc:
         print("Endpoint error: "+type(exc).__name__)
         return None
-convs=get("/public-conversations",{"status":"all","limit":5,"offset":0})
+convs=get("/public-conversations",{"status":"all","limit":25,"offset":0})
 if convs and convs[1] and convs[1].get("id"):
     get("/public-conversations/messages",
         {"conversation_id":convs[1]["id"],"limit":5,"offset":0})
