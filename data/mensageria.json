@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "schemaVersion": 1,
+    "status": "aguardando_primeira_sincronizacao",
+    "lastSyncedAt": null,
+    "timeZone": "America/Fortaleza",
+    "complete": false,
+    "inScopeConversations": null,
+    "scannedConversations": null,
+    "ownerRule": "assigned_agent_id atual da conversa",
+    "coverageNote": "Aguardando primeira consulta autenticada da caixa de entrada; nenhum dado demonstrativo."
+  },
+  "owners": [],
+  "channels": [],
+  "rollups": [],
+  "daily": []
+}
