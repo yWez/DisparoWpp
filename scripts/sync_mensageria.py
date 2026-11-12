@@ -23,16 +23,19 @@ from google.auth.transport.requests import AuthorizedSession
 from google.oauth2 import service_account
 from requests.utils import quote
 from sync_umclique import api_session, get_json
+from luisa_campaign import RULE_VERSION, LABEL, incoming_match_days, contact_first_match, campaign_record_map
 
 ROOT=Path(__file__).resolve().parent.parent
 PUBLIC_FILE=ROOT/"data"/"mensageria.json"
 API_TZ=ZoneInfo("America/Fortaleza")
 SHEET_TITLE="Mensageria Estado"
 SUMMARY_TITLE="Mensageria - Resumo"
+CAMPAIGN_TITLE="Leads - Campanha Luisa"
 HEADERS=["conversation_id","contact_key","channel_id","owner_id","modified_at",
          "created_at","status","unread_count","day_counts_json","observed_at",
          "message_count","complete_history","first_direction","last_direction",
-         "first_inbound_day","last_inbound_day","last_outbound_day"]
+         "first_inbound_day","last_inbound_day","last_outbound_day",
+         "lp_scan_version","lp_match_first_day","lp_match_count"]
 LOG=logging.getLogger("mensageria")
 MAX_REFRESH=int(os.getenv("MENSAJERIA_MAX_REFRESH", "300"))
 MAX_MESSAGES=int(os.getenv("MENSAJERIA_MAX_MESSAGES_PER_CONVERSATION", "4000"))
@@ -193,7 +196,7 @@ def google_request(google,method,endpoint,**kwargs):
     return resp.json() if resp.content else {}
 
 def ensure_tabs(google):
-    meta=google_request(google,"GET","?fields=sheets(properties(sheetId,title,hidden))")
+    meta=google_request(google,"GET","?fields=sheets(properties(sheetId,title,hidden,gridProperties(columnCount)))")
     names={x["properties"]["title"]:x["properties"]["sheetId"] for x in meta.get("sheets",[])}
     additions=[]
     if SHEET_TITLE not in names:
@@ -202,18 +205,34 @@ def ensure_tabs(google):
     if SUMMARY_TITLE not in names:
         additions.append({"addSheet":{"properties":{"title":SUMMARY_TITLE,
             "gridProperties":{"rowCount":2000,"columnCount":12}}}})
+    if CAMPAIGN_TITLE not in names:
+        additions.append({"addSheet":{"properties":{"title":CAMPAIGN_TITLE,
+            "gridProperties":{"rowCount":10000,"columnCount":10}}}})
+    for sheet in meta.get("sheets",[]):
+        props=sheet.get("properties",{})
+        if props.get("title")==SHEET_TITLE:
+            current=props.get("gridProperties",{}).get("columnCount",0)
+            if current<len(HEADERS):
+                additions.append({"updateSheetProperties":{
+                    "properties":{"sheetId":props["sheetId"],
+                                  "gridProperties":{"columnCount":len(HEADERS)}},
+                    "fields":"gridProperties.columnCount"}})
     if additions:
         google_request(google,"POST",":batchUpdate",json={"requests":additions})
     return names
 
 def read_state(google):
-    vals=google_request(google,"GET","/values/"+quote("'"+SHEET_TITLE+"'!A1:Q10000",safe=""))
+    vals=google_request(google,"GET","/values/"+quote("'"+SHEET_TITLE+"'!A1:T10000",safe=""))
     rows=vals.get("values",[])
-    if not rows or rows[0]!=HEADERS:
-        if rows:
-            raise ValueError("Cabeçalho do estado privado inesperado; não sobrescrever")
+    if not rows:
         update_values(google,[(1,HEADERS)])
         return {}
+    if rows[0]!=HEADERS:
+        # Additive migration only: preserve every existing cell and row.
+        if rows[0]==HEADERS[:17]:
+            update_values(google,[(1,HEADERS)])
+        else:
+            raise ValueError("Cabeçalho do estado privado inesperado; não sobrescrever")
     found={}
     for line,row in enumerate(rows[1:],start=2):
         if not row or not row[0]:continue
@@ -223,13 +242,14 @@ def read_state(google):
         try: entry["day_counts"]=json.loads(entry.pop("day_counts_json") or "{}")
         except (TypeError,ValueError):raise ValueError("JSON de estado inválido na linha "+str(line))
         entry["complete_history"]=str(entry["complete_history"]).lower()=="true"
+        entry["lp_match_count"]=int(entry.get("lp_match_count") or 0)
         found[str(entry["conversation_id"])]=entry
     return found
 
 def update_values(google,positions):
     for start in range(0,len(positions),120):
         batch=positions[start:start+120]
-        data=[{"range":f"'{SHEET_TITLE}'!A{index}:Q{index}","values":[values]}
+        data=[{"range":f"'{SHEET_TITLE}'!A{index}:T{index}","values":[values]}
               for index,values in batch]
         google_request(google,"POST","/values:batchUpdate",
             json={"valueInputOption":"RAW","data":data})
@@ -243,7 +263,8 @@ def row_values(v):
         v.get("observed_at",""),v.get("message_count",0),
         str(bool(v.get("complete_history",False))).lower(),
         v.get("first_direction",""),v.get("last_direction",""),
-        v.get("first_inbound_day",""),v.get("last_inbound_day",""),v.get("last_outbound_day","")
+        v.get("first_inbound_day",""),v.get("last_inbound_day",""),v.get("last_outbound_day",""),
+        v.get("lp_scan_version",""),v.get("lp_match_first_day",""),v.get("lp_match_count",0)
     ]
 
 def record_meta(conversation,api_key):
@@ -278,7 +299,7 @@ def update_state(api,existing,conversations,api_key,allowed):
         observed=timestamp(prev.get("observed_at"))
         stale=not observed or (now-observed).total_seconds()>(MIN_REFRESH_HOURS*3600)
         changed=not prev or prev.get("modified_at")!=meta["modified_at"]
-        if not prev or changed or stale or not prev.get("complete_history"):
+        if not prev or changed or stale or not prev.get("complete_history") or prev.get("lp_scan_version")!=RULE_VERSION:
             candidates.append((0 if not prev.get("observed_at") else 1 if changed else 2,cid))
         if not prev or any(prev.get(k)!=meta.get(k) for k in meta):
             changes.add(cid)
@@ -287,7 +308,11 @@ def update_state(api,existing,conversations,api_key,allowed):
     for _,cid in candidates[:MAX_REFRESH]:
         messages,complete,total=list_messages(api,cid)
         snapshot=summarize_messages(messages,complete=complete)
-        fresh[cid].update(snapshot,observed_at=stamp)
+        first_match, match_count=incoming_match_days(messages,local_day)
+        fresh[cid].update(snapshot,observed_at=stamp,
+                          lp_scan_version=RULE_VERSION,
+                          lp_match_first_day=first_match,
+                          lp_match_count=match_count)
         changes.add(cid)
         processed+=1
     return fresh,changes,processed,len(candidates),stamp
