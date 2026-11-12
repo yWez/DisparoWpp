@@ -8,8 +8,10 @@ on:
     branches: [main]
     paths:
       - "ops/manual-sync-trigger.txt"
+  # A cada 5 minutos, com deslocamento de 2 min para evitar pico do início da hora.
+  # Agendamento GitHub Actions é best-effort: pode sofrer atraso ou ser omitido.
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "2-59/5 * * * *"
 
 permissions:
   contents: read
