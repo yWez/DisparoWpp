@@ -24,7 +24,7 @@ Uma aba privada do Google Sheets chamada **Mensageria Estado** guarda somente id
 
 O arquivo público data/mensageria.json guarda apenas informações agregadas por período, canal e atendente, sem mensagens, telefones, IDs de contato, nomes de clientes ou tokens.
 
-No primeiro carregamento, são processadas até **300 conversas por execução**; a coleta continua nas execuções seguintes. Até concluir, o site sinaliza cobertura parcial e apresenta os números processados como limites inferiores, não como total definitivo.
+No primeiro carregamento, são processadas até **120 conversas por execução**; a coleta continua nas execuções seguintes. Até concluir, o site sinaliza cobertura parcial e apresenta os números processados como limites inferiores, não como total definitivo.
 
 Mensagens são deduplicadas pelo identificador e a consulta incremental substitui os valores de cada conversa; não acumula eventos em duplicidade.
 
