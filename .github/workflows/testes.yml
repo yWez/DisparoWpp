@@ -8,6 +8,7 @@ on:
       - "tests/**"
       - "assets/**"
       - "index.html"
+      - "mensageria.html"
       - "data/**"
       - ".github/workflows/testes.yml"
   pull_request:
@@ -28,15 +29,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - run: python -m pip install --disable-pip-version-check requests
+      - run: python -m pip install --disable-pip-version-check requests google-auth
       - name: Testes da API e privacidade
         run: python -m unittest discover -s tests -p "test_*.py" -v
       - name: Sintaxe dos scripts do painel
         run: |
           node --check assets/model.js
           node --check assets/dashboard-v2.js
+          node --check assets/mensageria-model.js
+          node --check assets/mensageria.js
       - name: Testes de filtros, taxas, fuso e CSV
-        run: node tests/test_dashboard.cjs
+        run: |
+          node tests/test_dashboard.cjs
+          node tests/test_mensageria.cjs
       - name: Integridade das fontes agregadas
         run: |
           python - <<'PY'
@@ -47,7 +52,7 @@ jobs:
           ids = [c.get("campaignId") or c.get("id") for c in data["campaigns"]]
           assert len(ids) == len(set(ids)), "Campanha duplicada por ID"
           assert all("phone" not in str(k).lower() and "token" not in str(k).lower() for c in data["campaigns"] for k in c), "Dado privado em JSON"
-          for path in ["data/origins.json", "data/funnel.json"]:
+          for path in ["data/origins.json", "data/funnel.json", "data/mensageria.json"]:
               json.loads((root/path).read_text())
           print("Contratos JSON e IDs: OK")
           PY
