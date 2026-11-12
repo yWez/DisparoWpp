@@ -20,7 +20,7 @@ As contagens foram extraídas do print da plataforma e conferidas com a aba `Dis
 
 O guia de ativação da integração automática está em **[docs/CONFIGURAR_AUTOMACAO.md](docs/CONFIGURAR_AUTOMACAO.md)**.
 
-**Status (11/11/2026):** a primeira sincronização completa foi executada com sucesso; a planilha e a página foram conferidas com 8 campanhas distintas, 902 envios e 107 falhas. O GitHub Actions foi habilitado para executar a cada 15 minutos (execuções podem sofrer atraso pela plataforma). A descoberta dos dois canais Meta é automática e os Secrets já foram cadastrados pelo administrador. Para pausar as execuções agendadas, defina a variável de repositório `UMCLIQUE_SYNC_ENABLED` como `false`.
+**Status (11/11/2026):** a primeira sincronização completa foi executada com sucesso; a planilha e a página foram conferidas com 8 campanhas distintas, 902 envios e 107 falhas. O GitHub Actions foi habilitado para executar a cada 5 minutos (execuções podem sofrer atraso pela plataforma). A descoberta dos dois canais Meta é automática e os Secrets já foram cadastrados pelo administrador. Para pausar as execuções agendadas, defina a variável de repositório `UMCLIQUE_SYNC_ENABLED` como `false`.
 
 ## Origem de leads — saudação da Luisa Pires
 
@@ -64,13 +64,13 @@ A nova seção **Conversões X1** utiliza a aba Captação do arquivo LP Crypto 
 
 A nova seção **Performance por copy** agrupa pelo campo Template (parcial) da aba Disparos WhatsApp, computando envios, entregas, leituras, respostas, taxa de leitura e respostas/entregues (proxy). Só indica uma copy vencedora quando houver ao menos 2 modelos distintos e base mínima de 30 entregas. Na primeira análise, os 8 disparos usaram **apenas um template**, convite_evento_base_quente_mkt; portanto ainda não é possível afirmar qual copy é melhor que outra.
 
-**Atualização automática:** scripts/sync_x1.py lê somente colunas A, D e H:K da Captação por uma conta de serviço já prevista no workflow, deduplica em memória e publica exclusivamente contagens em data/x1-attribution.json. O mesmo agendamento GitHub Actions da UmClique tenta atualizar esses agregados a cada 15 minutos e publica o site quando os dados mudarem. Para isso, a conta de serviço cadastrada no Secret GOOGLE_SERVICE_ACCOUNT_JSON precisa ter permissão de leitura na **planilha de Captação**, além da planilha operacional. Se não tiver, a sincronização da UmClique segue normalmente, mas a fotografia inicial de X1 permanece até liberar acesso. Consulte a execução em Actions antes de considerar a atualização da Captação validada.
+**Atualização automática:** scripts/sync_x1.py lê somente colunas A, D e H:K da Captação por uma conta de serviço já prevista no workflow, deduplica em memória e publica exclusivamente contagens em data/x1-attribution.json. O mesmo agendamento GitHub Actions da UmClique tenta atualizar esses agregados a cada 5 minutos e publica o site quando os dados mudarem. Para isso, a conta de serviço cadastrada no Secret GOOGLE_SERVICE_ACCOUNT_JSON precisa ter permissão de leitura na **planilha de Captação**, além da planilha operacional. Se não tiver, a sincronização da UmClique segue normalmente, mas a fotografia inicial de X1 permanece até liberar acesso. Consulte a execução em Actions antes de considerar a atualização da Captação validada.
 
 ## Atualização dos dados
 
 A fonte oficial é a API da UmClique. O workflow `.github/workflows/sync-umclique.yml` consulta campanhas dos dois canais Meta e atualiza a aba **Disparos WhatsApp** da planilha e `data/disparos.json`, ambos por ID de campanha (sem somar eventos repetidos). A página lê o JSON e exibe a última sincronização.
 
-- **Rotina automática:** a cada 15 minutos, sujeita à fila e disponibilidade do GitHub.
+- **Rotina automática:** a cada 5 minutos, sujeita à fila e disponibilidade do GitHub.
 - **Teste manual:** [Actions → Sincronizar disparos UmClique](https://github.com/yWez/DisparoWpp/actions/workflows/sync-umclique.yml).
 - **Pausa de emergência:** em Settings → Secrets and variables → Actions → Variables, criar/editar `UMCLIQUE_SYNC_ENABLED` para `false`.
 - **Dados históricos:** Disparos 1–7 reconciliados; Disparo 4 duplicado foi corrigido e o nome agora é normalizado. Disparo 8 entrou pela API.
