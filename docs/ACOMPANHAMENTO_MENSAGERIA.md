@@ -18,7 +18,7 @@ A UmClique retornou seis canais de conversas da conta empresarial, enquanto os d
 
 ## Armazenamento seguro
 
-O fluxo adiciona a coleta ao mesmo GitHub Actions agendado (15 em 15 minutos), preservando a sincronização existente de disparos e a conciliação X1.
+O fluxo adiciona a coleta ao mesmo GitHub Actions agendado (agendado a cada 5 minutos, com atraso possível no GitHub Actions), preservando a sincronização existente de disparos e a conciliação X1.
 
 Uma aba privada do Google Sheets chamada **Mensageria Estado** guarda somente identificadores técnicos de conversas, HMAC do identificador do contato, IDs de canal/responsável, datas e contagens por dia. Sem nome ou telefone de lead, sem mensagem individual. Uma aba visível **Mensageria - Resumo** mostra indicadores agregados por responsável.
 
@@ -55,3 +55,5 @@ Se a coleta da mensageria falhar, a atualização de campanhas permanece ativa. 
 - JavaScript Node de períodos, filtros, contagens, ordenação e indisponibilidade em período personalizado.
 - GitHub Actions CI e execução piloto autenticada, sem salvar conteúdo individual nos logs.
 - Verificação no navegador após publicar a segunda aba.
+
+> **Cadência atual (12/11/2026):** a sincronização está programada para os minutos 02, 07, 12, 17 etc. do relógio UTC, a cada 5 minutos. O GitHub Actions pode iniciar com atraso ou até omitir uma execução. O painel informa a hora **real** da última coleta e avisa quando ela está desatualizada; a página consulta o JSON publicado a cada minuto quando aberta. Sem garantia de atualização instantânea. O layout de mensageria foi ajustado para que tabelas e indicadores não ultrapassem o card nem no celular.
