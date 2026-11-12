@@ -1,1 +1,1 @@
-Validação de produção: publicar agregados de leads identificados pela saudação da campanha Luisa, 11/11/2026. Nenhum contato ou conteúdo individual no GitHub.
+Conferência operacional da mensageria pós-correção de layout e cron de 5 minutos, em 12/11/2026. Consulta real da UmClique.
