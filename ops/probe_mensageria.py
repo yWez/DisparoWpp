@@ -56,6 +56,17 @@ def get(endpoint, params):
                                            "responsible","owner","agent","last_message","user"):
                                 if isinstance(record.get(nested),dict):
                                     print("First row "+nested+": "+summary(record[nested]))
+                        # Inspect only *field names and value types*, never contents.
+                        # Backend keys are fixed schema identifiers, not records.
+                        import re
+                        pat=re.compile(r"(assign|agent|respons|atend|owner|queue|user|team|operat|sector|department|member|assignee|staff)",re.I)
+                        for obj_name,entity in (("row",record),("contact",record.get("contact"))):
+                            if not isinstance(entity,dict):continue
+                            fields=sorted((k,typename(v)) for k,v in entity.items()
+                                          if isinstance(k,str) and len(k)<80 and
+                                          re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]*",k)
+                                          and pat.search(k))
+                            print("Ownership fields "+obj_name+": "+repr(fields))
                         return (obj,record)
         return (obj,None)
     except (requests.RequestException,ValueError) as exc:
@@ -66,4 +77,5 @@ if convs and convs[1] and convs[1].get("id"):
     get("/public-conversations/messages",
         {"conversation_id":convs[1]["id"],"limit":5,"offset":0})
 get("/public-contacts",{"limit":3,"offset":0})
+get("/public-agents",{})
 print("Schema-only inspection completed; no raw records or IDs logged.")
