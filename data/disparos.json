@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-12T15:14:32.342624Z",
+    "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -45,7 +45,7 @@
       "completedAt": "2026-11-09T18:22:54.106000Z",
       "source": "umclique_api",
       "legacyId": "D1",
-      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
+      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -77,7 +77,7 @@
         "summary": {
           "failedTotal": 3,
           "unexplained": 2,
-          "scannedRows": 5,
+          "scannedRows": 3,
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
@@ -115,7 +115,7 @@
       "completedAt": "2026-11-09T21:09:22.835000Z",
       "source": "umclique_api",
       "legacyId": "D2",
-      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
+      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -158,7 +158,7 @@
         "summary": {
           "failedTotal": 6,
           "unexplained": 3,
-          "scannedRows": 8,
+          "scannedRows": 6,
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
@@ -269,14 +269,14 @@
       "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
       "delivered": 132,
       "read": 64,
-      "replied": 5,
+      "replied": 6,
       "conversions": 0,
       "conversionValue": 0,
       "createdAt": "2026-11-10T14:44:00.001875Z",
       "startedAt": "2026-11-10T14:44:03.841000Z",
       "completedAt": "2026-11-10T14:45:19.700000Z",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-12T15:14:32.342624Z",
+      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
       "legacyId": "D4",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
@@ -360,7 +360,7 @@
       "statusCode": "completed",
       "channelId": "a1f3ecf5-87db-4956-9d31-a3501d42a875",
       "delivered": 136,
-      "read": 76,
+      "read": 77,
       "replied": 5,
       "conversions": 0,
       "conversionValue": 0,
@@ -369,7 +369,7 @@
       "completedAt": "2026-11-10T18:00:36.238000Z",
       "source": "umclique_api",
       "legacyId": "D5",
-      "lastSyncedAt": "2026-11-12T15:14:32.342624Z",
+      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -444,13 +444,13 @@
       "read": 76,
       "replied": 5,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T19:39:25.302728Z",
       "startedAt": "2026-11-10T19:39:29.162000Z",
       "completedAt": "2026-11-10T19:40:43.851000Z",
       "source": "umclique_api",
       "legacyId": "D6",
-      "lastSyncedAt": "2026-11-12T15:14:32.342624Z",
+      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -600,17 +600,17 @@
       "sent": 150,
       "failures": 24,
       "delivered": 126,
-      "read": 80,
+      "read": 82,
       "replied": 3,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-11T17:55:02.993051Z",
       "startedAt": "2026-11-11T17:55:07.356000Z",
       "completedAt": "2026-11-11T17:56:20.428000Z",
       "period": "11/11/2026",
       "timeLabel": "11/11/2026 14:55",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-12T15:14:32.342624Z",
+      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
