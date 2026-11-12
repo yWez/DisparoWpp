@@ -87,7 +87,8 @@ def aggregate_campaign(records,owners,channels,now_day,scoped_days):
             first=min(r["lp_match_first_day"] for r in matched),
             owner=rep.get("owner_key") or "unassigned",
             channel=rep.get("channel_id") or "",
-            activity=activity,markedConversations=len(matched))
+            activity=activity,markedConversations=len(matched),
+            conversation_id=rep.get("conversation_id") or "")
     def subset(period,owner,channel):
         days=scoped_days(period,now_day)
         unique=active=matched_convs=inbound=outbound=0
