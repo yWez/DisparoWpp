@@ -1,1 +1,0 @@
-Segundo teste de mensageria: escopo corrigido para todos os canais WhatsApp empresariais retornados pela UmClique. Sem dados individuais no GitHub.
