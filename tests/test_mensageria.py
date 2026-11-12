@@ -85,6 +85,25 @@ class InboxMetricsTest(unittest.TestCase):
         self.assertEqual(s.rollup([dict(state["conv-1"],owner_key=s.safe_owner_key("agent-X"))],
            "all","all","all","2026-11-11")["inbound"],1)
         self.assertTrue(any(d["owner"]=="all" and d["channel"]=="all" for d in data["daily"]))
+    def test_channel_scope_comes_from_company_inbox(self):
+        rows=[
+            {"id":"a","channel_id":"cid-a","channel":{"provider":"whatsapp_oficial"}},
+            {"id":"b","channel_id":"cid-b","channel":{"provider":"uazapi"}},
+            {"id":"c","channel_id":"cid-c","channel":{"provider":"unknown"}}
+        ]
+        channels=s.discovered_channels(rows)
+        self.assertEqual(set(channels),{"cid-a","cid-b"})
+        self.assertTrue(channels["cid-a"].startswith("WhatsApp Oficial"))
+        self.assertNotIn("cid-a",channels["cid-a"])
+
+    def test_channel_name_does_not_expose_phone(self):
+        rows=[{"id":"x","channel_id":"private-channel",
+               "channel":{"provider":"whatsapp_oficial",
+                          "name":"+55 (83) 99999-1234"}}]
+        name=s.discovered_channels(rows)["private-channel"]
+        self.assertNotIn("99999",name)
+        self.assertIn("WhatsApp Oficial",name)
+
     def test_partial_coverage_explained(self):
         state={"c":{"conversation_id":"c","contact_key":"hash","channel_id":"ch",
               "owner_id":"","day_counts":{},"status":"active",
