@@ -72,5 +72,40 @@
       return String(x).localeCompare(String(y),"pt-BR",{numeric:true})*(desc?-1:1);
     });
   }
-  return {resolve,daily,ownerRows,channelRows,windowFor,pct,sorted};
+  function campaignDaily(data,filters,today){
+    const camp=data?.campaign;
+    if(!camp||!Array.isArray(camp.daily))return [];
+    const owner=filters.owner||"all",channel=filters.channel||"all";
+    const days=filters.period==="custom"?
+      {from:filters.from||null,to:filters.to||null}:
+      windowFor(filters.period,today);
+    return camp.daily.filter(x=>x.owner===owner&&x.channel===channel&&
+      (!days||((!days.from||x.day>=days.from)&&(!days.to||x.day<=days.to))))
+      .sort((a,b)=>a.day.localeCompare(b.day));
+  }
+  function campaignResolve(data,filters,today){
+    const camp=data?.campaign;
+    if(!camp||!Array.isArray(camp.rollups))return null;
+    const owner=filters.owner||"all",channel=filters.channel||"all";
+    const period=filters.period||"all";
+    if(period!=="custom"){
+      return camp.rollups.find(r=>r.period===period&&r.owner===owner&&r.channel===channel)||null;
+    }
+    if(!validDate(filters.from)||!validDate(filters.to)||filters.from>filters.to)return null;
+    const days=campaignDaily(data,filters,today);
+    return {
+      period:"custom",owner,channel,
+      identifiedLeads:days.reduce((s,d)=>s+d.identifiedLeads,0),
+      // A contact's first matching day occurs only once: custom sum is exact.
+      markedConversations:null,
+      activeLeads:null, // Do not sum repeat people across multiple days.
+      inboundFromLeads:days.reduce((s,d)=>s+d.inboundFromLeads,0),
+      outboundToLeads:days.reduce((s,d)=>s+d.outboundToLeads,0)
+    };
+  }
+  function campaignOwners(data,filters,today){
+    return (data.owners||[]).filter(o=>!filters.owner||filters.owner==="all"||o.key===filters.owner)
+      .map(o=>({...o,...(campaignResolve(data,{...filters,owner:o.key},today)||{})}));
+  }
+  return {resolve,daily,ownerRows,channelRows,windowFor,pct,sorted,campaignResolve,campaignDaily,campaignOwners};
 });
