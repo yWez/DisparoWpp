@@ -102,6 +102,34 @@ def list_agents(api):
             }
     return out
 
+def discovered_channels(conversations):
+    """Derive channel identities from the authorized company inbox, not broadcast IDs.
+
+    Aliases deliberately contain no phone number or lead names, since the
+    published GitHub Pages dashboard is public.
+    """
+    import re
+    known={"whatsapp_oficial":"WhatsApp Oficial",
+           "meta":"WhatsApp Oficial","wapi":"WhatsApp WAPI",
+           "uazapi":"WhatsApp UAZAPI"}
+    result={}
+    for item in conversations:
+        if not isinstance(item,dict):continue
+        channel_id=str(item.get("channel_id") or "")
+        channel=item.get("channel") or {}
+        if not isinstance(channel,dict):channel={}
+        provider=str(channel.get("provider") or "").casefold()
+        if not channel_id or provider not in known:continue
+        # Stable non-reversible channel alias, not a contact phone number.
+        alias=hashlib.sha256(channel_id.encode()).hexdigest()[:8]
+        default=known[provider]+" · "+alias
+        candidate=sanitize_name(channel.get("name") or channel.get("display_name") or "")
+        if re.search(r"\\d[\\d\\s()+.\\-]{7,}",candidate):
+            candidate=""
+        result[channel_id]=candidate or default
+    return result
+
+
 def list_messages(api,cid):
     by_id={}; offset=0; total=None; missing=0
     for _ in range(max(1,(MAX_MESSAGES+199)//200)):
@@ -379,7 +407,7 @@ def make_public(state,agents,channels,source_total,now):
             "coverageNote":"Durante o primeiro carregamento, totais representam apenas conversas inspecionadas.",
             "privacyNote":"Nenhum conteúdo, telefone ou identificação de lead é publicado.",
             "dateMeaning":"Dia de envio/recebimento da mensagem no fuso America/Fortaleza",
-            "channelScope":"Somente canais Meta da LP Crypto já autorizados",
+            "channelScope":"Todos os canais WhatsApp da conta empresarial autenticada; IDs de conversas não são os IDs dos broadcasts",
             "caveats":[
                 "Mensagens enviadas na caixa de entrada podem incluir templates de disparo; não somar diretamente com o dashboard de campanhas.",
                 "Atribuição por responsável representa a carteira atual, não quem digitou ou enviou cada mensagem.",
@@ -428,12 +456,16 @@ def run():
     if not SHEET_ID:raise RuntimeError("GOOGLE_SHEET_ID não configurado")
     if not 1<=MAX_REFRESH<=1000 or not 200<=MAX_MESSAGES<=20000:
         raise ValueError("Limites de mensageria inválidos")
-    channels_file=json.loads((ROOT/"data"/"disparos.json").read_text(encoding="utf8"))
-    channel_info={str(c["id"]):sanitize_name(c.get("name")) or "Canal Meta" for c in channels_file.get("channels",[]) if c.get("id") and c.get("provider")=="meta"}
-    if not channel_info:raise RuntimeError("Nenhum canal Meta autorizado encontrado no dashboard de disparos")
     api=api_session(api_key)
     agents=list_agents(api)
     conversations,total=list_conversations(api)
+    # Company-scoped conversation IDs differ from broadcast Meta IDs. Never
+    # join these two identifier namespaces or arbitrarily attribute messages
+    # to broadcast numbers. Include only WhatsApp providers returned for this
+    # authorized company account.
+    channel_info=discovered_channels(conversations)
+    if not channel_info:
+        raise RuntimeError("Nenhum canal WhatsApp empresarial localizado nas conversas")
     google=google_session(google_secret)
     ensure_tabs(google)
     existing=read_state(google)
