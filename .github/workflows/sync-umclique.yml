@@ -67,7 +67,7 @@ jobs:
           UMCLIQUE_API_KEY: ${{ secrets.UMCLIQUE_API_KEY }}
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GOOGLE_SHEET_ID: "1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k"
-          MENSAJERIA_MAX_REFRESH: "300"
+          MENSAJERIA_MAX_REFRESH: "120"
         run: python scripts/sync_mensageria.py
       - name: Publicar mudanças para GitHub Pages
         env:
