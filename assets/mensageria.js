@@ -18,7 +18,16 @@ function coverage(){
  $("coverageTag").className="coverage-tag "+(m.complete?"good":"warn");
  $("coverageFill").style.width=pct+"%";
  $("coverageCount").textContent=ready()?n(done)+" de "+n(total)+" conversas ("+pct.toFixed(1).replace(".",",")+"%)":"Conversas ainda não apuradas";
- $("lastUpdated").textContent=m.lastSyncedAt?"Atualizado: "+new Date(m.lastSyncedAt).toLocaleString("pt-BR",{timeZone:"America/Fortaleza",dateStyle:"short",timeStyle:"short"}):"Última sincronização: —";
+ const syncDate=m.lastSyncedAt?new Date(m.lastSyncedAt):null;
+ const ageMinutes=syncDate&&Number.isFinite(syncDate.getTime())?Math.max(0,Math.floor((Date.now()-syncDate.getTime())/60000)):null;
+ $("lastUpdated").textContent=syncDate&&ageMinutes!=null?"Última coleta concluída: "+syncDate.toLocaleString("pt-BR",{timeZone:"America/Fortaleza",dateStyle:"short",timeStyle:"short"}):"Última sincronização: não disponível";
+ const freshness=$("freshnessState");
+ if(freshness){
+   const stale=ageMinutes==null||ageMinutes>15;
+   freshness.textContent=ageMinutes==null?"Sem atualização confirmada":stale?"Dados desatualizados ("+ageMinutes+" min)": "Coleta há "+ageMinutes+" min";
+   freshness.className="freshness "+(stale?"stale":"fresh");
+   freshness.title="Coleta agendada a cada 5 minutos. O GitHub Actions pode atrasar a execução; exibimos sempre a hora real da última coleta.";
+ }
 }
 function kpis(){
  const host=$("kpiGrid");host.replaceChildren();
@@ -131,7 +140,9 @@ function luisaCampaign(){
  }else for(const day of days.slice(0,120)){
   const tr=el("tr");
   for(const key of ["day","identifiedLeads","inboundFromLeads","outboundToLeads"]){
-   tr.append(el("td","",key==="day"?day.day.split("-").reverse().join("/"):present(day[key])));
+   const cell=el("td","",key==="day"?day.day.split("-").reverse().join("/"):present(day[key]));
+   cell.dataset.label=({day:"Data",identifiedLeads:"Novos leads",inboundFromLeads:"Mensagens recebidas",outboundToLeads:"Mensagens enviadas"})[key];
+   tr.append(cell);
   }tbody.append(tr);
  }
  const ownerBody=$("luisaOwnerRows");
@@ -140,8 +151,14 @@ function luisaCampaign(){
   const tr=el("tr"),td=el("td","empty","Sem responsáveis para os filtros.");td.colSpan=4;tr.append(td);ownerBody.append(tr);
  }else for(const owner of responsible){
   const tr=el("tr");
-  tr.append(el("td","",owner.name),el("td","",present(owner.identifiedLeads)),
-            el("td","",present(owner.inboundFromLeads)),el("td","",present(owner.outboundToLeads)));
+  for(const [label,text] of [
+    ["Responsável",owner.name],
+    ["Leads identificados",present(owner.identifiedLeads)],
+    ["Recebidas",present(owner.inboundFromLeads)],
+    ["Enviadas",present(owner.outboundToLeads)]
+  ]){
+    const cell=el("td","",text);cell.dataset.label=label;tr.append(cell);
+  }
   ownerBody.append(tr);
  }
 }
@@ -215,6 +232,9 @@ async function load(){
  }
 }
 hook();load();
-window.setInterval(()=>{if(document.visibilityState!=="hidden")load();},120000);
+// Cheap public-JSON refresh every minute. The authenticated data collection
+// runs separately every 5 min via GitHub Actions and may finish later.
+window.setInterval(()=>{if(document.visibilityState!=="hidden")load();},60000);
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")load();});
 window.LPMensageria={getState:()=>({filters:{...state.filters},ready:ready(),error:state.error})};
 })();
