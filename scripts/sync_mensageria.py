@@ -476,6 +476,41 @@ def public_summary_sheet(google,payload):
         google_request(google,"POST","/values/"+quote(f"'{SUMMARY_TITLE}'!A{start}:J2000",safe="")+":clear",
                        json={})
 
+def private_campaign_sheet(google,state,agents,channels,now):
+    """Restricted operational lead map; never exported to GitHub or logs."""
+    records=[{**r,"owner_key":safe_owner_key(r.get("owner_id"))}
+             for r in state.values() if r.get("channel_id") in channels]
+    owners=["all"]+sorted({r["owner_key"] for r in records})
+    channel_keys=["all"]+sorted(channels)
+    result=aggregate_campaign(records,owners,channel_keys,
+          now.astimezone(API_TZ).date().isoformat(),scoped_days)
+    names=name_map(agents,state)
+    headers=["ID técnico da conversa (restrito)","Chave pseudônima do lead",
+             "Origem identificada","Primeiro sinal (data local)","Responsável atual",
+             "Canal da conversa identificadora","Recebidas do lead (histórico)",
+             "Enviadas ao lead (histórico)","Última data com mensagem","Observação"]
+    values=[headers]
+    for contact,info in sorted(result["private"].items(),key=lambda p:(p[1]["first"],p[0]),reverse=True):
+        all_days=sorted(info["activity"])
+        values.append([
+            info.get("conversation_id",""),contact,
+            "Indício: saudação Oi, equipe Luisa Pires",info["first"],
+            names.get(info["owner"],"Não atribuído"),
+            channels.get(info["channel"],"Canal não identificado"),
+            sum(v[0] for v in info["activity"].values()),
+            sum(v[1] for v in info["activity"].values()),
+            all_days[-1] if all_days else "",
+            "Confirmar origem e consentimento no CRM; sem reenvio automático"
+        ])
+    endpoint="/values/"+quote("'"+CAMPAIGN_TITLE+"'!A1:J10000",safe="")
+    google_request(google,"PUT",endpoint,params={"valueInputOption":"RAW"},
+                   json={"values":values})
+    if len(values)<10000:
+        endpoint="/values/"+quote(f"'{CAMPAIGN_TITLE}'!A{len(values)+1}:J10000",safe="")+":clear"
+        google_request(google,"POST",endpoint,json={})
+    return len(values)-1
+
+
 def run():
     logging.basicConfig(level=logging.INFO,format="%(levelname)s %(message)s")
     api_key=os.environ["UMCLIQUE_API_KEY"]
@@ -509,6 +544,8 @@ def run():
         update_values(google,changes)
     payload=make_public(fresh,agents,channel_info,total,utc_now())
     public_summary_sheet(google,payload)
+    mapped=private_campaign_sheet(google,fresh,agents,channel_info,utc_now())
+    LOG.info("Registros de contato com saudação Luisa mapeados na planilha restrita: %d",mapped)
     PUBLIC_FILE.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
     LOG.info("Conversations in account: %d | LP Crypto in scope: %d | inspected: %d | updated in this run: %d | pending refresh: %d",
              total,payload["meta"]["inScopeConversations"],
