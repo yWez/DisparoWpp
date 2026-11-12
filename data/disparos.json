@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-12T00:46:10.017678Z",
+    "lastSyncedAt": "2026-11-12T01:31:26.766673Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -271,12 +271,12 @@
       "read": 63,
       "replied": 5,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T14:44:00.001875Z",
       "startedAt": "2026-11-10T14:44:03.841000Z",
       "completedAt": "2026-11-10T14:45:19.700000Z",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-12T00:46:10.017678Z",
+      "lastSyncedAt": "2026-11-12T01:31:26.766673Z",
       "legacyId": "D4",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
@@ -525,13 +525,13 @@
       "read": 74,
       "replied": 3,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T22:28:10.328040Z",
       "startedAt": "2026-11-10T22:28:14.053000Z",
       "completedAt": "2026-11-10T22:29:30.029000Z",
       "source": "umclique_api",
       "legacyId": "D7",
-      "lastSyncedAt": "2026-11-12T00:46:10.017678Z",
+      "lastSyncedAt": "2026-11-12T01:31:26.766673Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -603,14 +603,14 @@
       "read": 78,
       "replied": 3,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-11T17:55:02.993051Z",
       "startedAt": "2026-11-11T17:55:07.356000Z",
       "completedAt": "2026-11-11T17:56:20.428000Z",
       "period": "11/11/2026",
       "timeLabel": "11/11/2026 14:55",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-12T00:46:10.017678Z",
+      "lastSyncedAt": "2026-11-12T01:31:26.766673Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
