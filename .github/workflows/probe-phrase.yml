@@ -1,0 +1,20 @@
+name: Verificar formato de texto recebido (privado)
+on:
+  push:
+    branches: [feat/origem-leads-luisa-mensageria]
+    paths: ["ops/probe_phrase_schema.py", ".github/workflows/probe-phrase.yml"]
+permissions:
+  contents: read
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: python -m pip install --disable-pip-version-check requests
+      - name: Consultar somente tipos de campos
+        env:
+          UMCLIQUE_API_KEY: ${{ secrets.UMCLIQUE_API_KEY }}
+        run: python ops/probe_phrase_schema.py
