@@ -124,7 +124,7 @@ def discovered_channels(conversations):
         alias=hashlib.sha256(channel_id.encode()).hexdigest()[:8]
         default=known[provider]+" · "+alias
         candidate=sanitize_name(channel.get("name") or channel.get("display_name") or "")
-        if re.search(r"\\d[\\d\\s()+.\\-]{7,}",candidate):
+        if re.search(r"\d[\d\s()+.\-]{7,}",candidate):
             candidate=""
         result[channel_id]=candidate or default
     return result
