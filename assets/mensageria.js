@@ -157,5 +157,6 @@ async function load(){
  }
 }
 hook();load();
+window.setInterval(()=>{if(document.visibilityState!=="hidden")load();},120000);
 window.LPMensageria={getState:()=>({filters:{...state.filters},ready:ready(),error:state.error})};
 })();
