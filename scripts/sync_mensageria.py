@@ -23,16 +23,19 @@ from google.auth.transport.requests import AuthorizedSession
 from google.oauth2 import service_account
 from requests.utils import quote
 from sync_umclique import api_session, get_json
+from luisa_campaign import RULE_VERSION, LABEL, incoming_match_days, aggregate_campaign
 
 ROOT=Path(__file__).resolve().parent.parent
 PUBLIC_FILE=ROOT/"data"/"mensageria.json"
 API_TZ=ZoneInfo("America/Fortaleza")
 SHEET_TITLE="Mensageria Estado"
 SUMMARY_TITLE="Mensageria - Resumo"
+CAMPAIGN_TITLE="Leads - Campanha Luisa"
 HEADERS=["conversation_id","contact_key","channel_id","owner_id","modified_at",
          "created_at","status","unread_count","day_counts_json","observed_at",
          "message_count","complete_history","first_direction","last_direction",
-         "first_inbound_day","last_inbound_day","last_outbound_day"]
+         "first_inbound_day","last_inbound_day","last_outbound_day",
+         "lp_scan_version","lp_match_first_day","lp_match_count"]
 LOG=logging.getLogger("mensageria")
 MAX_REFRESH=int(os.getenv("MENSAJERIA_MAX_REFRESH", "300"))
 MAX_MESSAGES=int(os.getenv("MENSAJERIA_MAX_MESSAGES_PER_CONVERSATION", "4000"))
@@ -193,7 +196,7 @@ def google_request(google,method,endpoint,**kwargs):
     return resp.json() if resp.content else {}
 
 def ensure_tabs(google):
-    meta=google_request(google,"GET","?fields=sheets(properties(sheetId,title,hidden))")
+    meta=google_request(google,"GET","?fields=sheets(properties(sheetId,title,hidden,gridProperties(columnCount)))")
     names={x["properties"]["title"]:x["properties"]["sheetId"] for x in meta.get("sheets",[])}
     additions=[]
     if SHEET_TITLE not in names:
@@ -202,18 +205,34 @@ def ensure_tabs(google):
     if SUMMARY_TITLE not in names:
         additions.append({"addSheet":{"properties":{"title":SUMMARY_TITLE,
             "gridProperties":{"rowCount":2000,"columnCount":12}}}})
+    if CAMPAIGN_TITLE not in names:
+        additions.append({"addSheet":{"properties":{"title":CAMPAIGN_TITLE,
+            "gridProperties":{"rowCount":10000,"columnCount":10}}}})
+    for sheet in meta.get("sheets",[]):
+        props=sheet.get("properties",{})
+        if props.get("title")==SHEET_TITLE:
+            current=props.get("gridProperties",{}).get("columnCount",0)
+            if current<len(HEADERS):
+                additions.append({"updateSheetProperties":{
+                    "properties":{"sheetId":props["sheetId"],
+                                  "gridProperties":{"columnCount":len(HEADERS)}},
+                    "fields":"gridProperties.columnCount"}})
     if additions:
         google_request(google,"POST",":batchUpdate",json={"requests":additions})
     return names
 
 def read_state(google):
-    vals=google_request(google,"GET","/values/"+quote("'"+SHEET_TITLE+"'!A1:Q10000",safe=""))
+    vals=google_request(google,"GET","/values/"+quote("'"+SHEET_TITLE+"'!A1:T10000",safe=""))
     rows=vals.get("values",[])
-    if not rows or rows[0]!=HEADERS:
-        if rows:
-            raise ValueError("Cabeçalho do estado privado inesperado; não sobrescrever")
+    if not rows:
         update_values(google,[(1,HEADERS)])
         return {}
+    if rows[0]!=HEADERS:
+        # Additive migration only: preserve every existing cell and row.
+        if rows[0]==HEADERS[:17]:
+            update_values(google,[(1,HEADERS)])
+        else:
+            raise ValueError("Cabeçalho do estado privado inesperado; não sobrescrever")
     found={}
     for line,row in enumerate(rows[1:],start=2):
         if not row or not row[0]:continue
@@ -223,13 +242,14 @@ def read_state(google):
         try: entry["day_counts"]=json.loads(entry.pop("day_counts_json") or "{}")
         except (TypeError,ValueError):raise ValueError("JSON de estado inválido na linha "+str(line))
         entry["complete_history"]=str(entry["complete_history"]).lower()=="true"
+        entry["lp_match_count"]=int(entry.get("lp_match_count") or 0)
         found[str(entry["conversation_id"])]=entry
     return found
 
 def update_values(google,positions):
     for start in range(0,len(positions),120):
         batch=positions[start:start+120]
-        data=[{"range":f"'{SHEET_TITLE}'!A{index}:Q{index}","values":[values]}
+        data=[{"range":f"'{SHEET_TITLE}'!A{index}:T{index}","values":[values]}
               for index,values in batch]
         google_request(google,"POST","/values:batchUpdate",
             json={"valueInputOption":"RAW","data":data})
@@ -243,7 +263,8 @@ def row_values(v):
         v.get("observed_at",""),v.get("message_count",0),
         str(bool(v.get("complete_history",False))).lower(),
         v.get("first_direction",""),v.get("last_direction",""),
-        v.get("first_inbound_day",""),v.get("last_inbound_day",""),v.get("last_outbound_day","")
+        v.get("first_inbound_day",""),v.get("last_inbound_day",""),v.get("last_outbound_day",""),
+        v.get("lp_scan_version",""),v.get("lp_match_first_day",""),v.get("lp_match_count",0)
     ]
 
 def record_meta(conversation,api_key):
@@ -278,7 +299,7 @@ def update_state(api,existing,conversations,api_key,allowed):
         observed=timestamp(prev.get("observed_at"))
         stale=not observed or (now-observed).total_seconds()>(MIN_REFRESH_HOURS*3600)
         changed=not prev or prev.get("modified_at")!=meta["modified_at"]
-        if not prev or changed or stale or not prev.get("complete_history"):
+        if not prev or changed or stale or not prev.get("complete_history") or prev.get("lp_scan_version")!=RULE_VERSION:
             candidates.append((0 if not prev.get("observed_at") else 1 if changed else 2,cid))
         if not prev or any(prev.get(k)!=meta.get(k) for k in meta):
             changes.add(cid)
@@ -287,7 +308,11 @@ def update_state(api,existing,conversations,api_key,allowed):
     for _,cid in candidates[:MAX_REFRESH]:
         messages,complete,total=list_messages(api,cid)
         snapshot=summarize_messages(messages,complete=complete)
-        fresh[cid].update(snapshot,observed_at=stamp)
+        first_match, match_count=incoming_match_days(messages,local_day)
+        fresh[cid].update(snapshot,observed_at=stamp,
+                          lp_scan_version=RULE_VERSION,
+                          lp_match_first_day=first_match,
+                          lp_match_count=match_count)
         changes.add(cid)
         processed+=1
     return fresh,changes,processed,len(candidates),stamp
@@ -389,13 +414,15 @@ def make_public(state,agents,channels,source_total,now):
          "conversations":len(cell["conversations"])}
         for (day,owner,channel),cell in sorted(daily_raw.items())
     ]
+    campaign_result=aggregate_campaign(records,owner_ids,channel_ids,day,scoped_days)
     # Display all registered agents (including zero conversations), plus Unassigned.
     activity_by_key={safe_owner_key(agent_id):agent.get("active") for agent_id,agent in agents.items()}
     owner_list=[{"key":key,"name":name, "active":activity_by_key.get(key)}
         for key,name in sorted(owner_names.items(),key=lambda x:x[1].casefold())]
     return {
+        "campaign":campaign_result["public"],
         "meta":{
-            "schemaVersion":1,"lastSyncedAt":now.isoformat().replace("+00:00","Z"),
+            "schemaVersion":2,"lastSyncedAt":now.isoformat().replace("+00:00","Z"),
             "timeZone":"America/Fortaleza",
             "source":"UmClique /public-conversations, /messages e /public-agents",
             "allAccountConversations":source_total,
@@ -449,6 +476,41 @@ def public_summary_sheet(google,payload):
         google_request(google,"POST","/values/"+quote(f"'{SUMMARY_TITLE}'!A{start}:J2000",safe="")+":clear",
                        json={})
 
+def private_campaign_sheet(google,state,agents,channels,now):
+    """Restricted operational lead map; never exported to GitHub or logs."""
+    records=[{**r,"owner_key":safe_owner_key(r.get("owner_id"))}
+             for r in state.values() if r.get("channel_id") in channels]
+    owners=["all"]+sorted({r["owner_key"] for r in records})
+    channel_keys=["all"]+sorted(channels)
+    result=aggregate_campaign(records,owners,channel_keys,
+          now.astimezone(API_TZ).date().isoformat(),scoped_days)
+    names=name_map(agents,state)
+    headers=["ID técnico da conversa (restrito)","Chave pseudônima do lead",
+             "Origem identificada","Primeiro sinal (data local)","Responsável atual",
+             "Canal da conversa identificadora","Recebidas do lead (histórico)",
+             "Enviadas ao lead (histórico)","Última data com mensagem","Observação"]
+    values=[headers]
+    for contact,info in sorted(result["private"].items(),key=lambda p:(p[1]["first"],p[0]),reverse=True):
+        all_days=sorted(info["activity"])
+        values.append([
+            info.get("conversation_id",""),contact,
+            "Indício: saudação Oi, equipe Luisa Pires",info["first"],
+            names.get(info["owner"],"Não atribuído"),
+            channels.get(info["channel"],"Canal não identificado"),
+            sum(v[0] for v in info["activity"].values()),
+            sum(v[1] for v in info["activity"].values()),
+            all_days[-1] if all_days else "",
+            "Confirmar origem e consentimento no CRM; sem reenvio automático"
+        ])
+    endpoint="/values/"+quote("'"+CAMPAIGN_TITLE+"'!A1:J10000",safe="")
+    google_request(google,"PUT",endpoint,params={"valueInputOption":"RAW"},
+                   json={"values":values})
+    if len(values)<10000:
+        endpoint="/values/"+quote(f"'{CAMPAIGN_TITLE}'!A{len(values)+1}:J10000",safe="")+":clear"
+        google_request(google,"POST",endpoint,json={})
+    return len(values)-1
+
+
 def run():
     logging.basicConfig(level=logging.INFO,format="%(levelname)s %(message)s")
     api_key=os.environ["UMCLIQUE_API_KEY"]
@@ -482,6 +544,8 @@ def run():
         update_values(google,changes)
     payload=make_public(fresh,agents,channel_info,total,utc_now())
     public_summary_sheet(google,payload)
+    mapped=private_campaign_sheet(google,fresh,agents,channel_info,utc_now())
+    LOG.info("Registros de contato com saudação Luisa mapeados na planilha restrita: %d",mapped)
     PUBLIC_FILE.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
     LOG.info("Conversations in account: %d | LP Crypto in scope: %d | inspected: %d | updated in this run: %d | pending refresh: %d",
              total,payload["meta"]["inScopeConversations"],

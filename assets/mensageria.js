@@ -99,7 +99,53 @@ function byDay(){
   body.append(tr);
  }
 }
-function render(){coverage();kpis();drawTrend();channels();owners();byDay();
+function luisaCampaign(){
+ const box=$("luisaKpis"),coverage=$("luisaCoverage");
+ const campaign=state.data?.campaign;
+ box.replaceChildren();$("luisaDayRows").replaceChildren();$("luisaOwnerRows").replaceChildren();
+ if(!ready()||!campaign||!Array.isArray(campaign.rollups)){
+  coverage.className="campaign-coverage warn";
+  coverage.textContent="Aguardando a análise das mensagens recebidas para identificar a saudação da Luisa.";
+  box.append(el("p","empty","Nenhum número foi estimado; aguarde a sincronização da UmClique."));
+  return;
+ }
+ const d=campaign.coverage||{},total=d.inScopeConversations||0,scanned=d.scannedConversations||0;
+ const pct=total?Math.min(100,100*scanned/total):0;
+ coverage.className="campaign-coverage "+(d.complete?"good":"warn");
+ coverage.textContent=(d.complete?"Mapeamento concluído":"Mapeamento parcial")+" · "+n(scanned)+" de "+n(total)+" conversas verificadas ("+pct.toFixed(1).replace(".",",")+"%). Saudação = indício de origem, não prova de campanha.";
+ const r=A.campaignResolve(state.data,state.filters,B.today());
+ const present=x=>x==null?"Não disponível":(d.complete?"":"≥ ")+n(x);
+ for(const[label,count,description]of[
+  ["LEADS IDENTIFICADOS",r?.identifiedLeads,"Contatos distintos cuja primeira saudação foi detectada no período"],
+  ["LEADS EM CONVERSA",r?.activeLeads,"Contatos identificados que escreveram no período"],
+  ["MENSAGENS RECEBIDAS",r?.inboundFromLeads,"Entradas de todos os contatos identificados"],
+  ["MENSAGENS ENVIADAS",r?.outboundToLeads,"Saídas para os contatos identificados"]]){
+  const card=el("article","campaign-metric");
+  card.append(el("small","",label),el("strong","",present(count)),el("p","",description));
+  box.append(card);
+ }
+ const days=A.campaignDaily(state.data,state.filters,B.today()).slice().reverse();
+ const tbody=$("luisaDayRows");
+ if(!days.length){
+  const tr=el("tr"),td=el("td","empty","Nenhuma ocorrência identificada neste período.");td.colSpan=4;tr.append(td);tbody.append(tr);
+ }else for(const day of days.slice(0,120)){
+  const tr=el("tr");
+  for(const key of ["day","identifiedLeads","inboundFromLeads","outboundToLeads"]){
+   tr.append(el("td","",key==="day"?day.day.split("-").reverse().join("/"):present(day[key])));
+  }tbody.append(tr);
+ }
+ const ownerBody=$("luisaOwnerRows");
+ const responsible=A.campaignOwners(state.data,state.filters,B.today()).sort((a,b)=>(b.identifiedLeads||0)-(a.identifiedLeads||0));
+ if(!responsible.length){
+  const tr=el("tr"),td=el("td","empty","Sem responsáveis para os filtros.");td.colSpan=4;tr.append(td);ownerBody.append(tr);
+ }else for(const owner of responsible){
+  const tr=el("tr");
+  tr.append(el("td","",owner.name),el("td","",present(owner.identifiedLeads)),
+            el("td","",present(owner.inboundFromLeads)),el("td","",present(owner.outboundToLeads)));
+  ownerBody.append(tr);
+ }
+}
+function render(){coverage();kpis();luisaCampaign();drawTrend();channels();owners();byDay();
  const u=$("caveats");u.replaceChildren();
  for(const note of state.data?.meta?.caveats||["Dados parciais; aguarde a primeira coleta."])u.append(el("li","",note));
 }
@@ -116,6 +162,17 @@ function exportRows(kind){
   ["Cobertura",completeness,"Não inferir total quando parcial"]];
  if(kind==="responsaveis")return[["Responsável atual","Recebidas","Enviadas","Contatos distintos que escreveram","Conversas","Iniciadas pelo contato","Última mensagem recebida","Cobertura"],
   ...A.ownerRows(state.data,state.filters,t).map(x=>[x.name,x.inbound??"Não disponível",x.outbound??"Não disponível",x.contactsWithInbound??"Não disponível",x.conversations??"Não disponível",x.firstInboundConversations??"Não disponível",x.lastInboundActiveConversations??"Não disponível",completeness])];
+ if(kind==="luisa"){
+  const r=A.campaignResolve(state.data,state.filters,t),cov=state.data.campaign?.coverage||{};
+  return [["Indicador","Valor","Observação"],
+   ["Frase identificadora",state.data.campaign?.marker||"Oi, equipe Luisa Pires","Indício de origem, não prova de mídia"],
+   ["Contatos únicos identificados",r?.identifiedLeads??"Não disponível","Deduplicado entre conversas"],
+   ["Leads em conversa",r?.activeLeads??"Não disponível","Contatos identificados que enviaram mensagens no período"],
+   ["Mensagens recebidas desses leads",r?.inboundFromLeads??"Não disponível","Agregados por contato identificado"],
+   ["Mensagens enviadas a esses leads",r?.outboundToLeads??"Não disponível","Pode incluir templates"],
+   ["Cobertura",String(cov.scannedConversations??0)+"/"+String(cov.inScopeConversations??0),"Prévia até terminar o histórico"]
+  ];
+ }
  if(kind==="canais")return[["Canal","Recebidas","Enviadas","Contatos distintos que escreveram","Conversas","Cobertura"],
   ...A.channelRows(state.data,state.filters,t).map(x=>[x.name,x.inbound??"Não disponível",x.outbound??"Não disponível",x.contactsWithInbound??"Não disponível",x.conversations??"Não disponível",completeness])];
  if(kind==="diario")return[["Dia","Recebidas","Enviadas","Contatos-dia","Conversas-dia","Cobertura"],
@@ -137,6 +194,7 @@ function hook(){
  document.querySelectorAll("th button[data-sort]").forEach(x=>x.addEventListener("click",()=>{
   const key=x.dataset.sort;state.desc=state.sortKey===key?!state.desc:key!=="name";state.sortKey=key;owners();
  }));
+ $("luisaCsv").addEventListener("click",()=>exportCsv("luisa"));
  for(const[id,type]of[["generalCsv","geral"],["ownerCsv","responsaveis"],["ownerCsvSecond","responsaveis"],["channelCsv","canais"],["dailyCsv","diario"],["dailyCsvSecond","diario"]])
   $(id).addEventListener("click",()=>exportCsv(type));
 }

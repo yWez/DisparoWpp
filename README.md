@@ -22,6 +22,14 @@ O guia de ativação da integração automática está em **[docs/CONFIGURAR_AUT
 
 **Status (11/11/2026):** a primeira sincronização completa foi executada com sucesso; a planilha e a página foram conferidas com 8 campanhas distintas, 902 envios e 107 falhas. O GitHub Actions foi habilitado para executar a cada 15 minutos (execuções podem sofrer atraso pela plataforma). A descoberta dos dois canais Meta é automática e os Secrets já foram cadastrados pelo administrador. Para pausar as execuções agendadas, defina a variável de repositório `UMCLIQUE_SYNC_ENABLED` como `false`.
 
+## Origem de leads — saudação da Luisa Pires
+
+A segunda aba ganhou a seção **Leads que chegaram pela saudação da Luisa**. A UmClique permite identificar mensagens recebidas que começam com “Oi, equipe Luisa Pires”, incluindo pequenas variações de pontuação. O painel apresenta contatos distintos identificados, mensagens recebidas/enviadas desses contatos, ranking por responsável atual e evolução diária com filtros de período e canal.
+
+A saudação é um **indício**, não uma prova de que a pessoa veio exclusivamente da campanha; contatos que entraram por áudio ou outra frase podem não ser detectados. A cobertura da inspeção de mensagens é exibida separadamente até completar a varredura de 1.700+ conversas. Os identificadores técnicos das conversas identificadas ficam somente na aba restrita **Leads - Campanha Luisa** do Google Sheets, não no site público. Nenhuma mensagem é enviada automaticamente.
+
+**[Detalhes técnicos, privacidade e critérios de atribuição](docs/ORIGEM_CAMPANHA_LUISA.md).**
+
 ## Acompanhamento de Mensageria (segunda aba)
 
 **Acesse:** [Mensageria](https://ywez.github.io/DisparoWpp/mensageria.html) — página adicional no mesmo GitHub Pages. A visão original de disparos continua em [index.html](https://ywez.github.io/DisparoWpp/).

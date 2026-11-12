@@ -58,6 +58,37 @@
     <div><span class="section-kicker">01 / OPERAÇÃO</span><h2>Visão geral da mensageria</h2><p>Contagem de mensagens e de contatos distintos, sem conteúdo das conversas.</p></div>
   </section>
   <section id="kpiGrid" class="kpi-grid" aria-label="Indicadores de mensageria"><div class="empty">Carregando indicadores…</div></section>
+  <section class="campaign-panel" id="luisaCampaignSection" aria-labelledby="luisaCampaignHeading">
+    <div class="campaign-panel-head">
+      <div>
+        <span class="section-kicker">ORIGEM IDENTIFICADA / CAMPANHA LUISA PIRES</span>
+        <h2 id="luisaCampaignHeading">Leads que chegaram pela saudação da Luisa</h2>
+        <p>Detectamos a mensagem de entrada <strong>“Oi, equipe Luisa Pires”</strong> e suas variações de pontuação. É um sinal de origem, não uma comprovação de campanha paga.</p>
+      </div>
+      <button class="btn" id="luisaCsv" type="button">↓ Exportar resumo</button>
+    </div>
+    <div class="campaign-coverage" id="luisaCoverage" role="status">Aguardando varredura das mensagens recebidas…</div>
+    <div class="campaign-metrics" id="luisaKpis"><div class="empty">Aguardando identificação dos leads.</div></div>
+    <div class="campaign-columns">
+      <div>
+        <h3>Entradas identificadas por dia</h3>
+        <p class="campaign-subtitle">Cada lead conta somente na data da primeira saudação encontrada.</p>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Data</th><th>Novos leads identificados</th><th>Mensagens recebidas desses leads</th><th>Mensagens enviadas a esses leads</th></tr></thead>
+          <tbody id="luisaDayRows"><tr><td colspan="4" class="empty">Aguardando dados…</td></tr></tbody>
+        </table></div>
+      </div>
+      <div>
+        <h3>Leads por responsável atual</h3>
+        <p class="campaign-subtitle">Inclui todos os atendentes, mesmo sem leads identificados, e o grupo Não atribuído.</p>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Responsável</th><th>Leads identificados</th><th>Recebidas</th><th>Enviadas</th></tr></thead>
+          <tbody id="luisaOwnerRows"><tr><td colspan="4" class="empty">Aguardando dados…</td></tr></tbody>
+        </table></div>
+      </div>
+    </div>
+    <p class="campaign-privacy">A lista técnica de conversas identificadas fica na aba restrita <strong>Leads - Campanha Luisa</strong> do Google Sheets. Nenhum telefone, nome ou mensagem de lead é publicado neste site.</p>
+  </section>
   <section class="section-grid">
    <div class="panel"><div class="panel-head"><div><span class="section-kicker">02 / EVOLUÇÃO</span><h2>Fluxo de mensagens</h2><p>Mensagens recebidas versus enviadas, por dia.</p></div><button class="btn" id="dailyCsv" type="button">↓ CSV diário</button></div><div id="trendChart" class="chart" aria-label="Evolução de mensagens por dia"></div><div class="chart-legend"><span><i class="violet"></i> Recebidas</span><span><i class="teal"></i> Enviadas</span></div></div>
    <div class="panel"><div class="panel-head"><div><span class="section-kicker">03 / CANAIS</span><h2>Origem das conversas</h2><p>Comparativo dos canais conectados à LP Crypto.</p></div></div><div id="channelList" class="channel-list"></div></div>
