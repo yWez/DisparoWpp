@@ -2,7 +2,7 @@ name: Testes do sincronizador e dashboard
 
 on:
   push:
-    branches: [main, "feat/**"]
+    branches: [main, "feat/**", "fix/**"]
     paths:
       - "scripts/**"
       - "tests/**"
