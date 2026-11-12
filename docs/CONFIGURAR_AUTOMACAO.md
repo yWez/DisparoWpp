@@ -1,4 +1,4 @@
-> **Atualização operacional — 11/11/2026:** Integração validada ponta a ponta. A primeira execução consultou 8 campanhas e atualizou Google Sheets e GitHub Pages; foi corrigida a duplicação do Disparo 4. O painel e a planilha foram conferidos com 8 campanhas, 902 envios, 107 falhas, 783 entregas, 431 leituras e 20 respostas. O agendamento a cada 15 minutos foi habilitado no workflow. A variável `UMCLIQUE_SYNC_ENABLED=false` pode ser usada para pausá-lo, se necessário. As execuções agendadas ainda dependem da fila e disponibilidade do GitHub.
+> **Atualização operacional — 11/11/2026:** Integração validada ponta a ponta. A primeira execução consultou 8 campanhas e atualizou Google Sheets e GitHub Pages; foi corrigida a duplicação do Disparo 4. O painel e a planilha foram conferidos com 8 campanhas, 902 envios, 107 falhas, 783 entregas, 431 leituras e 20 respostas. O agendamento a cada 5 minutos foi habilitado no workflow. A variável `UMCLIQUE_SYNC_ENABLED=false` pode ser usada para pausá-lo, se necessário. As execuções agendadas ainda dependem da fila e disponibilidade do GitHub.
 
 > **Atualização 11/11/2026 — correção do erro HTTP 403:** os sete disparos foram reconhecidos em dois canais Meta. O GitHub bloqueou a tentativa de gravar uma variável automaticamente. Corrigimos o fluxo: agora o sincronizador **descobre os canais diretamente pela API** e não precisa criar variáveis. O workflow **Descobrir canal UmClique** também foi atualizado para apenas validar a descoberta, sem modificar configurações do GitHub.
 
@@ -6,7 +6,7 @@
 
 **Revisão:** 11/11/2026  
 **Estado:** integração autenticada em produção, primeira execução conferida, agendamento habilitado no GitHub Actions.  
-**Implementação:** GitHub Actions a cada 15 minutos, sem n8n.
+**Implementação:** GitHub Actions a cada 5 minutos, sem n8n.
 
 ## Endpoints oficiais confirmados
 
@@ -26,7 +26,7 @@ O webhook documentado **POST /functions/v1/public-create-webhook-split** encamin
 ## Fluxo construído
 
 ~~~text
-GitHub Actions, a cada 15 minutos
+GitHub Actions, a cada 5 minutos
   → API UmClique: lista campanhas do canal LP Crypto / Meta
   → métricas por ID quando necessárias
   → remove dados pessoais e normaliza os contadores
@@ -88,7 +88,7 @@ Só depois de concluir os itens anteriores:
 7. Executar novamente para confirmar que não duplica campanhas.
 8. Fazer um disparo de teste autorizado e observar os resultados nas rodadas seguintes.
 
-Depois disso, o GitHub executará o fluxo a cada ~15 minutos sem precisar abrir o ChatGPT. O agendamento pode atrasar; os dados também dependem de quando a UmClique atualiza os indicadores.
+Depois disso, o GitHub executará o fluxo a cada ~5 minutos sem precisar abrir o ChatGPT. O agendamento pode atrasar; os dados também dependem de quando a UmClique atualiza os indicadores.
 
 ## Proteção da base existente
 
