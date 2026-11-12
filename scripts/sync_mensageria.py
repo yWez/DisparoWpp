@@ -23,7 +23,7 @@ from google.auth.transport.requests import AuthorizedSession
 from google.oauth2 import service_account
 from requests.utils import quote
 from sync_umclique import api_session, get_json
-from luisa_campaign import RULE_VERSION, LABEL, incoming_match_days, contact_first_match, campaign_record_map
+from luisa_campaign import RULE_VERSION, LABEL, incoming_match_days, aggregate_campaign
 
 ROOT=Path(__file__).resolve().parent.parent
 PUBLIC_FILE=ROOT/"data"/"mensageria.json"
@@ -414,13 +414,15 @@ def make_public(state,agents,channels,source_total,now):
          "conversations":len(cell["conversations"])}
         for (day,owner,channel),cell in sorted(daily_raw.items())
     ]
+    campaign_result=aggregate_campaign(records,owner_ids,channel_ids,day,scoped_days)
     # Display all registered agents (including zero conversations), plus Unassigned.
     activity_by_key={safe_owner_key(agent_id):agent.get("active") for agent_id,agent in agents.items()}
     owner_list=[{"key":key,"name":name, "active":activity_by_key.get(key)}
         for key,name in sorted(owner_names.items(),key=lambda x:x[1].casefold())]
     return {
+        "campaign":campaign_result["public"],
         "meta":{
-            "schemaVersion":1,"lastSyncedAt":now.isoformat().replace("+00:00","Z"),
+            "schemaVersion":2,"lastSyncedAt":now.isoformat().replace("+00:00","Z"),
             "timeZone":"America/Fortaleza",
             "source":"UmClique /public-conversations, /messages e /public-agents",
             "allAccountConversations":source_total,
