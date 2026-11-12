@@ -348,10 +348,12 @@ def make_public(state,agents,channels,source_total,now):
     for r in records:
         if not r.get("observed_at"):continue
         for d,arr in (r.get("day_counts") or {}).items():
-            cell=daily_raw[(d,r["owner_key"],r["channel_id"])]
-            cell["inbound"]+=int(arr[0]);cell["outbound"]+=int(arr[1])
-            if int(arr[0]) and r.get("contact_key"):cell["contacts"].add(r["contact_key"])
-            if sum(int(v) for v in arr):cell["conversations"].add(r["conversation_id"])
+            for owner in ("all",r["owner_key"]):
+                for channel in ("all",r["channel_id"]):
+                    cell=daily_raw[(d,owner,channel)]
+                    cell["inbound"]+=int(arr[0]);cell["outbound"]+=int(arr[1])
+                    if int(arr[0]) and r.get("contact_key"):cell["contacts"].add(r["contact_key"])
+                    if sum(int(v) for v in arr):cell["conversations"].add(r["conversation_id"])
     daily=[
         {"day":day,"owner":owner,"channel":channel,
          "inbound":cell["inbound"],"outbound":cell["outbound"],
@@ -359,10 +361,9 @@ def make_public(state,agents,channels,source_total,now):
          "conversations":len(cell["conversations"])}
         for (day,owner,channel),cell in sorted(daily_raw.items())
     ]
-    # Display all known agents, plus observed unknown owners and Unassigned.
-    owner_list=[{"key":key,"name":name, "active":next(
-        (agent["active"] for agent in agents.values() if safe_owner_key(next(
-            (i for i,x in agents.items() if x is agent),""))==key),None)}
+    # Display all registered agents (including zero conversations), plus Unassigned.
+    activity_by_key={safe_owner_key(agent_id):agent.get("active") for agent_id,agent in agents.items()}
+    owner_list=[{"key":key,"name":name, "active":activity_by_key.get(key)}
         for key,name in sorted(owner_names.items(),key=lambda x:x[1].casefold())]
     return {
         "meta":{
