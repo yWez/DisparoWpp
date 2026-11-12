@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101a31">
+  <meta name="description" content="Acompanhamento de mensagens recebidas, enviadas e carteiras dos responsáveis comerciais da LP Crypto.">
+  <title>Acompanhamento de Mensageria | LP Crypto</title>
+  <link rel="stylesheet" href="./assets/mensageria.css">
+</head>
+<body>
+ <header class="topbar">
+  <div class="top-inner">
+   <a href="./index.html" class="brand" aria-label="LP Crypto: abrir painel de disparos"><span class="brandmark">LP</span><span class="brandtitle">LP Crypto <small>Inteligência comercial</small></span></a>
+   <nav class="topnav" aria-label="Áreas do dashboard">
+    <a href="./index.html">Disparos e campanhas</a>
+    <a href="./mensageria.html" aria-current="page">Acompanhamento de Mensageria</a>
+   </nav>
+   <span class="live-pill"><span class="dot"></span> UmClique API</span>
+  </div>
+ </header>
+ <section class="hero">
+  <div class="container hero-inner">
+   <div>
+    <div class="eyebrow">CENTRAL COMERCIAL / CONVERSAS</div>
+    <h1>Mensagens que viram<br><em>relacionamento.</em></h1>
+    <p>Entenda o que chega ao WhatsApp, como evoluem as conversas e a carteira de cada responsável pelo lead.</p>
+   </div>
+   <div class="hero-copy">
+    <span>VISÃO DA OPERAÇÃO</span><strong>Mensageria</strong>
+    <small>Mensagens de conversas · Responsáveis atuais · Dois canais Meta</small>
+   </div>
+  </div>
+ </section>
+ <main class="container">
+  <section class="filter-panel" aria-label="Filtros de mensageria">
+   <div class="section-inline">
+    <div><strong>Filtros da mensageria</strong><p>Todos os indicadores e tabelas seguem a sua seleção.</p></div>
+    <button id="resetFilters" class="reset" type="button">Limpar filtros</button>
+   </div>
+   <div class="filters">
+    <label>Período<select id="period"><option value="all">Todo o histórico</option><option value="today">Hoje</option><option value="yesterday">Ontem</option><option value="7d">Últimos 7 dias</option><option value="30d">Últimos 30 dias</option><option value="custom">Personalizado</option></select></label>
+    <label>Responsável pelo lead<select id="owner"><option value="all">Todos os responsáveis</option></select></label>
+    <label>Canal / número WhatsApp<select id="channel"><option value="all">Todos os canais</option></select></label>
+   </div>
+   <div class="custom-period" id="customDates" hidden>
+    <label>Data inicial<input type="date" id="startDate"></label>
+    <label>Data final<input type="date" id="endDate"></label>
+   </div>
+   <p class="filter-note">Os resultados por atendente são atribuídos ao <strong>responsável atual pela conversa</strong>, não necessariamente à pessoa que enviou cada mensagem.</p>
+  </section>
+  <section id="coveragePanel" class="coverage-panel" aria-live="polite">
+   <div class="coverage-main"><div><span class="coverage-label">CONFIABILIDADE DA COLETA</span><strong id="coverageTitle">Verificando dados da UmClique…</strong><p id="coverageText">Nenhuma métrica será inventada enquanto a integração não responder.</p></div><span class="coverage-tag" id="coverageTag">Carregando</span></div>
+   <div class="track"><div id="coverageFill" class="progress" style="width:0%"></div></div>
+   <div class="coverage-bottom"><span id="lastUpdated">Última sincronização: —</span><span id="coverageCount">—</span></div>
+  </section>
+  <section class="section-header">
+    <div><span class="section-kicker">01 / OPERAÇÃO</span><h2>Visão geral da mensageria</h2><p>Contagem de mensagens e de contatos distintos, sem conteúdo das conversas.</p></div>
+  </section>
+  <section id="kpiGrid" class="kpi-grid" aria-label="Indicadores de mensageria"><div class="empty">Carregando indicadores…</div></section>
+  <section class="section-grid">
+   <div class="panel"><div class="panel-head"><div><span class="section-kicker">02 / EVOLUÇÃO</span><h2>Fluxo de mensagens</h2><p>Mensagens recebidas versus enviadas, por dia.</p></div><button class="btn" id="dailyCsv" type="button">↓ CSV diário</button></div><div id="trendChart" class="chart" aria-label="Evolução de mensagens por dia"></div><div class="chart-legend"><span><i class="violet"></i> Recebidas</span><span><i class="teal"></i> Enviadas</span></div></div>
+   <div class="panel"><div class="panel-head"><div><span class="section-kicker">03 / CANAIS</span><h2>Origem das conversas</h2><p>Comparativo dos canais conectados à LP Crypto.</p></div></div><div id="channelList" class="channel-list"></div></div>
+  </section>
+  <section class="section-header">
+   <div><span class="section-kicker">04 / EQUIPE</span><h2>Acompanhamento por responsável</h2><p>Todos os atendentes cadastrados e as conversas sem responsável. Os números seguem a carteira atribuída no momento da coleta.</p></div>
+   <div class="actions"><button class="btn" type="button" id="ownerCsv">↓ CSV responsáveis</button></div>
+  </section>
+  <section class="panel table-panel">
+   <div class="table-overline"><div><strong>Carteira e atividade dos responsáveis</strong><span id="ownerTableNote">Aguardando dados</span></div><label class="search-label"><span class="sr-only">Buscar atendente</span><input id="ownerSearch" type="search" placeholder="Buscar responsável..." autocomplete="off"></label></div>
+   <div class="table-scroll"><table><thead><tr>
+    <th><button type="button" data-sort="name">Responsável <span>↕</span></button></th>
+    <th><button type="button" data-sort="inbound">Recebidas <span>↕</span></button></th>
+    <th><button type="button" data-sort="outbound">Enviadas <span>↕</span></button></th>
+    <th><button type="button" data-sort="contactsWithInbound">Contatos que escreveram <span>↕</span></button></th>
+    <th><button type="button" data-sort="conversations">Conversas ativas no período* <span>↕</span></button></th>
+    <th><button type="button" data-sort="firstInboundConversations">Primeira mensagem do lead <span>↕</span></button></th>
+    <th><button type="button" data-sort="lastInboundActiveConversations">Última mensagem recebida <span>↕</span></button></th>
+   </tr></thead><tbody id="ownerRows"><tr><td colspan="7" class="empty">Aguardando dados…</td></tr></tbody></table></div>
+   <p class="table-foot">* Conversas com pelo menos uma mensagem no período. A última mensagem recebida em conversa ativa é um indicador de acompanhamento, não prova de atraso ou falta de resposta. O responsável exibido é o atual.</p>
+  </section>
+  <section class="section-grid followup-grid">
+   <div class="panel">
+    <div class="panel-head"><div><span class="section-kicker">05 / DETALHAMENTO</span><h2>Movimento por dia</h2><p>Filtre o período e compare recebimentos e respostas de saída.</p></div></div>
+    <div class="table-scroll"><table><thead><tr><th>Dia</th><th>Recebidas</th><th>Enviadas</th><th>Contatos-dia*</th><th>Conversas-dia*</th></tr></thead><tbody id="dailyRows"></tbody></table></div>
+    <p class="table-foot">* Contagens diárias distintas; somar diferentes dias pode repetir um mesmo contato.</p>
+   </div>
+   <div class="panel">
+    <div class="panel-head"><div><span class="section-kicker">06 / EXPORTAÇÕES</span><h2>Relatórios rápidos</h2><p>Exportações agregadas e compatíveis com Excel.</p></div></div>
+    <div class="export-actions">
+     <button class="btn export" type="button" id="generalCsv">↓ Resumo geral</button>
+     <button class="btn export" type="button" id="channelCsv">↓ Canais</button>
+     <button class="btn export" type="button" id="ownerCsvSecond">↓ Responsáveis</button>
+     <button class="btn export" type="button" id="dailyCsvSecond">↓ Série diária</button>
+    </div>
+    <div class="privacy-note"><strong>Privacidade dos leads</strong><p>Esta área pública não exibe nomes ou telefones dos contatos, conteúdo de mensagens, nem exporta listas nominais. Não executa envios.</p></div>
+   </div>
+  </section>
+  <section class="interpretation">
+    <span class="section-kicker">COMO INTERPRETAR</span>
+    <ul id="caveats"><li>Os dados ainda serão carregados da UmClique.</li></ul>
+  </section>
+  <footer><span>LP Crypto · Acompanhamento de Mensageria</span><span><a href="./index.html">Voltar ao painel de disparos</a> · <a href="https://github.com/yWez/DisparoWpp" target="_blank" rel="noopener noreferrer">GitHub</a></span></footer>
+ </main>
+ <script src="./assets/model.js"></script>
+ <script src="./assets/mensageria-model.js"></script>
+ <script src="./assets/mensageria.js"></script>
+</body>
+</html>

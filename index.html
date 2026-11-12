@@ -78,14 +78,25 @@
     @media(max-width:980px){.delivery-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-inner{align-items:start;flex-direction:column}.hero-actions{justify-content:start}.columns{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.topnav{display:none}}
     @media(max-width:590px){.delivery-card{padding:14px}.delivery-card strong{font-size:24px}.delivery-kpis{gap:9px}.container{padding:0 17px}.top-inner{padding:14px 17px}.hero{padding:40px 0 87px}.hero p{font-size:13px}.kpis{gap:10px}.kpi{padding:17px;min-height:139px}.kpi h2{font-size:34px}.kpi-label{font-size:10px}.panel{padding:18px}.section-head{align-items:start;flex-direction:column}.rate-top{align-items:start}.ring{width:100px;height:100px}.ring-hole{height:72px;width:72px}.ring-hole strong{font-size:19px}.rate-num{font-size:42px}.bar-row{grid-template-columns:77px minmax(0,1fr) 44px;gap:8px}.bar-name{font-size:11px}.table-tools{align-items:stretch}.search{width:100%}footer{flex-direction:column}.hero-actions .primary,.hero-actions .ghost{width:100%}}
     @media print{body{background:#fff}.topbar,.hero-actions,.table-tools,footer{display:none}.hero{padding:20px 0 70px}.kpi,.panel,.table-card{box-shadow:none}.columns{grid-template-columns:1fr 1fr}section{break-inside:avoid}}
-  </style>
+  
+    .topnav a[aria-current="page"]{color:#fff;border-bottom:2px solid #a78dff;padding-bottom:4px}
+    .topnav .nav-tab-mensageria{color:#d7c8ff;font-weight:800}
+    @media(max-width:980px){
+      .top-inner{flex-wrap:wrap;gap:12px}
+      .topnav{display:flex;gap:8px;order:3;width:100%;justify-content:center}
+      .topnav a{padding:8px 12px;border:1px solid rgba(255,255,255,.18);border-radius:9px;font-size:11px}
+      .topnav a[href^="#"]{display:none}
+      .taglight{display:none}
+    }
+    @media(max-width:590px){.topnav{justify-content:space-between}.topnav a{font-size:11px;padding:8px 9px}}
+</style>
 <link rel="stylesheet" href="./assets/dashboard-v2.css">
 </head>
 <body>
   <header class="topbar">
     <div class="top-inner">
       <div class="brand" aria-label="LP Crypto"><div class="brandmark">LP</div><div class="brandtitle">LP Crypto <span class="brandsub">Inteligência comercial</span></div></div>
-      <nav class="topnav" aria-label="Navegação principal"><a href="#visao-geral">Visão geral</a><a href="#analise">Análise</a><a href="#campanhas">Campanhas</a></nav>
+      <nav class="topnav" aria-label="Navegação principal"><a href="./index.html" aria-current="page">Disparos</a><a href="./mensageria.html" class="nav-tab-mensageria">Acompanhamento de Mensageria</a><a href="#analise">Análise</a><a href="#campanhas">Campanhas</a></nav>
       <span class="taglight">● Inteligência comercial · v2</span>
     </div>
   </header>

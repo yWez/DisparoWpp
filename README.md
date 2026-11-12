@@ -22,6 +22,20 @@ O guia de ativação da integração automática está em **[docs/CONFIGURAR_AUT
 
 **Status (11/11/2026):** a primeira sincronização completa foi executada com sucesso; a planilha e a página foram conferidas com 8 campanhas distintas, 902 envios e 107 falhas. O GitHub Actions foi habilitado para executar a cada 15 minutos (execuções podem sofrer atraso pela plataforma). A descoberta dos dois canais Meta é automática e os Secrets já foram cadastrados pelo administrador. Para pausar as execuções agendadas, defina a variável de repositório `UMCLIQUE_SYNC_ENABLED` como `false`.
 
+## Acompanhamento de Mensageria (segunda aba)
+
+**Acesse:** [Mensageria](https://ywez.github.io/DisparoWpp/mensageria.html) — página adicional no mesmo GitHub Pages. A visão original de disparos continua em [index.html](https://ywez.github.io/DisparoWpp/).
+
+- Mensagens recebidas e enviadas nas conversas; contatos distintos que escreveram.
+- Filtros por período, responsável atual pelo lead e canal de WhatsApp.
+- Ranking de todos os atendentes da UmClique, inclusive não atribuídos, mais evolução diária e exportações CSV agregadas.
+- Coleta incremental via API UmClique; estado técnico em abas do Google Sheets e dados públicos apenas agregados. Primeiro carregamento é progressivo e assinalado como parcial.
+- **Responsável = assigned_agent_id atual da conversa**, não quem enviou a mensagem; dados por pessoa podem abranger histórico antigo de sua carteira.
+- Os IDs de canais da caixa de entrada não correspondem diretamente aos dois IDs Meta dos broadcasts: métricas dessas duas áreas não devem ser somadas.
+- Não há publicação de nome/telefone de lead, conteúdo de mensagem, nem envio/reenvio automático.
+
+**[Documentação de arquitetura, privacidade, limites e testes](docs/ACOMPANHAMENTO_MENSAGERIA.md).**
+
 ## Inteligência comercial v2
 
 A mesma página e as mesmas integrações foram evoluídas, sem recriar o projeto.
