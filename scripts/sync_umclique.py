@@ -453,6 +453,7 @@ def run():
     sheet_id = required_env("GOOGLE_SHEET_ID")
     google_creds = required_env("GOOGLE_SERVICE_ACCOUNT_JSON")
     created_from = os.getenv("UMCLIQUE_CREATED_FROM", "2026-11-09T00:00:00-03:00")
+    fast_mode = os.getenv("UMCLIQUE_FAST_MODE","").lower() in ("true","1","yes")
     now = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
     existing = json.loads(DATA_PATH.read_text(encoding="utf-8"))
     api = api_session(api_key)
@@ -494,7 +495,7 @@ def run():
     for new in normalized:
         old = current_by_id.get(str(new["campaignId"])) or {}
         report = None
-        if new.get("failures") is not None and new["failures"] > 0:
+        if new.get("failures") is not None and new["failures"] > 0 and (not fast_mode or not old or old.get("failures")!=new["failures"] or not old.get("errorDiagnostics")):
             try:
                 cid = requests.utils.quote(str(new["campaignId"]), safe="")
                 report = sanitize_errors(get_json(api, "/public-broadcasts/" + cid + "/errors"))
@@ -542,8 +543,14 @@ def run():
     google = sheets_session(google_creds)
     synced = sync_sheet(google, sheet_id, changed, records)
     channels_changed = channel_public != existing.get("channels", [])
+    # A 10-minute heartbeat verifies a successful API read even if no counters
+    # moved. Avoid publishing a Pages build every 5 minutes with unchanged data.
+    prior_checked=safe_iso((existing.get("meta") or {}).get("lastSyncedAt"))
+    elapsed=(dt.datetime.now(dt.timezone.utc)-
+             dt.datetime.fromisoformat(prior_checked.replace("Z","+00:00"))).total_seconds() if prior_checked else float("inf")
+    heartbeat_due=elapsed>=600
     public_changed = save_public_json(existing, records, changed, now, channel_public,
-                                      force=channels_changed or origins_changed)
+                                      force=channels_changed or origins_changed or heartbeat_due)
     LOG.info("Sheets atualizado: %d | JSON alterado: %s", synced, public_changed)
     if os.getenv("GITHUB_STEP_SUMMARY"):
         pathlib.Path(os.environ["GITHUB_STEP_SUMMARY"]).open("a", encoding="utf-8").write(
