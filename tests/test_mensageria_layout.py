@@ -33,16 +33,24 @@ class LayoutAndCadenceTests(unittest.TestCase):
         self.assertIn("Dados desatualizados",js)
         self.assertIn('window.setInterval(()=>{if(document.visibilityState!=="hidden")load();},60000)',js)
 
-    def test_schedule_five_minute_not_fifteen(self):
+    def test_fast_fallback_and_full_pipeline_retained(self):
         workflow=read(".github/workflows/sync-umclique.yml")
-        self.assertIn('cron: "2-59/5 * * * *"',workflow)
-        self.assertNotIn('cron: "*/15 * * * *"',workflow)
-        # Keep original integrations, Secrets and concurrency protection.
+        fast=read(".github/workflows/sync-campaigns-fast.yml")
+        scheduler=read("ops/agendador-externo-apps-script.gs")
+        self.assertIn('cron: "17,47 * * * *"',workflow)
+        self.assertIn('cron: "3-59/5 * * * *"',fast)
+        self.assertIn('everyMinutes(j.minutes)',scheduler)
+        self.assertIn("minutes:5",scheduler)
+        self.assertIn("minutes:15",scheduler)
+        self.assertIn("GITHUB_ACTIONS_TOKEN",scheduler)
+        self.assertNotIn("ghp_",scheduler)
+        # The original campaigns/X1/messaging paths and secrets remain intact.
         for must in ("scripts/sync_umclique.py","scripts/sync_x1.py",
                      "scripts/sync_mensageria.py","UMCLIQUE_API_KEY",
                      "GOOGLE_SERVICE_ACCOUNT_JSON","GH_PAGES_PUSH_TOKEN",
                      "group: umclique-sync"):
             self.assertIn(must,workflow)
+        self.assertIn("group: umclique-sync",fast)
 
 if __name__=="__main__":
     unittest.main()
