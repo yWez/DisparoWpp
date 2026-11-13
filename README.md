@@ -1,3 +1,22 @@
+## Atualização de campanhas corrigida — 13/11/2026
+
+**Diagnóstico:** 20 campanhas no endpoint da UmClique desde 09/11, mas o
+dashboard exibia 9 porque o código estava limitado a 2 canais Meta históricos.
+Agora o sincronizador consulta toda a conta autenticada, inclusive Meta e
+WhatsApp QR Code/UAZAPI. As 11 campanhas omitidas passam a ser importadas por
+ID, sem duplicar. O provedor verdadeiro aparece na planilha e no JSON.
+
+**Nova arquitetura:** [Sincronização rápida das campanhas](.github/workflows/sync-campaigns-fast.yml)
+com fallback a cada 5 min; [sincronização completa](.github/workflows/sync-umclique.yml)
+com fallback a cada 30 min. O agendador externo Google Apps Script está
+[preparado para instalação](docs/AGENDADOR_EXTERNO.md) com verificação de
+campanhas a cada 5 min e mensageria/X1 a cada 15 min.
+
+**Importante:** o cron do GitHub pode falhar ou atrasar por horas. Os dois
+fluxos estão no repositório, mas o gatilho independente só fica ativo quando
+um administrador configurar o token de Actions no Google Apps Script e
+executar a instalação uma vez. Não considerar SLA de 5 min antes desse teste.
+
 # LP Crypto · Disparos WhatsApp
 
 Painel de acompanhamento das campanhas de WhatsApp, criado para acesso rápido da Ana e do time comercial.

@@ -161,41 +161,45 @@ def discover_channel_ids(session, created_from):
 
 
 def list_broadcasts(session, channel_ids, created_from):
-    """Fetch one or more approved Meta channels, deduplicating by broadcast ID."""
+    """List ALL broadcasts owned by the authenticated UmClique company.
+
+    Prior implementation silently restricted results to two historic Meta
+    channels; LP Crypto uses both Meta and QR/UAzAPI. Optional explicit
+    channel IDs are supported for diagnostics only, never for the default
+    dashboard production sync.
+    """
     if isinstance(channel_ids, str):
-        channel_ids = [x.strip() for x in channel_ids.split(",") if x.strip()]
-    channel_ids = list(dict.fromkeys(channel_ids or []))
-    if not channel_ids:
-        channel_ids = discover_channel_ids(session, created_from)
-    if len(channel_ids) > 10:
-        raise ValueError("Número de canais maior que o esperado; confira a configuração.")
+        channel_ids = [v.strip() for v in channel_ids.split(",") if v.strip()]
+    selected = list(dict.fromkeys(channel_ids or []))
+    if len(selected) > 10:
+        raise ValueError("Muitos canais informados para consulta específica")
+    scopes = selected if selected else [None]
     collected = {}
-    for channel_id in channel_ids:
+    for channel_id in scopes:
         offset, seen_offsets = 0, set()
         for _ in range(100):
             if offset in seen_offsets:
-                raise RuntimeError("Paginação UmClique retornou offset repetido.")
+                raise RuntimeError("Paginação UmClique retornou offset repetido")
             seen_offsets.add(offset)
-            result = get_json(session, "/public-broadcasts",
-                              channel_id=channel_id, provider="meta", created_from=created_from,
-                              sort="created_at", order="asc", limit=100, offset=offset)
+            params = {"created_from": created_from, "sort":"created_at",
+                      "order":"asc", "limit":100, "offset":offset}
+            if channel_id is not None:
+                params["channel_id"] = channel_id
+            result = get_json(session, "/public-broadcasts", **params)
             batch = result.get("broadcasts")
-            if not isinstance(batch, list):
-                raise ValueError("Campo broadcasts ausente/inválido na API.")
+            if not isinstance(batch,list):
+                raise ValueError("Campo broadcasts ausente/inválido na API")
             for item in batch:
-                if isinstance(item, dict) and item.get("id"):
+                if isinstance(item,dict) and item.get("id"):
                     collected[str(item["id"])] = item
             nxt = result.get("next_offset")
-            if nxt in (None, "", False):
+            if nxt in (None,"",False):
                 break
-            try:
-                offset = int(nxt)
-            except (TypeError, ValueError):
-                raise ValueError("next_offset não é numérico; rever contrato da API.") from None
+            offset = int(nxt)
             if offset < 0:
-                raise ValueError("next_offset inválido.")
+                raise ValueError("next_offset inválido")
         else:
-            raise RuntimeError("Limite de páginas excedido; ampliar paginação com cautela.")
+            raise RuntimeError("Limite de páginas de campanhas excedido")
     return list(collected.values())
 
 
@@ -218,6 +222,10 @@ def public_record(item, metrics=None):
     channels = item.get("channels") or []
     channel = channels[0] if len(channels) == 1 else {}
     channel_ids = sorted({str(ch.get("channel_id")) for ch in channels if ch.get("channel_id")})
+    providers=sorted({str(ch.get("provider") or "").lower() for ch in channels if ch.get("provider")})
+    provider=providers[0] if len(providers)==1 else "multiple" if providers else "unknown"
+    provider_name={"meta":"WhatsApp API Oficial","uazapi":"WhatsApp QR Code",
+                   "wapi":"WhatsApp QR Code"}.get(provider,"Múltiplos provedores" if provider=="multiple" else "Provedor não informado")
 
 
     def channel_sum(key):
@@ -241,7 +249,7 @@ def public_record(item, metrics=None):
     return {
         "id": str(item["id"]), "campaignId": str(item["id"]),
         "name": str(item["name"])[:140], "status": status_pt(item.get("status")),
-        "statusCode": str(item.get("status") or ""), "channel": "Meta API Oficial",
+        "statusCode": str(item.get("status") or ""), "channel": provider_name, "provider": provider,
         "channelId": str(channel.get("channel_id") or "") if len(channel_ids)==1 else "",
         "channelIds": channel_ids,
         "template": str(channel.get("template_name") or ""),
@@ -356,7 +364,7 @@ def sheet_values(record, rownum, original=None):
         read_number(record.get("contacts")), read_number(record.get("sent")),
         read_number(record.get("failures")), f'=IF(OR(E{rownum}="";F{rownum}="");"";E{rownum}-F{rownum})',
         f'=IF(OR(E{rownum}="";E{rownum}=0;F{rownum}="");"";F{rownum}/E{rownum})', record.get("status") or "",
-        "Meta API Oficial", record.get("template") or original[10],
+        record.get("channel") or "Provedor não informado", record.get("template") or original[10],
         original[11] or "Fonte UmClique API • métricas por campanha",
         record.get("campaignId") or "", record.get("startedAt") or "",
         record.get("completedAt") or "", read_number(record.get("delivered")),
@@ -426,6 +434,13 @@ def save_public_json(existing, records, changed, now, channels=None, force=False
         "schemaVersion": 2,
         "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
     })
+    dates=sorted({local_date(r.get("startedAt") or r.get("createdAt")).date().isoformat()
+                  for r in records
+                  if local_date(r.get("startedAt") or r.get("createdAt"))})
+    if dates:
+        meta["periodStart"]=dates[0]
+        meta["periodEnd"]=dates[-1]
+        meta["periodLabel"]="Campanhas de "+dates[0]+" até "+dates[-1]
     document = {"meta": meta, "campaigns": records, "channels": channels or []}
     DATA_PATH.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return True
@@ -438,11 +453,19 @@ def run():
     sheet_id = required_env("GOOGLE_SHEET_ID")
     google_creds = required_env("GOOGLE_SERVICE_ACCOUNT_JSON")
     created_from = os.getenv("UMCLIQUE_CREATED_FROM", "2026-11-09T00:00:00-03:00")
+    fast_mode = os.getenv("UMCLIQUE_FAST_MODE","").lower() in ("true","1","yes")
     now = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
     existing = json.loads(DATA_PATH.read_text(encoding="utf-8"))
     api = api_session(api_key)
-    broadcasts = list_broadcasts(api, channel_ids, created_from)
+    # Do not restrict the commercial dashboard to legacy Meta channels.
+    # The company API key is already scoped to this authorized UmClique account.
+    if channel_ids:
+        LOG.warning("UMCLIQUE_CHANNEL_IDS legado ignorado: consulta ampla da empresa habilitada")
+    broadcasts = list_broadcasts(api, [], created_from)
     LOG.info("Transmissões encontradas na API: %d", len(broadcasts))
+    all_providers=sorted({str(ch.get("provider") or "unknown")
+        for item in broadcasts for ch in (item.get("channels") or [])})
+    LOG.info("Provedores reconhecidos nas campanhas: %s", ", ".join(all_providers) or "não informado")
     current_by_id = {str(x.get("campaignId") or x.get("id")): x for x in existing["campaigns"]}
     normalized = []
     for item in broadcasts:
@@ -472,7 +495,7 @@ def run():
     for new in normalized:
         old = current_by_id.get(str(new["campaignId"])) or {}
         report = None
-        if new.get("failures") is not None and new["failures"] > 0:
+        if new.get("failures") is not None and new["failures"] > 0 and (not fast_mode or not old or old.get("failures")!=new["failures"] or not old.get("errorDiagnostics")):
             try:
                 cid = requests.utils.quote(str(new["campaignId"]), safe="")
                 report = sanitize_errors(get_json(api, "/public-broadcasts/" + cid + "/errors"))
@@ -520,8 +543,14 @@ def run():
     google = sheets_session(google_creds)
     synced = sync_sheet(google, sheet_id, changed, records)
     channels_changed = channel_public != existing.get("channels", [])
+    # A 10-minute heartbeat verifies a successful API read even if no counters
+    # moved. Avoid publishing a Pages build every 5 minutes with unchanged data.
+    prior_checked=safe_iso((existing.get("meta") or {}).get("lastSyncedAt"))
+    elapsed=(dt.datetime.now(dt.timezone.utc)-
+             dt.datetime.fromisoformat(prior_checked.replace("Z","+00:00"))).total_seconds() if prior_checked else float("inf")
+    heartbeat_due=elapsed>=600
     public_changed = save_public_json(existing, records, changed, now, channel_public,
-                                      force=channels_changed or origins_changed)
+                                      force=channels_changed or origins_changed or heartbeat_due)
     LOG.info("Sheets atualizado: %d | JSON alterado: %s", synced, public_changed)
     if os.getenv("GITHUB_STEP_SUMMARY"):
         pathlib.Path(os.environ["GITHUB_STEP_SUMMARY"]).open("a", encoding="utf-8").write(
