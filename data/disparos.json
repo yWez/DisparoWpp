@@ -5,7 +5,7 @@
     "periodLabel": "Campanhas desde 09/11/2026",
     "periodStart": "2026-11-09",
     "periodEnd": "2026-11-10",
-    "snapshotDate": "2026-11-12",
+    "snapshotDate": "2026-11-13",
     "dataStatus": "Sincronizado da UmClique API; campos ausentes não significam zero.",
     "source": "UmClique API (estatísticas agregadas) e captura inicial de 09–10/11/2026",
     "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k/edit",
@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
+    "lastSyncedAt": "2026-11-13T02:19:06.233204Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -196,7 +196,7 @@
       "completedAt": "2026-11-09T23:19:20.460000Z",
       "source": "umclique_api",
       "legacyId": "D3",
-      "lastSyncedAt": "2026-11-11T21:56:04.396320Z",
+      "lastSyncedAt": "2026-11-13T02:19:06.233204Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -239,7 +239,7 @@
         "summary": {
           "failedTotal": 9,
           "unexplained": 3,
-          "scannedRows": 12,
+          "scannedRows": 9,
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
@@ -271,12 +271,12 @@
       "read": 64,
       "replied": 6,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T14:44:00.001875Z",
       "startedAt": "2026-11-10T14:44:03.841000Z",
       "completedAt": "2026-11-10T14:45:19.700000Z",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
+      "lastSyncedAt": "2026-11-13T02:19:06.233204Z",
       "legacyId": "D4",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
@@ -363,13 +363,13 @@
       "read": 77,
       "replied": 5,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T17:59:40.043241Z",
       "startedAt": "2026-11-10T17:59:43.828000Z",
       "completedAt": "2026-11-10T18:00:36.238000Z",
       "source": "umclique_api",
       "legacyId": "D5",
-      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
+      "lastSyncedAt": "2026-11-13T02:19:06.233204Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -603,14 +603,14 @@
       "read": 82,
       "replied": 3,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-11T17:55:02.993051Z",
       "startedAt": "2026-11-11T17:55:07.356000Z",
       "completedAt": "2026-11-11T17:56:20.428000Z",
       "period": "11/11/2026",
       "timeLabel": "11/11/2026 14:55",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
+      "lastSyncedAt": "2026-11-13T02:19:06.233204Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -664,6 +664,85 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
+      "campaignOrigin": null
+    },
+    {
+      "id": "3f6dffb3-f478-4ed7-9da7-ae40e7685d82",
+      "campaignId": "3f6dffb3-f478-4ed7-9da7-ae40e7685d82",
+      "name": "Disparo 9 - Wes",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "Meta API Oficial",
+      "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
+      "channelIds": [
+        "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
+      ],
+      "template": "disparo_novo_convite_x1",
+      "contacts": 150,
+      "sent": 150,
+      "failures": 31,
+      "delivered": 118,
+      "read": 63,
+      "replied": 6,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-12T22:53:44.779555Z",
+      "startedAt": "2026-11-12T22:53:48.278000Z",
+      "completedAt": "2026-11-12T22:55:08.925000Z",
+      "period": "12/11/2026",
+      "timeLabel": "12/11/2026 19:53",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 14,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          },
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 12,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 5,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 31,
+          "unexplained": 3,
+          "scannedRows": 43,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 31,
+        "matchesBroadcastFailures": true
+      },
+      "channelName": "Suporte LP",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T02:19:06.233204Z",
       "campaignOrigin": null
     }
   ],
