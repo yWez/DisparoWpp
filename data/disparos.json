@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-13T09:45:34.558868Z",
+    "lastSyncedAt": "2026-11-13T15:31:34.810820Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -268,15 +268,15 @@
       "statusCode": "completed",
       "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
       "delivered": 132,
-      "read": 64,
+      "read": 65,
       "replied": 6,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-10T14:44:00.001875Z",
       "startedAt": "2026-11-10T14:44:03.841000Z",
       "completedAt": "2026-11-10T14:45:19.700000Z",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-13T02:19:06.233204Z",
+      "lastSyncedAt": "2026-11-13T15:31:34.810820Z",
       "legacyId": "D4",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
@@ -331,7 +331,7 @@
         "summary": {
           "failedTotal": 18,
           "unexplained": 3,
-          "scannedRows": 26,
+          "scannedRows": 18,
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
@@ -522,16 +522,16 @@
       "statusCode": "completed",
       "channelId": "a1f3ecf5-87db-4956-9d31-a3501d42a875",
       "delivered": 132,
-      "read": 74,
+      "read": 76,
       "replied": 3,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-10T22:28:10.328040Z",
       "startedAt": "2026-11-10T22:28:14.053000Z",
       "completedAt": "2026-11-10T22:29:30.029000Z",
       "source": "umclique_api",
       "legacyId": "D7",
-      "lastSyncedAt": "2026-11-12T01:31:26.766673Z",
+      "lastSyncedAt": "2026-11-13T15:31:34.810820Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -682,7 +682,7 @@
       "sent": 150,
       "failures": 31,
       "delivered": 119,
-      "read": 68,
+      "read": 73,
       "replied": 6,
       "conversions": 0,
       "conversionValue": 0,
@@ -742,7 +742,7 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T09:45:34.558868Z",
+      "lastSyncedAt": "2026-11-13T15:31:34.810820Z",
       "campaignOrigin": null
     }
   ],
