@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+    "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -274,12 +274,12 @@
       "read": 66,
       "replied": 6,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T14:44:00.001875Z",
       "startedAt": "2026-11-10T14:44:03.841000Z",
       "completedAt": "2026-11-10T14:45:19.700000Z",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
       "legacyId": "D4",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
@@ -367,13 +367,13 @@
       "read": 79,
       "replied": 5,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T17:59:40.043241Z",
       "startedAt": "2026-11-10T17:59:43.828000Z",
       "completedAt": "2026-11-10T18:00:36.238000Z",
       "source": "umclique_api",
       "legacyId": "D5",
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -416,7 +416,7 @@
         "summary": {
           "failedTotal": 13,
           "unexplained": 3,
-          "scannedRows": 21,
+          "scannedRows": 13,
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
@@ -455,7 +455,7 @@
       "completedAt": "2026-11-10T19:40:43.851000Z",
       "source": "umclique_api",
       "legacyId": "D6",
-      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -498,7 +498,7 @@
         "summary": {
           "failedTotal": 22,
           "unexplained": 3,
-          "scannedRows": 39,
+          "scannedRows": 22,
           "truncated": false,
           "throttleCount": 0,
           "protectionPause": false
@@ -693,7 +693,7 @@
       "read": 75,
       "replied": 7,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-12T22:53:44.779555Z",
       "startedAt": "2026-11-12T22:53:48.278000Z",
       "completedAt": "2026-11-12T22:55:08.925000Z",
@@ -750,7 +750,7 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
       "campaignOrigin": null,
       "provider": "meta"
     },
@@ -1192,7 +1192,7 @@
       "read": 506,
       "replied": 59,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-12T23:01:03.670893Z",
       "startedAt": "2026-11-12T23:01:06.494000Z",
       "completedAt": "2026-11-12T23:06:29.962000Z",
@@ -1249,7 +1249,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
       "campaignOrigin": null
     },
     {
@@ -1272,7 +1272,7 @@
       "read": 48,
       "replied": 2,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-13T00:21:00.652173Z",
       "startedAt": "2026-11-13T00:21:03.725000Z",
       "completedAt": "2026-11-13T00:22:01.277000Z",
@@ -1329,7 +1329,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
       "campaignOrigin": null
     },
     {
@@ -1349,7 +1349,7 @@
       "sent": 500,
       "failures": 90,
       "delivered": 408,
-      "read": 200,
+      "read": 201,
       "replied": 13,
       "conversions": 0,
       "conversionValue": 0,
@@ -1420,7 +1420,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
       "campaignOrigin": null
     },
     {
@@ -1443,7 +1443,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-13T18:38:53.087683Z",
       "startedAt": "2026-11-13T18:38:54.866000Z",
       "completedAt": "2026-11-13T18:42:04.017000Z",
@@ -1454,7 +1454,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
       "campaignOrigin": null
     },
     {
@@ -1477,7 +1477,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-13T18:56:53.447897Z",
       "startedAt": "2026-11-13T18:56:55.077000Z",
       "completedAt": "2026-11-13T18:57:10.985000Z",
@@ -1488,7 +1488,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
       "campaignOrigin": null
     }
   ],
