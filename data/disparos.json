@@ -2,9 +2,9 @@
   "meta": {
     "project": "LP Crypto",
     "title": "Disparos WhatsApp",
-    "periodLabel": "Campanhas desde 09/11/2026",
+    "periodLabel": "Campanhas de 2026-11-09 até 2026-11-12",
     "periodStart": "2026-11-09",
-    "periodEnd": "2026-11-10",
+    "periodEnd": "2026-11-12",
     "snapshotDate": "2026-11-13",
     "dataStatus": "Sincronizado da UmClique API; campos ausentes não significam zero.",
     "source": "UmClique API (estatísticas agregadas) e captura inicial de 09–10/11/2026",
@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-13T15:31:34.810820Z",
+    "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -27,7 +27,7 @@
       "sent": 51,
       "failures": 3,
       "status": "Concluída",
-      "channel": "Meta API Oficial",
+      "channel": "WhatsApp API Oficial",
       "template": "convite_evento_base_quente_mkt",
       "timeLabel": "09/11/2026 15:22",
       "period": "09/11/2026",
@@ -45,7 +45,7 @@
       "completedAt": "2026-11-09T18:22:54.106000Z",
       "source": "umclique_api",
       "legacyId": "D1",
-      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -88,7 +88,8 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "campaignOrigin": null
+      "campaignOrigin": null,
+      "provider": "meta"
     },
     {
       "id": "47ed682d-7acf-4619-958a-39c2cb801756",
@@ -97,7 +98,7 @@
       "sent": 50,
       "failures": 3,
       "status": "Concluída",
-      "channel": "Meta API Oficial",
+      "channel": "WhatsApp API Oficial",
       "template": "convite_evento_base_quente_mkt",
       "timeLabel": "09/11/2026 18:08",
       "period": "09/11/2026",
@@ -115,7 +116,7 @@
       "completedAt": "2026-11-09T21:09:22.835000Z",
       "source": "umclique_api",
       "legacyId": "D2",
-      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -169,7 +170,8 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "campaignOrigin": null
+      "campaignOrigin": null,
+      "provider": "meta"
     },
     {
       "id": "c64ce9cc-9753-41d4-9196-ca9487046300",
@@ -178,7 +180,7 @@
       "sent": 51,
       "failures": 9,
       "status": "Concluída",
-      "channel": "Meta API Oficial",
+      "channel": "WhatsApp API Oficial",
       "template": "convite_evento_base_quente_mkt",
       "timeLabel": "09/11/2026 20:18",
       "period": "09/11/2026",
@@ -196,7 +198,7 @@
       "completedAt": "2026-11-09T23:19:20.460000Z",
       "source": "umclique_api",
       "legacyId": "D3",
-      "lastSyncedAt": "2026-11-13T02:19:06.233204Z",
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -250,7 +252,8 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "campaignOrigin": null
+      "campaignOrigin": null,
+      "provider": "meta"
     },
     {
       "id": "44eff7a0-f63a-454b-a518-75ddb5422083",
@@ -259,7 +262,7 @@
       "sent": 150,
       "failures": 16,
       "status": "Concluída",
-      "channel": "Meta API Oficial",
+      "channel": "WhatsApp API Oficial",
       "template": "convite_evento_base_quente_mkt",
       "timeLabel": "10/11/2026 11:44",
       "period": "10/11/2026",
@@ -271,12 +274,12 @@
       "read": 65,
       "replied": 6,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T14:44:00.001875Z",
       "startedAt": "2026-11-10T14:44:03.841000Z",
       "completedAt": "2026-11-10T14:45:19.700000Z",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-13T15:31:34.810820Z",
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
       "legacyId": "D4",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
@@ -342,7 +345,8 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "campaignOrigin": null
+      "campaignOrigin": null,
+      "provider": "meta"
     },
     {
       "id": "a1ad7290-b916-4602-9cef-ce4dd12aedbc",
@@ -351,7 +355,7 @@
       "sent": 150,
       "failures": 12,
       "status": "Concluída",
-      "channel": "Meta API Oficial",
+      "channel": "WhatsApp API Oficial",
       "template": "convite_evento_base_quente_mkt",
       "timeLabel": "10/11/2026 14:59",
       "period": "10/11/2026",
@@ -369,7 +373,7 @@
       "completedAt": "2026-11-10T18:00:36.238000Z",
       "source": "umclique_api",
       "legacyId": "D5",
-      "lastSyncedAt": "2026-11-13T02:19:06.233204Z",
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -423,7 +427,8 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "campaignOrigin": null
+      "campaignOrigin": null,
+      "provider": "meta"
     },
     {
       "id": "63e4b627-e63c-46a7-991d-b0f37ab252ea",
@@ -432,7 +437,7 @@
       "sent": 150,
       "failures": 22,
       "status": "Concluída",
-      "channel": "Meta API Oficial",
+      "channel": "WhatsApp API Oficial",
       "template": "convite_evento_base_quente_mkt",
       "timeLabel": "10/11/2026 16:39",
       "period": "10/11/2026",
@@ -450,7 +455,7 @@
       "completedAt": "2026-11-10T19:40:43.851000Z",
       "source": "umclique_api",
       "legacyId": "D6",
-      "lastSyncedAt": "2026-11-12T21:52:25.795170Z",
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -504,7 +509,8 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "campaignOrigin": null
+      "campaignOrigin": null,
+      "provider": "meta"
     },
     {
       "id": "6bc26241-0bcf-44ab-bc38-864904c9aff6",
@@ -513,7 +519,7 @@
       "sent": 150,
       "failures": 18,
       "status": "Concluída",
-      "channel": "Meta API Oficial",
+      "channel": "WhatsApp API Oficial",
       "template": "convite_evento_base_quente_mkt",
       "timeLabel": "10/11/2026 19:28",
       "period": "10/11/2026",
@@ -525,13 +531,13 @@
       "read": 76,
       "replied": 3,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T22:28:10.328040Z",
       "startedAt": "2026-11-10T22:28:14.053000Z",
       "completedAt": "2026-11-10T22:29:30.029000Z",
       "source": "umclique_api",
       "legacyId": "D7",
-      "lastSyncedAt": "2026-11-13T15:31:34.810820Z",
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -585,7 +591,8 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "campaignOrigin": null
+      "campaignOrigin": null,
+      "provider": "meta"
     },
     {
       "id": "dbc0a60c-03e5-4725-a955-246d71c8dfe1",
@@ -593,7 +600,7 @@
       "name": "Disparo 8 - Wes",
       "status": "Concluída",
       "statusCode": "completed",
-      "channel": "Meta API Oficial",
+      "channel": "WhatsApp API Oficial",
       "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
       "template": "convite_evento_base_quente_mkt",
       "contacts": 150,
@@ -610,7 +617,7 @@
       "period": "11/11/2026",
       "timeLabel": "11/11/2026 14:55",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-13T02:19:06.233204Z",
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -664,7 +671,8 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "campaignOrigin": null
+      "campaignOrigin": null,
+      "provider": "meta"
     },
     {
       "id": "3f6dffb3-f478-4ed7-9da7-ae40e7685d82",
@@ -672,7 +680,7 @@
       "name": "Disparo 9 - Wes",
       "status": "Concluída",
       "statusCode": "completed",
-      "channel": "Meta API Oficial",
+      "channel": "WhatsApp API Oficial",
       "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
@@ -685,7 +693,7 @@
       "read": 73,
       "replied": 6,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-12T22:53:44.779555Z",
       "startedAt": "2026-11-12T22:53:48.278000Z",
       "completedAt": "2026-11-12T22:55:08.925000Z",
@@ -742,15 +750,606 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T15:31:34.810820Z",
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null,
+      "provider": "meta"
+    },
+    {
+      "id": "6cfb3e2c-ed81-430f-af24-c7188bab60a5",
+      "campaignId": "6cfb3e2c-ed81-430f-af24-c7188bab60a5",
+      "name": "Convite base - primeiros 100",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "Provedor não informado",
+      "provider": "unknown",
+      "channelId": "",
+      "channelIds": [],
+      "template": "",
+      "contacts": 99,
+      "sent": 99,
+      "failures": 13,
+      "delivered": 84,
+      "read": 60,
+      "replied": 3,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-09T12:56:26.432288Z",
+      "startedAt": "2026-11-09T12:56:30.810000Z",
+      "completedAt": "2026-11-09T12:57:23.186000Z",
+      "period": "09/11/2026",
+      "timeLabel": "09/11/2026 09:56",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 7,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          },
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 4,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 3,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 14,
+          "unexplained": 3,
+          "scannedRows": 14,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 14,
+        "matchesBroadcastFailures": false
+      },
+      "channelName": "Canal sem identificação",
+      "channelStatus": null,
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "7be81b90-3123-4426-bbf1-732398356e4d",
+      "campaignId": "7be81b90-3123-4426-bbf1-732398356e4d",
+      "name": "Disparo base - 2",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "Provedor não informado",
+      "provider": "unknown",
+      "channelId": "",
+      "channelIds": [],
+      "template": "",
+      "contacts": 101,
+      "sent": 101,
+      "failures": 9,
+      "delivered": 88,
+      "read": 44,
+      "replied": 2,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-09T13:03:31.467736Z",
+      "startedAt": "2026-11-09T13:03:35.263000Z",
+      "completedAt": "2026-11-09T13:04:26.579000Z",
+      "period": "09/11/2026",
+      "timeLabel": "09/11/2026 10:03",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 5,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 4,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          },
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 2,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 11,
+          "unexplained": 3,
+          "scannedRows": 11,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 11,
+        "matchesBroadcastFailures": false
+      },
+      "channelName": "Canal sem identificação",
+      "channelStatus": null,
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "142dbd4b-c1f0-4548-8860-c8fe8c1533a1",
+      "campaignId": "142dbd4b-c1f0-4548-8860-c8fe8c1533a1",
+      "name": "Chamada grupos antigos terca 10:30",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 15,
+      "sent": 15,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-10T13:27:47.959125Z",
+      "startedAt": "2026-11-10T13:27:49.769000Z",
+      "completedAt": "2026-11-10T13:29:06.323000Z",
+      "period": "10/11/2026",
+      "timeLabel": "10/11/2026 10:27",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "dd183ccb-773c-41fb-9d16-c47bd195642f",
+      "campaignId": "dd183ccb-773c-41fb-9d16-c47bd195642f",
+      "name": "Disparo grupo terca",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 1,
+      "sent": 1,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-10T15:45:48.539791Z",
+      "startedAt": "2026-11-10T15:45:50.579000Z",
+      "completedAt": "2026-11-10T15:46:02.716000Z",
+      "period": "10/11/2026",
+      "timeLabel": "10/11/2026 12:45",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "d0fc9d07-36dd-43fc-806e-c39c1a2644e1",
+      "campaignId": "d0fc9d07-36dd-43fc-806e-c39c1a2644e1",
+      "name": "11/nov",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 1,
+      "sent": 1,
+      "failures": 1,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-11T13:03:33.603288Z",
+      "startedAt": "2026-11-11T13:03:35.363000Z",
+      "completedAt": "2026-11-11T13:05:13.445000Z",
+      "period": "11/11/2026",
+      "timeLabel": "11/11/2026 10:03",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "error sending message after 2 attempts: websocket ",
+            "title": "Falha no envio",
+            "description": "error sending message after 2 attempts: websocket disconnected before message send returned response",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 1,
+            "type": "Outros/não classificados",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar documentação oficial",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 1,
+          "unexplained": 1,
+          "scannedRows": 2,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 1,
+        "matchesBroadcastFailures": true
+      },
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "3f48ffd3-445a-4d30-9bcd-9dc81a0d1312",
+      "campaignId": "3f48ffd3-445a-4d30-9bcd-9dc81a0d1312",
+      "name": "11/nov",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 15,
+      "sent": 15,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-11T13:05:46.442060Z",
+      "startedAt": "2026-11-11T13:05:48.044000Z",
+      "completedAt": "2026-11-11T13:06:50.186000Z",
+      "period": "11/11/2026",
+      "timeLabel": "11/11/2026 10:05",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "3d999fdf-122f-4a27-b7c2-bd463ca7d277",
+      "campaignId": "3d999fdf-122f-4a27-b7c2-bd463ca7d277",
+      "name": "quinta 1",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 15,
+      "sent": 19,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-12T13:06:11.505646Z",
+      "startedAt": "2026-11-12T13:06:13.343000Z",
+      "completedAt": "2026-11-12T13:07:06.684000Z",
+      "period": "12/11/2026",
+      "timeLabel": "12/11/2026 10:06",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "f19b1e75-fb69-4c44-acef-9aefeb8ec735",
+      "campaignId": "f19b1e75-fb69-4c44-acef-9aefeb8ec735",
+      "name": "grupos quinta noite",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 15,
+      "sent": 15,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-12T22:45:41.345111Z",
+      "startedAt": "2026-11-12T22:45:43.463000Z",
+      "completedAt": "2026-11-12T22:46:39.957000Z",
+      "period": "12/11/2026",
+      "timeLabel": "12/11/2026 19:45",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "c18aaacd-0208-4b9d-bd6e-ad6f938adcd8",
+      "campaignId": "c18aaacd-0208-4b9d-bd6e-ad6f938adcd8",
+      "name": "Grupo quinta 12",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 1,
+      "sent": 1,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-12T22:51:00.068532Z",
+      "startedAt": "2026-11-12T22:51:01.875000Z",
+      "completedAt": "2026-11-12T22:51:08.883000Z",
+      "period": "12/11/2026",
+      "timeLabel": "12/11/2026 19:51",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "97b006ba-d76b-431a-9a6b-8b4c4b66b690",
+      "campaignId": "97b006ba-d76b-431a-9a6b-8b4c4b66b690",
+      "name": "Recuperação para o Grupo 2 ",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp API Oficial",
+      "provider": "meta",
+      "channelId": "2a0067c3-aed6-4d22-96c5-82326ba2c896",
+      "channelIds": [
+        "2a0067c3-aed6-4d22-96c5-82326ba2c896"
+      ],
+      "template": "reconvite_grupo_oficial",
+      "contacts": 1099,
+      "sent": 1099,
+      "failures": 162,
+      "delivered": 927,
+      "read": 494,
+      "replied": 56,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-12T23:01:03.670893Z",
+      "startedAt": "2026-11-12T23:01:06.494000Z",
+      "completedAt": "2026-11-12T23:06:29.962000Z",
+      "period": "12/11/2026",
+      "timeLabel": "12/11/2026 20:01",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 90,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          },
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 49,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 23,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 162,
+          "unexplained": 3,
+          "scannedRows": 211,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 162,
+        "matchesBroadcastFailures": true
+      },
+      "channelName": "Equipe Luisa Pires 02",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "0a299985-d221-456b-96a7-b32992b29619",
+      "campaignId": "0a299985-d221-456b-96a7-b32992b29619",
+      "name": "Disparo 10 - Wes",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp API Oficial",
+      "provider": "meta",
+      "channelId": "2a0067c3-aed6-4d22-96c5-82326ba2c896",
+      "channelIds": [
+        "2a0067c3-aed6-4d22-96c5-82326ba2c896"
+      ],
+      "template": "abordagem_comercial_copy_carol",
+      "contacts": 100,
+      "sent": 100,
+      "failures": 15,
+      "delivered": 85,
+      "read": 47,
+      "replied": 2,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-13T00:21:00.652173Z",
+      "startedAt": "2026-11-13T00:21:03.725000Z",
+      "completedAt": "2026-11-13T00:22:01.277000Z",
+      "period": "12/11/2026",
+      "timeLabel": "12/11/2026 21:21",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 9,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          },
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 3,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 3,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 15,
+          "unexplained": 3,
+          "scannedRows": 18,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 15,
+        "matchesBroadcastFailures": true
+      },
+      "channelName": "Equipe Luisa Pires 02",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
       "campaignOrigin": null
     }
   ],
   "channels": [
     {
+      "id": "2a0067c3-aed6-4d22-96c5-82326ba2c896",
+      "name": "Equipe Luisa Pires 02",
+      "provider": "meta",
+      "status": "connected"
+    },
+    {
       "id": "a1f3ecf5-87db-4956-9d31-a3501d42a875",
       "name": "Equipe Luisa Pires 01",
       "provider": "meta",
+      "status": "connected"
+    },
+    {
+      "id": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "name": "Aline",
+      "provider": "uazapi",
       "status": "connected"
     },
     {
