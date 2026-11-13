@@ -112,20 +112,39 @@ class TestUmCliqueSync(unittest.TestCase):
         self.assertEqual(calls, ["ch-one", "ch-two"])
         self.assertEqual([v["id"] for v in result], ["a", "b", "c"])
 
-    def test_optional_channel_ids_use_safe_discovery(self):
-        original_discover = sync.discover_channel_ids
-        original_get = sync.get_json
+    def test_default_scope_imports_all_company_broadcasts(self):
+        calls=[]
+        original_get=sync.get_json
         try:
-            sync.discover_channel_ids = lambda session, created: ["channel-A", "channel-B"]
-            sync.get_json = lambda session, path, **params: {
-                "broadcasts": [{"id": params["channel_id"], "name": "Teste"}],
-                "next_offset": None
-            }
-            records = sync.list_broadcasts(None, "", "2026-11-09T00:00:00-03:00")
+            def fake(session,path,**params):
+                calls.append(params)
+                return {"broadcasts":[
+                    {"id":"meta-1","name":"Campanha Meta","channels":[{"provider":"meta"}]},
+                    {"id":"qr-1","name":"Campanha QR","channels":[{"provider":"uazapi"}]},
+                    {"id":"other-1","name":"Campanha sem canal"}
+                ],"next_offset":None}
+            sync.get_json=fake
+            rows=sync.list_broadcasts(None,"","2026-11-09T00:00:00-03:00")
         finally:
-            sync.discover_channel_ids = original_discover
-            sync.get_json = original_get
-        self.assertEqual([x["id"] for x in records], ["channel-A", "channel-B"])
+            sync.get_json=original_get
+        self.assertEqual(len(rows),3)
+        self.assertNotIn("provider",calls[0])
+        self.assertNotIn("channel_id",calls[0])
+
+    def test_qr_provider_never_mislabeled_as_meta(self):
+        qr=dict(self.item,channels=[{"channel_id":"qr-01","provider":"uazapi"}])
+        row=sync.public_record(qr)
+        self.assertEqual(row["provider"],"uazapi")
+        self.assertEqual(row["channel"],"WhatsApp QR Code")
+        vals=sync.sheet_values(row,17)
+        self.assertEqual(vals[9],"WhatsApp QR Code")
+        self.assertNotIn("contacts_sample",row)
+
+    def test_unknown_provider_not_faked(self):
+        no_channel=dict(self.item,channels=[])
+        row=sync.public_record(no_channel)
+        self.assertEqual(row["provider"],"unknown")
+        self.assertEqual(row["channel"],"Provedor não informado")
 
     def test_discover_two_channels_for_seven_historical_campaigns(self):
         expected = [51, 50, 51, 150, 150, 150, 150]
