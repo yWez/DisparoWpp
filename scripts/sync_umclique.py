@@ -364,7 +364,7 @@ def sheet_values(record, rownum, original=None):
         read_number(record.get("contacts")), read_number(record.get("sent")),
         read_number(record.get("failures")), f'=IF(OR(E{rownum}="";F{rownum}="");"";E{rownum}-F{rownum})',
         f'=IF(OR(E{rownum}="";E{rownum}=0;F{rownum}="");"";F{rownum}/E{rownum})', record.get("status") or "",
-        "Meta API Oficial", record.get("template") or original[10],
+        record.get("channel") or "Provedor não informado", record.get("template") or original[10],
         original[11] or "Fonte UmClique API • métricas por campanha",
         record.get("campaignId") or "", record.get("startedAt") or "",
         record.get("completedAt") or "", read_number(record.get("delivered")),
