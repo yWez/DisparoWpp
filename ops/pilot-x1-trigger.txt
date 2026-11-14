@@ -1,1 +1,0 @@
-Validar uma consulta real do funil X1 sem expor PII.
