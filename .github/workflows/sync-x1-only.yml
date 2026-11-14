@@ -1,0 +1,89 @@
+name: Atualizar X1 - fonte privada leve
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["ops/manual-x1-refresh.txt"]
+  # Consulta de cadastros/participantes independente da fila de campanhas.
+  schedule:
+    - cron: "2-59/5 * * * *"
+  # Ajuda a atualizar X1 quando houver sincronização de campanhas, sem
+  # depender da disponibilidade/tempo da API da UmClique.
+  workflow_run:
+    workflows: ["Atualizar campanhas - consulta rápida"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lp-x1-only
+  cancel-in-progress: false
+
+jobs:
+  x1:
+    if: ${{ github.event_name == 'workflow_dispatch' || vars.UMCLIQUE_SYNC_ENABLED != 'false' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --disable-pip-version-check requests google-auth
+      - name: Validar credenciais privadas
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GH_PAGES_PUSH_TOKEN: ${{ secrets.GH_PAGES_PUSH_TOKEN }}
+        shell: bash
+        run: |
+          if [ -z "$GOOGLE_SERVICE_ACCOUNT_JSON" ] || [ -z "$GH_PAGES_PUSH_TOKEN" ]; then
+            echo "::error::Credenciais privadas da fonte X1 indisponíveis."
+            exit 1
+          fi
+      - name: Cruzar captação X1 com grupos verificados
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          X1_CAPTACAO_SHEET_ID: "1AtxjojmOi3aAFk1gSc1O7Su4pQUSrgsndnNGZkkMU7U"
+          X1_GROUP_SHEET_ID: "1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k"
+        run: |
+          python scripts/sync_x1.py
+          python - <<'PY'
+          import json
+          with open("data/x1-attribution.json", encoding="utf-8") as f:
+              report=json.load(f)
+          assert report["meta"].get("schemaVersion",0)>=3, "Fonte X1 não foi consultada com sucesso"
+          assert report["groupMembers"] is None or 0 <= report["groupMembers"] <= report["uniquePhones"]
+          assert report["groupJoins"] is None or 0 <= report["groupJoins"] <= report["uniquePhones"]
+          print("Conciliação X1 autenticada. Dados agregados e seguros.")
+          print("Membros verificados:", report["groupRosterStatus"])
+          PY
+      - name: Publicar somente os agregados X1
+        env:
+          GH_PAGES_PUSH_TOKEN: ${{ secrets.GH_PAGES_PUSH_TOKEN }}
+        shell: bash
+        run: |
+          if git diff --quiet -- data/x1-attribution.json; then
+            echo "X1 consultado; sem alterações para publicação."
+            exit 0
+          fi
+          git config user.name "LP Crypto Automação"
+          git config user.email "automation@users.noreply.github.com"
+          git add data/x1-attribution.json
+          git commit -m "data: atualizar cadastros X1 e membros verificados"
+          git remote set-url origin "https://x-access-token:${GH_PAGES_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}.git"
+              exit 0
+            fi
+            sleep 2
+          done
+          git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          echo "::error::Falha ao publicar os agregados X1."
+          exit 1
