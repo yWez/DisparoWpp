@@ -77,7 +77,7 @@ body.v2-active #campaignRows td{padding:13px 16px}
 
 
 /* X1 funnel — six clear cards, balanced on desktop and readable on mobile. */
-#v2X1Kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+#v2X1Kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
 #v2X1Kpis .v2-kpi{border-top:3px solid #d7c9ff}
 #v2X1Kpis .v2-kpi:nth-child(1),
 #v2X1Kpis .v2-kpi:nth-child(4){border-top-color:#31ad96}
