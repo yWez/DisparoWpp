@@ -269,8 +269,8 @@ function renderCopies(rows){
 }
 function funnelRows(s){
  const external=state.funnel?.stages||{},safe=k=>(external[k]?.verified===true&&typeof external[k]?.count==="number"?external[k].count:null);
- const x=state.x1||{},registrations=Number.isFinite(x.registrations)?x.registrations:safe("registrations");
- const joins=Number.isFinite(x.groupJoins)?x.groupJoins:safe("groupJoins");
+ const x=state.x1||{},registrations=Number.isFinite(x.registrations)?x.registrations:null;
+ const joins=Number.isFinite(x.groupJoins)?x.groupJoins:null;
  return [["Enviadas",s.metrics.sent.value],["Entregues",s.metrics.delivered.value],["Lidas",s.metrics.read.value],["Responderam (por campanha)",s.metrics.replied.value],["Inscrições X1 na página",registrations],["Entradas confirmadas no grupo (X1)",joins],["Participantes da live",safe("liveAttendees")],["Compras",safe("purchases")]];
 }
 function funnel(s){
