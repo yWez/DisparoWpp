@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-14T20:38:50.579959Z",
+    "lastSyncedAt": "2026-11-14T20:47:04.224139Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1349,10 +1349,10 @@
       "sent": 500,
       "failures": 90,
       "delivered": 410,
-      "read": 235,
+      "read": 236,
       "replied": 16,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-13T18:14:02.145408Z",
       "startedAt": "2026-11-13T18:14:05.109000Z",
       "completedAt": "2026-11-13T18:16:48.734000Z",
@@ -1420,7 +1420,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T20:22:58.744494Z",
+      "lastSyncedAt": "2026-11-14T20:47:04.224139Z",
       "campaignOrigin": null
     },
     {
@@ -1637,6 +1637,86 @@
       "channelStatus": "connected",
       "uniqueReached": null,
       "lastSyncedAt": "2026-11-14T15:41:43.145705Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "d55ef9e9-2e6d-400c-a555-87573f6e58e9",
+      "campaignId": "d55ef9e9-2e6d-400c-a555-87573f6e58e9",
+      "name": "500 sabado",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp API Oficial",
+      "provider": "meta",
+      "channelId": "2a0067c3-aed6-4d22-96c5-82326ba2c896",
+      "channelIds": [
+        "2a0067c3-aed6-4d22-96c5-82326ba2c896"
+      ],
+      "template": "abordagem_comercial_copy_carol",
+      "contacts": 497,
+      "sent": 497,
+      "failures": 76,
+      "delivered": 388,
+      "read": 68,
+      "replied": 12,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-14T20:46:06.071527Z",
+      "startedAt": "2026-11-14T20:46:09.526000Z",
+      "completedAt": "2026-11-14T20:49:03.358000Z",
+      "period": "14/11/2026",
+      "timeLabel": "14/11/2026 17:46",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 40,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          },
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 29,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 7,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 76,
+          "unexplained": 3,
+          "scannedRows": 105,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 76,
+        "matchesBroadcastFailures": true
+      },
+      "channelName": "Equipe Luisa Pires 02",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-14T20:47:04.224139Z",
       "campaignOrigin": null
     }
   ],
