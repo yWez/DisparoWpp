@@ -1,18 +1,28 @@
 {
   "meta": {
+    "schemaVersion": 2,
     "source": "Google Sheets • Captação • LP Crypto Black 2026",
     "filter": {
       "utm_source": "whatsapp",
       "utm_medium": "x1"
     },
-    "lastSyncedAt": "2026-11-12T15:14:40.043973Z",
-    "definition": "Cadastros confirmados na página LP; não significa entrada confirmada no grupo",
-    "status": "Atribuição por disparo apenas com UTM individual verificável",
-    "privacy": "Somente contagens agregadas, sem telefones ou dados pessoais"
+    "lastSyncedAt": "2026-11-14T02:22:07.748800Z",
+    "lastCheckedAt": "2026-11-14T02:22:07.748800Z",
+    "definition": "Cadastros na página LP com deduplicação cronológica; não comprova entrada em grupo",
+    "attributionRule": "Somente ID exato de disparo em utm_campaign/utm_content, primeira inscrição por telefone",
+    "groupRule": "Entrada apenas com evento/checagem de participantes documentada na aba privada; clique em convite não conta",
+    "groupStatus": "unavailable",
+    "privacy": "Somente contagens agregadas; telefones, nomes e eventos privados nunca publicados"
   },
   "registrations": 43,
   "uniquePhones": 43,
+  "registrationsWithoutPhone": 0,
+  "sourceRowsRead": 1436,
+  "x1RowsFound": 43,
+  "duplicatesRemoved": 0,
   "groupJoins": null,
+  "groupJoinRate": null,
+  "groupJoinDaily": null,
   "daily": [
     {
       "day": "2026-11-09",
@@ -38,5 +48,6 @@
     }
   ],
   "byCampaign": [],
-  "unattributedRegistrations": 43
+  "unattributedRegistrations": 43,
+  "attributionCoverage": 0.0
 }
