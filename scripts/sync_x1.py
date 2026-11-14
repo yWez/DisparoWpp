@@ -83,7 +83,7 @@ def fetch_group_events(session, sheet_id=GROUP_SHEET_ID):
     Group joins can be entered manually from an actual member audit, or by a
     future authenticated webhook. Merely clicking an invite link is insufficient.
     """
-    url = f"https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}/values/{quote(repr(GROUP_TAB) + '!A1:F50000', safe='')}"
+    url = f"https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}/values/{quote(repr(GROUP_TAB) + '!A1:F', safe='')}"
     response = session.get(url, timeout=(12, 40))
     if response.status_code == 400 and "Unable to parse range" in response.text:
         return None
@@ -219,7 +219,7 @@ def build_summary(columns, campaigns, now, group_events=None):
         "x1RowsFound": diag["x1RowsFound"],
         "duplicatesRemoved": diag["duplicatesRemoved"],
         "groupJoins": len(joins) if joins is not None else None,
-        "groupJoinRate": (len(joins)/len(unique)) if joins is not None and unique else None,
+        "groupJoinRate": (len(joins)/len(phones)) if joins is not None and phones else None,
         "groupJoinDaily": ([{"day": d, "joins": n} for d,n in sorted(join_days.items())]
                            if join_days is not None else None),
         "daily": [{"day": d, "registrations": n} for d,n in sorted(days.items())],
