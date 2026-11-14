@@ -1,1 +1,1 @@
-Ativar sincronização rápida multicanal da UmClique ao publicar no main; conferir 20 campanhas sem contatos pessoais. 13/11/2026.
+Validar importação privada dos grupos X1 em produção (schema 3), sem números de participantes inventados, após merge de 13/11/2026. Não publicar dados pessoais.
