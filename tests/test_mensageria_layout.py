@@ -51,6 +51,9 @@ class LayoutAndCadenceTests(unittest.TestCase):
                      "group: umclique-sync"):
             self.assertIn(must,workflow)
         self.assertIn("group: umclique-sync",fast)
+        self.assertIn("python scripts/sync_x1.py",fast)
+        self.assertIn("data/disparos.json data/x1-attribution.json",fast)
+        self.assertIn("X1_GROUP_SHEET_ID",fast)
 
 if __name__=="__main__":
     unittest.main()

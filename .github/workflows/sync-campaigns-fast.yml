@@ -52,18 +52,26 @@ jobs:
           UMCLIQUE_CREATED_FROM: "2026-11-09T00:00:00-03:00"
           UMCLIQUE_FAST_MODE: "true"
         run: python scripts/sync_umclique.py
+      - name: Sincronizar cadastros X1 e comprovações de grupo
+        # A fonte X1 é pequena; não depende da varredura da mensageria.
+        continue-on-error: true
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          X1_CAPTACAO_SHEET_ID: "1AtxjojmOi3aAFk1gSc1O7Su4pQUSrgsndnNGZkkMU7U"
+          X1_GROUP_SHEET_ID: "1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k"
+        run: python scripts/sync_x1.py
       - name: Publicar dashboard sem sobrescrever outros fluxos
         env:
           GH_PAGES_PUSH_TOKEN: ${{ secrets.GH_PAGES_PUSH_TOKEN }}
         shell: bash
         run: |
-          if git diff --quiet -- data/disparos.json; then
+          if git diff --quiet -- data/disparos.json data/x1-attribution.json; then
             echo "API consultada; sem mudanças para publicação."
             exit 0
           fi
           git config user.name "LP Crypto Automação"
           git config user.email "automation@users.noreply.github.com"
-          git add data/disparos.json
+          git add data/disparos.json data/x1-attribution.json
           git commit -m "data: atualizar campanhas de todos os canais da UmClique"
           git remote set-url origin "https://x-access-token:${GH_PAGES_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           for attempt in 1 2 3; do
