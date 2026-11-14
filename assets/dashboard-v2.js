@@ -196,6 +196,9 @@ function renderX1(rows){
  const checkedAt=lastCheck?new Date(lastCheck):null;
  const checkedLabel=checkedAt&&Number.isFinite(checkedAt.getTime())?
   checkedAt.toLocaleString("pt-BR",{timeZone:"America/Fortaleza",dateStyle:"short",timeStyle:"short"}):"Não disponível";
+ const checkedAge=checkedAt&&Number.isFinite(checkedAt.getTime())?
+  Math.max(0,Math.floor((Date.now()-checkedAt.getTime())/60000)):null;
+ const x1Stale=checkedAge==null||checkedAge>30;
  $("v2X1Kpis").replaceChildren(
   kpi("Cadastros na página X1",verified?N(x.registrations):"Não disponível","UTM whatsapp / x1 · deduplicação cronológica por telefone","positive"),
   kpi("Entradas confirmadas no grupo",groupsVerified?N(x.groupJoins):"Não disponível",
@@ -210,6 +213,7 @@ function renderX1(rows){
     "Cadastros com disparo conhecido ÷ cadastros X1", "unknown")
  );
  $("v2X1Status").textContent=verified?
+  (x1Stale?"⚠ X1 com atualização atrasada. ":"✓ X1 com consulta recente. ")+
   "Fonte: "+(x.meta?.source||"Captação")+". Última leitura autenticada: "+checkedLabel+
   ". Os KPIs da página referem-se a toda a fonte X1; o filtro de campanhas afeta apenas as linhas por disparo. Sem UTM individual não é possível afirmar qual disparo gerou um cadastro.":
   "Captação X1 indisponível: não exibimos zero no lugar de registros não consultados.";
