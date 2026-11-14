@@ -44,16 +44,19 @@ class LayoutAndCadenceTests(unittest.TestCase):
         self.assertIn("minutes:15",scheduler)
         self.assertIn("GITHUB_ACTIONS_TOKEN",scheduler)
         self.assertNotIn("ghp_",scheduler)
-        # The original campaigns/X1/messaging paths and secrets remain intact.
-        for must in ("scripts/sync_umclique.py","scripts/sync_x1.py",
-                     "scripts/sync_mensageria.py","UMCLIQUE_API_KEY",
+        # Campaigns+X1 and heavy messaging have independent queues and files.
+        for must in ("scripts/sync_mensageria.py","UMCLIQUE_API_KEY",
                      "GOOGLE_SERVICE_ACCOUNT_JSON","GH_PAGES_PUSH_TOKEN",
-                     "group: umclique-sync"):
+                     "group: umclique-mensageria","git add data/mensageria.json"):
             self.assertIn(must,workflow)
-        self.assertIn("group: umclique-sync",fast)
-        self.assertIn("python scripts/sync_x1.py",fast)
-        self.assertIn("data/disparos.json data/x1-attribution.json",fast)
-        self.assertIn("X1_GROUP_SHEET_ID",fast)
+        for forbidden in ("python scripts/sync_umclique.py","python scripts/sync_x1.py",
+                          "git add data/disparos.json"):
+            self.assertNotIn(forbidden,workflow)
+        for must in ("group: umclique-sync", "python scripts/sync_umclique.py",
+                     "python scripts/sync_x1.py", "X1_GROUP_SHEET_ID",
+                     "data/disparos.json data/x1-attribution.json"):
+            self.assertIn(must,fast)
+        self.assertNotIn("scripts/sync_mensageria.py",fast)
 
 if __name__=="__main__":
     unittest.main()
