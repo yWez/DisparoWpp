@@ -1,3 +1,19 @@
+## X1 — inscrições, grupo e atribuição auditável
+
+A seção **Conversões X1 — captação** do [dashboard comercial](https://ywez.github.io/DisparoWpp/)
+separa registros da página, entradas comprovadas no grupo e cadastros atribuíveis
+a cada disparo com UTM **exclusiva**. Registros repetidos são associados à
+**primeira inscrição cronológica** do mesmo telefone, mesmo que a planilha
+esteja fora de ordem. O painel informa a última consulta válida, a quantidade
+de registros duplicados e a cobertura de UTMs identificáveis.
+
+Foi criada a aba privada [**Entradas Grupo X1**](https://docs.google.com/spreadsheets/d/1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k/edit)
+para eventos de participação comprovados. Ela começa **vazia**; até existirem
+eventos reais, a métrica de grupo continuará mostrando **Não disponível**.
+Nenhum telefone ou dado de participante é publicado no GitHub.
+
+**[Como registrar evidências de grupo e usar UTMs específicas](docs/X1_FUNIL_RASTREABILIDADE.md).**
+
 ## Navegação com rolagem — atualização de UX
 
 As abas **Disparos e campanhas** e **Acompanhamento de Mensageria** agora mantêm todas as listas longas dentro de áreas com altura limitada: histórico de campanhas, comparativos diários, erros, desempenho dos canais, X1, volume por campanha, responsáveis e origens.

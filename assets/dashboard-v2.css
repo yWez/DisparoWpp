@@ -74,3 +74,17 @@ body.v2-active #campaignRows td{padding:13px 16px}
 @media(max-width:1000px){.v2-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.v2-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.v2-grid-2{grid-template-columns:1fr}}
 @media(max-width:650px){.v2-filter{margin:-42px 0 18px;padding:17px}.v2-filters{grid-template-columns:1fr}.v2-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.v2-kpi{padding:14px}.v2-kpi .metric{font-size:26px}.v2-section{margin-top:27px}.v2-section-head{display:block}.v2-section-head>*+*{margin-top:9px}.v2-panel{padding:15px}.v2-stage{grid-template-columns:110px minmax(0,1fr) 74px;font-size:10px;gap:8px}.v2-chart{height:210px}.v2-dates{grid-template-columns:1fr}}
 @media print{.v2-filter,.v2-exports{display:none}.v2-kpis{grid-template-columns:repeat(5,minmax(0,1fr))}.v2-panel,.v2-kpi{box-shadow:none}.v2-section{break-inside:avoid}}
+
+
+/* X1 funnel — six clear cards, balanced on desktop and readable on mobile. */
+#v2X1Kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+#v2X1Kpis .v2-kpi{border-top:3px solid #d7c9ff}
+#v2X1Kpis .v2-kpi:nth-child(1),
+#v2X1Kpis .v2-kpi:nth-child(4){border-top-color:#31ad96}
+#v2X1Kpis .v2-kpi:nth-child(2),
+#v2X1Kpis .v2-kpi:nth-child(3){border-top-color:#e7bd79}
+#v2X1Kpis .v2-kpi .metric{overflow-wrap:anywhere}
+#v2X1Health{font-size:12px;line-height:1.65}
+#v2X1GroupDays .v2-blocked{margin:12px 0}
+@media(max-width:900px){#v2X1Kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){#v2X1Kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}#v2X1Kpis .v2-kpi{padding:14px}#v2X1Kpis .v2-kpi .metric{font-size:clamp(17px,5vw,26px)}}
