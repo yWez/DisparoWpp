@@ -35,7 +35,7 @@ function init(){
  const errors=segment("falhas","Diagnóstico de falhas","Códigos e explicações reais da UmClique, nunca suposições de que todos os telefones são inválidos.");
  errors.insertAdjacentHTML("beforeend",`<div class="v2-panel"><div class="v2-flex"><h3>Grupos de erros por disparo</h3><button class="v2-action" id="v2ErrorCsv">Exportar causas</button></div><div id="v2ErrorsTable" class="v2-table-scroll"></div><div class="v2-blocked" style="margin-top:13px"><strong>Dados pessoais não são públicos.</strong> Os códigos são agregados; contato, telefone e recuperação individual requerem uma área autenticada e permissão específica. Não enviamos reprocessamentos automáticos.</div></div>`);
  const x1=segment("x1","Conversões X1 — captação","Cadastros confirmados na página LP com utm_source=whatsapp e utm_medium=x1. Entradas no grupo exigem comprovação separada.");
- x1.insertAdjacentHTML("beforeend",'<div class="v2-kpis" id="v2X1Kpis"></div><div class="v2-panel" style="margin-top:15px"><div class="v2-flex"><h3>Rastreamento por disparo</h3><button class="v2-action" id="v2X1Csv">↓ Exportar X1</button></div><p id="v2X1Status" class="v2-muted"></p><div id="v2X1Health" class="v2-blocked" style="margin:12px 0"></div><div id="v2X1Table" class="v2-table-scroll"></div></div><div class="v2-panel" style="margin-top:15px"><h3>Evolução dos cadastros X1</h3><p class="v2-muted">Data do cadastro na página, não data de entrada no grupo.</p><div id="v2X1Days" class="v2-table-scroll"></div></div><div class="v2-panel" style="margin-top:15px"><h3>Entradas confirmadas no grupo</h3><p id="v2X1GroupStatus" class="v2-muted"></p><div id="v2X1GroupDays" class="v2-table-scroll"></div></div>');
+ x1.insertAdjacentHTML("beforeend",'<div class="v2-kpis" id="v2X1Kpis"></div><div class="v2-panel" style="margin-top:15px"><div class="v2-flex"><h3>Rastreamento por disparo</h3><button class="v2-action" id="v2X1Csv">↓ Exportar X1</button></div><p id="v2X1Status" class="v2-muted"></p><div id="v2X1Health" class="v2-blocked" style="margin:12px 0"></div><div id="v2X1Table" class="v2-table-scroll"></div></div><div class="v2-panel" style="margin-top:15px"><h3>Evolução dos cadastros X1</h3><p class="v2-muted">Data do cadastro na página, não data de entrada no grupo.</p><div id="v2X1Days" class="v2-table-scroll"></div></div><div class="v2-panel" style="margin-top:15px"><h3>Entradas confirmadas no grupo</h3><p id="v2X1GroupStatus" class="v2-muted"></p><div id="v2X1GroupDays" class="v2-table-scroll"></div></div><div class="v2-panel" style="margin-top:15px"><h3>Cadastros X1 presentes nos grupos</h3><p id="v2X1RosterStatus" class="v2-muted"></p><div id="v2X1RosterTable" class="v2-table-scroll"></div></div>');
  const copies=segment("copies","Qual copy performou melhor?","Comparação pelo campo Template (parcial). Enquanto não houver UTMs individuais por disparo, o desempenho da copy usa indicadores da UmClique, não cadastros.");
  copies.insertAdjacentHTML("beforeend",'<div class="v2-panel"><div id="v2CopiesStatus" class="v2-muted"></div><div id="v2CopiesTable" class="v2-table-scroll"></div></div>');
  const origins=segment("origens","Origem e atribuição","Origem por campanha cadastrada, sem sobrescrever a primeira origem de contatos.");
@@ -205,6 +205,10 @@ function renderX1(rows){
     groupsVerified?"Contatos da LP com comprovação real de entrada":"Sem comprovante de participação; cadastro não significa entrada",groupsVerified?"positive":"unknown"),
   kpi("Tx. de entrada no grupo",groupsVerified&&x.groupJoinRate!=null?P(x.groupJoinRate):"Não disponível",
     "Entradas comprovadas ÷ cadastros X1 com telefone",groupsVerified?"positive":"unknown"),
+  kpi("Cadastros X1 presentes no grupo",verified&&Number.isFinite(x.groupMembersVerified)?N(x.groupMembersVerified):"Não disponível",
+    "Presença em lista conferida; não indica quando entrou",Number.isFinite(x.groupMembersVerified)?"positive":"unknown"),
+  kpi("Taxa de presença X1",verified&&x.groupMemberRate!=null?P(x.groupMemberRate):"Não disponível",
+    "Cadastros X1 encontrados nas listas ÷ cadastros com telefone","unknown"),
   kpi("Atribuídos a disparos",attributed===null?"Não disponível":N(attributed),
     "Apenas UTMs individuais verificadas",""),
   kpi("Sem disparo identificado",missing===null?"Não disponível":N(missing),
@@ -229,17 +233,28 @@ function renderX1(rows){
   const campaign=matched.get(c.campaignId);
   return {name:c.name,template:c.template||"Não informada",delivered:c.delivered,
    registrations:attr,groupJoins:campaign&&groupsVerified?campaign.groupJoins:null,
+   groupMembersVerified:campaign&&Number.isFinite(x?.groupMembersVerified)?campaign.groupMembersVerified:null,
    rate:registrationRateFor(c),
    state:attr===null?"Sem UTM individual vinculada":"UTM de disparo confirmada"};
  });
  drawTable($("v2X1Table"),[["name","Disparo"],["template","Copy / Template"],
    ["delivered","Entregues"],["registrations","Cadastros atribuídos"],
-   ["groupJoins","Entradas no grupo comprovadas"],["rate","Tx. cadastro/entregues"],
+   ["groupJoins","Entradas no grupo comprovadas"],["groupMembersVerified","X1 presentes nos grupos"],["rate","Tx. cadastro/entregues"],
    ["state","Rastreabilidade"]],list,
   (k,v)=>k==="rate"?P(v):typeof v==="number"?N(v):v??"Não disponível","name",1,null);
  const days=verified?(x.daily||[]):[];
  drawTable($("v2X1Days"),[["day","Data registrada"],["registrations","Cadastros X1"]],days,
   (k,v)=>typeof v==="number"?N(v):v,"day",1,null);
+ const rosterStatus=$("v2X1RosterStatus"),rosterHost=$("v2X1RosterTable");
+ const hasRoster=verified&&Number.isFinite(x.groupMembersVerified);
+ if(!hasRoster){
+  rosterStatus.textContent="Aguardando relação de membros validada pelo administrador. As abas privadas de importação estão prontas para cruzamento em lote; total de participantes da UmClique não substitui lista de telefones.";
+  rosterHost.replaceChildren(E("div","v2-blocked","Fontes: Membros X1 - Mesa 22 e Membros X1 - Mesa 17-19-22. Sem lista autenticada, não exibimos zero."));
+ }else{
+  rosterStatus.textContent=N(x.groupMembersVerified)+" cadastros X1 encontrados nas listas verificadas, deduplicados entre grupos. Fotografia dos membros presentes, NÃO data de entrada no grupo.";
+  drawTable(rosterHost,[["group","Grupo"],["checkedAt","Lista conferida em"],["membersAudited","Membros na lista"],["x1Present","Cadastros X1 presentes"]],
+    x.memberGroups||[],(k,v)=>k==="checkedAt"&&v?new Date(v).toLocaleString("pt-BR",{timeZone:"America/Fortaleza"}):typeof v==="number"?N(v):v,"group",1,null);
+ }
  const joinStatus=$("v2X1GroupStatus"),host=$("v2X1GroupDays");
  if(!groupsVerified){
   joinStatus.textContent="Não disponível: não existe comprovação de participantes do grupo integrada a essa fonte. O sistema nunca assume que cadastro ou clique no convite representa entrada.";
@@ -305,6 +320,10 @@ function download(type){
   out=pack(["Seção","Data ou campanha","Indicador","Valor","Critério"],[
     ["Resumo","","Cadastros X1",toCsv(x.registrations),"Cadastro deduplicado pelo telefone e data cronológica"],
     ["Resumo","","Entradas confirmadas no grupo",join?x.groupJoins:"Não disponível","Verificação efetiva na planilha restrita"],
+    ["Resumo","","Cadastros X1 presentes em grupo",toCsv(x.groupMembersVerified),"Lista de membros atual conferida, deduplicação entre grupos"],
+    ["Resumo","","Taxa de presença X1",x.groupMemberRate!=null?rate(x.groupMemberRate):"Não disponível","Presença em lista ÷ cadastros com telefone"],
+    ...((x.memberGroups||[]).map(g=>["Grupos",g.group,"Cadastros X1 presentes",g.x1Present,"Lista conferida em "+g.checkedAt])),
+
     ["Resumo","","Taxa de entrada",join&&x.groupJoinRate!=null?rate(x.groupJoinRate):"Não disponível","Entradas confirmadas / cadastros com telefone"],
     ["Resumo","","Atribuíveis a um disparo",(x.byCampaign||[]).reduce((a,b)=>a+(b.registrations||0),0),"UTM exclusiva correspondente ao ID do disparo"],
     ["Resumo","","Sem disparo identificado",toCsv(x.unattributedRegistrations),"UTM compartilhada ou ausente"],
