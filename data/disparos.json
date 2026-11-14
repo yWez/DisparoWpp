@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-14T22:22:01.755184Z",
+    "lastSyncedAt": "2026-11-14T22:28:43.847588Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1659,7 +1659,7 @@
       "read": 148,
       "replied": 22,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-14T20:46:06.071527Z",
       "startedAt": "2026-11-14T20:46:09.526000Z",
       "completedAt": "2026-11-14T20:49:03.358000Z",
@@ -1716,7 +1716,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T22:22:01.755184Z",
+      "lastSyncedAt": "2026-11-14T22:28:43.847588Z",
       "campaignOrigin": null
     },
     {
@@ -1736,7 +1736,7 @@
       "sent": 491,
       "failures": 306,
       "delivered": 173,
-      "read": 59,
+      "read": 60,
       "replied": 3,
       "conversions": 0,
       "conversionValue": 0,
@@ -1818,7 +1818,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T22:22:01.755184Z",
+      "lastSyncedAt": "2026-11-14T22:28:43.847588Z",
       "campaignOrigin": null
     },
     {
@@ -1839,7 +1839,7 @@
       "failures": 104,
       "delivered": 189,
       "read": 26,
-      "replied": 6,
+      "replied": 7,
       "conversions": 0,
       "conversionValue": 0,
       "createdAt": "2026-11-14T22:17:15.597331Z",
@@ -1909,7 +1909,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T22:22:01.755184Z",
+      "lastSyncedAt": "2026-11-14T22:28:43.847588Z",
       "campaignOrigin": null
     }
   ],
