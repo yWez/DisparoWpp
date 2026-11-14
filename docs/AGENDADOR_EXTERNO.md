@@ -20,11 +20,11 @@ usar o cron do GitHub como único mecanismo para monitoramento comercial.
 2. `.github/workflows/sync-campaigns-fast.yml` executa apenas campanhas,
    Google Sheets e publicação agregada, sem reler milhares de mensagens.
    Tem cron GitHub de 5 minutos **somente como fallback**.
-3. `.github/workflows/sync-umclique.yml` mantém X1 e mensageria, e usa
+3. `.github/workflows/sync-umclique.yml` atualiza apenas mensageria, e usa
    agendamento interno a cada 30 minutos como fallback.
 4. **Agendador externo Google Apps Script** (arquivo
    [`ops/agendador-externo-apps-script.gs`](../ops/agendador-externo-apps-script.gs))
-   aciona o workflow rápido a cada 5 minutos e o completo a cada 15 minutos
+   aciona o workflow de campanhas e X1 a cada 5 minutos e o de mensageria a cada 15 minutos
    através da API do GitHub. O agendador fica fora do GitHub; atrasos no cron
    interno não impedem os pedidos externos. O GitHub ainda pode ter filas
    e falhas: disparo aceito não significa sincronização concluída.
@@ -59,7 +59,7 @@ GitHub: somente a permissão para acionar workflows.
    gatilhos temporizados. A instalação primeiro testa duas requisições;
    só cria os gatilhos se o GitHub responder HTTP **204**.
 6. Execute `statusAgendadorLP` e confira em **Execuções** que há gatilhos
-   ativos para CAMPANHAS (5 min) e MENSAGERIA_X1 (15 min).
+   ativos para CAMPANHAS (5 min, incluindo X1) e MENSAGERIA_X1 (15 min, nome histórico do gatilho de mensageria).
 7. Confira o resultado final dos workflows, não apenas o disparo, em:
    - https://github.com/yWez/DisparoWpp/actions/workflows/sync-campaigns-fast.yml
    - https://github.com/yWez/DisparoWpp/actions/workflows/sync-umclique.yml
