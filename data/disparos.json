@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-14T22:07:03.055803Z",
+    "lastSyncedAt": "2026-11-14T22:12:54.646779Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1511,7 +1511,7 @@
       "read": 170,
       "replied": 16,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-13T22:09:51.477494Z",
       "startedAt": "2026-11-13T22:09:54.407000Z",
       "completedAt": "2026-11-13T22:12:15.644000Z",
@@ -1568,7 +1568,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T22:07:03.055803Z",
+      "lastSyncedAt": "2026-11-14T22:12:54.646779Z",
       "campaignOrigin": null
     },
     {
@@ -1659,7 +1659,7 @@
       "read": 142,
       "replied": 22,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-14T20:46:06.071527Z",
       "startedAt": "2026-11-14T20:46:09.526000Z",
       "completedAt": "2026-11-14T20:49:03.358000Z",
@@ -1716,7 +1716,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T22:07:03.055803Z",
+      "lastSyncedAt": "2026-11-14T22:12:54.646779Z",
       "campaignOrigin": null
     },
     {
@@ -1736,7 +1736,7 @@
       "sent": 491,
       "failures": 306,
       "delivered": 166,
-      "read": 28,
+      "read": 29,
       "replied": 3,
       "conversions": 0,
       "conversionValue": 0,
@@ -1818,7 +1818,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T22:07:03.055803Z",
+      "lastSyncedAt": "2026-11-14T22:12:54.646779Z",
       "campaignOrigin": null
     }
   ],
