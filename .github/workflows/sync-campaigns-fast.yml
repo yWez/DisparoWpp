@@ -63,7 +63,7 @@ jobs:
           fi
           git config user.name "LP Crypto Automação"
           git config user.email "automation@users.noreply.github.com"
-          git add data/disparos.json data/x1-attribution.json
+          git add data/disparos.json
           git commit -m "data: atualizar campanhas de todos os canais da UmClique"
           git remote set-url origin "https://x-access-token:${GH_PAGES_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           for attempt in 1 2 3; do
