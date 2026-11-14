@@ -35,7 +35,7 @@ function init(){
  const errors=segment("falhas","Diagnóstico de falhas","Códigos e explicações reais da UmClique, nunca suposições de que todos os telefones são inválidos.");
  errors.insertAdjacentHTML("beforeend",`<div class="v2-panel"><div class="v2-flex"><h3>Grupos de erros por disparo</h3><button class="v2-action" id="v2ErrorCsv">Exportar causas</button></div><div id="v2ErrorsTable" class="v2-table-scroll"></div><div class="v2-blocked" style="margin-top:13px"><strong>Dados pessoais não são públicos.</strong> Os códigos são agregados; contato, telefone e recuperação individual requerem uma área autenticada e permissão específica. Não enviamos reprocessamentos automáticos.</div></div>`);
  const x1=segment("x1","Conversões X1 — captação","Cadastros confirmados na página LP com utm_source=whatsapp e utm_medium=x1. Entradas no grupo exigem comprovação separada.");
- x1.insertAdjacentHTML("beforeend",'<div class="v2-kpis" id="v2X1Kpis"></div><div class="v2-panel" style="margin-top:15px"><h3>Rastreamento por disparo</h3><p id="v2X1Status" class="v2-muted"></p><div id="v2X1Table" class="v2-table-scroll"></div></div><div class="v2-panel" style="margin-top:15px"><h3>Evolução dos cadastros X1</h3><div id="v2X1Days" class="v2-table-scroll"></div></div>');
+ x1.insertAdjacentHTML("beforeend",'<div class="v2-kpis" id="v2X1Kpis"></div><div class="v2-panel" style="margin-top:15px"><div class="v2-flex"><h3>Rastreamento por disparo</h3><button class="v2-action" id="v2X1Csv">↓ Exportar X1</button></div><p id="v2X1Status" class="v2-muted"></p><div id="v2X1Health" class="v2-blocked" style="margin:12px 0"></div><div id="v2X1Table" class="v2-table-scroll"></div></div><div class="v2-panel" style="margin-top:15px"><h3>Evolução dos cadastros X1</h3><p class="v2-muted">Data do cadastro na página, não data de entrada no grupo.</p><div id="v2X1Days" class="v2-table-scroll"></div></div><div class="v2-panel" style="margin-top:15px"><h3>Entradas confirmadas no grupo</h3><p id="v2X1GroupStatus" class="v2-muted"></p><div id="v2X1GroupDays" class="v2-table-scroll"></div></div>');
  const copies=segment("copies","Qual copy performou melhor?","Comparação pelo campo Template (parcial). Enquanto não houver UTMs individuais por disparo, o desempenho da copy usa indicadores da UmClique, não cadastros.");
  copies.insertAdjacentHTML("beforeend",'<div class="v2-panel"><div id="v2CopiesStatus" class="v2-muted"></div><div id="v2CopiesTable" class="v2-table-scroll"></div></div>');
  const origins=segment("origens","Origem e atribuição","Origem por campanha cadastrada, sem sobrescrever a primeira origem de contatos.");
@@ -57,6 +57,7 @@ function init(){
  $("exportCsv").addEventListener("click",()=>download("campanhas"));
  $("v2DailyCsv").addEventListener("click",()=>download("diario"));
  $("v2ErrorCsv").addEventListener("click",()=>download("erros"));
+ $("v2X1Csv").addEventListener("click",()=>download("x1"));
  $("copyButton").addEventListener("click",copy);
  createExports();
 }
@@ -188,24 +189,62 @@ function registrationRateFor(c){
 }
 function renderX1(rows){
  const x=state.x1,verified=x&&Number.isFinite(x.registrations);
- const attributed=verified?((x.byCampaign||[]).reduce((sum,v)=>sum+(v.registrations||0),0)):null;
+ const attributed=verified?(x.byCampaign||[]).reduce((sum,v)=>sum+(v.registrations||0),0):null;
  const missing=verified?x.unattributedRegistrations:null;
+ const groupsVerified=verified&&Number.isFinite(x.groupJoins);
+ const lastCheck=x?.meta?.lastCheckedAt||x?.meta?.lastSyncedAt;
+ const checkedAt=lastCheck?new Date(lastCheck):null;
+ const checkedLabel=checkedAt&&Number.isFinite(checkedAt.getTime())?
+  checkedAt.toLocaleString("pt-BR",{timeZone:"America/Fortaleza",dateStyle:"short",timeStyle:"short"}):"Não disponível";
  $("v2X1Kpis").replaceChildren(
-  kpi("Cadastros X1 na LP",verified?N(x.registrations):"Não disponível","UTM whatsapp / x1 · todas as campanhas","positive"),
-  kpi("Atribuídos a disparos",attributed===null?"Não disponível":N(attributed),"Somente UTMs exclusivas e verificadas",""),
-  kpi("Sem disparo identificado",missing===null?"Não disponível":N(missing),"UTM genérica x1-base não identifica o disparo","unknown"),
-  kpi("Entradas no grupo",x&&Number.isFinite(x.groupJoins)?N(x.groupJoins):"Não disponível","A página de cadastro não registra entrada no grupo","unknown")
+  kpi("Cadastros na página X1",verified?N(x.registrations):"Não disponível","UTM whatsapp / x1 · deduplicação cronológica por telefone","positive"),
+  kpi("Entradas confirmadas no grupo",groupsVerified?N(x.groupJoins):"Não disponível",
+    groupsVerified?"Contatos da LP com comprovação real de entrada":"Sem comprovante de participação; cadastro não significa entrada",groupsVerified?"positive":"unknown"),
+  kpi("Tx. de entrada no grupo",groupsVerified&&x.groupJoinRate!=null?P(x.groupJoinRate):"Não disponível",
+    "Entradas comprovadas ÷ cadastros X1 com telefone",groupsVerified?"positive":"unknown"),
+  kpi("Atribuídos a disparos",attributed===null?"Não disponível":N(attributed),
+    "Apenas UTMs individuais verificadas",""),
+  kpi("Sem disparo identificado",missing===null?"Não disponível":N(missing),
+    "UTM compartilhada ou sem ID de campanha","unknown"),
+  kpi("Cobertura de atribuição",verified&&x.attributionCoverage!=null?P(x.attributionCoverage):"Não disponível",
+    "Cadastros com disparo conhecido ÷ cadastros X1", "unknown")
  );
  $("v2X1Status").textContent=verified?
-  "Fonte: "+(x.meta?.source||"Captação")+". "+N(x.registrations)+" cadastros únicos na LP, dos quais "+N(missing)+" não podem ser atribuídos a um disparo. A UTM x1-base é compartilhada. Taxa = cadastros rastreados do disparo ÷ entregas confirmadas, quando ambos existirem. O filtro atual altera a lista de disparos, não o total da fonte X1.":
-  "Fonte de Captação X1 indisponível. Não substituímos ausência de dados por zero.";
- const list=rows.map(c=>({name:c.name,template:c.template||"Não informada",delivered:c.delivered,registrations:registrationFor(c),rate:registrationRateFor(c),
-  state:registrationFor(c)===null?"Não atribuível: UTM compartilhada":"UTM individual identificada"}));
- drawTable($("v2X1Table"),[["name","Disparo"],["template","Copy / Template"],["delivered","Entregues"],["registrations","Cadastros atribuídos"],["rate","Tx. conversão"],["state","Rastreabilidade"]],list,
+  "Fonte: "+(x.meta?.source||"Captação")+". Última leitura autenticada: "+checkedLabel+
+  ". Os KPIs da página referem-se a toda a fonte X1; o filtro de campanhas afeta apenas as linhas por disparo. Sem UTM individual não é possível afirmar qual disparo gerou um cadastro.":
+  "Captação X1 indisponível: não exibimos zero no lugar de registros não consultados.";
+ $("v2X1Health").textContent=verified?
+  "Auditoria dos dados: "+N(x.x1RowsFound??x.registrations)+" registros brutos com UTM X1; "+
+  N(x.duplicatesRemoved??0)+" registros duplicados removidos; "+
+  N(x.uniquePhones??0)+" cadastros com telefone; "+
+  N(x.registrationsWithoutPhone??0)+" sem telefone. A data considera o primeiro cadastro cronológico, mesmo que as linhas estejam fora de ordem.":
+  "Aguardando leitura confirmada da planilha de captação.";
+ const matched=new Map((x?.byCampaign||[]).map(v=>[v.campaignId,v]));
+ const list=rows.map(c=>{
+  const attr=registrationFor(c);
+  const campaign=matched.get(c.campaignId);
+  return {name:c.name,template:c.template||"Não informada",delivered:c.delivered,
+   registrations:attr,groupJoins:campaign&&groupsVerified?campaign.groupJoins:null,
+   rate:registrationRateFor(c),
+   state:attr===null?"Sem UTM individual vinculada":"UTM de disparo confirmada"};
+ });
+ drawTable($("v2X1Table"),[["name","Disparo"],["template","Copy / Template"],
+   ["delivered","Entregues"],["registrations","Cadastros atribuídos"],
+   ["groupJoins","Entradas no grupo comprovadas"],["rate","Tx. cadastro/entregues"],
+   ["state","Rastreabilidade"]],list,
   (k,v)=>k==="rate"?P(v):typeof v==="number"?N(v):v??"Não disponível","name",1,null);
  const days=verified?(x.daily||[]):[];
  drawTable($("v2X1Days"),[["day","Data registrada"],["registrations","Cadastros X1"]],days,
   (k,v)=>typeof v==="number"?N(v):v,"day",1,null);
+ const joinStatus=$("v2X1GroupStatus"),host=$("v2X1GroupDays");
+ if(!groupsVerified){
+  joinStatus.textContent="Não disponível: não existe comprovação de participantes do grupo integrada a essa fonte. O sistema nunca assume que cadastro ou clique no convite representa entrada.";
+  host.replaceChildren(E("div","v2-blocked","Fonte preparada: aba restrita 'Entradas Grupo X1' no Google Sheets operacional. Somente registros confirmados e com evidência entram na contagem. Nenhum dado pessoal é publicado."));
+ }else{
+  joinStatus.textContent=N(x.groupJoins)+" participantes distintos com telefone presente entre os cadastros X1. Data da entrada comprovada (não da inscrição).";
+  drawTable(host,[["day","Data da entrada"],["joins","Participantes distintos confirmados"]],
+   x.groupJoinDaily||[],(k,v)=>typeof v==="number"?N(v):v,"day",1,null);
+ }
 }
 function renderCopies(rows){
  const groups=new Map();
@@ -254,6 +293,22 @@ function download(type){
  M.channels(rows,state.channels).map(x=>{const s=x.summary;return[x.id,x.name,x.connection||"Não disponível",s.campaigns,...["sent","delivered","read","replied","failures"].map(k=>count(s.metrics[k].value)),rate(s.deliveryRate),rate(s.readRate),rate(s.failureRate)];}));
  if(type==="erros")out=pack(["ID campanha","Campanha","Data","Código","Tipo","Motivo","Descrição","Casos","Conciliação","Tratamento","Ação"],M.errorRows(rows).map(x=>[x.campaignId,x.name,x.day,x.code,x.type,x.title,x.description,x.count,x.reconciliation,x.recoverability,x.suggestion]));
  if(type==="respostas")out=pack(["ID campanha","Campanha","Data","Respostas agregadas","Nota"],rows.map(x=>[x.campaignId,x.name,M.campaignDay(x),count(x.replied),"Sem dados nominais no site público"]));
+ if(type==="x1"){
+  const x=state.x1||{},m=x.meta||{},join=Number.isFinite(x.groupJoins),
+    toCsv=v=>v==null?"Não disponível":v;
+  out=pack(["Seção","Data ou campanha","Indicador","Valor","Critério"],[
+    ["Resumo","","Cadastros X1",toCsv(x.registrations),"Cadastro deduplicado pelo telefone e data cronológica"],
+    ["Resumo","","Entradas confirmadas no grupo",join?x.groupJoins:"Não disponível","Verificação efetiva na planilha restrita"],
+    ["Resumo","","Taxa de entrada",join&&x.groupJoinRate!=null?rate(x.groupJoinRate):"Não disponível","Entradas confirmadas / cadastros com telefone"],
+    ["Resumo","","Atribuíveis a um disparo",(x.byCampaign||[]).reduce((a,b)=>a+(b.registrations||0),0),"UTM exclusiva correspondente ao ID do disparo"],
+    ["Resumo","","Sem disparo identificado",toCsv(x.unattributedRegistrations),"UTM compartilhada ou ausente"],
+    ["Resumo","","Última consulta",m.lastCheckedAt||m.lastSyncedAt||"Não disponível","Horário autenticado da consulta"],
+    ...(x.daily||[]).map(d=>["Cadastros por dia",d.day,"Cadastros",d.registrations,"Primeira inscrição"]),
+    ...((x.groupJoinDaily||[]).map(d=>["Grupo por dia",d.day,"Entradas comprovadas",d.joins,"Primeira entrada verificada"])),
+    ...(x.byCampaign||[]).map(d=>["Atribuição por disparo",d.campaignId,"Cadastros",d.registrations,"UTM individual"]),
+    ...(x.byCampaign||[]).map(d=>["Atribuição por disparo",d.campaignId,"Entradas comprovadas",toCsv(d.groupJoins),"Contato cadastrado com UTM individual"])
+  ]);
+ }
  if(type==="funil")out=pack(["Etapa","Contagem","Taxa"],funnelRows(s).map(x=>[x[0],count(x[1]),"Não disponível entre populações não vinculadas"]));
  const blob=new Blob([M.csv(out)],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=E("a");a.href=url;a.download="LP_Crypto_"+type+"_"+M.today()+".csv";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);
 }
