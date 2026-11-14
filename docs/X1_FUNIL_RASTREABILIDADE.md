@@ -89,9 +89,7 @@ até existir outra fonte documental que comprove relação individual.
 - O campo `meta.lastCheckedAt` é atualizado após **cada consulta válida**,
   mesmo se os totais não mudarem. Se a leitura falhar, mantém o dado anterior,
   com o horário anterior para diagnosticar falhas.
-- O agendador externo já configurado dispara o fluxo completo a cada
-  15 minutos; filas ou erros podem causar atrasos. A atualização rápida
-  de campanhas a cada 5 minutos **não** lê a planilha X1.
+- O agendador externo solicita campanhas e X1 pelo fluxo rápido a cada 5 minutos; filas ou erros podem causar atrasos. O fluxo de mensageria é independente e solicitado a cada 15 minutos.
 - O dashboard mostra a última leitura válida, status de grupo, cadastros
   originais, duplicatas e cobertura de atribuição.
 - A exportação pública **X1** contém somente agregados.

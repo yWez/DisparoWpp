@@ -1,4 +1,4 @@
-name: Sincronizar disparos UmClique
+name: Sincronizar mensageria e responsáveis UmClique
 
 on:
   workflow_dispatch:
@@ -8,8 +8,8 @@ on:
     branches: [main]
     paths:
       - "ops/manual-sync-trigger.txt"
-  # Fallback do fluxo completo. A cadência principal passa a ser o agendador
-  # externo, que dispara campanhas a cada 5 min e mensageria/X1 a cada 15 min.
+  # Fallback da coleta pesada: calendário externo solicita a cada 15 min.
+  # Campanhas + X1 seguem em outro workflow rápido e não são bloqueados.
   schedule:
     - cron: "17,47 * * * *"
 
@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: umclique-sync
+  group: umclique-mensageria
   cancel-in-progress: false
 
 jobs:
@@ -50,40 +50,26 @@ jobs:
               exit 1
             fi
           done
-      - name: Consultar UmClique e atualizar Google Sheets + JSON público
-        env:
-          UMCLIQUE_API_KEY: ${{ secrets.UMCLIQUE_API_KEY }}
-          UMCLIQUE_CHANNEL_IDS: ${{ vars.UMCLIQUE_CHANNEL_IDS }}
-          UMCLIQUE_CREATED_FROM: "2026-11-09T00:00:00-03:00"
-          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
-          GOOGLE_SHEET_ID: "1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k"
-        run: python scripts/sync_umclique.py
-      - name: Conciliar cadastros X1 da planilha Captação
-        env:
-          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
-          X1_CAPTACAO_SHEET_ID: "1AtxjojmOi3aAFk1gSc1O7Su4pQUSrgsndnNGZkkMU7U"
-        run: python scripts/sync_x1.py
       - name: Sincronizar mensageria e carteiras dos responsáveis
-        continue-on-error: true
         env:
           UMCLIQUE_API_KEY: ${{ secrets.UMCLIQUE_API_KEY }}
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GOOGLE_SHEET_ID: "1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k"
-          MENSAJERIA_MAX_REFRESH: "120"
+          MENSAJERIA_MAX_REFRESH: "60"
         run: python scripts/sync_mensageria.py
       - name: Publicar mudanças para GitHub Pages
         env:
           GH_PAGES_PUSH_TOKEN: ${{ secrets.GH_PAGES_PUSH_TOKEN }}
         shell: bash
         run: |
-          if git diff --quiet -- data/disparos.json data/x1-attribution.json data/mensageria.json; then
+          if git diff --quiet -- data/mensageria.json; then
             echo "Nenhuma mudança nos indicadores; publicação desnecessária."
             exit 0
           fi
           git config user.name "LP Crypto Automação"
           git config user.email "automation@users.noreply.github.com"
-          git add data/disparos.json data/x1-attribution.json data/mensageria.json
-          git commit -m "data: sincronizar campanhas da UmClique"
+          git add data/mensageria.json
+          git commit -m "data: atualizar conversas e responsáveis da UmClique"
           git remote set-url origin "https://x-access-token:${GH_PAGES_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           # Commits humanos/deploys podem avançar main enquanto a API é consultada.
           # Rebase seguro dos JSONs agregados; nunca usar --force.
