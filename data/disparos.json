@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-14T15:37:02.840512Z",
+    "lastSyncedAt": "2026-11-14T15:41:43.145705Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1591,7 +1591,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-14T15:22:28.495842Z",
       "startedAt": "2026-11-14T15:22:30.313000Z",
       "completedAt": "2026-11-14T15:26:06.125000Z",
@@ -1602,7 +1602,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T15:37:02.840512Z",
+      "lastSyncedAt": "2026-11-14T15:41:43.145705Z",
       "campaignOrigin": null
     },
     {
@@ -1625,7 +1625,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-14T15:32:13.376022Z",
       "startedAt": "2026-11-14T15:32:15.163000Z",
       "completedAt": "2026-11-14T15:32:35.518000Z",
@@ -1636,7 +1636,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T15:37:02.840512Z",
+      "lastSyncedAt": "2026-11-14T15:41:43.145705Z",
       "campaignOrigin": null
     }
   ],
