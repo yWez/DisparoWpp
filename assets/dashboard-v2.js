@@ -269,12 +269,14 @@ function renderCopies(rows){
 }
 function funnelRows(s){
  const external=state.funnel?.stages||{},safe=k=>(external[k]?.verified===true&&typeof external[k]?.count==="number"?external[k].count:null);
- return [["Enviadas",s.metrics.sent.value],["Entregues",s.metrics.delivered.value],["Lidas",s.metrics.read.value],["Responderam (por campanha)",s.metrics.replied.value],["Inscrições",safe("registrations")],["Entradas no grupo",safe("groupJoins")],["Participantes da live",safe("liveAttendees")],["Compras",safe("purchases")]];
+ const x=state.x1||{},registrations=Number.isFinite(x.registrations)?x.registrations:safe("registrations");
+ const joins=Number.isFinite(x.groupJoins)?x.groupJoins:safe("groupJoins");
+ return [["Enviadas",s.metrics.sent.value],["Entregues",s.metrics.delivered.value],["Lidas",s.metrics.read.value],["Responderam (por campanha)",s.metrics.replied.value],["Inscrições X1 na página",registrations],["Entradas confirmadas no grupo (X1)",joins],["Participantes da live",safe("liveAttendees")],["Compras",safe("purchases")]];
 }
 function funnel(s){
  const host=$("v2FunnelBars");host.replaceChildren();const data=funnelRows(s),max=Math.max(1,...data.map(x=>x[1]||0));
  data.forEach(([name,v])=>{const row=E("div","v2-stage"),track=E("div","track"),bar=E("div","fill");bar.style.width=(100*(v||0)/max)+"%";track.append(bar);row.append(E("span","",name),track,E("span","value",M.number(v)));host.append(row);});
- host.append(E("p","v2-muted","Conversões entre etapas: Não disponível. São populações diferentes até reconciliação de IDs."));
+ host.append(E("p","v2-muted","Inscrições X1 usam a fonte de captação deduplicada; grupo exige evento de participação comprovada. As etapas não representam uma sequência obrigatória. Não calculamos taxas cruzadas entre disparos e cadastros sem identificação comum."));
 }
 const TYPES=[["geral","Relatório geral"],["campanhas","Por campanha"],["diario","Por dia"],["canais","Por número/API"],["erros","Causas das falhas"],["respostas","Respostas agregadas"],["funil","Funil"],["contatos","Contatos com falha · privado",true],["respondentes","Respondentes · privado",true]];
 function createExports(){TYPES.forEach(([type,label,blocked])=>{const b=E("button","v2-action",(blocked?"🔒 ":"↓ ")+label);b.type="button";b.disabled=!!blocked;if(blocked)b.title="Exige exportação autenticada em ambiente restrito";else b.addEventListener("click",()=>download(type));$("v2Exports").append(b);});}
