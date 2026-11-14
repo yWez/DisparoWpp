@@ -29,6 +29,73 @@ selecionados no filtro do dashboard. O filtro altera a tabela de campanhas.
 Não se presume que inscrição, grupo, leitura e resposta sejam uma sequência
 obrigatória; não calcular taxa cruzada sem IDs relacionados.
 
+## Conciliação rápida de integrantes X1 (listas privadas)
+
+**Conferência direta (13/11/2026):** a conta UmClique do canal Aline
+disponibiliza os grupos e suas contagens, mas a integração conectada
+**não oferece a relação individual de telefones dos membros**. Não é
+possível contabilizar entradas a partir de `participants_count`.
+
+Existem duas abas de importação privadas na planilha operacional:
+
+- **Membros X1 - Mesa 22** — grupo da Mesa da Luisa 22/11
+- **Membros X1 - Mesa 17-19-22** — grupo da Mesa da Luisa 17/19/22
+
+As abas estão preparadas com os campos B1:B5, instruções e validação do
+campo B3. Não reutilizar a aba `Entradas Grupo X1` para snapshots de
+participantes: **presença atual ≠ data de entrada**.
+
+### Uso do lote de participantes (administrador autorizado)
+
+1. Obter uma lista completa e autorizada de membros reais do respectivo
+   grupo, pelo administrador ou fornecedor que opere o canal. Não utilizar
+   listas compradas, invasões, extensões de raspagem ou contato sem consentimento.
+2. Colar na coluna **A8:A**, um telefone por linha, sem nomes, e conferir
+   que é a lista do grupo correto. Pode colar centenas de linhas de uma vez.
+3. Preencher **B2** com data/hora da conferência no fuso local
+   (ex.: `2026-11-13 19:30:00`). Confirmar o ID do grupo em **B1**.
+4. Manter **B4** em `lista_participantes` ou `exportacao_grupo`, de
+   acordo com a origem da comprovação.
+5. **Somente depois de verificar toda a lista**, alterar **B3** de
+   `PENDENTE` para `LISTA_VERIFICADA`.
+
+O sincronizador rápido, acionado pelo agendador a cada 5 minutos,
+passará a relacionar esses membros com os cadastros X1 na aba
+`Captação`. Ele normaliza telefones brasileiros, deduplica pessoas
+presentes em mais de um grupo, e registra apenas totais agregados no
+dashboard público. Falhas da leitura, lista vazia ou `PENDENTE`
+significam **Não disponível**, nunca zero.
+
+O dashboard separa:
+- **Cadastros X1 presentes nos grupos**: telefones cadastrados na página
+  e encontrados nas listas privadas conferidas. Não indica quando a
+  pessoa ingressou no grupo; captura a presença no instante da auditoria.
+- **Entradas confirmadas no grupo**: apenas eventos efetivos de entrada
+  associados ao telefone, com data verdadeira na aba `Entradas Grupo X1`.
+  Uma lista de participantes não é suficiente para preencher essa etapa.
+
+### Caminho para uma fonte 100% automática
+
+Pedir à UmClique, ou ao administrador da instância UAZAPI, uma destas
+fontes oficiais e autorizadas:
+- consulta autenticada de **membros de grupo** (telefone ou identidade
+  correlacionável), com grupo ID e data da consulta; ou
+- webhook autenticado de **entrada/saída de participante**, com grupo ID,
+  identificador de membro, instante do evento e proteção contra duplicações.
+
+Webhooks UAZAPI podem emitir o evento `groups`, mas a lista detalhada
+de membros não está disponível pela conexão UmClique atual. Antes de
+ativar qualquer endpoint, validar autenticação, escopo, contrato real
+do payload, consentimento e armazenamento privado. Nunca expor tokens,
+telefones, nomes ou logs brutos em GitHub/GitHub Pages.
+
+Se for obtida uma lista inicial, ela alimenta **presença conferida**;
+eventos futuros autorizados alimentam **novas entradas reais**.
+
+**Segurança e LGPD:** acesso privado apenas à equipe necessária,
+objetivo de mensuração de campanha claramente comunicado, retenção
+mínima proporcional e nenhuma exportação pública de telefones.
+
 ## Nova fonte de comprovação de grupo
 
 Foi criada uma aba privada **Entradas Grupo X1** na planilha operacional
