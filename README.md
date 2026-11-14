@@ -1,3 +1,19 @@
+### Conciliação de membros dos grupos X1 (importação em lote)
+
+Na planilha operacional privada, as abas **Membros X1 - Mesa 22** e
+**Membros X1 - Mesa 17-19-22** recebem a lista de telefones de membros
+conferida pelo administrador. Cole os números na coluna A, a partir de A8,
+informe a data em B2 e marque B3 como `LISTA_VERIFICADA` somente após auditar
+a origem. O sistema cruza os dados com a Captação X1 sem divulgar contatos.
+
+O dashboard separa **cadastros presentes nas listas de membros** de
+**entradas confirmadas depois da inscrição**, que exigem eventos reais.
+O fato de alguém estar no grupo hoje não comprova ingresso naquela data.
+A integração atual da UmClique retorna somente o nome/ID e o total de
+membros; não entrega a relação individual de participantes.
+
+[Procedimento completo e links diretos das abas](docs/IMPORTAR_MEMBROS_X1.md).
+
 ## X1 — inscrições, grupo e atribuição auditável
 
 A seção **Conversões X1 — captação** do [dashboard comercial](https://ywez.github.io/DisparoWpp/)
