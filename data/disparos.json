@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-14T22:12:54.646779Z",
+    "lastSyncedAt": "2026-11-14T22:22:01.755184Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1655,11 +1655,11 @@
       "contacts": 497,
       "sent": 497,
       "failures": 76,
-      "delivered": 411,
-      "read": 142,
+      "delivered": 412,
+      "read": 148,
       "replied": 22,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-14T20:46:06.071527Z",
       "startedAt": "2026-11-14T20:46:09.526000Z",
       "completedAt": "2026-11-14T20:49:03.358000Z",
@@ -1716,7 +1716,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T22:12:54.646779Z",
+      "lastSyncedAt": "2026-11-14T22:22:01.755184Z",
       "campaignOrigin": null
     },
     {
@@ -1735,8 +1735,8 @@
       "contacts": 491,
       "sent": 491,
       "failures": 306,
-      "delivered": 166,
-      "read": 29,
+      "delivered": 173,
+      "read": 59,
       "replied": 3,
       "conversions": 0,
       "conversionValue": 0,
@@ -1818,7 +1818,98 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T22:12:54.646779Z",
+      "lastSyncedAt": "2026-11-14T22:22:01.755184Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "ee902438-7ae0-4dcb-b0ec-b6dfec56211b",
+      "campaignId": "ee902438-7ae0-4dcb-b0ec-b6dfec56211b",
+      "name": "reenvio falha",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp API Oficial",
+      "provider": "meta",
+      "channelId": "2a0067c3-aed6-4d22-96c5-82326ba2c896",
+      "channelIds": [
+        "2a0067c3-aed6-4d22-96c5-82326ba2c896"
+      ],
+      "template": "abordagem_comercial_copy_carol",
+      "contacts": 307,
+      "sent": 307,
+      "failures": 104,
+      "delivered": 189,
+      "read": 26,
+      "replied": 6,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-14T22:17:15.597331Z",
+      "startedAt": "2026-11-14T22:17:18.934000Z",
+      "completedAt": "2026-11-14T22:19:07.527000Z",
+      "period": "14/11/2026",
+      "timeLabel": "14/11/2026 19:17",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 54,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 39,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 8,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          },
+          {
+            "code": "131009",
+            "title": "Valor inválido em um campo",
+            "description": "Um dos valores enviados não é aceito pelo WhatsApp (texto longo demais, caractere proibido ou link inválido).",
+            "action": "Revise o conteúdo das variáveis do template.",
+            "count": 3,
+            "type": "Número/destinatário",
+            "recoverability": "Verificar destinatário",
+            "suggestion": "Confirmar dados e consentimento",
+            "explained": true
+          }
+        ],
+        "summary": {
+          "failedTotal": 104,
+          "unexplained": 3,
+          "scannedRows": 160,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 104,
+        "matchesBroadcastFailures": true
+      },
+      "channelName": "Equipe Luisa Pires 02",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-14T22:22:01.755184Z",
       "campaignOrigin": null
     }
   ],
