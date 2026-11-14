@@ -44,7 +44,8 @@ class LayoutAndCadenceTests(unittest.TestCase):
         self.assertIn("minutes:15",scheduler)
         self.assertIn("GITHUB_ACTIONS_TOKEN",scheduler)
         self.assertNotIn("ghp_",scheduler)
-        # Campaigns+X1 and heavy messaging have independent queues and files.
+        x1=read(".github/workflows/sync-x1-only.yml")
+        # Each source has its own queue: campaigns, X1 and messaging.
         for must in ("scripts/sync_mensageria.py","UMCLIQUE_API_KEY",
                      "GOOGLE_SERVICE_ACCOUNT_JSON","GH_PAGES_PUSH_TOKEN",
                      "group: umclique-mensageria","git add data/mensageria.json"):
@@ -53,10 +54,16 @@ class LayoutAndCadenceTests(unittest.TestCase):
                           "git add data/disparos.json"):
             self.assertNotIn(forbidden,workflow)
         for must in ("group: umclique-sync", "python scripts/sync_umclique.py",
-                     "python scripts/sync_x1.py", "X1_GROUP_SHEET_ID",
-                     "data/disparos.json data/x1-attribution.json"):
+                     "git add data/disparos.json"):
             self.assertIn(must,fast)
-        self.assertNotIn("scripts/sync_mensageria.py",fast)
+        for forbidden in ("python scripts/sync_x1.py","git add data/x1-attribution.json",
+                          "scripts/sync_mensageria.py"):
+            self.assertNotIn(forbidden,fast)
+        for must in ("group: lp-x1-only","python scripts/sync_x1.py",
+                     "X1_GROUP_SHEET_ID","git add data/x1-attribution.json",
+                     'cron: "2-59/5 * * * *"'):
+            self.assertIn(must,x1)
+        self.assertNotIn("scripts/sync_umclique.py",x1)
 
 if __name__=="__main__":
     unittest.main()
