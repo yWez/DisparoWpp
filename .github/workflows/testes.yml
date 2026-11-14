@@ -38,6 +38,7 @@ jobs:
           node --check assets/dashboard-v2.js
           node --check assets/mensageria-model.js
           node --check assets/mensageria.js
+          node --check assets/scroll-areas.js
       - name: Testes de filtros, taxas, fuso e CSV
         run: |
           node tests/test_dashboard.cjs

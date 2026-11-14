@@ -1,3 +1,16 @@
+## Navegação com rolagem — atualização de UX
+
+As abas **Disparos e campanhas** e **Acompanhamento de Mensageria** agora mantêm todas as listas longas dentro de áreas com altura limitada: histórico de campanhas, comparativos diários, erros, desempenho dos canais, X1, volume por campanha, responsáveis e origens.
+
+- Rolagem vertical dentro do card, sem esticar a página.
+- Rolagem horizontal apenas quando a tabela contém mais colunas que o espaço disponível.
+- Cabeçalhos fixos e barras de rolagem discretas.
+- Contagem de registros e dicas de navegação, com acesso via teclado.
+- No celular, as tabelas da campanha Luisa mantêm o formato em cartões e recebem rolagem vertical.
+- Os filtros, dados disponíveis e CSVs continuam com **todas as linhas**, independentemente da rolagem visível.
+
+A implementação é exclusivamente de interface (`assets/scroll-areas.css` e `assets/scroll-areas.js`); não altera APIs, credenciais, sincronizações ou métricas.
+
 ## Atualização de campanhas corrigida — 13/11/2026
 
 **Diagnóstico:** 20 campanhas no endpoint da UmClique desde 09/11, mas o
