@@ -35,11 +35,11 @@ Agora o sincronizador consulta toda a conta autenticada, inclusive Meta e
 WhatsApp QR Code/UAZAPI. As 11 campanhas omitidas passam a ser importadas por
 ID, sem duplicar. O provedor verdadeiro aparece na planilha e no JSON.
 
-**Nova arquitetura:** [Sincronização rápida das campanhas](.github/workflows/sync-campaigns-fast.yml)
-com fallback a cada 5 min; [sincronização completa](.github/workflows/sync-umclique.yml)
+**Nova arquitetura:** [Sincronização rápida das campanhas e X1](.github/workflows/sync-campaigns-fast.yml)
+com fallback a cada 5 min; [sincronização da mensageria](.github/workflows/sync-umclique.yml)
 com fallback a cada 30 min. O agendador externo Google Apps Script está
 [preparado para instalação](docs/AGENDADOR_EXTERNO.md) com verificação de
-campanhas a cada 5 min e mensageria/X1 a cada 15 min.
+campanhas e X1 a cada 5 min e mensageria a cada 15 min.
 
 **Importante:** o cron do GitHub pode falhar ou atrasar por horas. Os dois
 fluxos estão no repositório, mas o gatilho independente só fica ativo quando
