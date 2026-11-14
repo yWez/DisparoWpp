@@ -17,7 +17,7 @@ def row(ts, phone, campaign="x1-base", content="x1-base", source="whatsapp", med
     return [[ts],[phone],[source,medium,campaign,content]]
 
 def merge(rows):
-    return tuple([[r[k][0] for r in rows] for k in range(3)])
+    return tuple([[r[k] for r in rows] for k in range(3)])
 
 class X1ExtendedTests(unittest.TestCase):
     def setUp(self):
