@@ -19,6 +19,7 @@ from urllib.parse import quote
 
 import requests
 from sync_umclique import sheets_session
+from x1_roster import fetch_roster_sheets, roster_summary
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SOURCE_ID = os.environ.get("X1_CAPTACAO_SHEET_ID", "1AtxjojmOi3aAFk1gSc1O7Su4pQUSrgsndnNGZkkMU7U")
@@ -26,7 +27,7 @@ SOURCE_TAB = "Captação"
 GROUP_SHEET_ID = os.environ.get("X1_GROUP_SHEET_ID", "1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k")
 GROUP_TAB = "Entradas Grupo X1"
 GROUP_HEADERS = ["data_entrada_confirmada","whatsapp","grupo_id","evidencia","status","campanha_id"]
-GROUP_EVIDENCE = {"lista_participantes", "evento_entrada", "webhook_participante", "verificacao_manual", "exportacao_grupo"}
+GROUP_EVIDENCE = {"evento_entrada", "webhook_participante", "verificacao_manual"}  # Ingresso datado, não snapshot
 OUT = ROOT / "data" / "x1-attribution.json"
 CAMPAIGNS = ROOT / "data" / "disparos.json"
 LOG = logging.getLogger("x1_sync")
@@ -160,7 +161,7 @@ def verified_joins(events, registrations):
     """Only unique, evidenced group members among the X1 registrations."""
     if events is None:
         return None
-    eligible = {r["phone"] for r in registrations.values() if r["has_phone"]}
+    eligible = {r["phone"]: r for r in registrations.values() if r["has_phone"]}
     earliest = {}
     for row in events:
         row = (row + [""] * len(GROUP_HEADERS))[:len(GROUP_HEADERS)]
@@ -171,8 +172,9 @@ def verified_joins(events, registrations):
             or not group or not phone or phone not in eligible):
             continue
         date = local_registration_time(when)
-        if date is None:
-            continue
+        registered_at = eligible[phone]["time"]
+        if date is None or registered_at is None or date < registered_at:
+            continue  # Não prova ingresso posterior ao cadastro X1
         stamp = date.timestamp()
         if phone not in earliest or stamp < earliest[phone][0]:
             earliest[phone] = (stamp, date.date().isoformat())
@@ -183,10 +185,11 @@ def verified_joins(events, registrations):
     return earliest
 
 
-def build_summary(columns, campaigns, now, group_events=None):
+def build_summary(columns, campaigns, now, group_events=None, group_rosters=None):
     unique, diag = unique_registrations(columns, campaigns)
     phones = {r["phone"]:r for r in unique.values() if r["phone"]}
     joins = verified_joins(group_events, unique)
+    roster = roster_summary(group_rosters, unique, normalize_phone, local_registration_time)
     days = collections.Counter(x["day"] for x in unique.values())
     # Never publish arbitrary raw UTM text: users may paste personal data into UTMs.
     contents = collections.Counter(
@@ -207,7 +210,7 @@ def build_summary(columns, campaigns, now, group_events=None):
     timestamp = now if isinstance(now,str) else now.isoformat()
     return {
         "meta": {
-            "schemaVersion": 2,
+            "schemaVersion": 3,
             "source": "Google Sheets • Captação • LP Crypto Black 2026",
             "filter": {"utm_source": "whatsapp", "utm_medium": "x1"},
             "lastSyncedAt": timestamp,  # successful authenticated source check
@@ -216,6 +219,7 @@ def build_summary(columns, campaigns, now, group_events=None):
             "attributionRule": "Somente ID exato de disparo em utm_campaign/utm_content, primeira inscrição por telefone",
             "groupRule": "Entrada apenas com evento/checagem de participantes documentada na aba privada; clique em convite não conta",
             "groupStatus": "verified" if joins is not None else "unavailable",
+            "rosterRule": "Snapshot comprova presença na data da conferência, não data de entrada nem origem do disparo",
             "privacy": "Somente contagens agregadas; telefones, nomes e eventos privados nunca publicados"
         },
         "registrations": len(unique),
@@ -225,6 +229,7 @@ def build_summary(columns, campaigns, now, group_events=None):
         "x1RowsFound": diag["x1RowsFound"],
         "duplicatesRemoved": diag["duplicatesRemoved"],
         "groupJoins": len(joins) if joins is not None else None,
+        **roster,
         "groupJoinRate": (len(joins)/len(phones)) if joins is not None and phones else None,
         "groupJoinDaily": ([{"day": d, "joins": n} for d,n in sorted(join_days.items())]
                            if join_days is not None else None),
@@ -255,9 +260,14 @@ def run():
             LOG.warning("Entrada no grupo indisponível (%s); nenhum número de grupo será inventado.",
                         type(exc).__name__)
             group_events = None
+        try:
+            group_rosters = fetch_roster_sheets(session, GROUP_SHEET_ID, local_registration_time)
+        except Exception as exc:
+            LOG.warning("Conciliação de listas de grupo indisponível (%s).",type(exc).__name__)
+            group_rosters = None
         campaigns = json.loads(CAMPAIGNS.read_text(encoding="utf-8")).get("campaigns", [])
         now = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
-        data = build_summary(cols, campaigns, now, group_events)
+        data = build_summary(cols, campaigns, now, group_events, group_rosters)
     except Exception as exc:
         LOG.warning("Não foi possível consultar Captação (%s); resumo anterior preservado.",
                     type(exc).__name__)
@@ -266,7 +276,7 @@ def run():
     # A successful source check is recorded even when counts do not change.
     # This avoids an old last-update timestamp being mistaken for an API outage.
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    LOG.info("X1 verificado: %d cadastros únicos; %d sem UTM por disparo; grupo %s.",
+    LOG.info("X1 verificado: %d cadastros únicos; %d sem UTM por disparo; ingresso %s.",
              data["registrations"], data["unattributedRegistrations"],
              "verificado" if data["groupJoins"] is not None else "indisponível")
     return data != previous

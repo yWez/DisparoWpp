@@ -44,8 +44,8 @@ class X1ExtendedTests(unittest.TestCase):
         self.assertEqual(x["meta"]["lastCheckedAt"],"2026-11-13T22:00:00Z")
     def test_real_group_joins_require_approved_evidence(self):
         events=[
-            ["2026-11-12 10:30:00","+55 (83) 99999-9999","group1","lista_participantes","confirmado",CID],
-            ["2026-11-12 10:30:00","5583999999999","group1","lista_participantes","confirmado",CID],
+            ["2026-11-12 10:30:00","+55 (83) 99999-9999","group1","evento_entrada","confirmado",CID],
+            ["2026-11-12 10:30:00","5583999999999","group1","webhook_participante","confirmado",CID],
             ["2026-11-13 12:00:00","5583888888888","group1","evento_entrada","pendente",""],
             ["2026-11-13 12:00:00","5583000000000","group1","verificacao_manual","confirmado",""],
             ["2026-11-13 12:00:00","5583888888888","group1","","confirmado",""],
