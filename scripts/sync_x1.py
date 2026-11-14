@@ -188,7 +188,13 @@ def build_summary(columns, campaigns, now, group_events=None):
     phones = {r["phone"]:r for r in unique.values() if r["phone"]}
     joins = verified_joins(group_events, unique)
     days = collections.Counter(x["day"] for x in unique.values())
-    contents = collections.Counter(x["content"] for x in unique.values())
+    # Never publish arbitrary raw UTM text: users may paste personal data into UTMs.
+    contents = collections.Counter(
+        "x1-base" if str(x["content"]).casefold()=="x1-base"
+        else "UTM de disparo verificada" if x["broadcast"]
+        else "UTM não identificável"
+        for x in unique.values()
+    )
     per_campaign = collections.Counter(x["broadcast"] for x in unique.values() if x["broadcast"])
     joined_campaigns = collections.Counter()
     if joins is not None:
