@@ -1,3 +1,19 @@
+## Cadência automática independente do X1
+
+A leitura leve `sync-x1-only.yml` usa **sua própria fila** (`lp-x1-only`),
+separada da consulta de campanhas e do processamento pesado da mensageria.
+Ela pode ser acionada manualmente, pelo fallback agendado a cada cinco minutos
+ou após uma sincronização de campanhas que terminar.
+
+O arquivo `data/x1-attribution.json` é escrito **apenas** por essa rotina;
+os workflows de campanhas e mensageria cuidam de seus próprios dados.
+A frequência programada não é garantia de execução exata: o GitHub pode
+enfileirar ou atrasar trabalhos. A fonte de dados fornece
+`meta.lastCheckedAt` com a última consulta autenticada.
+
+A ausência de listas aprovadas ainda apresenta `Não disponível`;
+isso **não bloqueia** os 43 cadastros X1 já confirmados nem inventa entradas.
+
 # X1 — Captação, entrada confirmada no grupo e atribuição aos disparos
 
 ## O que o dashboard mede
