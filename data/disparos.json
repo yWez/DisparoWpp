@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-15T01:52:17.139525Z",
+    "lastSyncedAt": "2026-11-15T02:02:02.200694Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1349,10 +1349,10 @@
       "sent": 500,
       "failures": 90,
       "delivered": 410,
-      "read": 238,
+      "read": 239,
       "replied": 16,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-13T18:14:02.145408Z",
       "startedAt": "2026-11-13T18:14:05.109000Z",
       "completedAt": "2026-11-13T18:16:48.734000Z",
@@ -1420,7 +1420,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-15T00:19:53.282414Z",
+      "lastSyncedAt": "2026-11-15T02:02:02.200694Z",
       "campaignOrigin": null
     },
     {
@@ -1656,10 +1656,10 @@
       "sent": 497,
       "failures": 76,
       "delivered": 414,
-      "read": 192,
+      "read": 193,
       "replied": 24,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-14T20:46:06.071527Z",
       "startedAt": "2026-11-14T20:46:09.526000Z",
       "completedAt": "2026-11-14T20:49:03.358000Z",
@@ -1716,7 +1716,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-15T01:52:17.139525Z",
+      "lastSyncedAt": "2026-11-15T02:02:02.200694Z",
       "campaignOrigin": null
     },
     {
@@ -1736,10 +1736,10 @@
       "sent": 491,
       "failures": 306,
       "delivered": 178,
-      "read": 102,
+      "read": 103,
       "replied": 5,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-14T22:09:24.033419Z",
       "startedAt": "2026-11-14T22:09:26.754000Z",
       "completedAt": "2026-11-14T22:12:22.206000Z",
@@ -1818,7 +1818,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-15T01:52:17.139525Z",
+      "lastSyncedAt": "2026-11-15T02:02:02.200694Z",
       "campaignOrigin": null
     },
     {
