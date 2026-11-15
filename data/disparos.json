@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-15T00:47:07.788234Z",
+    "lastSyncedAt": "2026-11-15T01:05:38.291136Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1655,8 +1655,8 @@
       "contacts": 497,
       "sent": 497,
       "failures": 76,
-      "delivered": 413,
-      "read": 186,
+      "delivered": 414,
+      "read": 187,
       "replied": 24,
       "conversions": 0,
       "conversionValue": 0,
@@ -1716,7 +1716,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-15T00:47:07.788234Z",
+      "lastSyncedAt": "2026-11-15T01:05:38.291136Z",
       "campaignOrigin": null
     },
     {
@@ -1739,7 +1739,7 @@
       "read": 97,
       "replied": 5,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-14T22:09:24.033419Z",
       "startedAt": "2026-11-14T22:09:26.754000Z",
       "completedAt": "2026-11-14T22:12:22.206000Z",
@@ -1818,7 +1818,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-15T00:47:07.788234Z",
+      "lastSyncedAt": "2026-11-15T01:05:38.291136Z",
       "campaignOrigin": null
     },
     {
@@ -1837,7 +1837,7 @@
       "contacts": 307,
       "sent": 307,
       "failures": 104,
-      "delivered": 196,
+      "delivered": 197,
       "read": 60,
       "replied": 7,
       "conversions": 0,
@@ -1909,7 +1909,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-15T00:47:07.788234Z",
+      "lastSyncedAt": "2026-11-15T01:05:38.291136Z",
       "campaignOrigin": null
     }
   ],
