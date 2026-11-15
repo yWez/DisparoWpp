@@ -3,8 +3,8 @@
     "marker": "Oi, equipe Luisa Pires",
     "method": "Sinal de origem por saudação recebida; não comprova atribuição de mídia",
     "coverage": {
-      "scannedConversations": 5252,
-      "inScopeConversations": 5632,
+      "scannedConversations": 5260,
+      "inScopeConversations": 5639,
       "complete": false
     },
     "rollups": [
@@ -16,7 +16,7 @@
         "markedConversations": 205,
         "activeLeads": 205,
         "inboundFromLeads": 260,
-        "outboundToLeads": 1614
+        "outboundToLeads": 1615
       },
       {
         "period": "all",
@@ -26,7 +26,7 @@
         "markedConversations": 205,
         "activeLeads": 205,
         "inboundFromLeads": 260,
-        "outboundToLeads": 1614
+        "outboundToLeads": 1615
       },
       {
         "period": "all",
@@ -176,7 +176,7 @@
         "markedConversations": 196,
         "activeLeads": 196,
         "inboundFromLeads": 250,
-        "outboundToLeads": 1572
+        "outboundToLeads": 1573
       },
       {
         "period": "all",
@@ -186,7 +186,7 @@
         "markedConversations": 196,
         "activeLeads": 196,
         "inboundFromLeads": 250,
-        "outboundToLeads": 1572
+        "outboundToLeads": 1573
       },
       {
         "period": "all",
@@ -816,7 +816,7 @@
         "markedConversations": 21,
         "activeLeads": 22,
         "inboundFromLeads": 23,
-        "outboundToLeads": 178
+        "outboundToLeads": 179
       },
       {
         "period": "yesterday",
@@ -826,7 +826,7 @@
         "markedConversations": 21,
         "activeLeads": 22,
         "inboundFromLeads": 23,
-        "outboundToLeads": 178
+        "outboundToLeads": 179
       },
       {
         "period": "yesterday",
@@ -976,7 +976,7 @@
         "markedConversations": 21,
         "activeLeads": 22,
         "inboundFromLeads": 23,
-        "outboundToLeads": 178
+        "outboundToLeads": 179
       },
       {
         "period": "yesterday",
@@ -986,7 +986,7 @@
         "markedConversations": 21,
         "activeLeads": 22,
         "inboundFromLeads": 23,
-        "outboundToLeads": 178
+        "outboundToLeads": 179
       },
       {
         "period": "yesterday",
@@ -1216,7 +1216,7 @@
         "markedConversations": 205,
         "activeLeads": 205,
         "inboundFromLeads": 260,
-        "outboundToLeads": 1614
+        "outboundToLeads": 1615
       },
       {
         "period": "7d",
@@ -1226,7 +1226,7 @@
         "markedConversations": 205,
         "activeLeads": 205,
         "inboundFromLeads": 260,
-        "outboundToLeads": 1614
+        "outboundToLeads": 1615
       },
       {
         "period": "7d",
@@ -1376,7 +1376,7 @@
         "markedConversations": 196,
         "activeLeads": 196,
         "inboundFromLeads": 250,
-        "outboundToLeads": 1572
+        "outboundToLeads": 1573
       },
       {
         "period": "7d",
@@ -1386,7 +1386,7 @@
         "markedConversations": 196,
         "activeLeads": 196,
         "inboundFromLeads": 250,
-        "outboundToLeads": 1572
+        "outboundToLeads": 1573
       },
       {
         "period": "7d",
@@ -1616,7 +1616,7 @@
         "markedConversations": 205,
         "activeLeads": 205,
         "inboundFromLeads": 260,
-        "outboundToLeads": 1614
+        "outboundToLeads": 1615
       },
       {
         "period": "30d",
@@ -1626,7 +1626,7 @@
         "markedConversations": 205,
         "activeLeads": 205,
         "inboundFromLeads": 260,
-        "outboundToLeads": 1614
+        "outboundToLeads": 1615
       },
       {
         "period": "30d",
@@ -1776,7 +1776,7 @@
         "markedConversations": 196,
         "activeLeads": 196,
         "inboundFromLeads": 250,
-        "outboundToLeads": 1572
+        "outboundToLeads": 1573
       },
       {
         "period": "30d",
@@ -1786,7 +1786,7 @@
         "markedConversations": 196,
         "activeLeads": 196,
         "inboundFromLeads": 250,
-        "outboundToLeads": 1572
+        "outboundToLeads": 1573
       },
       {
         "period": "30d",
@@ -2233,7 +2233,7 @@
         "identifiedLeads": 21,
         "activeLeads": 22,
         "inboundFromLeads": 23,
-        "outboundToLeads": 178
+        "outboundToLeads": 179
       },
       {
         "day": "2026-11-14",
@@ -2242,7 +2242,7 @@
         "identifiedLeads": 21,
         "activeLeads": 22,
         "inboundFromLeads": 23,
-        "outboundToLeads": 178
+        "outboundToLeads": 179
       },
       {
         "day": "2026-11-14",
@@ -2251,7 +2251,7 @@
         "identifiedLeads": 21,
         "activeLeads": 22,
         "inboundFromLeads": 23,
-        "outboundToLeads": 178
+        "outboundToLeads": 179
       },
       {
         "day": "2026-11-14",
@@ -2260,7 +2260,7 @@
         "identifiedLeads": 21,
         "activeLeads": 22,
         "inboundFromLeads": 23,
-        "outboundToLeads": 178
+        "outboundToLeads": 179
       },
       {
         "day": "2026-11-15",
@@ -2302,13 +2302,13 @@
   },
   "meta": {
     "schemaVersion": 2,
-    "lastSyncedAt": "2026-11-15T16:30:53.074964Z",
+    "lastSyncedAt": "2026-11-15T17:50:22.061604Z",
     "timeZone": "America/Fortaleza",
     "source": "UmClique /public-conversations, /messages e /public-agents",
-    "allAccountConversations": 5632,
-    "inScopeConversations": 5632,
-    "scannedConversations": 5632,
-    "completeConversations": 5632,
+    "allAccountConversations": 5639,
+    "inScopeConversations": 5639,
+    "scannedConversations": 5639,
+    "completeConversations": 5639,
     "complete": true,
     "dataState": "completo",
     "ownerRule": "assigned_agent_id atual da conversa (não autor de cada mensagem)",
@@ -2381,14 +2381,14 @@
       "period": "all",
       "owner": "all",
       "channel": "all",
-      "inbound": 1044,
-      "outbound": 7579,
-      "conversations": 5285,
-      "contactsWithInbound": 730,
-      "contactsInConversations": 4728,
+      "inbound": 1059,
+      "outbound": 7656,
+      "conversations": 5296,
+      "contactsWithInbound": 743,
+      "contactsInConversations": 4734,
       "firstInboundConversations": 368,
       "lastInboundActiveConversations": 0,
-      "unread": 327
+      "unread": 334
     },
     {
       "period": "all",
@@ -2407,7 +2407,7 @@
       "period": "all",
       "owner": "all",
       "channel": "788ca3b9-e308-4bb6-8177-b96aa3baf71c",
-      "inbound": 154,
+      "inbound": 155,
       "outbound": 88,
       "conversations": 48,
       "contactsWithInbound": 39,
@@ -2433,14 +2433,14 @@
       "period": "all",
       "owner": "all",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 267,
-      "outbound": 1472,
-      "conversations": 1005,
-      "contactsWithInbound": 241,
-      "contactsInConversations": 1005,
+      "inbound": 281,
+      "outbound": 1518,
+      "conversations": 1016,
+      "contactsWithInbound": 254,
+      "contactsInConversations": 1016,
       "firstInboundConversations": 2,
       "lastInboundActiveConversations": 0,
-      "unread": 146
+      "unread": 153
     },
     {
       "period": "all",
@@ -2460,7 +2460,7 @@
       "owner": "all",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 147,
-      "outbound": 3455,
+      "outbound": 3486,
       "conversations": 3092,
       "contactsWithInbound": 127,
       "contactsInConversations": 3092,
@@ -2590,7 +2590,7 @@
       "owner": "8a9b34f7f880",
       "channel": "all",
       "inbound": 319,
-      "outbound": 1729,
+      "outbound": 1731,
       "conversations": 338,
       "contactsWithInbound": 246,
       "contactsInConversations": 246,
@@ -2668,7 +2668,7 @@
       "owner": "8a9b34f7f880",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 2,
-      "outbound": 72,
+      "outbound": 74,
       "conversations": 64,
       "contactsWithInbound": 1,
       "contactsInConversations": 64,
@@ -2797,14 +2797,14 @@
       "period": "all",
       "owner": "unassigned",
       "channel": "all",
-      "inbound": 716,
-      "outbound": 5834,
-      "conversations": 4943,
-      "contactsWithInbound": 483,
-      "contactsInConversations": 4481,
+      "inbound": 731,
+      "outbound": 5909,
+      "conversations": 4954,
+      "contactsWithInbound": 496,
+      "contactsInConversations": 4487,
       "firstInboundConversations": 120,
       "lastInboundActiveConversations": 0,
-      "unread": 282
+      "unread": 289
     },
     {
       "period": "all",
@@ -2823,7 +2823,7 @@
       "period": "all",
       "owner": "unassigned",
       "channel": "788ca3b9-e308-4bb6-8177-b96aa3baf71c",
-      "inbound": 154,
+      "inbound": 155,
       "outbound": 88,
       "conversations": 48,
       "contactsWithInbound": 39,
@@ -2849,14 +2849,14 @@
       "period": "all",
       "owner": "unassigned",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 250,
-      "outbound": 1415,
-      "conversations": 978,
-      "contactsWithInbound": 225,
-      "contactsInConversations": 978,
+      "inbound": 264,
+      "outbound": 1461,
+      "conversations": 989,
+      "contactsWithInbound": 238,
+      "contactsInConversations": 989,
       "firstInboundConversations": 1,
       "lastInboundActiveConversations": 0,
-      "unread": 138
+      "unread": 145
     },
     {
       "period": "all",
@@ -2876,7 +2876,7 @@
       "owner": "unassigned",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 144,
-      "outbound": 3383,
+      "outbound": 3412,
       "conversations": 3027,
       "contactsWithInbound": 125,
       "contactsInConversations": 3027,
@@ -2901,11 +2901,11 @@
       "period": "today",
       "owner": "all",
       "channel": "all",
-      "inbound": 22,
-      "outbound": 84,
-      "conversations": 45,
-      "contactsWithInbound": 21,
-      "contactsInConversations": 45,
+      "inbound": 26,
+      "outbound": 99,
+      "conversations": 52,
+      "contactsWithInbound": 25,
+      "contactsInConversations": 52,
       "firstInboundConversations": 1,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -2953,11 +2953,11 @@
       "period": "today",
       "owner": "all",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 20,
-      "outbound": 76,
-      "conversations": 43,
-      "contactsWithInbound": 19,
-      "contactsInConversations": 43,
+      "inbound": 24,
+      "outbound": 91,
+      "conversations": 50,
+      "contactsWithInbound": 23,
+      "contactsInConversations": 50,
       "firstInboundConversations": 0,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3317,11 +3317,11 @@
       "period": "today",
       "owner": "unassigned",
       "channel": "all",
-      "inbound": 19,
-      "outbound": 72,
-      "conversations": 42,
-      "contactsWithInbound": 18,
-      "contactsInConversations": 42,
+      "inbound": 23,
+      "outbound": 87,
+      "conversations": 49,
+      "contactsWithInbound": 22,
+      "contactsInConversations": 49,
       "firstInboundConversations": 0,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3369,11 +3369,11 @@
       "period": "today",
       "owner": "unassigned",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 18,
-      "outbound": 72,
-      "conversations": 41,
-      "contactsWithInbound": 17,
-      "contactsInConversations": 41,
+      "inbound": 22,
+      "outbound": 87,
+      "conversations": 48,
+      "contactsWithInbound": 21,
+      "contactsInConversations": 48,
       "firstInboundConversations": 0,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3421,11 +3421,11 @@
       "period": "yesterday",
       "owner": "all",
       "channel": "all",
-      "inbound": 134,
-      "outbound": 1677,
-      "conversations": 1134,
-      "contactsWithInbound": 117,
-      "contactsInConversations": 1109,
+      "inbound": 145,
+      "outbound": 1739,
+      "conversations": 1166,
+      "contactsWithInbound": 128,
+      "contactsInConversations": 1136,
       "firstInboundConversations": 26,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3447,11 +3447,11 @@
       "period": "yesterday",
       "owner": "all",
       "channel": "788ca3b9-e308-4bb6-8177-b96aa3baf71c",
-      "inbound": 12,
+      "inbound": 13,
       "outbound": 1,
-      "conversations": 4,
-      "contactsWithInbound": 3,
-      "contactsInConversations": 4,
+      "conversations": 5,
+      "contactsWithInbound": 4,
+      "contactsInConversations": 5,
       "firstInboundConversations": 3,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3473,11 +3473,11 @@
       "period": "yesterday",
       "owner": "all",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 58,
-      "outbound": 252,
-      "conversations": 144,
-      "contactsWithInbound": 56,
-      "contactsInConversations": 144,
+      "inbound": 68,
+      "outbound": 283,
+      "conversations": 153,
+      "contactsWithInbound": 66,
+      "contactsInConversations": 153,
       "firstInboundConversations": 0,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3500,10 +3500,10 @@
       "owner": "all",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 42,
-      "outbound": 1258,
-      "conversations": 965,
+      "outbound": 1289,
+      "conversations": 987,
       "contactsWithInbound": 37,
-      "contactsInConversations": 965,
+      "contactsInConversations": 987,
       "firstInboundConversations": 2,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3630,10 +3630,10 @@
       "owner": "8a9b34f7f880",
       "channel": "all",
       "inbound": 23,
-      "outbound": 180,
-      "conversations": 30,
+      "outbound": 182,
+      "conversations": 32,
       "contactsWithInbound": 22,
-      "contactsInConversations": 28,
+      "contactsInConversations": 30,
       "firstInboundConversations": 21,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3708,10 +3708,10 @@
       "owner": "8a9b34f7f880",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 0,
-      "outbound": 10,
-      "conversations": 7,
+      "outbound": 12,
+      "conversations": 9,
       "contactsWithInbound": 0,
-      "contactsInConversations": 7,
+      "contactsInConversations": 9,
       "firstInboundConversations": 0,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3837,11 +3837,11 @@
       "period": "yesterday",
       "owner": "unassigned",
       "channel": "all",
-      "inbound": 111,
-      "outbound": 1497,
-      "conversations": 1104,
-      "contactsWithInbound": 95,
-      "contactsInConversations": 1081,
+      "inbound": 122,
+      "outbound": 1557,
+      "conversations": 1134,
+      "contactsWithInbound": 106,
+      "contactsInConversations": 1106,
       "firstInboundConversations": 5,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3863,11 +3863,11 @@
       "period": "yesterday",
       "owner": "unassigned",
       "channel": "788ca3b9-e308-4bb6-8177-b96aa3baf71c",
-      "inbound": 12,
+      "inbound": 13,
       "outbound": 1,
-      "conversations": 4,
-      "contactsWithInbound": 3,
-      "contactsInConversations": 4,
+      "conversations": 5,
+      "contactsWithInbound": 4,
+      "contactsInConversations": 5,
       "firstInboundConversations": 3,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3889,11 +3889,11 @@
       "period": "yesterday",
       "owner": "unassigned",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 57,
-      "outbound": 248,
-      "conversations": 142,
-      "contactsWithInbound": 55,
-      "contactsInConversations": 142,
+      "inbound": 67,
+      "outbound": 279,
+      "conversations": 151,
+      "contactsWithInbound": 65,
+      "contactsInConversations": 151,
       "firstInboundConversations": 0,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3916,10 +3916,10 @@
       "owner": "unassigned",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 42,
-      "outbound": 1248,
-      "conversations": 958,
+      "outbound": 1277,
+      "conversations": 978,
       "contactsWithInbound": 37,
-      "contactsInConversations": 958,
+      "contactsInConversations": 978,
       "firstInboundConversations": 2,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3941,11 +3941,11 @@
       "period": "7d",
       "owner": "all",
       "channel": "all",
-      "inbound": 923,
-      "outbound": 7549,
-      "conversations": 5262,
-      "contactsWithInbound": 703,
-      "contactsInConversations": 4712,
+      "inbound": 938,
+      "outbound": 7626,
+      "conversations": 5273,
+      "contactsWithInbound": 716,
+      "contactsInConversations": 4718,
       "firstInboundConversations": 350,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -3967,7 +3967,7 @@
       "period": "7d",
       "owner": "all",
       "channel": "788ca3b9-e308-4bb6-8177-b96aa3baf71c",
-      "inbound": 51,
+      "inbound": 52,
       "outbound": 60,
       "conversations": 36,
       "contactsWithInbound": 18,
@@ -3993,11 +3993,11 @@
       "period": "7d",
       "owner": "all",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 267,
-      "outbound": 1472,
-      "conversations": 1005,
-      "contactsWithInbound": 241,
-      "contactsInConversations": 1005,
+      "inbound": 281,
+      "outbound": 1518,
+      "conversations": 1016,
+      "contactsWithInbound": 254,
+      "contactsInConversations": 1016,
       "firstInboundConversations": 2,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -4020,7 +4020,7 @@
       "owner": "all",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 147,
-      "outbound": 3455,
+      "outbound": 3486,
       "conversations": 3092,
       "contactsWithInbound": 127,
       "contactsInConversations": 3092,
@@ -4150,7 +4150,7 @@
       "owner": "8a9b34f7f880",
       "channel": "all",
       "inbound": 319,
-      "outbound": 1729,
+      "outbound": 1731,
       "conversations": 338,
       "contactsWithInbound": 246,
       "contactsInConversations": 246,
@@ -4228,7 +4228,7 @@
       "owner": "8a9b34f7f880",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 2,
-      "outbound": 72,
+      "outbound": 74,
       "conversations": 64,
       "contactsWithInbound": 1,
       "contactsInConversations": 64,
@@ -4357,11 +4357,11 @@
       "period": "7d",
       "owner": "unassigned",
       "channel": "all",
-      "inbound": 598,
-      "outbound": 5806,
-      "conversations": 4920,
-      "contactsWithInbound": 456,
-      "contactsInConversations": 4465,
+      "inbound": 613,
+      "outbound": 5881,
+      "conversations": 4931,
+      "contactsWithInbound": 469,
+      "contactsInConversations": 4471,
       "firstInboundConversations": 103,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -4383,7 +4383,7 @@
       "period": "7d",
       "owner": "unassigned",
       "channel": "788ca3b9-e308-4bb6-8177-b96aa3baf71c",
-      "inbound": 51,
+      "inbound": 52,
       "outbound": 60,
       "conversations": 36,
       "contactsWithInbound": 18,
@@ -4409,11 +4409,11 @@
       "period": "7d",
       "owner": "unassigned",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 250,
-      "outbound": 1415,
-      "conversations": 978,
-      "contactsWithInbound": 225,
-      "contactsInConversations": 978,
+      "inbound": 264,
+      "outbound": 1461,
+      "conversations": 989,
+      "contactsWithInbound": 238,
+      "contactsInConversations": 989,
       "firstInboundConversations": 1,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -4436,7 +4436,7 @@
       "owner": "unassigned",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 144,
-      "outbound": 3383,
+      "outbound": 3412,
       "conversations": 3027,
       "contactsWithInbound": 125,
       "contactsInConversations": 3027,
@@ -4461,11 +4461,11 @@
       "period": "30d",
       "owner": "all",
       "channel": "all",
-      "inbound": 1044,
-      "outbound": 7579,
-      "conversations": 5285,
-      "contactsWithInbound": 730,
-      "contactsInConversations": 4728,
+      "inbound": 1059,
+      "outbound": 7656,
+      "conversations": 5296,
+      "contactsWithInbound": 743,
+      "contactsInConversations": 4734,
       "firstInboundConversations": 368,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -4487,7 +4487,7 @@
       "period": "30d",
       "owner": "all",
       "channel": "788ca3b9-e308-4bb6-8177-b96aa3baf71c",
-      "inbound": 154,
+      "inbound": 155,
       "outbound": 88,
       "conversations": 48,
       "contactsWithInbound": 39,
@@ -4513,11 +4513,11 @@
       "period": "30d",
       "owner": "all",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 267,
-      "outbound": 1472,
-      "conversations": 1005,
-      "contactsWithInbound": 241,
-      "contactsInConversations": 1005,
+      "inbound": 281,
+      "outbound": 1518,
+      "conversations": 1016,
+      "contactsWithInbound": 254,
+      "contactsInConversations": 1016,
       "firstInboundConversations": 2,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -4540,7 +4540,7 @@
       "owner": "all",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 147,
-      "outbound": 3455,
+      "outbound": 3486,
       "conversations": 3092,
       "contactsWithInbound": 127,
       "contactsInConversations": 3092,
@@ -4670,7 +4670,7 @@
       "owner": "8a9b34f7f880",
       "channel": "all",
       "inbound": 319,
-      "outbound": 1729,
+      "outbound": 1731,
       "conversations": 338,
       "contactsWithInbound": 246,
       "contactsInConversations": 246,
@@ -4748,7 +4748,7 @@
       "owner": "8a9b34f7f880",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 2,
-      "outbound": 72,
+      "outbound": 74,
       "conversations": 64,
       "contactsWithInbound": 1,
       "contactsInConversations": 64,
@@ -4877,11 +4877,11 @@
       "period": "30d",
       "owner": "unassigned",
       "channel": "all",
-      "inbound": 716,
-      "outbound": 5834,
-      "conversations": 4943,
-      "contactsWithInbound": 483,
-      "contactsInConversations": 4481,
+      "inbound": 731,
+      "outbound": 5909,
+      "conversations": 4954,
+      "contactsWithInbound": 496,
+      "contactsInConversations": 4487,
       "firstInboundConversations": 120,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -4903,7 +4903,7 @@
       "period": "30d",
       "owner": "unassigned",
       "channel": "788ca3b9-e308-4bb6-8177-b96aa3baf71c",
-      "inbound": 154,
+      "inbound": 155,
       "outbound": 88,
       "conversations": 48,
       "contactsWithInbound": 39,
@@ -4929,11 +4929,11 @@
       "period": "30d",
       "owner": "unassigned",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 250,
-      "outbound": 1415,
-      "conversations": 978,
-      "contactsWithInbound": 225,
-      "contactsInConversations": 978,
+      "inbound": 264,
+      "outbound": 1461,
+      "conversations": 989,
+      "contactsWithInbound": 238,
+      "contactsInConversations": 989,
       "firstInboundConversations": 1,
       "lastInboundActiveConversations": 0,
       "unread": null
@@ -4956,7 +4956,7 @@
       "owner": "unassigned",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 144,
-      "outbound": 3383,
+      "outbound": 3412,
       "conversations": 3027,
       "contactsWithInbound": 125,
       "contactsInConversations": 3027,
@@ -6010,18 +6010,18 @@
       "owner": "8a9b34f7f880",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 0,
-      "outbound": 10,
+      "outbound": 12,
       "inboundContacts": 0,
-      "conversations": 7
+      "conversations": 9
     },
     {
       "day": "2026-11-14",
       "owner": "8a9b34f7f880",
       "channel": "all",
       "inbound": 23,
-      "outbound": 180,
+      "outbound": 182,
       "inboundContacts": 22,
-      "conversations": 30
+      "conversations": 32
     },
     {
       "day": "2026-11-14",
@@ -6036,73 +6036,73 @@
       "day": "2026-11-14",
       "owner": "all",
       "channel": "788ca3b9-e308-4bb6-8177-b96aa3baf71c",
-      "inbound": 12,
+      "inbound": 13,
       "outbound": 1,
-      "inboundContacts": 3,
-      "conversations": 4
+      "inboundContacts": 4,
+      "conversations": 5
     },
     {
       "day": "2026-11-14",
       "owner": "all",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 58,
-      "outbound": 252,
-      "inboundContacts": 56,
-      "conversations": 144
+      "inbound": 68,
+      "outbound": 283,
+      "inboundContacts": 66,
+      "conversations": 153
     },
     {
       "day": "2026-11-14",
       "owner": "all",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 42,
-      "outbound": 1258,
+      "outbound": 1289,
       "inboundContacts": 37,
-      "conversations": 965
+      "conversations": 987
     },
     {
       "day": "2026-11-14",
       "owner": "all",
       "channel": "all",
-      "inbound": 134,
-      "outbound": 1677,
-      "inboundContacts": 117,
-      "conversations": 1134
+      "inbound": 145,
+      "outbound": 1739,
+      "inboundContacts": 128,
+      "conversations": 1166
     },
     {
       "day": "2026-11-14",
       "owner": "unassigned",
       "channel": "788ca3b9-e308-4bb6-8177-b96aa3baf71c",
-      "inbound": 12,
+      "inbound": 13,
       "outbound": 1,
-      "inboundContacts": 3,
-      "conversations": 4
+      "inboundContacts": 4,
+      "conversations": 5
     },
     {
       "day": "2026-11-14",
       "owner": "unassigned",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 57,
-      "outbound": 248,
-      "inboundContacts": 55,
-      "conversations": 142
+      "inbound": 67,
+      "outbound": 279,
+      "inboundContacts": 65,
+      "conversations": 151
     },
     {
       "day": "2026-11-14",
       "owner": "unassigned",
       "channel": "af9c1b39-3e2a-4178-b366-a76269562121",
       "inbound": 42,
-      "outbound": 1248,
+      "outbound": 1277,
       "inboundContacts": 37,
-      "conversations": 958
+      "conversations": 978
     },
     {
       "day": "2026-11-14",
       "owner": "unassigned",
       "channel": "all",
-      "inbound": 111,
-      "outbound": 1497,
-      "inboundContacts": 95,
-      "conversations": 1104
+      "inbound": 122,
+      "outbound": 1557,
+      "inboundContacts": 106,
+      "conversations": 1134
     },
     {
       "day": "2026-11-15",
@@ -6144,10 +6144,10 @@
       "day": "2026-11-15",
       "owner": "all",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 20,
-      "outbound": 76,
-      "inboundContacts": 19,
-      "conversations": 43
+      "inbound": 24,
+      "outbound": 91,
+      "inboundContacts": 23,
+      "conversations": 50
     },
     {
       "day": "2026-11-15",
@@ -6162,19 +6162,19 @@
       "day": "2026-11-15",
       "owner": "all",
       "channel": "all",
-      "inbound": 22,
-      "outbound": 84,
-      "inboundContacts": 21,
-      "conversations": 45
+      "inbound": 26,
+      "outbound": 99,
+      "inboundContacts": 25,
+      "conversations": 52
     },
     {
       "day": "2026-11-15",
       "owner": "unassigned",
       "channel": "8bb3b5f9-2ce1-4c52-9efd-4e4c35c6720d",
-      "inbound": 18,
-      "outbound": 72,
-      "inboundContacts": 17,
-      "conversations": 41
+      "inbound": 22,
+      "outbound": 87,
+      "inboundContacts": 21,
+      "conversations": 48
     },
     {
       "day": "2026-11-15",
@@ -6189,10 +6189,10 @@
       "day": "2026-11-15",
       "owner": "unassigned",
       "channel": "all",
-      "inbound": 19,
-      "outbound": 72,
-      "inboundContacts": 18,
-      "conversations": 42
+      "inbound": 23,
+      "outbound": 87,
+      "inboundContacts": 22,
+      "conversations": 49
     }
   ]
 }
