@@ -51,49 +51,84 @@
 .v2-table-scroll::-webkit-scrollbar-thumb:hover,
 .table-wrap::-webkit-scrollbar-thumb:hover,
 .table-scroll::-webkit-scrollbar-thumb:hover{background:#886adb}
-/* Keep the campaign identity in view as ranking metrics scroll sideways.
-   Scope this to the Ranking de campanhas card; other tables are unchanged. */
-.table-card .table-wrap table > thead > tr > th:first-child,
-.table-card .table-wrap table > tbody > tr > td:first-child{
+/* Table headers stay visible during vertical scrolling. */
+.table-wrap thead th,.v2-table-scroll thead th,.table-scroll thead th{
   position:sticky;
-  left:0;
-  width:182px;
-  min-width:182px;
-  max-width:182px;
-  box-shadow:1px 0 0 var(--line,#e5e9f2),5px 0 9px -7px rgba(17,27,50,.25);
-}
-.table-card .table-wrap table > thead > tr > th:first-child{
   top:0;
   z-index:4;
-  background:#f8f9fe;
+  background:#f5f7fb;
+  box-shadow:0 1px 0 #e5eaf2;
 }
-.table-card .table-wrap table > tbody > tr > td:first-child{
+/* Universal frozen identity column: ranking, attribution, performance,
+   errors, owners, daily movement and all other horizontally scrollable tables. */
+.table-wrap table > thead > tr > th:first-child,
+.v2-table-scroll table > thead > tr > th:first-child,
+.table-scroll table > thead > tr > th:first-child,
+.table-wrap table > tbody > tr > td:first-child:not([colspan]),
+.v2-table-scroll table > tbody > tr > td:first-child:not([colspan]),
+.table-scroll table > tbody > tr > td:first-child:not([colspan]){
+  position:sticky;
+  left:0;
+  box-shadow:1px 0 0 #e2e8f1,8px 0 14px -12px rgba(20,30,54,.42);
+}
+.table-wrap table > tbody > tr > td:first-child:not([colspan]),
+.v2-table-scroll table > tbody > tr > td:first-child:not([colspan]),
+.table-scroll table > tbody > tr > td:first-child:not([colspan]){
   z-index:3;
   background:#fff;
+  font-weight:750;
+}
+.table-wrap table > thead > tr > th:first-child,
+.v2-table-scroll table > thead > tr > th:first-child,
+.table-scroll table > thead > tr > th:first-child{
+  z-index:6;
+  background:#f5f7fb;
+}
+.table-wrap table > tbody > tr:hover > td:first-child:not([colspan]),
+.v2-table-scroll table > tbody > tr:hover > td:first-child:not([colspan]),
+.table-scroll table > tbody > tr:hover > td:first-child:not([colspan]){
+  background:#f5f7ff;
+}
+/* Give long campaign names enough room while preserving metric visibility. */
+.table-card .table-wrap table > :is(thead,tbody) > tr > :is(th,td):first-child:not([colspan]){
+  width:192px;
+  min-width:192px;
+  max-width:192px;
+  white-space:normal;
   overflow-wrap:anywhere;
 }
-.table-card .table-wrap table > tbody > tr:hover > td:first-child{
-  background:#fcfbff;
+.v2-table-scroll table > :is(thead,tbody) > tr > :is(th,td):first-child:not([colspan]){
+  min-width:164px;
+  max-width:210px;
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+#v2DailyTable table > :is(thead,tbody) > tr > :is(th,td):first-child:not([colspan]),
+#v2X1Days table > :is(thead,tbody) > tr > :is(th,td):first-child:not([colspan]),
+#v2X1GroupDays table > :is(thead,tbody) > tr > :is(th,td):first-child:not([colspan]){
+  min-width:110px;
+  max-width:130px;
+}
+.table-scroll table > :is(thead,tbody) > tr > :is(th,td):first-child:not([colspan]){
+  overflow-wrap:anywhere;
 }
 @media(max-width:590px){
-  .table-card .table-wrap table > thead > tr > th:first-child,
-  .table-card .table-wrap table > tbody > tr > td:first-child{
-    width:154px;
-    min-width:154px;
-    max-width:154px;
+  .table-card .table-wrap table > :is(thead,tbody) > tr > :is(th,td):first-child:not([colspan]){width:150px;min-width:150px;max-width:150px}
+  .v2-table-scroll table > :is(thead,tbody) > tr > :is(th,td):first-child:not([colspan]){min-width:140px;max-width:170px}
+}
+/* Mensageria lead-source tables switch to stacked cards on mobile:
+   their first cells must never float independently of their card. */
+@media(max-width:700px){
+  .campaign-columns .table-scroll table > :is(thead,tbody) > tr > :is(th,td):first-child{
+    position:static;
+    left:auto;
+    box-shadow:none;
+  }
+  .campaign-columns .table-scroll table > tbody > tr > td:first-child:not([colspan]){
+    background:transparent;
   }
 }
 
-/* Sticky headers remain readable while scrolling long lists vertically. */
-.table-wrap thead th,
-.v2-table-scroll thead th,
-.table-scroll thead th{
-  position:sticky;
-  top:0;
-  z-index:2;
-  background:#f8f9fe;
-  box-shadow:0 1px 0 #e4e7f1;
-}
 .lp-scroll-region:focus-visible{
   outline:3px solid rgba(138,109,233,.5);
   outline-offset:-3px;
