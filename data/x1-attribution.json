@@ -6,8 +6,8 @@
       "utm_source": "whatsapp",
       "utm_medium": "x1"
     },
-    "lastSyncedAt": "2026-11-16T21:45:28.095003Z",
-    "lastCheckedAt": "2026-11-16T21:45:28.095003Z",
+    "lastSyncedAt": "2026-11-16T21:50:09.861480Z",
+    "lastCheckedAt": "2026-11-16T21:50:09.861480Z",
     "definition": "Cadastros na página LP com deduplicação cronológica; não comprova entrada em grupo",
     "attributionRule": "Somente ID exato de disparo em utm_campaign/utm_content, primeira inscrição por telefone",
     "groupRule": "Entrada apenas com evento/checagem de participantes documentada na aba privada; clique em convite não conta",
