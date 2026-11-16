@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-16T22:29:49.359128Z",
+    "lastSyncedAt": "2026-11-16T22:34:47.179872Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1508,10 +1508,10 @@
       "sent": 500,
       "failures": 178,
       "delivered": 314,
-      "read": 174,
+      "read": 175,
       "replied": 16,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-13T22:09:51.477494Z",
       "startedAt": "2026-11-13T22:09:54.407000Z",
       "completedAt": "2026-11-13T22:12:15.644000Z",
@@ -1568,7 +1568,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T15:59:19.598519Z",
+      "lastSyncedAt": "2026-11-16T22:34:47.179872Z",
       "campaignOrigin": null
     },
     {
@@ -1997,10 +1997,10 @@
       "sent": 250,
       "failures": 39,
       "delivered": 206,
-      "read": 94,
+      "read": 95,
       "replied": 13,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-16T15:54:11.024313Z",
       "startedAt": "2026-11-16T15:54:15.749000Z",
       "completedAt": "2026-11-16T15:55:26.407000Z",
@@ -2057,7 +2057,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T22:29:49.359128Z",
+      "lastSyncedAt": "2026-11-16T22:34:47.179872Z",
       "campaignOrigin": null
     },
     {
@@ -2156,8 +2156,8 @@
       "contacts": 1308,
       "sent": 1308,
       "failures": 351,
-      "delivered": 898,
-      "read": 320,
+      "delivered": 900,
+      "read": 323,
       "replied": 25,
       "conversions": 0,
       "conversionValue": 0,
@@ -2217,7 +2217,7 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T22:29:49.359128Z",
+      "lastSyncedAt": "2026-11-16T22:34:47.179872Z",
       "campaignOrigin": null
     },
     {
@@ -2240,7 +2240,7 @@
       "read": 2,
       "replied": 1,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-16T21:32:57.872222Z",
       "startedAt": "2026-11-16T21:33:02.891000Z",
       "completedAt": "2026-11-16T21:35:18.736000Z",
@@ -2297,7 +2297,87 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T22:29:49.359128Z",
+      "lastSyncedAt": "2026-11-16T22:34:47.179872Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "792c8bca-ba4d-4055-a6fd-a3f32738fe09",
+      "campaignId": "792c8bca-ba4d-4055-a6fd-a3f32738fe09",
+      "name": "Disparo 15 - Wes",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp API Oficial",
+      "provider": "meta",
+      "channelId": "3a625a2b-51c5-4396-a02d-8a3e039a9cd6",
+      "channelIds": [
+        "3a625a2b-51c5-4396-a02d-8a3e039a9cd6"
+      ],
+      "template": "oi_utility",
+      "contacts": 250,
+      "sent": 250,
+      "failures": 78,
+      "delivered": 150,
+      "read": 11,
+      "replied": 2,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-16T22:33:16.689978Z",
+      "startedAt": "2026-11-16T22:33:21.318000Z",
+      "completedAt": "2026-11-16T22:34:31.050000Z",
+      "period": "16/11/2026",
+      "timeLabel": "16/11/2026 19:33",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 60,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 17,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 6,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 83,
+          "unexplained": 3,
+          "scannedRows": 143,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 83,
+        "matchesBroadcastFailures": false
+      },
+      "channelName": "LP Crypto 03",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-16T22:34:47.179872Z",
       "campaignOrigin": null
     }
   ],
