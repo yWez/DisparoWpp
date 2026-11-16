@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-16T18:16:31.402957Z",
+    "lastSyncedAt": "2026-11-16T18:25:05.582913Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2058,6 +2058,86 @@
       "channelStatus": "connected",
       "uniqueReached": null,
       "lastSyncedAt": "2026-11-16T18:16:31.402957Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "02b71570-8013-4b2d-bd68-3ce3f330951d",
+      "campaignId": "02b71570-8013-4b2d-bd68-3ce3f330951d",
+      "name": "Disparo 14 - Wes",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp API Oficial",
+      "provider": "meta",
+      "channelId": "3a625a2b-51c5-4396-a02d-8a3e039a9cd6",
+      "channelIds": [
+        "3a625a2b-51c5-4396-a02d-8a3e039a9cd6"
+      ],
+      "template": "oi_utility",
+      "contacts": 250,
+      "sent": 250,
+      "failures": 58,
+      "delivered": 174,
+      "read": 19,
+      "replied": 4,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-16T18:21:43.703162Z",
+      "startedAt": "2026-11-16T18:21:47.988000Z",
+      "completedAt": "2026-11-16T18:23:41.038000Z",
+      "period": "16/11/2026",
+      "timeLabel": "16/11/2026 15:21",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 45,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 16,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 1,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 62,
+          "unexplained": 3,
+          "scannedRows": 107,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 62,
+        "matchesBroadcastFailures": false
+      },
+      "channelName": "LP Crypto 03",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-16T18:25:05.582913Z",
       "campaignOrigin": null
     }
   ],
