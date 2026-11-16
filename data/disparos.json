@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-16T21:09:48.438487Z",
+    "lastSyncedAt": "2026-11-16T21:14:47.820637Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2000,7 +2000,7 @@
       "read": 92,
       "replied": 13,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-16T15:54:11.024313Z",
       "startedAt": "2026-11-16T15:54:15.749000Z",
       "completedAt": "2026-11-16T15:55:26.407000Z",
@@ -2057,7 +2057,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T21:09:48.438487Z",
+      "lastSyncedAt": "2026-11-16T21:14:47.820637Z",
       "campaignOrigin": null
     },
     {
@@ -2077,7 +2077,7 @@
       "sent": 250,
       "failures": 58,
       "delivered": 187,
-      "read": 74,
+      "read": 76,
       "replied": 13,
       "conversions": 0,
       "conversionValue": 0,
@@ -2137,7 +2137,87 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T21:09:48.438487Z",
+      "lastSyncedAt": "2026-11-16T21:14:47.820637Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "005c246c-cd3d-4421-9678-539a8fe2f862",
+      "campaignId": "005c246c-cd3d-4421-9678-539a8fe2f862",
+      "name": "Resgate para Comunidade ",
+      "status": "Em envio",
+      "statusCode": "sending",
+      "channel": "WhatsApp API Oficial",
+      "provider": "meta",
+      "channelId": "a1f3ecf5-87db-4956-9d31-a3501d42a875",
+      "channelIds": [
+        "a1f3ecf5-87db-4956-9d31-a3501d42a875"
+      ],
+      "template": "entrada_para_comunidade",
+      "contacts": 1308,
+      "sent": 500,
+      "failures": 83,
+      "delivered": 345,
+      "read": 15,
+      "replied": 2,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-16T21:12:25.813143Z",
+      "startedAt": "2026-11-16T21:12:30.885000Z",
+      "completedAt": null,
+      "period": "16/11/2026",
+      "timeLabel": "16/11/2026 18:12",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 50,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          },
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 26,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 9,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 85,
+          "unexplained": 3,
+          "scannedRows": 111,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 85,
+        "matchesBroadcastFailures": false
+      },
+      "channelName": "Equipe Luisa Pires 01",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-16T21:14:47.820637Z",
       "campaignOrigin": null
     }
   ],
