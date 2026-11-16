@@ -5,7 +5,7 @@
     "periodLabel": "Campanhas de 2026-11-09 até 2026-11-15",
     "periodStart": "2026-11-09",
     "periodEnd": "2026-11-15",
-    "snapshotDate": "2026-11-15",
+    "snapshotDate": "2026-11-16",
     "dataStatus": "Sincronizado da UmClique API; campos ausentes não significam zero.",
     "source": "UmClique API (estatísticas agregadas) e captura inicial de 09–10/11/2026",
     "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k/edit",
@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-15T23:42:08.023270Z",
+    "lastSyncedAt": "2026-11-16T00:04:22.738282Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
