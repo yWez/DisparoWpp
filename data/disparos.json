@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-16T22:19:46.714651Z",
+    "lastSyncedAt": "2026-11-16T22:24:46.816423Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -693,7 +693,7 @@
       "read": 76,
       "replied": 7,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-12T22:53:44.779555Z",
       "startedAt": "2026-11-12T22:53:48.278000Z",
       "completedAt": "2026-11-12T22:55:08.925000Z",
@@ -750,7 +750,7 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T22:19:46.714651Z",
+      "lastSyncedAt": "2026-11-16T22:24:46.816423Z",
       "campaignOrigin": null,
       "provider": "meta"
     },
@@ -1996,7 +1996,7 @@
       "contacts": 250,
       "sent": 250,
       "failures": 39,
-      "delivered": 205,
+      "delivered": 206,
       "read": 94,
       "replied": 13,
       "conversions": 0,
@@ -2057,7 +2057,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T22:19:46.714651Z",
+      "lastSyncedAt": "2026-11-16T22:24:46.816423Z",
       "campaignOrigin": null
     },
     {
@@ -2157,7 +2157,7 @@
       "sent": 1308,
       "failures": 351,
       "delivered": 896,
-      "read": 308,
+      "read": 314,
       "replied": 25,
       "conversions": 0,
       "conversionValue": 0,
@@ -2217,7 +2217,7 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T22:19:46.714651Z",
+      "lastSyncedAt": "2026-11-16T22:24:46.816423Z",
       "campaignOrigin": null
     },
     {
