@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-16T18:39:50.655995Z",
+    "lastSyncedAt": "2026-11-16T18:44:52.335782Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1838,10 +1838,10 @@
       "sent": 307,
       "failures": 104,
       "delivered": 197,
-      "read": 74,
-      "replied": 7,
+      "read": 75,
+      "replied": 8,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-14T22:17:15.597331Z",
       "startedAt": "2026-11-14T22:17:18.934000Z",
       "completedAt": "2026-11-14T22:19:07.527000Z",
@@ -1909,7 +1909,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T14:14:25.435755Z",
+      "lastSyncedAt": "2026-11-16T18:44:52.335782Z",
       "campaignOrigin": null
     },
     {
@@ -1997,10 +1997,10 @@
       "sent": 250,
       "failures": 39,
       "delivered": 202,
-      "read": 80,
+      "read": 81,
       "replied": 12,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-16T15:54:11.024313Z",
       "startedAt": "2026-11-16T15:54:15.749000Z",
       "completedAt": "2026-11-16T15:55:26.407000Z",
@@ -2057,7 +2057,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T18:34:48.529580Z",
+      "lastSyncedAt": "2026-11-16T18:44:52.335782Z",
       "campaignOrigin": null
     },
     {
@@ -2077,8 +2077,8 @@
       "sent": 250,
       "failures": 58,
       "delivered": 182,
-      "read": 45,
-      "replied": 8,
+      "read": 50,
+      "replied": 9,
       "conversions": 0,
       "conversionValue": 0,
       "createdAt": "2026-11-16T18:21:43.703162Z",
@@ -2137,7 +2137,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T18:39:50.655995Z",
+      "lastSyncedAt": "2026-11-16T18:44:52.335782Z",
       "campaignOrigin": null
     }
   ],
