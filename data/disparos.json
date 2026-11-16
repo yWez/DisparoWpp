@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-16T18:27:03.406840Z",
+    "lastSyncedAt": "2026-11-16T18:30:01.035782Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1189,10 +1189,10 @@
       "sent": 1099,
       "failures": 162,
       "delivered": 928,
-      "read": 534,
+      "read": 535,
       "replied": 59,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-12T23:01:03.670893Z",
       "startedAt": "2026-11-12T23:01:06.494000Z",
       "completedAt": "2026-11-12T23:06:29.962000Z",
@@ -1249,7 +1249,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T18:16:31.402957Z",
+      "lastSyncedAt": "2026-11-16T18:30:01.035782Z",
       "campaignOrigin": null
     },
     {
@@ -1997,7 +1997,7 @@
       "sent": 250,
       "failures": 39,
       "delivered": 202,
-      "read": 79,
+      "read": 80,
       "replied": 12,
       "conversions": 0,
       "conversionValue": 0,
@@ -2057,7 +2057,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T18:27:03.406840Z",
+      "lastSyncedAt": "2026-11-16T18:30:01.035782Z",
       "campaignOrigin": null
     },
     {
@@ -2076,9 +2076,9 @@
       "contacts": 250,
       "sent": 250,
       "failures": 58,
-      "delivered": 179,
-      "read": 24,
-      "replied": 4,
+      "delivered": 181,
+      "read": 32,
+      "replied": 5,
       "conversions": 0,
       "conversionValue": 0,
       "createdAt": "2026-11-16T18:21:43.703162Z",
@@ -2137,7 +2137,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T18:27:03.406840Z",
+      "lastSyncedAt": "2026-11-16T18:30:01.035782Z",
       "campaignOrigin": null
     }
   ],
