@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
+    "lastSyncedAt": "2026-11-17T18:24:45.892837Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2412,6 +2412,86 @@
       "channelStatus": "disconnected",
       "uniqueReached": null,
       "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "dd80ba25-ef7e-4ca8-8a8c-6cd31e73a406",
+      "campaignId": "dd80ba25-ef7e-4ca8-8a8c-6cd31e73a406",
+      "name": "Disparo 16 - Wes",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp API Oficial",
+      "provider": "meta",
+      "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
+      "channelIds": [
+        "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
+      ],
+      "template": "neutro",
+      "contacts": 252,
+      "sent": 252,
+      "failures": 21,
+      "delivered": 211,
+      "read": 32,
+      "replied": 20,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-17T18:22:29.792879Z",
+      "startedAt": "2026-11-17T18:22:36.391000Z",
+      "completedAt": "2026-11-17T18:24:11.133000Z",
+      "period": "17/11/2026",
+      "timeLabel": "17/11/2026 15:22",
+      "source": "umclique_api",
+      "errorDiagnostics": {
+        "groups": [
+          {
+            "code": "message undeliverable",
+            "title": "Falha no envio",
+            "description": "Message undeliverable",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 15,
+            "type": "Entrega não concluída",
+            "recoverability": "Revisão manual",
+            "suggestion": "Investigar contexto técnico sem presumir número inválido",
+            "explained": false
+          },
+          {
+            "code": "this message was not delivered to maintain healthy",
+            "title": "Falha no envio",
+            "description": "This message was not delivered to maintain healthy ecosystem engagement.",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 6,
+            "type": "Política/engajamento",
+            "recoverability": "Revisão manual",
+            "suggestion": "Rever política e qualidade; não reenviar automaticamente",
+            "explained": false
+          },
+          {
+            "code": "user's number is part of an experiment",
+            "title": "Falha no envio",
+            "description": "User's number is part of an experiment",
+            "action": "Envie este log para o suporte para que a equipe analise o motivo técnico.",
+            "count": 3,
+            "type": "Experimento da Meta",
+            "recoverability": "Revisão manual",
+            "suggestion": "Consultar suporte e condições do experimento; não assumir telefone inválido",
+            "explained": false
+          }
+        ],
+        "summary": {
+          "failedTotal": 24,
+          "unexplained": 3,
+          "scannedRows": 30,
+          "truncated": false,
+          "throttleCount": 0,
+          "protectionPause": false
+        },
+        "groupCount": 24,
+        "matchesBroadcastFailures": false
+      },
+      "channelName": "Suporte LP",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-17T18:24:45.892837Z",
       "campaignOrigin": null
     }
   ],
