@@ -5,7 +5,7 @@
     "periodLabel": "Campanhas de 2026-11-09 até 2026-11-16",
     "periodStart": "2026-11-09",
     "periodEnd": "2026-11-16",
-    "snapshotDate": "2026-11-16",
+    "snapshotDate": "2026-11-17",
     "dataStatus": "Sincronizado da UmClique API; campos ausentes não significam zero.",
     "source": "UmClique API (estatísticas agregadas) e captura inicial de 09–10/11/2026",
     "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k/edit",
@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-16T23:59:47.327559Z",
+    "lastSyncedAt": "2026-11-17T00:04:46.532752Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1192,7 +1192,7 @@
       "read": 537,
       "replied": 59,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-12T23:01:03.670893Z",
       "startedAt": "2026-11-12T23:01:06.494000Z",
       "completedAt": "2026-11-12T23:06:29.962000Z",
@@ -1249,7 +1249,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T23:59:47.327559Z",
+      "lastSyncedAt": "2026-11-17T00:04:46.532752Z",
       "campaignOrigin": null
     },
     {
@@ -2157,7 +2157,7 @@
       "sent": 1308,
       "failures": 351,
       "delivered": 911,
-      "read": 382,
+      "read": 385,
       "replied": 29,
       "conversions": 0,
       "conversionValue": 0,
@@ -2217,7 +2217,7 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-16T23:59:47.327559Z",
+      "lastSyncedAt": "2026-11-17T00:04:46.532752Z",
       "campaignOrigin": null
     },
     {
