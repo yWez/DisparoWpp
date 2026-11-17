@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-17T21:09:47.076701Z",
+    "lastSyncedAt": "2026-11-17T21:22:03.456310Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -1508,10 +1508,10 @@
       "sent": 500,
       "failures": 178,
       "delivered": 314,
-      "read": 177,
+      "read": 178,
       "replied": 16,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-13T22:09:51.477494Z",
       "startedAt": "2026-11-13T22:09:54.407000Z",
       "completedAt": "2026-11-13T22:12:15.644000Z",
@@ -1568,7 +1568,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T14:59:47.368746Z",
+      "lastSyncedAt": "2026-11-17T21:22:03.456310Z",
       "campaignOrigin": null
     },
     {
@@ -2158,9 +2158,9 @@
       "failures": 351,
       "delivered": 920,
       "read": 492,
-      "replied": 36,
+      "replied": 37,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-16T21:12:25.813143Z",
       "startedAt": "2026-11-16T21:12:30.885000Z",
       "completedAt": "2026-11-16T21:18:16.621000Z",
@@ -2217,7 +2217,7 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T21:09:47.076701Z",
+      "lastSyncedAt": "2026-11-17T21:22:03.456310Z",
       "campaignOrigin": null
     },
     {
@@ -2430,8 +2430,8 @@
       "contacts": 252,
       "sent": 252,
       "failures": 21,
-      "delivered": 225,
-      "read": 131,
+      "delivered": 226,
+      "read": 134,
       "replied": 71,
       "conversions": 0,
       "conversionValue": 0,
@@ -2491,7 +2491,7 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T21:09:47.076701Z",
+      "lastSyncedAt": "2026-11-17T21:22:03.456310Z",
       "campaignOrigin": null
     },
     {
