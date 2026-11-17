@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-17T10:09:46.503932Z",
+    "lastSyncedAt": "2026-11-17T10:14:58.251326Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2317,10 +2317,10 @@
       "sent": 250,
       "failures": 78,
       "delivered": 163,
-      "read": 87,
+      "read": 88,
       "replied": 21,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-16T22:33:16.689978Z",
       "startedAt": "2026-11-16T22:33:21.318000Z",
       "completedAt": "2026-11-16T22:34:31.050000Z",
@@ -2377,7 +2377,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T08:34:59.681911Z",
+      "lastSyncedAt": "2026-11-17T10:14:58.251326Z",
       "campaignOrigin": null
     }
   ],
