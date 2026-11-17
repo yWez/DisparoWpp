@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-17T12:39:46.790005Z",
+    "lastSyncedAt": "2026-11-17T12:44:47.373405Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2080,7 +2080,7 @@
       "read": 84,
       "replied": 14,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-16T18:21:43.703162Z",
       "startedAt": "2026-11-16T18:21:47.988000Z",
       "completedAt": "2026-11-16T18:23:41.038000Z",
@@ -2137,7 +2137,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T12:39:46.790005Z",
+      "lastSyncedAt": "2026-11-17T12:44:47.373405Z",
       "campaignOrigin": null
     },
     {
@@ -2157,10 +2157,10 @@
       "sent": 1308,
       "failures": 351,
       "delivered": 918,
-      "read": 459,
+      "read": 461,
       "replied": 33,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-16T21:12:25.813143Z",
       "startedAt": "2026-11-16T21:12:30.885000Z",
       "completedAt": "2026-11-16T21:18:16.621000Z",
@@ -2217,7 +2217,7 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T12:24:56.482746Z",
+      "lastSyncedAt": "2026-11-17T12:44:47.373405Z",
       "campaignOrigin": null
     },
     {
