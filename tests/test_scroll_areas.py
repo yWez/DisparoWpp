@@ -10,8 +10,14 @@ class ScrollAreasTests(unittest.TestCase):
     def test_both_pages_import_shared_assets(self):
         for html in ("index.html","mensageria.html"):
             data=load(html)
-            self.assertIn('href="./assets/scroll-areas.css"',data)
-            self.assertIn('src="./assets/scroll-areas.js"',data)
+            # A version query is intentional for cache invalidation; validate
+            # the actual local asset path without requiring one literal URL.
+            self.assertRegex(data, r'<link\b[^>]*\bhref="\./assets/scroll-areas\.css(?:\?[^"<>#]+)?"')
+            self.assertRegex(data, r'<script\b[^>]*\bsrc="\./assets/scroll-areas\.js(?:\?[^"<>#]+)?"')
+            self.assertRegex(data, r'<link\b[^>]*\bhref="\./assets/premium-ui\.css(?:\?[^"<>#]+)?"')
+            self.assertTrue((ROOT / "assets/scroll-areas.css").is_file())
+            self.assertTrue((ROOT / "assets/scroll-areas.js").is_file())
+            self.assertTrue((ROOT / "assets/premium-ui.css").is_file())
             self.assertLess(data.index('scroll-areas.css'),data.index('</head>'))
             self.assertLess(data.index('scroll-areas.js'),data.index('</body>'))
 
