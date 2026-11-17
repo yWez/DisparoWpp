@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-17T14:14:53.851278Z",
+    "lastSyncedAt": "2026-11-17T14:20:13.907288Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -367,13 +367,13 @@
       "read": 80,
       "replied": 5,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-10T17:59:40.043241Z",
       "startedAt": "2026-11-10T17:59:43.828000Z",
       "completedAt": "2026-11-10T18:00:36.238000Z",
       "source": "umclique_api",
       "legacyId": "D5",
-      "lastSyncedAt": "2026-11-17T14:14:53.851278Z",
+      "lastSyncedAt": "2026-11-17T14:20:13.907288Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -1838,7 +1838,7 @@
       "sent": 307,
       "failures": 104,
       "delivered": 197,
-      "read": 79,
+      "read": 80,
       "replied": 9,
       "conversions": 0,
       "conversionValue": 0,
@@ -1909,7 +1909,7 @@
       "channelName": "Equipe Luisa Pires 02",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T14:14:53.851278Z",
+      "lastSyncedAt": "2026-11-17T14:20:13.907288Z",
       "campaignOrigin": null
     },
     {
@@ -2160,7 +2160,7 @@
       "read": 477,
       "replied": 35,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-16T21:12:25.813143Z",
       "startedAt": "2026-11-16T21:12:30.885000Z",
       "completedAt": "2026-11-16T21:18:16.621000Z",
@@ -2217,7 +2217,7 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T14:14:53.851278Z",
+      "lastSyncedAt": "2026-11-17T14:20:13.907288Z",
       "campaignOrigin": null
     },
     {
