@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-17T18:09:50.050925Z",
+    "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -939,9 +939,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -973,9 +973,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1031,9 +1031,9 @@
         "matchesBroadcastFailures": true
       },
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1065,9 +1065,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1099,9 +1099,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1133,9 +1133,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1167,9 +1167,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:38:50.262615Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1452,9 +1452,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1486,9 +1486,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1600,9 +1600,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T15:41:43.145705Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1634,9 +1634,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-14T15:41:43.145705Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1941,9 +1941,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-15T23:03:06.941065Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -1975,9 +1975,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-15T23:03:06.941065Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     },
     {
@@ -2400,7 +2400,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-17T18:07:13.587328Z",
       "startedAt": "2026-11-17T18:07:15.714000Z",
       "completedAt": "2026-11-17T18:07:40.724000Z",
@@ -2409,9 +2409,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:09:50.050925Z",
+      "lastSyncedAt": "2026-11-17T18:15:00.280587Z",
       "campaignOrigin": null
     }
   ],
@@ -2438,7 +2438,7 @@
       "id": "6a527349-5353-4397-a50b-b51a4cf28723",
       "name": "Aline",
       "provider": "uazapi",
-      "status": "connected"
+      "status": "disconnected"
     },
     {
       "id": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
