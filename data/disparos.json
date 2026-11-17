@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-17T19:29:46.502709Z",
+    "lastSyncedAt": "2026-11-17T19:34:55.607038Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2431,8 +2431,8 @@
       "sent": 252,
       "failures": 21,
       "delivered": 222,
-      "read": 108,
-      "replied": 59,
+      "read": 110,
+      "replied": 60,
       "conversions": 0,
       "conversionValue": 0,
       "createdAt": "2026-11-17T18:22:29.792879Z",
@@ -2491,7 +2491,7 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T19:29:46.502709Z",
+      "lastSyncedAt": "2026-11-17T19:34:55.607038Z",
       "campaignOrigin": null
     },
     {
@@ -2548,7 +2548,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-17T19:26:05.866568Z",
       "startedAt": null,
       "completedAt": null,
@@ -2559,7 +2559,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T19:29:46.502709Z",
+      "lastSyncedAt": "2026-11-17T19:34:55.607038Z",
       "campaignOrigin": null
     },
     {
@@ -2582,7 +2582,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-17T19:29:34.484481Z",
       "startedAt": null,
       "completedAt": null,
@@ -2593,7 +2593,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T19:29:46.502709Z",
+      "lastSyncedAt": "2026-11-17T19:34:55.607038Z",
       "campaignOrigin": null
     }
   ],
