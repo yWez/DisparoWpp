@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-17T23:17:06.440298Z",
+    "lastSyncedAt": "2026-11-17T23:32:05.929037Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2157,8 +2157,8 @@
       "sent": 1308,
       "failures": 351,
       "delivered": 921,
-      "read": 495,
-      "replied": 40,
+      "read": 496,
+      "replied": 41,
       "conversions": 0,
       "conversionValue": 0,
       "createdAt": "2026-11-16T21:12:25.813143Z",
@@ -2217,7 +2217,7 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T23:17:06.440298Z",
+      "lastSyncedAt": "2026-11-17T23:32:05.929037Z",
       "campaignOrigin": null
     },
     {
@@ -2434,7 +2434,7 @@
       "read": 141,
       "replied": 74,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-17T18:22:29.792879Z",
       "startedAt": "2026-11-17T18:22:36.391000Z",
       "completedAt": "2026-11-17T18:24:11.133000Z",
@@ -2491,7 +2491,7 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T23:17:06.440298Z",
+      "lastSyncedAt": "2026-11-17T23:32:05.929037Z",
       "campaignOrigin": null
     },
     {
@@ -2582,7 +2582,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-17T19:29:34.484481Z",
       "startedAt": "2026-11-17T23:15:04.058000Z",
       "completedAt": "2026-11-17T23:15:08.770000Z",
@@ -2593,7 +2593,41 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T23:17:06.440298Z",
+      "lastSyncedAt": "2026-11-17T23:32:05.929037Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "f1f2ddbb-2bec-4f23-8b8c-4330328c01f6",
+      "campaignId": "f1f2ddbb-2bec-4f23-8b8c-4330328c01f6",
+      "name": "guerra 2",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 1,
+      "sent": 1,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-17T23:26:59.062122Z",
+      "startedAt": "2026-11-17T23:27:00.621000Z",
+      "completedAt": "2026-11-17T23:27:18.425000Z",
+      "period": "17/11/2026",
+      "timeLabel": "17/11/2026 20:27",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-17T23:32:05.929037Z",
       "campaignOrigin": null
     }
   ],
