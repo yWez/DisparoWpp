@@ -2,9 +2,9 @@
   "meta": {
     "project": "LP Crypto",
     "title": "Disparos WhatsApp",
-    "periodLabel": "Campanhas de 2026-11-09 até 2026-11-16",
+    "periodLabel": "Campanhas de 2026-11-09 até 2026-11-17",
     "periodStart": "2026-11-09",
-    "periodEnd": "2026-11-16",
+    "periodEnd": "2026-11-17",
     "snapshotDate": "2026-11-17",
     "dataStatus": "Sincronizado da UmClique API; campos ausentes não significam zero.",
     "source": "UmClique API (estatísticas agregadas) e captura inicial de 09–10/11/2026",
@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-17T18:04:48.578447Z",
+    "lastSyncedAt": "2026-11-17T18:09:50.050925Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2378,6 +2378,40 @@
       "channelStatus": "connected",
       "uniqueReached": null,
       "lastSyncedAt": "2026-11-17T16:54:55.444261Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "093897bb-222c-4935-8343-2fa82421b8a7",
+      "campaignId": "093897bb-222c-4935-8343-2fa82421b8a7",
+      "name": "CTA PESQUISA",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 3,
+      "sent": 3,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-17T18:07:13.587328Z",
+      "startedAt": "2026-11-17T18:07:15.714000Z",
+      "completedAt": "2026-11-17T18:07:40.724000Z",
+      "period": "17/11/2026",
+      "timeLabel": "17/11/2026 15:07",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-17T18:09:50.050925Z",
       "campaignOrigin": null
     }
   ],
