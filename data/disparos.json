@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-18T14:41:29.851097Z",
+    "lastSyncedAt": "2026-11-18T14:52:10.120314Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2157,10 +2157,10 @@
       "sent": 1308,
       "failures": 351,
       "delivered": 921,
-      "read": 508,
+      "read": 509,
       "replied": 43,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-16T21:12:25.813143Z",
       "startedAt": "2026-11-16T21:12:30.885000Z",
       "completedAt": "2026-11-16T21:18:16.621000Z",
@@ -2217,7 +2217,7 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T14:41:29.851097Z",
+      "lastSyncedAt": "2026-11-18T14:52:10.120314Z",
       "campaignOrigin": null
     },
     {
@@ -2764,6 +2764,40 @@
       "channelStatus": "connected",
       "uniqueReached": null,
       "lastSyncedAt": "2026-11-18T14:26:09.678023Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "011ddcf1-9fa9-4649-86a0-e8bd732a5e50",
+      "campaignId": "011ddcf1-9fa9-4649-86a0-e8bd732a5e50",
+      "name": "18:45 18/11",
+      "status": "Agendada",
+      "statusCode": "scheduled",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 1,
+      "sent": 0,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-18T14:46:37.728588Z",
+      "startedAt": null,
+      "completedAt": null,
+      "period": "18/11/2026",
+      "timeLabel": "18/11/2026 11:46",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-18T14:52:10.120314Z",
       "campaignOrigin": null
     }
   ],
