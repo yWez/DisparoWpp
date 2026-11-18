@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-18T12:27:15.193272Z",
+    "lastSyncedAt": "2026-11-18T12:42:11.013731Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2431,10 +2431,10 @@
       "sent": 252,
       "failures": 21,
       "delivered": 228,
-      "read": 142,
-      "replied": 75,
+      "read": 143,
+      "replied": 76,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-17T18:22:29.792879Z",
       "startedAt": "2026-11-17T18:22:36.391000Z",
       "completedAt": "2026-11-17T18:24:11.133000Z",
@@ -2491,7 +2491,7 @@
       "channelName": "Suporte LP",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T11:59:56.456722Z",
+      "lastSyncedAt": "2026-11-18T12:42:11.013731Z",
       "campaignOrigin": null
     },
     {
