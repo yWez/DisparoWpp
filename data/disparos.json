@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-18T01:07:04.667984Z",
+    "lastSyncedAt": "2026-11-18T01:26:12.446727Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2157,7 +2157,7 @@
       "sent": 1308,
       "failures": 351,
       "delivered": 921,
-      "read": 497,
+      "read": 498,
       "replied": 41,
       "conversions": 0,
       "conversionValue": 0,
@@ -2217,7 +2217,7 @@
       "channelName": "Equipe Luisa Pires 01",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T01:07:04.667984Z",
+      "lastSyncedAt": "2026-11-18T01:26:12.446727Z",
       "campaignOrigin": null
     },
     {
