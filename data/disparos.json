@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-18T00:06:33.223714Z",
+    "lastSyncedAt": "2026-11-18T00:17:09.179126Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2650,7 +2650,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-17T23:58:48.217667Z",
       "startedAt": "2026-11-17T23:58:49.759000Z",
       "completedAt": "2026-11-17T23:59:00.472000Z",
@@ -2661,7 +2661,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T00:06:33.223714Z",
+      "lastSyncedAt": "2026-11-18T00:17:09.179126Z",
       "campaignOrigin": null
     }
   ],
