@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-18T19:07:03.605534Z",
+    "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -45,7 +45,7 @@
       "completedAt": "2026-11-09T18:22:54.106000Z",
       "source": "umclique_api",
       "legacyId": "D1",
-      "lastSyncedAt": "2026-11-15T01:52:17.139525Z",
+      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -86,7 +86,7 @@
         "matchesBroadcastFailures": true
       },
       "channelName": "Suporte LP",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
       "provider": "meta"
@@ -116,7 +116,7 @@
       "completedAt": "2026-11-09T21:09:22.835000Z",
       "source": "umclique_api",
       "legacyId": "D2",
-      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -168,7 +168,7 @@
         "matchesBroadcastFailures": false
       },
       "channelName": "Suporte LP",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
       "provider": "meta"
@@ -198,7 +198,7 @@
       "completedAt": "2026-11-09T23:19:20.460000Z",
       "source": "umclique_api",
       "legacyId": "D3",
-      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -250,7 +250,7 @@
         "matchesBroadcastFailures": true
       },
       "channelName": "Suporte LP",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
       "provider": "meta"
@@ -279,7 +279,7 @@
       "startedAt": "2026-11-10T14:44:03.841000Z",
       "completedAt": "2026-11-10T14:45:19.700000Z",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-18T14:26:09.678023Z",
+      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
       "legacyId": "D4",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
@@ -343,7 +343,7 @@
         "matchesBroadcastFailures": false
       },
       "channelName": "Suporte LP",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
       "provider": "meta"
@@ -617,7 +617,7 @@
       "period": "11/11/2026",
       "timeLabel": "11/11/2026 14:55",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-13T15:44:10.282393Z",
+      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
       "channelIds": [
         "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
       ],
@@ -669,7 +669,7 @@
         "matchesBroadcastFailures": true
       },
       "channelName": "Suporte LP",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
       "provider": "meta"
@@ -748,9 +748,9 @@
         "matchesBroadcastFailures": true
       },
       "channelName": "Suporte LP",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T15:44:47.350214Z",
+      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
       "campaignOrigin": null,
       "provider": "meta"
     },
@@ -2489,9 +2489,9 @@
         "matchesBroadcastFailures": false
       },
       "channelName": "Suporte LP",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T13:55:03.379865Z",
+      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
       "campaignOrigin": null
     },
     {
@@ -2830,7 +2830,7 @@
       "id": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
       "name": "Suporte LP",
       "provider": "meta",
-      "status": "connected"
+      "status": "error"
     }
   ]
 }
