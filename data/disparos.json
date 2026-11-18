@@ -5,7 +5,7 @@
     "periodLabel": "Campanhas de 2026-11-09 até 2026-11-17",
     "periodStart": "2026-11-09",
     "periodEnd": "2026-11-17",
-    "snapshotDate": "2026-11-17",
+    "snapshotDate": "2026-11-18",
     "dataStatus": "Sincronizado da UmClique API; campos ausentes não significam zero.",
     "source": "UmClique API (estatísticas agregadas) e captura inicial de 09–10/11/2026",
     "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k/edit",
@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-17T23:47:02.063946Z",
+    "lastSyncedAt": "2026-11-18T00:06:33.223714Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2080,7 +2080,7 @@
       "read": 87,
       "replied": 15,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-16T18:21:43.703162Z",
       "startedAt": "2026-11-16T18:21:47.988000Z",
       "completedAt": "2026-11-16T18:23:41.038000Z",
@@ -2137,7 +2137,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T23:47:02.063946Z",
+      "lastSyncedAt": "2026-11-18T00:06:33.223714Z",
       "campaignOrigin": null
     },
     {
@@ -2320,7 +2320,7 @@
       "read": 96,
       "replied": 23,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-16T22:33:16.689978Z",
       "startedAt": "2026-11-16T22:33:21.318000Z",
       "completedAt": "2026-11-16T22:34:31.050000Z",
@@ -2377,7 +2377,7 @@
       "channelName": "LP Crypto 03",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T23:47:02.063946Z",
+      "lastSyncedAt": "2026-11-18T00:06:33.223714Z",
       "campaignOrigin": null
     },
     {
@@ -2628,6 +2628,40 @@
       "channelStatus": "connected",
       "uniqueReached": null,
       "lastSyncedAt": "2026-11-17T23:36:29.268083Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "9ce1f029-f061-48c8-9c14-01a699ce0c6c",
+      "campaignId": "9ce1f029-f061-48c8-9c14-01a699ce0c6c",
+      "name": "prioritaria",
+      "status": "Concluída",
+      "statusCode": "completed",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 1,
+      "sent": 1,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-17T23:58:48.217667Z",
+      "startedAt": "2026-11-17T23:58:49.759000Z",
+      "completedAt": "2026-11-17T23:59:00.472000Z",
+      "period": "17/11/2026",
+      "timeLabel": "17/11/2026 20:58",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-18T00:06:33.223714Z",
       "campaignOrigin": null
     }
   ],
