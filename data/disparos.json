@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-19T20:24:44.866069Z",
+    "lastSyncedAt": "2026-11-19T20:34:47.397841Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -2900,6 +2900,40 @@
       "channelStatus": "connected",
       "uniqueReached": null,
       "lastSyncedAt": "2026-11-19T13:10:34.569701Z",
+      "campaignOrigin": null
+    },
+    {
+      "id": "42089459-e4d7-482e-9f1f-a94171c09b2d",
+      "campaignId": "42089459-e4d7-482e-9f1f-a94171c09b2d",
+      "name": "CTA live 2",
+      "status": "Agendada",
+      "statusCode": "scheduled",
+      "channel": "WhatsApp QR Code",
+      "provider": "uazapi",
+      "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
+      "channelIds": [
+        "6a527349-5353-4397-a50b-b51a4cf28723"
+      ],
+      "template": "",
+      "contacts": 2,
+      "sent": 0,
+      "failures": 0,
+      "delivered": 0,
+      "read": 0,
+      "replied": 0,
+      "conversions": 0,
+      "conversionValue": 0,
+      "createdAt": "2026-11-19T20:29:48.351951Z",
+      "startedAt": null,
+      "completedAt": null,
+      "period": "19/11/2026",
+      "timeLabel": "19/11/2026 17:29",
+      "source": "umclique_api",
+      "errorDiagnostics": null,
+      "channelName": "Aline",
+      "channelStatus": "connected",
+      "uniqueReached": null,
+      "lastSyncedAt": "2026-11-19T20:34:47.397841Z",
       "campaignOrigin": null
     }
   ],
