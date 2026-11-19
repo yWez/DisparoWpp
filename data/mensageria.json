@@ -2518,7 +2518,7 @@
   },
   "meta": {
     "schemaVersion": 2,
-    "lastSyncedAt": "2026-11-19T21:13:48.852915Z",
+    "lastSyncedAt": "2026-11-19T21:31:38.264672Z",
     "timeZone": "America/Fortaleza",
     "source": "UmClique /public-conversations, /messages e /public-agents",
     "allAccountConversations": 7467,
@@ -2604,7 +2604,7 @@
       "contactsInConversations": 4998,
       "firstInboundConversations": 506,
       "lastInboundActiveConversations": 0,
-      "unread": 7
+      "unread": 0
     },
     {
       "period": "all",
@@ -2643,7 +2643,7 @@
       "contactsInConversations": 860,
       "firstInboundConversations": 109,
       "lastInboundActiveConversations": 0,
-      "unread": 3
+      "unread": 0
     },
     {
       "period": "all",
@@ -2656,7 +2656,7 @@
       "contactsInConversations": 2041,
       "firstInboundConversations": 2,
       "lastInboundActiveConversations": 0,
-      "unread": 4
+      "unread": 0
     },
     {
       "period": "all",
@@ -3020,7 +3020,7 @@
       "contactsInConversations": 4725,
       "firstInboundConversations": 222,
       "lastInboundActiveConversations": 0,
-      "unread": 7
+      "unread": 0
     },
     {
       "period": "all",
@@ -3059,7 +3059,7 @@
       "contactsInConversations": 837,
       "firstInboundConversations": 97,
       "lastInboundActiveConversations": 0,
-      "unread": 3
+      "unread": 0
     },
     {
       "period": "all",
@@ -3072,7 +3072,7 @@
       "contactsInConversations": 1971,
       "firstInboundConversations": 1,
       "lastInboundActiveConversations": 0,
-      "unread": 4
+      "unread": 0
     },
     {
       "period": "all",
