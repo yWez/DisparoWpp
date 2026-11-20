@@ -5,7 +5,7 @@
     "periodLabel": "Campanhas de 2026-11-09 até 2026-11-19",
     "periodStart": "2026-11-09",
     "periodEnd": "2026-11-19",
-    "snapshotDate": "2026-11-19",
+    "snapshotDate": "2026-11-20",
     "dataStatus": "Sincronizado da UmClique API; campos ausentes não significam zero.",
     "source": "UmClique API (estatísticas agregadas) e captura inicial de 09–10/11/2026",
     "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1CPgLkw8jXIT_L9dATUU4gqsjl1vN3V0ANa7zfYQzs3k/edit",
@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-19T23:57:03.822318Z",
+    "lastSyncedAt": "2026-11-20T00:01:31.551312Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -3024,7 +3024,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-19T23:52:41.803149Z",
       "startedAt": null,
       "completedAt": null,
@@ -3035,7 +3035,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-19T23:57:03.822318Z",
+      "lastSyncedAt": "2026-11-20T00:01:31.551312Z",
       "campaignOrigin": null
     },
     {
@@ -3058,7 +3058,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-19T23:57:14.911890Z",
       "startedAt": "2026-11-19T23:57:16.659000Z",
       "completedAt": "2026-11-19T23:57:27.197000Z",
@@ -3069,7 +3069,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-19T23:57:03.822318Z",
+      "lastSyncedAt": "2026-11-20T00:01:31.551312Z",
       "campaignOrigin": null
     }
   ],
