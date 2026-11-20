@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-20T12:36:12.466154Z",
+    "lastSyncedAt": "2026-11-20T12:54:20.782265Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -3092,7 +3092,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-20T12:26:08.111800Z",
       "startedAt": "2026-11-20T12:26:10.048000Z",
       "completedAt": "2026-11-20T12:26:23.295000Z",
@@ -3103,7 +3103,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-20T12:36:12.466154Z",
+      "lastSyncedAt": "2026-11-20T12:54:20.782265Z",
       "campaignOrigin": null
     },
     {
@@ -3126,7 +3126,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-20T12:31:39.310494Z",
       "startedAt": null,
       "completedAt": null,
@@ -3137,7 +3137,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-20T12:36:12.466154Z",
+      "lastSyncedAt": "2026-11-20T12:54:20.782265Z",
       "campaignOrigin": null
     },
     {
@@ -3160,7 +3160,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-20T12:37:23.273196Z",
       "startedAt": null,
       "completedAt": null,
@@ -3171,7 +3171,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-20T12:36:12.466154Z",
+      "lastSyncedAt": "2026-11-20T12:54:20.782265Z",
       "campaignOrigin": null
     }
   ],
