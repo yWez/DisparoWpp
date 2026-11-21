@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-21T15:42:01.939473Z",
+    "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -927,9 +927,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -961,9 +961,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1019,9 +1019,9 @@
         "matchesBroadcastFailures": true
       },
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1053,9 +1053,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1087,9 +1087,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1121,9 +1121,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1155,9 +1155,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1440,9 +1440,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1474,9 +1474,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1588,9 +1588,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1622,9 +1622,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1929,9 +1929,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -1963,9 +1963,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2397,9 +2397,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T18:29:46.932179Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2509,9 +2509,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T21:41:48.750713Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2543,9 +2543,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T23:04:53.992364Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2577,9 +2577,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T23:32:05.929037Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2611,9 +2611,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-17T23:36:29.268083Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2645,9 +2645,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T00:17:09.179126Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2679,9 +2679,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T10:09:07.760477Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2713,9 +2713,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T14:26:09.678023Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2747,9 +2747,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T14:26:09.678023Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2781,9 +2781,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T21:57:06.082588Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2815,9 +2815,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-19T10:07:06.521530Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2849,9 +2849,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-19T15:03:12.970954Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2883,9 +2883,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-19T13:10:34.569701Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2917,9 +2917,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-19T23:13:50.851349Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2951,9 +2951,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-19T23:13:50.851349Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -2985,9 +2985,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-19T23:30:04.050917Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3019,9 +3019,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-20T01:09:45.001913Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3053,9 +3053,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-20T00:01:31.551312Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3087,9 +3087,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-20T12:54:20.782265Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3121,9 +3121,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-20T15:30:58.112555Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3155,9 +3155,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-20T22:11:06.827727Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3189,9 +3189,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-20T13:11:16.136370Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3223,9 +3223,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3257,9 +3257,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T15:14:45.691817Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3291,9 +3291,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3325,9 +3325,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3359,9 +3359,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3393,9 +3393,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3427,9 +3427,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3461,9 +3461,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:41:24.409194Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3495,9 +3495,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:41:24.409194Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     },
     {
@@ -3529,9 +3529,9 @@
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
-      "channelStatus": "connected",
+      "channelStatus": "disconnected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T11:12:36.970864Z",
+      "lastSyncedAt": "2026-11-21T15:57:06.031766Z",
       "campaignOrigin": null
     }
   ],
@@ -3558,7 +3558,7 @@
       "id": "6a527349-5353-4397-a50b-b51a4cf28723",
       "name": "Aline",
       "provider": "uazapi",
-      "status": "connected"
+      "status": "disconnected"
     }
   ]
 }
