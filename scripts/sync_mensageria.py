@@ -15,6 +15,8 @@ import hmac
 import json
 import logging
 import os
+import time
+from requests.exceptions import HTTPError
 from collections import defaultdict
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -42,6 +44,10 @@ MAX_MESSAGES=int(os.getenv("MENSAJERIA_MAX_MESSAGES_PER_CONVERSATION", "4000"))
 MIN_REFRESH_HOURS=int(os.getenv("MENSAJERIA_RESCAN_HOURS", "24"))
 STATUSES={"active","archived"}
 SHEET_ID=os.getenv("GOOGLE_SHEET_ID","").strip()
+# Retries for quota/temporary failures; 4xx schema/auth errors stay visible.
+GOOGLE_TRANSIENT_STATUS={429,500,502,503,504}
+GOOGLE_RETRY_BACKOFF=(2,5,10,20,30)
+SHEET_BATCH_SIZE=400
 
 def utc_now():
     return dt.datetime.now(dt.timezone.utc)
@@ -189,11 +195,27 @@ def google_session(secret):
     return AuthorizedSession(creds)
 
 def google_request(google,method,endpoint,**kwargs):
-    resp=google.request(method,
-        "https://sheets.googleapis.com/v4/spreadsheets/"+SHEET_ID+endpoint,
-        timeout=60,**kwargs)
-    resp.raise_for_status()
-    return resp.json() if resp.content else {}
+    """Bounded retries for Google Sheets quota/transient failures.
+
+    All of the value writes in this sync are idempotent. Do not log a response
+    body, row contents, credentials or URL with private spreadsheet identifiers.
+    """
+    url="https://sheets.googleapis.com/v4/spreadsheets/"+SHEET_ID+endpoint
+    for attempt in range(len(GOOGLE_RETRY_BACKOFF)+1):
+        resp=google.request(method,url,timeout=60,**kwargs)
+        status=resp.status_code
+        if status in GOOGLE_TRANSIENT_STATUS and attempt<len(GOOGLE_RETRY_BACKOFF):
+            delay=GOOGLE_RETRY_BACKOFF[attempt]
+            header=resp.headers.get("Retry-After","") if resp.headers else ""
+            try:
+                if header: delay=max(delay,min(60,float(header)))
+            except (TypeError,ValueError): pass
+            LOG.warning("Google Sheets HTTP %s; nova tentativa %s/%s em %.0fs",
+                        status,attempt+1,len(GOOGLE_RETRY_BACKOFF),delay)
+            time.sleep(delay)
+            continue
+        resp.raise_for_status()
+        return resp.json() if resp.content else {}
 
 def ensure_tabs(google):
     meta=google_request(google,"GET","?fields=sheets(properties(sheetId,title,hidden,gridProperties(columnCount)))")
@@ -247,8 +269,8 @@ def read_state(google):
     return found
 
 def update_values(google,positions):
-    for start in range(0,len(positions),120):
-        batch=positions[start:start+120]
+    for start in range(0,len(positions),SHEET_BATCH_SIZE):
+        batch=positions[start:start+SHEET_BATCH_SIZE]
         data=[{"range":f"'{SHEET_TITLE}'!A{index}:T{index}","values":[values]}
               for index,values in batch]
         google_request(google,"POST","/values:batchUpdate",
@@ -543,9 +565,26 @@ def run():
     if changes:
         update_values(google,changes)
     payload=make_public(fresh,agents,channel_info,total,utc_now())
-    public_summary_sheet(google,payload)
-    mapped=private_campaign_sheet(google,fresh,agents,channel_info,utc_now())
-    LOG.info("Registros de contato com saudação Luisa mapeados na planilha restrita: %d",mapped)
+    # Private per-conversation state above is mandatory, as it is the next
+    # run's checkpoint. Auxiliary summary sheets must not prevent publishing
+    # fresh, privacy-safe aggregate JSON when their quota is temporarily hit.
+    aux_warnings=[]
+    for label,write in (
+        ("Mensageria - Resumo",lambda:public_summary_sheet(google,payload)),
+        ("Leads - Campanha Luisa",lambda:private_campaign_sheet(
+            google,fresh,agents,channel_info,utc_now()))):
+        try:
+            mapped=write()
+            if label=="Leads - Campanha Luisa":
+                LOG.info("Registros de contato com saudação Luisa mapeados na planilha restrita: %d",mapped)
+        except HTTPError as exc:
+            status=exc.response.status_code if exc.response is not None else None
+            if status not in GOOGLE_TRANSIENT_STATUS:
+                raise
+            aux_warnings.append(label)
+            LOG.warning("Aba auxiliar %s não foi atualizada (Google Sheets HTTP %s). "
+                        "Publicando JSON agregado; conferir esta aba em uma próxima coleta.",
+                        label,status)
     PUBLIC_FILE.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
     LOG.info("Conversations in account: %d | LP Crypto in scope: %d | inspected: %d | updated in this run: %d | pending refresh: %d",
              total,payload["meta"]["inScopeConversations"],
@@ -562,6 +601,8 @@ def run():
                 f"- Mensagens recebidas nas conversas processadas: {all_rollup['inbound']}\n"
                 f"- Mensagens enviadas nas conversas processadas: {all_rollup['outbound']}\n"
                 "- Conteúdos, telefones e IDs de clientes não são publicados.\n"
+                + ("- ATENÇÃO: atualização auxiliar pendente por cota do Google Sheets: "
+                   + ", ".join(aux_warnings) + "\n" if aux_warnings else "")
             )
 
 if __name__=="__main__":
