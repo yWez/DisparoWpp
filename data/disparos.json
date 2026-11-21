@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-21T10:07:02.298413Z",
+    "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -3228,7 +3228,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-21T09:58:29.583175Z",
       "startedAt": "2026-11-21T10:00:04.635000Z",
       "completedAt": "2026-11-21T10:00:10.525000Z",
@@ -3239,7 +3239,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:07:02.298413Z",
+      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
       "campaignOrigin": null
     },
     {
@@ -3262,7 +3262,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-21T09:59:59.069883Z",
       "startedAt": null,
       "completedAt": null,
@@ -3273,7 +3273,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:07:02.298413Z",
+      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
       "campaignOrigin": null
     },
     {
@@ -3296,7 +3296,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-21T10:00:58.800314Z",
       "startedAt": null,
       "completedAt": null,
@@ -3307,7 +3307,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:07:02.298413Z",
+      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
       "campaignOrigin": null
     },
     {
@@ -3330,7 +3330,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-21T10:02:18.542119Z",
       "startedAt": null,
       "completedAt": null,
@@ -3341,7 +3341,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:07:02.298413Z",
+      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
       "campaignOrigin": null
     },
     {
@@ -3364,7 +3364,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-21T10:05:47.708702Z",
       "startedAt": null,
       "completedAt": null,
@@ -3375,7 +3375,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:07:02.298413Z",
+      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
       "campaignOrigin": null
     },
     {
@@ -3398,7 +3398,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-21T10:07:25.256221Z",
       "startedAt": null,
       "completedAt": null,
@@ -3409,7 +3409,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:07:02.298413Z",
+      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
       "campaignOrigin": null
     },
     {
@@ -3432,7 +3432,7 @@
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": 0,
+      "conversionValue": null,
       "createdAt": "2026-11-21T10:08:57.268897Z",
       "startedAt": null,
       "completedAt": null,
@@ -3443,7 +3443,7 @@
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:07:02.298413Z",
+      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
       "campaignOrigin": null
     }
   ],
