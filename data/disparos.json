@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-21T14:52:03.529354Z",
+    "lastSyncedAt": "2026-11-21T15:14:29.965874Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -27,14 +27,14 @@
       "sent": 51,
       "failures": 3,
       "status": "Concluída",
-      "channel": "WhatsApp API Oficial",
-      "template": "convite_evento_base_quente_mkt",
+      "channel": "Provedor não informado",
+      "template": "",
       "timeLabel": "09/11/2026 15:22",
       "period": "09/11/2026",
       "note": "Dia inferível como segunda; confirmar timestamp.",
       "campaignId": "a128a049-377e-4469-8d68-1cd68c55563f",
       "statusCode": "completed",
-      "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
+      "channelId": "",
       "delivered": 48,
       "read": 23,
       "replied": 0,
@@ -45,10 +45,8 @@
       "completedAt": "2026-11-09T18:22:54.106000Z",
       "source": "umclique_api",
       "legacyId": "D1",
-      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
-      "channelIds": [
-        "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
-      ],
+      "lastSyncedAt": "2026-11-21T15:14:29.965874Z",
+      "channelIds": [],
       "errorDiagnostics": {
         "groups": [
           {
@@ -89,7 +87,7 @@
       "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
-      "provider": "meta"
+      "provider": "unknown"
     },
     {
       "id": "47ed682d-7acf-4619-958a-39c2cb801756",
@@ -98,14 +96,14 @@
       "sent": 50,
       "failures": 3,
       "status": "Concluída",
-      "channel": "WhatsApp API Oficial",
-      "template": "convite_evento_base_quente_mkt",
+      "channel": "Provedor não informado",
+      "template": "",
       "timeLabel": "09/11/2026 18:08",
       "period": "09/11/2026",
       "note": "Data individual não confirmada.",
       "campaignId": "47ed682d-7acf-4619-958a-39c2cb801756",
       "statusCode": "completed",
-      "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
+      "channelId": "",
       "delivered": 44,
       "read": 24,
       "replied": 0,
@@ -116,10 +114,8 @@
       "completedAt": "2026-11-09T21:09:22.835000Z",
       "source": "umclique_api",
       "legacyId": "D2",
-      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
-      "channelIds": [
-        "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
-      ],
+      "lastSyncedAt": "2026-11-21T15:14:29.965874Z",
+      "channelIds": [],
       "errorDiagnostics": {
         "groups": [
           {
@@ -171,7 +167,7 @@
       "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
-      "provider": "meta"
+      "provider": "unknown"
     },
     {
       "id": "c64ce9cc-9753-41d4-9196-ca9487046300",
@@ -180,14 +176,14 @@
       "sent": 51,
       "failures": 9,
       "status": "Concluída",
-      "channel": "WhatsApp API Oficial",
-      "template": "convite_evento_base_quente_mkt",
+      "channel": "Provedor não informado",
+      "template": "",
       "timeLabel": "09/11/2026 20:18",
       "period": "09/11/2026",
       "note": "Data individual não confirmada.",
       "campaignId": "c64ce9cc-9753-41d4-9196-ca9487046300",
       "statusCode": "completed",
-      "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
+      "channelId": "",
       "delivered": 42,
       "read": 27,
       "replied": 1,
@@ -198,10 +194,8 @@
       "completedAt": "2026-11-09T23:19:20.460000Z",
       "source": "umclique_api",
       "legacyId": "D3",
-      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
-      "channelIds": [
-        "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
-      ],
+      "lastSyncedAt": "2026-11-21T15:14:29.965874Z",
+      "channelIds": [],
       "errorDiagnostics": {
         "groups": [
           {
@@ -253,7 +247,7 @@
       "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
-      "provider": "meta"
+      "provider": "unknown"
     },
     {
       "id": "44eff7a0-f63a-454b-a518-75ddb5422083",
@@ -262,14 +256,14 @@
       "sent": 150,
       "failures": 16,
       "status": "Concluída",
-      "channel": "WhatsApp API Oficial",
-      "template": "convite_evento_base_quente_mkt",
+      "channel": "Provedor não informado",
+      "template": "",
       "timeLabel": "10/11/2026 11:44",
       "period": "10/11/2026",
       "note": "Data individual depende de timestamp.",
       "campaignId": "44eff7a0-f63a-454b-a518-75ddb5422083",
       "statusCode": "completed",
-      "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
+      "channelId": "",
       "delivered": 132,
       "read": 68,
       "replied": 6,
@@ -279,11 +273,9 @@
       "startedAt": "2026-11-10T14:44:03.841000Z",
       "completedAt": "2026-11-10T14:45:19.700000Z",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
+      "lastSyncedAt": "2026-11-21T15:14:29.965874Z",
       "legacyId": "D4",
-      "channelIds": [
-        "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
-      ],
+      "channelIds": [],
       "errorDiagnostics": {
         "groups": [
           {
@@ -346,7 +338,7 @@
       "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
-      "provider": "meta"
+      "provider": "unknown"
     },
     {
       "id": "a1ad7290-b916-4602-9cef-ce4dd12aedbc",
@@ -600,9 +592,9 @@
       "name": "Disparo 8 - Wes",
       "status": "Concluída",
       "statusCode": "completed",
-      "channel": "WhatsApp API Oficial",
-      "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
-      "template": "convite_evento_base_quente_mkt",
+      "channel": "Provedor não informado",
+      "channelId": "",
+      "template": "",
       "contacts": 150,
       "sent": 150,
       "failures": 24,
@@ -617,10 +609,8 @@
       "period": "11/11/2026",
       "timeLabel": "11/11/2026 14:55",
       "source": "umclique_api",
-      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
-      "channelIds": [
-        "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
-      ],
+      "lastSyncedAt": "2026-11-21T15:14:29.965874Z",
+      "channelIds": [],
       "errorDiagnostics": {
         "groups": [
           {
@@ -672,7 +662,7 @@
       "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
-      "provider": "meta"
+      "provider": "unknown"
     },
     {
       "id": "3f6dffb3-f478-4ed7-9da7-ae40e7685d82",
@@ -680,12 +670,10 @@
       "name": "Disparo 9 - Wes",
       "status": "Concluída",
       "statusCode": "completed",
-      "channel": "WhatsApp API Oficial",
-      "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
-      "channelIds": [
-        "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
-      ],
-      "template": "disparo_novo_convite_x1",
+      "channel": "Provedor não informado",
+      "channelId": "",
+      "channelIds": [],
+      "template": "",
       "contacts": 150,
       "sent": 150,
       "failures": 31,
@@ -750,9 +738,9 @@
       "channelName": "Suporte LP",
       "channelStatus": "error",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
+      "lastSyncedAt": "2026-11-21T15:14:29.965874Z",
       "campaignOrigin": null,
-      "provider": "meta"
+      "provider": "unknown"
     },
     {
       "id": "6cfb3e2c-ed81-430f-af24-c7188bab60a5",
@@ -2420,13 +2408,11 @@
       "name": "Disparo 16 - Wes",
       "status": "Concluída",
       "statusCode": "completed",
-      "channel": "WhatsApp API Oficial",
-      "provider": "meta",
-      "channelId": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
-      "channelIds": [
-        "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0"
-      ],
-      "template": "neutro",
+      "channel": "Provedor não informado",
+      "provider": "unknown",
+      "channelId": "",
+      "channelIds": [],
+      "template": "",
       "contacts": 252,
       "sent": 252,
       "failures": 21,
@@ -2491,7 +2477,7 @@
       "channelName": "Suporte LP",
       "channelStatus": "error",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T19:22:07.761986Z",
+      "lastSyncedAt": "2026-11-21T15:14:29.965874Z",
       "campaignOrigin": null
     },
     {
@@ -3246,8 +3232,8 @@
       "id": "b220e333-ef57-4395-801c-29dcf73d13a3",
       "campaignId": "b220e333-ef57-4395-801c-29dcf73d13a3",
       "name": "ledger",
-      "status": "Agendada",
-      "statusCode": "scheduled",
+      "status": "Concluída",
+      "statusCode": "completed",
       "channel": "WhatsApp QR Code",
       "provider": "uazapi",
       "channelId": "6a527349-5353-4397-a50b-b51a4cf28723",
@@ -3256,24 +3242,24 @@
       ],
       "template": "",
       "contacts": 2,
-      "sent": 0,
+      "sent": 2,
       "failures": 0,
       "delivered": 0,
       "read": 0,
       "replied": 0,
       "conversions": 0,
-      "conversionValue": null,
+      "conversionValue": 0,
       "createdAt": "2026-11-21T09:59:59.069883Z",
-      "startedAt": null,
-      "completedAt": null,
+      "startedAt": "2026-11-21T15:00:05.696000Z",
+      "completedAt": "2026-11-21T15:00:16.618000Z",
       "period": "21/11/2026",
-      "timeLabel": "21/11/2026 06:59",
+      "timeLabel": "21/11/2026 12:00",
       "source": "umclique_api",
       "errorDiagnostics": null,
       "channelName": "Aline",
       "channelStatus": "connected",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T10:10:11.897167Z",
+      "lastSyncedAt": "2026-11-21T15:14:29.965874Z",
       "campaignOrigin": null
     },
     {
@@ -3573,12 +3559,6 @@
       "name": "Aline",
       "provider": "uazapi",
       "status": "connected"
-    },
-    {
-      "id": "be888f1b-d1b5-4f0f-b90b-5075eb3e33c0",
-      "name": "Suporte LP",
-      "provider": "meta",
-      "status": "error"
     }
   ]
 }
