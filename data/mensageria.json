@@ -2644,7 +2644,7 @@
   },
   "meta": {
     "schemaVersion": 2,
-    "lastSyncedAt": "2026-11-21T12:47:51.789336Z",
+    "lastSyncedAt": "2026-11-21T14:25:31.600070Z",
     "timeZone": "America/Fortaleza",
     "source": "UmClique /public-conversations, /messages e /public-agents",
     "allAccountConversations": 7625,
@@ -2730,7 +2730,7 @@
       "contactsInConversations": 5099,
       "firstInboundConversations": 558,
       "lastInboundActiveConversations": 0,
-      "unread": 50
+      "unread": 1
     },
     {
       "period": "all",
@@ -2769,7 +2769,7 @@
       "contactsInConversations": 912,
       "firstInboundConversations": 161,
       "lastInboundActiveConversations": 0,
-      "unread": 23
+      "unread": 0
     },
     {
       "period": "all",
@@ -2782,7 +2782,7 @@
       "contactsInConversations": 2147,
       "firstInboundConversations": 2,
       "lastInboundActiveConversations": 0,
-      "unread": 27
+      "unread": 1
     },
     {
       "period": "all",
@@ -2938,7 +2938,7 @@
       "contactsInConversations": 272,
       "firstInboundConversations": 287,
       "lastInboundActiveConversations": 0,
-      "unread": 3
+      "unread": 0
     },
     {
       "period": "all",
@@ -2977,7 +2977,7 @@
       "contactsInConversations": 29,
       "firstInboundConversations": 18,
       "lastInboundActiveConversations": 0,
-      "unread": 2
+      "unread": 0
     },
     {
       "period": "all",
@@ -2990,7 +2990,7 @@
       "contactsInConversations": 72,
       "firstInboundConversations": 0,
       "lastInboundActiveConversations": 0,
-      "unread": 1
+      "unread": 0
     },
     {
       "period": "all",
@@ -3146,7 +3146,7 @@
       "contactsInConversations": 4826,
       "firstInboundConversations": 267,
       "lastInboundActiveConversations": 0,
-      "unread": 47
+      "unread": 1
     },
     {
       "period": "all",
@@ -3185,7 +3185,7 @@
       "contactsInConversations": 882,
       "firstInboundConversations": 142,
       "lastInboundActiveConversations": 0,
-      "unread": 21
+      "unread": 0
     },
     {
       "period": "all",
@@ -3198,7 +3198,7 @@
       "contactsInConversations": 2074,
       "firstInboundConversations": 1,
       "lastInboundActiveConversations": 0,
-      "unread": 26
+      "unread": 1
     },
     {
       "period": "all",
