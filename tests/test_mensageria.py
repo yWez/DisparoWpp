@@ -113,5 +113,42 @@ class InboxMetricsTest(unittest.TestCase):
         self.assertEqual(data["meta"]["dataState"],"parcial")
         self.assertEqual(data["meta"]["scannedConversations"],0)
 
+    def test_google_sheets_quota_429_is_retried_without_exposing_data(self):
+        from unittest.mock import Mock
+        first=Mock(status_code=429,headers={"Retry-After":"1"},content=b"")
+        second=Mock(status_code=200,headers={},content=b'{"ok":true}')
+        second.json.return_value={"ok":True}
+        google=Mock()
+        google.request.side_effect=[first,second]
+        with patch.object(s.time,"sleep") as sleep:
+            result=s.google_request(google,"GET","/values/test")
+        self.assertEqual(result,{"ok":True})
+        self.assertEqual(google.request.call_count,2)
+        sleep.assert_called_once_with(s.GOOGLE_RETRY_BACKOFF[0])
+
+    def test_google_sheets_auth_errors_do_not_retry(self):
+        from unittest.mock import Mock
+        from requests.exceptions import HTTPError
+        resp=Mock(status_code=403,headers={},content=b"")
+        resp.raise_for_status.side_effect=HTTPError("forbidden",response=resp)
+        google=Mock()
+        google.request.return_value=resp
+        with patch.object(s.time,"sleep") as sleep:
+            with self.assertRaises(HTTPError):
+                s.google_request(google,"PUT","/values/restricted")
+        self.assertEqual(google.request.call_count,1)
+        sleep.assert_not_called()
+
+    def test_private_state_writes_use_larger_bounded_batches(self):
+        calls=[]
+        def fake(google,method,endpoint,**kwargs):
+            calls.append((method,endpoint,kwargs["json"]["data"]))
+            return {}
+        positions=[(i,["ok"]) for i in range(2,803)]
+        with patch.object(s,"google_request",side_effect=fake):
+            s.update_values(None,positions)
+        self.assertEqual([len(x[2]) for x in calls],[400,400,1])
+        self.assertTrue(all(x[1]=="/values:batchUpdate" for x in calls))
+
 if __name__=="__main__":
     unittest.main()
