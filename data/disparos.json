@@ -15,7 +15,7 @@
       "Os contatos podem se repetir entre campanhas; não somar como pessoas únicas.",
       "Datas/hora dos disparos conciliados vêm do registro oficial da UmClique; histórico manual permanece somente como evidência."
     ],
-    "lastSyncedAt": "2026-11-21T10:41:24.409194Z",
+    "lastSyncedAt": "2026-11-21T10:52:01.486773Z",
     "schemaVersion": 2,
     "privacy": "Sem dados pessoais; relatórios individuais somente em ambiente restrito"
   },
@@ -373,7 +373,7 @@
       "completedAt": "2026-11-10T18:00:36.238000Z",
       "source": "umclique_api",
       "legacyId": "D5",
-      "lastSyncedAt": "2026-11-17T14:20:13.907288Z",
+      "lastSyncedAt": "2026-11-21T10:52:01.486773Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -425,7 +425,7 @@
         "matchesBroadcastFailures": false
       },
       "channelName": "Equipe Luisa Pires 01",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
       "provider": "meta"
@@ -455,7 +455,7 @@
       "completedAt": "2026-11-10T19:40:43.851000Z",
       "source": "umclique_api",
       "legacyId": "D6",
-      "lastSyncedAt": "2026-11-13T21:40:34.443001Z",
+      "lastSyncedAt": "2026-11-21T10:52:01.486773Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -507,7 +507,7 @@
         "matchesBroadcastFailures": true
       },
       "channelName": "Equipe Luisa Pires 01",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
       "provider": "meta"
@@ -537,7 +537,7 @@
       "completedAt": "2026-11-10T22:29:30.029000Z",
       "source": "umclique_api",
       "legacyId": "D7",
-      "lastSyncedAt": "2026-11-15T01:47:03.634290Z",
+      "lastSyncedAt": "2026-11-21T10:52:01.486773Z",
       "channelIds": [
         "a1f3ecf5-87db-4956-9d31-a3501d42a875"
       ],
@@ -589,7 +589,7 @@
         "matchesBroadcastFailures": true
       },
       "channelName": "Equipe Luisa Pires 01",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
       "campaignOrigin": null,
       "provider": "meta"
@@ -2055,9 +2055,9 @@
         "matchesBroadcastFailures": false
       },
       "channelName": "LP Crypto 03",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T23:38:11.813036Z",
+      "lastSyncedAt": "2026-11-21T10:52:01.486773Z",
       "campaignOrigin": null
     },
     {
@@ -2135,9 +2135,9 @@
         "matchesBroadcastFailures": false
       },
       "channelName": "LP Crypto 03",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-20T17:50:59.543340Z",
+      "lastSyncedAt": "2026-11-21T10:52:01.486773Z",
       "campaignOrigin": null
     },
     {
@@ -2215,9 +2215,9 @@
         "matchesBroadcastFailures": false
       },
       "channelName": "Equipe Luisa Pires 01",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-21T00:48:12.839594Z",
+      "lastSyncedAt": "2026-11-21T10:52:01.486773Z",
       "campaignOrigin": null
     },
     {
@@ -2295,9 +2295,9 @@
         "matchesBroadcastFailures": false
       },
       "channelName": "Equipe Luisa Pires 01",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-19T01:17:02.358935Z",
+      "lastSyncedAt": "2026-11-21T10:52:01.486773Z",
       "campaignOrigin": null
     },
     {
@@ -2375,9 +2375,9 @@
         "matchesBroadcastFailures": false
       },
       "channelName": "LP Crypto 03",
-      "channelStatus": "connected",
+      "channelStatus": "error",
       "uniqueReached": null,
-      "lastSyncedAt": "2026-11-18T11:59:56.456722Z",
+      "lastSyncedAt": "2026-11-21T10:52:01.486773Z",
       "campaignOrigin": null
     },
     {
@@ -3526,13 +3526,13 @@
       "id": "a1f3ecf5-87db-4956-9d31-a3501d42a875",
       "name": "Equipe Luisa Pires 01",
       "provider": "meta",
-      "status": "connected"
+      "status": "error"
     },
     {
       "id": "3a625a2b-51c5-4396-a02d-8a3e039a9cd6",
       "name": "LP Crypto 03",
       "provider": "meta",
-      "status": "connected"
+      "status": "error"
     },
     {
       "id": "6a527349-5353-4397-a50b-b51a4cf28723",
